@@ -7,9 +7,15 @@
 }
 
 h1 {
-	font-size: 125%;
+	font-size: 140%;
 }
 
 h2 {
-	font-size: 110%;
+	font-size: 125%;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    background: url(http://localhost:8080/FerrisWheelManager/images/ferriswheel.jpg) no-repeat bottom right;
 }
