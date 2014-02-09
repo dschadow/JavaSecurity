@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.dominikschadow.javasecurity</groupId>
     <artifactId>FerrisWheelManager</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>Ferris Wheel Manager</name>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+    <name>FerrisWheelManager</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Ferris Wheel Manager sample application to demonstrate various Java web application security problems.
         Requires a server like Apache Tomcat or use the Maven-Tomcat7-Plug-in with mvn tomcat7:run-war
