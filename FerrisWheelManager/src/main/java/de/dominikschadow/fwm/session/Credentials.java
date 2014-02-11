@@ -2,12 +2,15 @@ package de.dominikschadow.fwm.session;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Credentials implements Serializable {
-    private String username;
+	private static final long serialVersionUID = 1L;
+
+	private String username;
     private String password;
 
     public String getUsername() {

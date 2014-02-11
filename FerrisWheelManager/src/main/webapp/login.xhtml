@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
-    <title>Ferris Wheel Manager</title>
-</h:head>
-<h:body>
-	<h1>Ferris Wheel Manager</h1>
-	
-	<h:form id="loginForm">
-        <h:panelGrid columns="2">
-            <h:outputLabel value="Username" for="username" />
-            <h:inputText value="#{credentials.username}" id="username" />
-            <h:outputLabel value="Password" for="password" />
-            <h:inputSecret value="#{credentials.password}" id="password" />
-        </h:panelGrid>
-		<h:commandButton value="Login" action="#{login.login}" styleClass="send-button" />
-	</h:form>
-</h:body>
+    <h:head>
+        <h:outputStylesheet library="css" value="styles/styles.css" name="styles.css" />
+        <title>Ferris Wheel Manager</title>
+    </h:head>
+    <h:body>
+        <h1>Ferris Wheel Manager</h1>
+
+        <h:form id="loginForm">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Username" for="username" />
+                <h:inputText value="#{credentials.username}" id="username" />
+                <h:outputLabel value="Password" for="password" />
+                <h:inputSecret value="#{credentials.password}" id="password" />
+            </h:panelGrid>
+            <h:commandButton value="Login" action="#{loginBean.login}" styleClass="send-button" />
+        </h:form>
+    </h:body>
 </html>
