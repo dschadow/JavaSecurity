@@ -16,10 +16,12 @@ public class FerrisWheel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    @Size(min = 2, max = 45)
+    @Size(min = 5, max = 50)
     private String name;
+    @Size(max = 1024)
     private String description;
     @NotNull
+    @Size(max = 50)
     private String location;
     @Min(0)
     @Max(1000)
