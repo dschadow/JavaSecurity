@@ -30,7 +30,7 @@ public class LoginBean {
             return "login";
         }
 
-        return "index";
+        return "/users/index";
     }
 
     public void logout() {
