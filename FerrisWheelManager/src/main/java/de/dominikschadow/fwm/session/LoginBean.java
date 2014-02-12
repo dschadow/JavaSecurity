@@ -41,6 +41,10 @@ public class LoginBean {
         return user;
     }
 
+    public boolean isUserAdmin() {
+        return "Admin".equals(user.getRole());
+    }
+
     public boolean isLoggedIn() {
         return user != null;
     }
