@@ -13,11 +13,11 @@
     <h:form id="createUser">
         <h:panelGrid columns="2">
             <h:outputLabel value="Username" for="username" />
-            <h:inputText value="#{user.username}" id="username" />
+            <h:inputText value="#{userBean.user.username}" id="username" />
             <h:outputLabel value="Password" for="password" />
-            <h:inputText value="#{user.password}" id="password" />
+            <h:inputText value="#{userBean.user.password}" id="password" />
             <h:outputLabel value="Role" for="role" />
-            <h:inputText value="#{user.role}" id="role" />
+            <h:inputText value="#{userBean.user.role}" id="role" />
         </h:panelGrid>
         <h:commandButton value="Save" action="#{userBean.createUser}" styleClass="send-button" />
         <h:commandButton value="Cancel" action="/users/index" styleClass="send-button" immediate="true" />
