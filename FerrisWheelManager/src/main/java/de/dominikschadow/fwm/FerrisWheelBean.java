@@ -20,8 +20,14 @@ public class FerrisWheelBean {
     private LoginBean loginBean;
 
     public List<FerrisWheel> getFerrisWheels() {
-        Query query = em.createQuery("from FerrisWheel w where w.user=:user");
-        query.setParameter("user", loginBean.getCurrentUser());
+        Query query;
+
+        if (loginBean.isUserAdmin()) {
+            query = em.createQuery("from FerrisWheel w");
+        } else {
+            query = em.createQuery("from FerrisWheel w where w.user=:user");
+            query.setParameter("user", loginBean.getCurrentUser());
+        }
 
         List<FerrisWheel> results = query.getResultList();
 
