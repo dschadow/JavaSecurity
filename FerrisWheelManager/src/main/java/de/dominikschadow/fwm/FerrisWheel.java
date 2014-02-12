@@ -1,5 +1,7 @@
 package de.dominikschadow.fwm;
 
+import de.dominikschadow.fwm.session.User;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -12,9 +14,9 @@ import java.util.Date;
 public class FerrisWheel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 45)
     private String name;
     private String description;
     @NotNull
@@ -22,15 +24,23 @@ public class FerrisWheel {
     @Min(0)
     @Max(1000)
     private int speed;
+    @Column(name = "installation_date")
+    @Temporal(TemporalType.DATE)
     private Date installationDate;
+    @Column(name = "last_maintenance_date")
+    @Temporal(TemporalType.DATE)
     private Date lastMaintenanceDate;
+    @Column(name = "next_maintenance_date")
+    @Temporal(TemporalType.DATE)
     private Date nextMaintenanceDate;
+    @ManyToOne
+    private User user;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -88,5 +98,13 @@ public class FerrisWheel {
 
     public void setNextMaintenanceDate(Date nextMaintenanceDate) {
         this.nextMaintenanceDate = nextMaintenanceDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

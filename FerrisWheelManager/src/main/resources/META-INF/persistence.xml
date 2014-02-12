@@ -3,6 +3,7 @@
     <persistence-unit name="fwm">
         <jta-data-source>jdbc/mysqlfwm</jta-data-source>
         <class>de.dominikschadow.fwm.session.User</class>
+        <class>de.dominikschadow.fwm.FerrisWheel</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="eclipselink.target-database" value="MySQL4"/>

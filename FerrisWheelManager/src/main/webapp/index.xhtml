@@ -1,12 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <h:outputStylesheet library="css" name="styles.css" />
-        <title>Ferris Wheel Manager</title>
-    </h:head>
-    <h:body>
-        <h1>Ferris Wheel Manager</h1>
-    </h:body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <title>Ferris Wheel Manager</title>
+</h:head>
+<h:body>
+    <h1>Ferris Wheel Manager</h1>
+
+    <h:dataTable value="#{ferrisWheelBean.ferrisWheels}" var="w"
+                 styleClass="wheel-table"
+                 headerClass="wheel-table-header"
+                 rowClasses="wheel-table-odd-row,wheel-table-even-row">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{w.id}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{w.name}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Description</f:facet>
+            #{w.description}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Location</f:facet>
+            #{w.location}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Speed</f:facet>
+            #{w.speed}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Installation</f:facet>
+            #{w.installationDate}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Last Maintenance</f:facet>
+            #{w.lastMaintenanceDate}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Next Maintenance</f:facet>
+            #{w.nextMaintenanceDate}
+        </h:column>
+    </h:dataTable>
+</h:body>
 </html>
