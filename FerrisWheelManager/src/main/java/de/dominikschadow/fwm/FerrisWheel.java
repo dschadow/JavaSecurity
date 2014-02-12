@@ -29,12 +29,9 @@ public class FerrisWheel {
     @Column(name = "installation_date")
     @Temporal(TemporalType.DATE)
     private Date installationDate;
-    @Column(name = "last_maintenance_date")
+    @Column(name = "maintenance_date")
     @Temporal(TemporalType.DATE)
-    private Date lastMaintenanceDate;
-    @Column(name = "next_maintenance_date")
-    @Temporal(TemporalType.DATE)
-    private Date nextMaintenanceDate;
+    private Date maintenanceDate;
     @ManyToOne
     private User user;
 
@@ -86,20 +83,12 @@ public class FerrisWheel {
         this.installationDate = installationDate;
     }
 
-    public Date getLastMaintenanceDate() {
-        return lastMaintenanceDate;
+    public Date getMaintenanceDate() {
+        return maintenanceDate;
     }
 
-    public void setLastMaintenanceDate(Date lastMaintenanceDate) {
-        this.lastMaintenanceDate = lastMaintenanceDate;
-    }
-
-    public Date getNextMaintenanceDate() {
-        return nextMaintenanceDate;
-    }
-
-    public void setNextMaintenanceDate(Date nextMaintenanceDate) {
-        this.nextMaintenanceDate = nextMaintenanceDate;
+    public void setMaintenanceDate(Date maintenanceDate) {
+        this.maintenanceDate = maintenanceDate;
     }
 
     public User getUser() {
