@@ -41,12 +41,16 @@
 
         <h:column>
             <f:facet name="header">Installation</f:facet>
-            <h:outputText value="#{w.installationDate}"/>
+            <h:outputText value="#{w.installationDate}">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:outputText>
         </h:column>
 
         <h:column>
             <f:facet name="header">Last Maintenance</f:facet>
-            <h:outputText value="#{w.maintenanceDate}"/>
+            <h:outputText value="#{w.maintenanceDate}">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:outputText>
         </h:column>
 
         <h:column>
