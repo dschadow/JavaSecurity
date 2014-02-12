@@ -10,6 +10,7 @@
         <h1>Ferris Wheel Manager - Login</h1>
 
         <h:form id="loginForm">
+            <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Username" for="username" />
                 <h:inputText value="#{credentials.username}" id="username" />

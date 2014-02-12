@@ -50,3 +50,15 @@ form {
     background: none repeat scroll 0 0 #F9F9F9;
     border-top: 1px solid #BBBBBB;
 }
+
+.errorMessage {
+    color: red;
+}
+
+.infoMessage {
+    color: blue;
+}
+
+.warnMessage {
+    color: orange;
+}
