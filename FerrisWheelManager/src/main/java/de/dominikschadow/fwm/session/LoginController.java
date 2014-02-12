@@ -5,30 +5,22 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.inject.Inject;
 
 @ManagedBean
 @SessionScoped
 public class LoginController {
     @ManagedProperty("#{credentialsController}")
-    private CredentialsController credentialsController;
-
-    @PersistenceContext(unitName = "fwm")
-    private EntityManager em;
+    private CredentialsController credentials;
+    @Inject
+    private UserBean userBean;
 
     private User user;
 
     public String login() {
-        Query query = em.createQuery("from User u where u.username=:username and u.password=:password");
-        query.setParameter("username", credentialsController.getUsername());
-        query.setParameter("password", credentialsController.getPassword());
+        user = userBean.getUser(credentials.getUsername(), credentials.getPassword());
 
-        try {
-            user = (User) query.getSingleResult();
-        } catch (NoResultException ex) {
+        if (user == null) {
             addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username or password not correct", null));
             return "login";
         }
@@ -36,7 +28,7 @@ public class LoginController {
         return "/users/index";
     }
 
-    private void addMessage(FacesMessage message){
+    private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
@@ -56,7 +48,7 @@ public class LoginController {
         return user != null;
     }
 
-    public void setCredentialsController(CredentialsController credentialsController) {
-        this.credentialsController = credentialsController;
+    public void setCredentials(CredentialsController credentials) {
+        this.credentials = credentials;
     }
 }

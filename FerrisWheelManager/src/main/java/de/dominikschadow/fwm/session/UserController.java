@@ -2,21 +2,17 @@ package de.dominikschadow.fwm.session;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import javax.inject.Inject;
 
 @ManagedBean
 @RequestScoped
 public class UserController {
     private User user = new User();
+    @Inject
+    private UserBean userBean;
 
-    @PersistenceContext(unitName = "fwm")
-    private EntityManager em;
-
-    @Transactional(Transactional.TxType.REQUIRED)
     public String createUser() {
-        em.persist(user);
+        userBean.createNewUser(user);
 
         return "/users/index";
     }
