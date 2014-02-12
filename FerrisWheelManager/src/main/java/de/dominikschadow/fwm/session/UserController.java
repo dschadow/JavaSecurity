@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 
 @ManagedBean
 @RequestScoped
-public class UserBean {
+public class UserController {
     private User user = new User();
 
     @PersistenceContext(unitName = "fwm")

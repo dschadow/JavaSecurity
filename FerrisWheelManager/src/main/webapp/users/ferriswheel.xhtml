@@ -25,7 +25,7 @@
             <h:outputLabel value="Maintenance Date" for="maintenanceDate" />
             <h:inputSecret value="#{ferriswheel.maintenanceDate}" id="maintenanceDate" />
         </h:panelGrid>
-        <h:commandButton value="Save" action="#{ferrisWheelBean.createFerrisWheel}" styleClass="send-button" />
+        <h:commandButton value="Save" action="#{ferrisWheelController.createFerrisWheel}" styleClass="send-button" />
         <h:commandButton value="Cancel" action="/users/index" styleClass="send-button" immediate="true" />
     </h:form>
 </h:body>

@@ -12,10 +12,10 @@
 
     <h:form id="createForm">
         <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="/users/ferriswheel"/>
-        <h:commandButton id="newUser" value="New User" rendered="#{loginBean.userAdmin}" action="/admin/user"/>
+        <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}" action="/admin/user"/>
     </h:form>
 
-    <h:dataTable value="#{ferrisWheelBean.ferrisWheels}" var="w"
+    <h:dataTable value="#{ferrisWheelController.ferrisWheels}" var="w"
                  styleClass="wheel-table"
                  headerClass="wheel-table-header"
                  rowClasses="wheel-table-odd-row,wheel-table-even-row">
@@ -56,7 +56,7 @@
         <h:column>
             <f:facet name="header">Manage</f:facet>
             <h:commandButton styleClass="image-button" title="Edit" image="/resources/images/edit.png" action="/users/ferriswheel"/>
-            <h:commandButton styleClass="image-button" title="Delete" image="/resources/images/delete.png" action="#{ferrisWheelBean.deleteFerrisWheel}"/>
+            <h:commandButton styleClass="image-button" title="Delete" image="/resources/images/delete.png" action="#{ferrisWheelController.deleteFerrisWheel}"/>
         </h:column>
     </h:dataTable>
 </h:body>

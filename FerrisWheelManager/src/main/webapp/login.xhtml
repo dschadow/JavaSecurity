@@ -13,11 +13,11 @@
             <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Username" for="username" />
-                <h:inputText value="#{credentials.username}" id="username" />
+                <h:inputText value="#{credentialsController.username}" id="username" />
                 <h:outputLabel value="Password" for="password" />
-                <h:inputSecret value="#{credentials.password}" id="password" />
+                <h:inputSecret value="#{credentialsController.password}" id="password" />
             </h:panelGrid>
-            <h:commandButton value="Login" action="#{loginBean.login}" styleClass="send-button" />
+            <h:commandButton value="Login" action="#{loginController.login}" styleClass="send-button" />
         </h:form>
     </h:body>
 </html>

@@ -12,9 +12,9 @@ import javax.persistence.Query;
 
 @ManagedBean
 @SessionScoped
-public class LoginBean {
-    @ManagedProperty("#{credentials}")
-    private Credentials credentials;
+public class LoginController {
+    @ManagedProperty("#{credentialsController}")
+    private CredentialsController credentialsController;
 
     @PersistenceContext(unitName = "fwm")
     private EntityManager em;
@@ -23,8 +23,8 @@ public class LoginBean {
 
     public String login() {
         Query query = em.createQuery("from User u where u.username=:username and u.password=:password");
-        query.setParameter("username", credentials.getUsername());
-        query.setParameter("password", credentials.getPassword());
+        query.setParameter("username", credentialsController.getUsername());
+        query.setParameter("password", credentialsController.getPassword());
 
         try {
             user = (User) query.getSingleResult();
@@ -56,7 +56,7 @@ public class LoginBean {
         return user != null;
     }
 
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
+    public void setCredentialsController(CredentialsController credentialsController) {
+        this.credentialsController = credentialsController;
     }
 }

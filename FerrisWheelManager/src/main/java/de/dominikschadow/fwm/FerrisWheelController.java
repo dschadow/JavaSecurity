@@ -1,6 +1,6 @@
 package de.dominikschadow.fwm;
 
-import de.dominikschadow.fwm.session.LoginBean;
+import de.dominikschadow.fwm.session.LoginController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,21 +12,21 @@ import java.util.List;
 
 @ManagedBean
 @RequestScoped
-public class FerrisWheelBean {
+public class FerrisWheelController {
     @PersistenceContext(unitName = "fwm")
     private EntityManager em;
 
-    @ManagedProperty("#{loginBean}")
-    private LoginBean loginBean;
+    @ManagedProperty("#{loginController}")
+    private LoginController loginController;
 
     public List<FerrisWheel> getFerrisWheels() {
         Query query;
 
-        if (loginBean.isUserAdmin()) {
+        if (loginController.isUserAdmin()) {
             query = em.createQuery("from FerrisWheel w");
         } else {
             query = em.createQuery("from FerrisWheel w where w.user=:user");
-            query.setParameter("user", loginBean.getCurrentUser());
+            query.setParameter("user", loginController.getCurrentUser());
         }
 
         List<FerrisWheel> results = query.getResultList();
@@ -42,7 +42,7 @@ public class FerrisWheelBean {
 
     }
 
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
 }

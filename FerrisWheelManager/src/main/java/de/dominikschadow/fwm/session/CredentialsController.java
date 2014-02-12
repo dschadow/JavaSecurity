@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @ManagedBean
 @SessionScoped
-public class Credentials implements Serializable {
+public class CredentialsController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String username;
