@@ -14,12 +14,6 @@ h2 {
 	font-size: 125%;
 }
 
-html {
-    height: 100%;
-    width: 100%;
-    background: url("/resources/images/ferriswheel.jpg") no-repeat bottom right;
-}
-
 form {
     margin-bottom: 25px;
 }
