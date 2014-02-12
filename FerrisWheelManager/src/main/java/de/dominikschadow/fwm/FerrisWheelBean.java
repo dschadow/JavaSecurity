@@ -32,6 +32,10 @@ public class FerrisWheelBean {
         return "/users/index";
     }
 
+    public void deleteFerrisWheel() {
+
+    }
+
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
