@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "FERRIS_WHEELS", schema = "PUBLIC", catalog = "PUBLIC")
+@Table(name = "FERRIS_WHEELS")
 public class FerrisWheel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
