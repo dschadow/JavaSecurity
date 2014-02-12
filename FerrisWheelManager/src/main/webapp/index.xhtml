@@ -15,43 +15,38 @@
                  headerClass="wheel-table-header"
                  rowClasses="wheel-table-odd-row,wheel-table-even-row">
         <h:column>
-            <f:facet name="header">ID</f:facet>
-            #{w.id}
-        </h:column>
-
-        <h:column>
             <f:facet name="header">Name</f:facet>
-            #{w.name}
+            <h:outputText value="#{w.name}"/>
         </h:column>
 
         <h:column>
             <f:facet name="header">Description</f:facet>
-            #{w.description}
+            <h:outputText value="#{w.description}" escape="false"/>
         </h:column>
 
         <h:column>
             <f:facet name="header">Location</f:facet>
-            #{w.location}
+            <h:outputText value="#{w.location}"/>
         </h:column>
 
         <h:column>
             <f:facet name="header">Speed</f:facet>
-            #{w.speed}
+            <h:outputText value="#{w.speed}"/>
         </h:column>
 
         <h:column>
             <f:facet name="header">Installation</f:facet>
-            #{w.installationDate}
+            <h:outputText value="#{w.installationDate}"/>
         </h:column>
 
         <h:column>
             <f:facet name="header">Last Maintenance</f:facet>
-            #{w.lastMaintenanceDate}
+            <h:outputText value="#{w.lastMaintenanceDate}"/>
         </h:column>
 
         <h:column>
             <f:facet name="header">Next Maintenance</f:facet>
-            #{w.nextMaintenanceDate}
+            <h:outputText value="#{w.nextMaintenanceDate}"/>
         </h:column>
     </h:dataTable>
 </h:body>
