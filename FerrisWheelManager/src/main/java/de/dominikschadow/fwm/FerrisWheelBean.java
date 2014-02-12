@@ -28,6 +28,10 @@ public class FerrisWheelBean {
         return results;
     }
 
+    public String createFerrisWheel() {
+        return "/users/index";
+    }
+
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }

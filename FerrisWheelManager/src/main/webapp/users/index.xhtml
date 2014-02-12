@@ -11,8 +11,8 @@
     <h1>Ferris Wheel Manager</h1>
 
     <h:form id="createForm">
-        <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="#{ferrisWheelBean.createFerrisWheel}"/>
-        <h:commandButton id="newUser" value="New User" rendered="#{loginBean.userAdmin}" action="#{userBean.createUser}"/>
+        <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="/users/ferriswheel"/>
+        <h:commandButton id="newUser" value="New User" rendered="#{loginBean.userAdmin}" action="/admin/user"/>
     </h:form>
 
     <h:dataTable value="#{ferrisWheelBean.ferrisWheels}" var="w"

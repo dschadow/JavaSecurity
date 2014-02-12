@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <title>Ferris Wheel Manager - Create User</title>
+</h:head>
+<h:body>
+    <h1>Ferris Wheel Manager - Create User</h1>
+
+    <h:form id="createUser">
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Username" for="username" />
+            <h:inputText value="#{user.username}" id="username" />
+            <h:outputLabel value="Password" for="password" />
+            <h:inputText value="#{user.password}" id="password" />
+            <h:outputLabel value="Role" for="role" />
+            <h:inputText value="#{user.role}" id="role" />
+        </h:panelGrid>
+        <h:commandButton value="Save" action="#{userBean.createUser}" styleClass="send-button" />
+        <h:commandButton value="Cancel" action="/users/index" styleClass="send-button" immediate="true" />
+    </h:form>
+</h:body>
+</html>
