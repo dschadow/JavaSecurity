@@ -13,7 +13,7 @@ import javax.inject.Inject;
 @ManagedBean
 @SessionScoped
 public class LoginController {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @ManagedProperty("#{credentialsController}")
     private CredentialsController credentials;

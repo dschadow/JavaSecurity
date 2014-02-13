@@ -11,7 +11,7 @@ import javax.persistence.Query;
 
 @Stateless
 public class UserBean {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @PersistenceContext(unitName = "fwm")
     private EntityManager em;
