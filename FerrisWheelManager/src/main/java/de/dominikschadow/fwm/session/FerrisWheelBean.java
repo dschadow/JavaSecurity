@@ -20,9 +20,18 @@ public class FerrisWheelBean {
         return query.getResultList();
     }
 
+    public FerrisWheel getFerrisWheelById(int id) {
+        return em.find(FerrisWheel.class, id);
+    }
+
     public List<FerrisWheel> getAllFerrisWheels() {
         Query query = em.createQuery("from FerrisWheel w");
 
         return query.getResultList();
+    }
+
+    public void deleteFerrisWheel(int id) {
+        FerrisWheel ferrisWheel = getFerrisWheelById(id);
+        em.remove(ferrisWheel);
     }
 }

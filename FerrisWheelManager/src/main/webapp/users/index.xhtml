@@ -15,49 +15,53 @@
         <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}" action="/admin/user"/>
     </h:form>
 
-    <h:dataTable value="#{ferrisWheelController.ferrisWheels}" var="w"
-                 styleClass="wheel-table"
-                 headerClass="wheel-table-header"
-                 rowClasses="wheel-table-odd-row,wheel-table-even-row">
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            <h:outputText value="#{w.name}"/>
-        </h:column>
+    <h:form>
+        <h:dataTable value="#{ferrisWheelController.ferrisWheels}" var="fw"
+                     styleClass="wheel-table"
+                     headerClass="wheel-table-header"
+                     rowClasses="wheel-table-odd-row,wheel-table-even-row">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{fw.name}"/>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Description</f:facet>
-            <h:outputText value="#{w.description}" escape="false"/>
-        </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{fw.description}" escape="false"/>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Location</f:facet>
-            <h:outputText value="#{w.location}"/>
-        </h:column>
+            <h:column>
+                <f:facet name="header">Location</f:facet>
+                <h:outputText value="#{fw.location}"/>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Speed (mph)</f:facet>
-            <h:outputText value="#{w.speed}"/>
-        </h:column>
+            <h:column>
+                <f:facet name="header">Speed (mph)</f:facet>
+                <h:outputText value="#{fw.speed}"/>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Installation</f:facet>
-            <h:outputText value="#{w.installationDate}">
-                <f:convertDateTime pattern="dd.MM.yyyy"/>
-            </h:outputText>
-        </h:column>
+            <h:column>
+                <f:facet name="header">Installation</f:facet>
+                <h:outputText value="#{fw.installationDate}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Last Maintenance</f:facet>
-            <h:outputText value="#{w.maintenanceDate}">
-                <f:convertDateTime pattern="dd.MM.yyyy"/>
-            </h:outputText>
-        </h:column>
+            <h:column>
+                <f:facet name="header">Last Maintenance</f:facet>
+                <h:outputText value="#{fw.maintenanceDate}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">Manage</f:facet>
-            <h:commandButton styleClass="image-button" title="Edit" image="/resources/images/edit.png" action="/users/ferriswheel"/>
-            <h:commandButton styleClass="image-button" title="Delete" image="/resources/images/delete.png" action="#{ferrisWheelController.deleteFerrisWheel}"/>
-        </h:column>
-    </h:dataTable>
+            <h:column>
+                <f:facet name="header">Manage</f:facet>
+                <h:commandButton styleClass="image-button" title="Edit" image="/resources/images/edit.png"
+                                 action="#{ferrisWheelController.editFerrisWheel(fw.id)}"/>
+                <h:commandButton styleClass="image-button" title="Delete" image="/resources/images/delete.png"
+                                 action="#{ferrisWheelController.deleteFerrisWheel(fw.id)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
 </h:body>
 </html>

@@ -30,8 +30,17 @@ public class FerrisWheelController {
         return "/users/index";
     }
 
-    public void deleteFerrisWheel() {
+    public String editFerrisWheel(int id) {
+        ferrisWheelBean.getFerrisWheelById(id);
 
+        return "/users/ferriswheel";
+
+    }
+
+    public String deleteFerrisWheel(int id) {
+        ferrisWheelBean.deleteFerrisWheel(id);
+
+        return "/users/index";
     }
 
     public void setLoginController(LoginController loginController) {
