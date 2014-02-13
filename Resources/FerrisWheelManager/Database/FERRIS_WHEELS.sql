@@ -3,7 +3,7 @@ CREATE TABLE `FERRIS_WHEELS` (
   `name` varchar(50) NOT NULL,
   `description` varchar(1024) DEFAULT NULL,
   `location` varchar(50) NOT NULL,
-  `speed` int(11) DEFAULT NULL,
+  `speed` int(4) DEFAULT 0,
   `installation_date` date DEFAULT NULL,
   `maintenance_date` date DEFAULT NULL,
   `user_id` int(11) NOT NULL,
