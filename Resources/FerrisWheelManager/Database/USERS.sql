@@ -1,8 +1,8 @@
 CREATE TABLE `USERS` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `role` varchar(45) DEFAULT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `role` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
