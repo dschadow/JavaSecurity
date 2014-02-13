@@ -2,13 +2,10 @@ package de.dominikschadow.fwm.session;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.io.Serializable;
 
 @ManagedBean
 @SessionScoped
-public class CredentialsController implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class CredentialsController {
 	private String username;
     private String password;
 
