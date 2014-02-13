@@ -3,10 +3,7 @@ package de.dominikschadow.fwm;
 import de.dominikschadow.fwm.session.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,12 +14,12 @@ public class FerrisWheel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
-    @Size(min = 5, max = 50)
+    @Size(min = 3, max = 50, message = "Name is required - minimum 3, maximum 50 characters")
     private String name;
     @Size(max = 1024)
     private String description;
     @NotNull
-    @Size(max = 50)
+    @Size(min =3 , max = 50, message = "Location is required - minimum 3, maximum 50 characters")
     private String location;
     @Min(0)
     @Max(1000)
@@ -32,6 +29,7 @@ public class FerrisWheel implements Serializable {
     private Date installationDate;
     @Column(name = "maintenance_date")
     @Temporal(TemporalType.DATE)
+    @Future
     private Date maintenanceDate;
     @ManyToOne
     private User user;

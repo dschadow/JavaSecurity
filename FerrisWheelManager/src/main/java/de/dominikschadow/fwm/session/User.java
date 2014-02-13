@@ -12,10 +12,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    @Size(min = 4, max = 20)
+    @Size(min = 4, max = 20, message = "Username is required - minimum 4, maximum 20 characters")
     private String username;
     @NotNull
-    @Size(min = 4, max = 20)
+    @Size(min = 4, max = 20, message = "Password is required - minimum 4, maximum 20 characters")
     private String password;
     @NotNull
     private String role;
