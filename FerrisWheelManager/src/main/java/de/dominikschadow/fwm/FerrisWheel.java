@@ -14,7 +14,7 @@ import java.util.Date;
 public class FerrisWheel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @NotNull
     @Size(min = 5, max = 50)
     private String name;
@@ -35,11 +35,11 @@ public class FerrisWheel {
     @ManyToOne
     private User user;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -34,4 +34,13 @@ public class FerrisWheelBean {
         FerrisWheel ferrisWheel = getFerrisWheelById(id);
         em.remove(ferrisWheel);
     }
+
+    public FerrisWheel save(FerrisWheel ferrisWheel) {
+        if (ferrisWheel.getId() == null) {
+            em.persist(ferrisWheel);
+            return ferrisWheel;
+        } else {
+            return em.merge(ferrisWheel);
+        }
+    }
 }

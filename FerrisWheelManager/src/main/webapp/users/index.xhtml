@@ -11,7 +11,7 @@
     <h1>Ferris Wheel Manager</h1>
 
     <h:form id="createForm">
-        <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="/users/ferriswheel"/>
+        <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="#{ferrisWheelController.goCreate()}"/>
         <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}" action="/admin/user"/>
     </h:form>
 
@@ -57,7 +57,7 @@
             <h:column>
                 <f:facet name="header">Manage</f:facet>
                 <h:commandButton styleClass="image-button" title="Edit" image="/resources/images/edit.png"
-                                 action="#{ferrisWheelController.editFerrisWheel(fw.id)}"/>
+                                 action="#{ferrisWheelController.goEdit(fw)}"/>
                 <h:commandButton styleClass="image-button" title="Delete" image="/resources/images/delete.png"
                                  action="#{ferrisWheelController.deleteFerrisWheel(fw.id)}"/>
             </h:column>

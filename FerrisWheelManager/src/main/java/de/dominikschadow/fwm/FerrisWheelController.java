@@ -5,15 +5,17 @@ import de.dominikschadow.fwm.session.LoginController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class FerrisWheelController {
     @Inject
     private FerrisWheelBean ferrisWheelBean;
+
+    private FerrisWheel ferrisWheel;
 
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
@@ -26,15 +28,22 @@ public class FerrisWheelController {
         }
     }
 
-    public String createFerrisWheel() {
+    public String saveFerrisWheel() {
+        ferrisWheelBean.save(ferrisWheel);
+
         return "/users/index";
     }
 
-    public String editFerrisWheel(int id) {
-        ferrisWheelBean.getFerrisWheelById(id);
+    public String goEdit(FerrisWheel ferrisWheel) {
+        this.ferrisWheel = ferrisWheel;
 
         return "/users/ferriswheel";
+    }
 
+    public String goCreate() {
+        this.ferrisWheel = new FerrisWheel();
+
+        return "/users/ferriswheel";
     }
 
     public String deleteFerrisWheel(int id) {
@@ -45,5 +54,13 @@ public class FerrisWheelController {
 
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
+    }
+
+    public FerrisWheel getFerrisWheel() {
+        return ferrisWheel;
+    }
+
+    public void setFerrisWheel(FerrisWheel ferrisWheel) {
+        this.ferrisWheel = ferrisWheel;
     }
 }

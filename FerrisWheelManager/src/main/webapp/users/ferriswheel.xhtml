@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <h:outputStylesheet library="css" name="styles.css"/>
     <title>Ferris Wheel Manager - Create Ferris Wheel</title>
@@ -13,19 +13,23 @@
     <h:form id="createFerrisWheel">
         <h:panelGrid columns="2">
             <h:outputLabel value="Name" for="name" />
-            <h:inputText value="#{ferriswheel.name}" id="name" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.name}" id="name" />
             <h:outputLabel value="Description" for="description" />
-            <h:inputSecret value="#{ferriswheel.description}" id="description" />
+            <h:inputTextarea value="#{ferrisWheelController.ferrisWheel.description}" id="description" />
             <h:outputLabel value="Location" for="location" />
-            <h:inputText value="#{ferriswheel.location}" id="location" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.location}" id="location" />
             <h:outputLabel value="Speed" for="speed" />
-            <h:inputSecret value="#{ferriswheel.speed}" id="speed" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.speed}" id="speed" />
             <h:outputLabel value="Installation Date" for="installationDate" />
-            <h:inputText value="#{ferriswheel.installationDate}" id="installationDate" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.installationDate}" id="installationDate">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:inputText>
             <h:outputLabel value="Maintenance Date" for="maintenanceDate" />
-            <h:inputSecret value="#{ferriswheel.maintenanceDate}" id="maintenanceDate" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.maintenanceDate}" id="maintenanceDate">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:inputText>
         </h:panelGrid>
-        <h:commandButton value="Save" action="#{ferrisWheelController.createFerrisWheel}" styleClass="send-button" />
+        <h:commandButton value="Save" action="#{ferrisWheelController.saveFerrisWheel()}" styleClass="send-button" />
         <h:commandButton value="Cancel" action="/users/index" styleClass="send-button" immediate="true" />
     </h:form>
 </h:body>
