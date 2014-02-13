@@ -1,5 +1,8 @@
 package de.dominikschadow.fwm.session;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -8,6 +11,8 @@ import javax.persistence.Query;
 
 @Stateless
 public class UserBean {
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @PersistenceContext(unitName = "fwm")
     private EntityManager em;
 
@@ -25,7 +30,7 @@ public class UserBean {
         try {
             user = (User) query.getSingleResult();
         } catch (NoResultException ex) {
-
+            logger.debug("No user found");
         }
 
         return user;

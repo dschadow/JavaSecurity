@@ -1,5 +1,8 @@
 package de.dominikschadow.fwm.session;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -10,6 +13,8 @@ import javax.inject.Inject;
 @ManagedBean
 @SessionScoped
 public class LoginController {
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @ManagedProperty("#{credentialsController}")
     private CredentialsController credentials;
     @Inject
@@ -21,6 +26,7 @@ public class LoginController {
         user = userBean.getUser(credentials.getUsername(), credentials.getPassword());
 
         if (user == null) {
+            logger.warn("Username or password not correct");
             addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username or password not correct", null));
             return "login";
         }
