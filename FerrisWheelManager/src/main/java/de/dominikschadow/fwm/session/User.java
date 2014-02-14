@@ -15,10 +15,12 @@ public class User implements Serializable {
     @Size(min = 4, max = 20, message = "Username is required - minimum 4, maximum 20 characters")
     private String username;
     @NotNull
-    @Size(min = 4, max = 20, message = "Password is required - minimum 4, maximum 20 characters")
+    @Size(max = 200)
     private String password;
     @NotNull
     private String role;
+    @NotNull
+    private String salt;
 
     public int getId() {
         return id;
@@ -50,5 +52,13 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }
