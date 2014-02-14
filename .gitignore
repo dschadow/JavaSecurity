@@ -1,5 +1,6 @@
 *.class
 *.iml
+.Idea*
 
 # Package Files #
 *.jar
