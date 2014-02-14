@@ -59,6 +59,14 @@ public class FerrisWheelController {
         return Arrays.asList(25, 50, 75, 100, 125, 150);
     }
 
+    public String turnFerrisWheelOn(FerrisWheel ferrisWheel) {
+        return "index";
+    }
+
+    public String turnFerrisWheelOff(FerrisWheel ferrisWheel) {
+        return "index";
+    }
+
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }

@@ -33,6 +33,7 @@ public class FerrisWheel implements Serializable {
     private Date maintenanceDate;
     @ManyToOne
     private User user;
+    private Boolean online;
 
     public Integer getId() {
         return id;
@@ -96,5 +97,13 @@ public class FerrisWheel implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 }
