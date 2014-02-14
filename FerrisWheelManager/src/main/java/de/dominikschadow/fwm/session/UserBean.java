@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class UserBean {
@@ -21,6 +21,8 @@ public class UserBean {
         String hash = hashPassword(user.getPassword(), user.getUsername());
         user.setPassword(hash);
         user.setSalt(user.getUsername());
+
+        logger.debug("Created a new user with password hash " + hash);
 
         em.persist(user);
     }
@@ -35,18 +37,18 @@ public class UserBean {
     public User getUser(String username, String password) {
         String hash = hashPassword(password, username);
 
-        Query query = em.createQuery("from User u where u.username=:username and u.password=:password");
-        query.setParameter("username", username);
+//        Query query = em.createQuery("from User u where u.username=:username and u.password=:password");
+        Query query = em.createQuery("from User u where u.username='" + username + "' and u.password=:password");
+//        query.setParameter("username", username);
         query.setParameter("password", hash);
 
-        User user = null;
+        List<User> users = query.getResultList();
 
-        try {
-            user = (User) query.getSingleResult();
-        } catch (NoResultException ex) {
-            logger.debug("No user found");
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
+            logger.info("No user found");
+            return null;
         }
-
-        return user;
     }
 }
