@@ -19,8 +19,10 @@
     </welcome-file-list>
         
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>false</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
     </session-config>
 </web-app>
