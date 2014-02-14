@@ -29,6 +29,7 @@ public class FerrisWheelController {
     }
 
     public String saveFerrisWheel() {
+        ferrisWheel.setUser(loginController.getCurrentUser());
         ferrisWheelBean.save(ferrisWheel);
 
         return "/users/index";
