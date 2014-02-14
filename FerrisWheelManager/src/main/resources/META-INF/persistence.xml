@@ -5,8 +5,5 @@
         <class>de.dominikschadow.fwm.session.User</class>
         <class>de.dominikschadow.fwm.FerrisWheel</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
-        <properties>
-            <property name="eclipselink.target-database" value="MySQL4"/>
-        </properties>
     </persistence-unit>
 </persistence>
