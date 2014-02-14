@@ -16,9 +16,9 @@ CREATE TABLE `FERRIS_WHEELS` (
 insert into ferris_wheels (name, description, location, speed,
 installation_date, maintenance_date, user_id)
 values
-('Small One', 'The small one turning fast', 'Lake', 125, '2000-01-01', '2014-01-01', (select id from users where username = 'Marvin'));
+('Small One', 'The small one turning fast', 'Near Shore', 125, '2000-01-05', '2014-09-01', (select id from users where username = 'Zaphod'));
 
 insert into ferris_wheels (name, description, location, speed,
 installation_date, maintenance_date, user_id)
 values
-('Big One', 'The big one turning slow', 'Island', 25, '2000-01-01', '2014-01-01', (select id from users where username = 'Marvin'));
+('Big One', 'The big one turning slow', 'Off Shore', 25, '2003-11-23', '2015-10-10', (select id from users where username = 'Zaphod'));
