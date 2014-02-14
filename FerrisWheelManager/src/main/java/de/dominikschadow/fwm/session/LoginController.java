@@ -47,7 +47,7 @@ public class LoginController {
     }
 
     public boolean isUserAdmin() {
-        return "Admin".equals(user.getRole());
+        return "Manager".equals(user.getRole());
     }
 
     public boolean isLoggedIn() {
