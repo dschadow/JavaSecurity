@@ -11,6 +11,7 @@
     <h1>Ferris Wheel Manager - Create Ferris Wheel</h1>
 
     <h:form id="createFerrisWheel">
+        <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
         <h:panelGrid columns="2">
             <h:outputLabel value="Name" for="name" />
             <h:inputText value="#{ferrisWheelController.ferrisWheel.name}" id="name" />

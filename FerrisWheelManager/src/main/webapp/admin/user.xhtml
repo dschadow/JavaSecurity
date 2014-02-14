@@ -11,11 +11,12 @@
     <h1>Ferris Wheel Manager - Create User</h1>
 
     <h:form id="createUser">
+        <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
         <h:panelGrid columns="2">
             <h:outputLabel value="Username" for="username" />
             <h:inputText value="#{userController.user.username}" id="username" />
             <h:outputLabel value="Password" for="password" />
-            <h:inputText value="#{userController.user.password}" id="password" />
+            <h:inputSecret value="#{userController.user.password}" id="password" />
             <h:outputLabel value="Role" for="role" />
             <h:selectOneMenu value="#{userController.user.role}" label="Role" id="role">
                 <f:selectItems value="#{userController.roles}" var="role" itemLabel="#{role}" itemValue="#{role}"/>

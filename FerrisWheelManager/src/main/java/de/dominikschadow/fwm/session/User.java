@@ -19,7 +19,7 @@ public class User implements Serializable {
     @Size(min = 4, max = 20, message = "Username is required - minimum 4, maximum 20 characters")
     private String username;
     @NotNull
-    @Size(max = 200)
+    @Size(min = 10, max = 128, message = "Password is required - minimum 10, maximum 128 characters")
     private String password;
     @NotNull
     @Enumerated(EnumType.STRING)
