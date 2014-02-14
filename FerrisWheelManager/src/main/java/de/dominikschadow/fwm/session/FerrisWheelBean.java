@@ -35,9 +35,10 @@ public class FerrisWheelBean {
         em.remove(ferrisWheel);
     }
 
-    public FerrisWheel save(FerrisWheel ferrisWheel) {
+    public FerrisWheel save(FerrisWheel ferrisWheel, User user) {
         if (ferrisWheel.getId() == null) {
             ferrisWheel.setOnline(false);
+            ferrisWheel.setUser(user);
 
             em.persist(ferrisWheel);
             return ferrisWheel;

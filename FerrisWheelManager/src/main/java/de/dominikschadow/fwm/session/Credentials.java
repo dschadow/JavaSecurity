@@ -1,11 +1,6 @@
 package de.dominikschadow.fwm.session;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-@ManagedBean
-@SessionScoped
-public class CredentialsController {
+public class Credentials {
 	private String username;
     private String password;
 

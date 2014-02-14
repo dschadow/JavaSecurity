@@ -15,12 +15,11 @@ import javax.inject.Inject;
 public class LoginController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @ManagedProperty("#{credentialsController}")
-    private CredentialsController credentials;
+    private Credentials credentials = new Credentials();
+    private User user;
+
     @Inject
     private UserBean userBean;
-
-    private User user;
 
     public String login() {
         user = userBean.getUser(credentials.getUsername(), credentials.getPassword());
@@ -54,7 +53,11 @@ public class LoginController {
         return user != null;
     }
 
-    public void setCredentials(CredentialsController credentials) {
+    public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
     }
 }

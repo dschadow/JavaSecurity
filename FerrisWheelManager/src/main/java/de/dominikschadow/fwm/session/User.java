@@ -14,7 +14,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @NotNull
     @Size(min = 4, max = 20, message = "Username is required - minimum 4, maximum 20 characters")
     private String username;
@@ -27,11 +27,11 @@ public class User implements Serializable {
     @NotNull
     private String salt;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

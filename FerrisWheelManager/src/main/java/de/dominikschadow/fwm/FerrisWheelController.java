@@ -31,8 +31,7 @@ public class FerrisWheelController {
     }
 
     public String saveFerrisWheel() {
-        ferrisWheel.setUser(loginController.getCurrentUser());
-        ferrisWheelBean.save(ferrisWheel);
+        ferrisWheelBean.save(ferrisWheel, loginController.getCurrentUser());
 
         return "index";
     }
@@ -61,14 +60,14 @@ public class FerrisWheelController {
 
     public String turnFerrisWheelOn(FerrisWheel ferrisWheel) {
         ferrisWheel.setOnline(true);
-        ferrisWheelBean.save(ferrisWheel);
+        ferrisWheelBean.save(ferrisWheel, loginController.getCurrentUser());
 
         return "index";
     }
 
     public String turnFerrisWheelOff(FerrisWheel ferrisWheel) {
         ferrisWheel.setOnline(false);
-        ferrisWheelBean.save(ferrisWheel);
+        ferrisWheelBean.save(ferrisWheel, loginController.getCurrentUser());
 
         return "index";
     }
