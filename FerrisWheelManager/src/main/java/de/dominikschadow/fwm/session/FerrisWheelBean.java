@@ -37,6 +37,8 @@ public class FerrisWheelBean {
 
     public FerrisWheel save(FerrisWheel ferrisWheel) {
         if (ferrisWheel.getId() == null) {
+            ferrisWheel.setOnline(false);
+
             em.persist(ferrisWheel);
             return ferrisWheel;
         } else {

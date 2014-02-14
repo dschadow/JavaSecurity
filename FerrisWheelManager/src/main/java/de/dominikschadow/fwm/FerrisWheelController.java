@@ -60,10 +60,16 @@ public class FerrisWheelController {
     }
 
     public String turnFerrisWheelOn(FerrisWheel ferrisWheel) {
+        ferrisWheel.setOnline(true);
+        ferrisWheelBean.save(ferrisWheel);
+
         return "index";
     }
 
     public String turnFerrisWheelOff(FerrisWheel ferrisWheel) {
+        ferrisWheel.setOnline(false);
+        ferrisWheelBean.save(ferrisWheel);
+
         return "index";
     }
 
