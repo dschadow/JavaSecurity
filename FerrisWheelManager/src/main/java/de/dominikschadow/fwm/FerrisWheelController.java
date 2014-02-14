@@ -32,25 +32,25 @@ public class FerrisWheelController {
         ferrisWheel.setUser(loginController.getCurrentUser());
         ferrisWheelBean.save(ferrisWheel);
 
-        return "/users/index";
+        return "index";
     }
 
     public String goEdit(FerrisWheel ferrisWheel) {
         this.ferrisWheel = ferrisWheel;
 
-        return "/users/ferriswheel";
+        return "ferriswheel";
     }
 
     public String goCreate() {
         this.ferrisWheel = new FerrisWheel();
 
-        return "/users/ferriswheel";
+        return "ferriswheel";
     }
 
     public String deleteFerrisWheel(int id) {
         ferrisWheelBean.deleteFerrisWheel(id);
 
-        return "/users/index";
+        return "index";
     }
 
     public void setLoginController(LoginController loginController) {

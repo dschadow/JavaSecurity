@@ -19,7 +19,7 @@
             <h:inputText value="#{userController.user.role}" id="role" />
         </h:panelGrid>
         <h:commandButton value="Save" action="#{userController.createUser}" styleClass="send-button" />
-        <h:commandButton value="Cancel" action="/users/index" styleClass="send-button" immediate="true" />
+        <h:commandButton value="Cancel" action="/users/index?faces-redirect=true" styleClass="send-button" immediate="true" />
     </h:form>
 </h:body>
 </html>

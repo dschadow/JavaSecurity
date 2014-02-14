@@ -30,7 +30,7 @@
             </h:inputText>
         </h:panelGrid>
         <h:commandButton value="Save" action="#{ferrisWheelController.saveFerrisWheel()}" styleClass="send-button" />
-        <h:commandButton value="Cancel" action="/users/index" styleClass="send-button" immediate="true" />
+        <h:commandButton value="Cancel" action="index?faces-redirect=true" styleClass="send-button" immediate="true" />
     </h:form>
 </h:body>
 </html>
