@@ -20,7 +20,9 @@
             <h:outputLabel value="Location" for="location" />
             <h:inputText value="#{ferrisWheelController.ferrisWheel.location}" id="location" />
             <h:outputLabel value="Speed" for="speed" />
-            <h:inputText value="#{ferrisWheelController.ferrisWheel.speed}" id="speed" />
+            <h:selectOneMenu value="#{ferrisWheelController.ferrisWheel.speed}" label="Speed" id="speed">
+                <f:selectItems value="#{ferrisWheelController.speed}" var="speed" itemLabel="#{speed}" itemValue="#{speed}"/>
+            </h:selectOneMenu>
             <h:outputLabel value="Installation Date" for="installationDate" />
             <h:inputText value="#{ferrisWheelController.ferrisWheel.installationDate}" id="installationDate">
                 <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>

@@ -2,11 +2,13 @@ package de.dominikschadow.fwm;
 
 import de.dominikschadow.fwm.session.FerrisWheelBean;
 import de.dominikschadow.fwm.session.LoginController;
+import de.dominikschadow.fwm.session.User;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
 
 @ManagedBean
@@ -51,6 +53,10 @@ public class FerrisWheelController {
         ferrisWheelBean.deleteFerrisWheel(id);
 
         return "index";
+    }
+
+    public List<Integer> getSpeed() {
+        return Arrays.asList(25, 50, 75, 100, 125, 150);
     }
 
     public void setLoginController(LoginController loginController) {
