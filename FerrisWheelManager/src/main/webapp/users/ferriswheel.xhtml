@@ -22,11 +22,11 @@
             <h:inputText value="#{ferrisWheelController.ferrisWheel.speed}" id="speed" />
             <h:outputLabel value="Installation Date" for="installationDate" />
             <h:inputText value="#{ferrisWheelController.ferrisWheel.installationDate}" id="installationDate">
-                <f:convertDateTime pattern="dd.MM.yyyy"/>
+                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
             </h:inputText>
             <h:outputLabel value="Maintenance Date" for="maintenanceDate" />
             <h:inputText value="#{ferrisWheelController.ferrisWheel.maintenanceDate}" id="maintenanceDate">
-                <f:convertDateTime pattern="dd.MM.yyyy"/>
+                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
             </h:inputText>
         </h:panelGrid>
         <h:commandButton value="Save" action="#{ferrisWheelController.saveFerrisWheel()}" styleClass="send-button" />

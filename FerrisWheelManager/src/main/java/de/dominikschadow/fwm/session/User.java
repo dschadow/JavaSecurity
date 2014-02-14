@@ -8,6 +8,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
+    public static enum Role {
+        Manager, User
+    };
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,7 +22,8 @@ public class User implements Serializable {
     @Size(max = 200)
     private String password;
     @NotNull
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @NotNull
     private String salt;
 
@@ -46,11 +51,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
