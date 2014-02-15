@@ -10,8 +10,8 @@
     <name>FerrisWheelManager</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Ferris Wheel Manager sample application to demonstrate various Java web application security problems.
-        Requires a server like Apache Tomcat or use the Maven-Tomcat7-Plug-in with mvn tomcat7:run-war
-        Open the web application in your browser at http://localhost:8080/fwm
+        Requires a JEE 7 application server like GlassFish 4 or JBoss Wildfly and a database like MySQL with a configured
+        jndi/fwm datasource. Open the web application in your browser at http://localhost:8080/fwm
     </description>
 
     <issueManagement>
