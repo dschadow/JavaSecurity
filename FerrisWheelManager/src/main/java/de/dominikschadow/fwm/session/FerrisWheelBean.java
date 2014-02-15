@@ -1,6 +1,9 @@
 package de.dominikschadow.fwm.session;
 
 import de.dominikschadow.fwm.FerrisWheel;
+import de.dominikschadow.fwm.search.Search;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,9 +15,10 @@ import java.util.List;
 public class FerrisWheelBean {
     @PersistenceContext(unitName = "fwm")
     private EntityManager em;
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public List<FerrisWheel> getFerrisWheelsForUser(User user) {
-        Query query = em.createQuery("from FerrisWheel w where w.user=:user");
+        Query query = em.createQuery("from FerrisWheel w where w.user=:user", FerrisWheel.class);
         query.setParameter("user", user);
 
         return query.getResultList();
@@ -25,7 +29,7 @@ public class FerrisWheelBean {
     }
 
     public List<FerrisWheel> getAllFerrisWheels() {
-        Query query = em.createQuery("from FerrisWheel w");
+        Query query = em.createQuery("from FerrisWheel w", FerrisWheel.class);
 
         return query.getResultList();
     }
@@ -45,5 +49,14 @@ public class FerrisWheelBean {
         } else {
             return em.merge(ferrisWheel);
         }
+    }
+
+    public List<FerrisWheel> findFerrisWheels(Search search) {
+        Query query = em.createNativeQuery("select * from ferris_wheels where name = '" + search.getName() + "'", FerrisWheel.class);
+        List resultList = query.getResultList();
+
+        logger.info("Search returned {} results", resultList.size());
+
+        return resultList;
     }
 }

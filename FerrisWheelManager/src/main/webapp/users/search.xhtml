@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <title>Ferris Wheel Manager - Search</title>
+</h:head>
+<h:body>
+    <h1>Ferris Wheel Manager - Search</h1>
+
+    <h:form>
+        <h:commandButton action="/users/index" id="back" value="Back"/>
+    </h:form>
+
+    <p>Your search for <strong><h:outputText
+            value="#{searchController.search.name}" escape="false"/></strong> returned the following results:</p>
+
+    <h:form>
+        <h:dataTable value="#{searchController.results}" var="fw"
+                     styleClass="wheel-table"
+                     headerClass="wheel-table-header"
+                     rowClasses="wheel-table-odd-row,wheel-table-even-row">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{fw.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{fw.description}" escape="false"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Location</f:facet>
+                <h:outputText value="#{fw.location}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Speed (mph)</f:facet>
+                <h:outputText value="#{fw.speed}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Installation</f:facet>
+                <h:outputText value="#{fw.installationDate}">
+                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                </h:outputText>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Next Maintenance</f:facet>
+                <h:outputText value="#{fw.maintenanceDate}">
+                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>

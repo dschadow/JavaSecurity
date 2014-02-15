@@ -15,6 +15,14 @@
         <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}" action="/admin/user"/>
     </h:form>
 
+    <h:form id="searchForm">
+        <h:panelGrid columns="3">
+            <h:outputLabel value="Search for ferris wheel" for="search" />
+            <h:inputText id="search" value="#{searchController.search.name}"/>
+            <h:commandButton id="newSearch" value="Search" action="#{searchController.search()}"/>
+        </h:panelGrid>
+    </h:form>
+
     <h:form>
         <h:dataTable value="#{ferrisWheelController.ferrisWheels}" var="fw"
                      styleClass="wheel-table"

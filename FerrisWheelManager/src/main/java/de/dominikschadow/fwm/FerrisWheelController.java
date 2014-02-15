@@ -2,7 +2,6 @@ package de.dominikschadow.fwm;
 
 import de.dominikschadow.fwm.session.FerrisWheelBean;
 import de.dominikschadow.fwm.session.LoginController;
-import de.dominikschadow.fwm.session.User;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
