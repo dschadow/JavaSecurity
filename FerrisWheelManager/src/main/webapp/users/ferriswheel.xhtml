@@ -14,21 +14,21 @@
         <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
         <h:panelGrid columns="2">
             <h:outputLabel value="Name" for="name" />
-            <h:inputText value="#{ferrisWheelController.search.name}" id="name" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.name}" id="name" />
             <h:outputLabel value="Description" for="description" />
-            <h:inputTextarea value="#{ferrisWheelController.search.description}" id="description" />
+            <h:inputTextarea value="#{ferrisWheelController.ferrisWheel.description}" id="description" />
             <h:outputLabel value="Location" for="location" />
-            <h:inputText value="#{ferrisWheelController.search.location}" id="location" />
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.location}" id="location" />
             <h:outputLabel value="Speed" for="speed" />
-            <h:selectOneMenu value="#{ferrisWheelController.search.speed}" label="Speed" id="speed">
+            <h:selectOneMenu value="#{ferrisWheelController.ferrisWheel.speed}" label="Speed" id="speed">
                 <f:selectItems value="#{ferrisWheelController.speed}" var="speed" itemLabel="#{speed}" itemValue="#{speed}"/>
             </h:selectOneMenu>
             <h:outputLabel value="Installation Date" for="installationDate" />
-            <h:inputText value="#{ferrisWheelController.search.installationDate}" id="installationDate">
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.installationDate}" id="installationDate">
                 <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
             </h:inputText>
             <h:outputLabel value="Maintenance Date" for="maintenanceDate" />
-            <h:inputText value="#{ferrisWheelController.search.maintenanceDate}" id="maintenanceDate">
+            <h:inputText value="#{ferrisWheelController.ferrisWheel.maintenanceDate}" id="maintenanceDate">
                 <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
             </h:inputText>
         </h:panelGrid>
