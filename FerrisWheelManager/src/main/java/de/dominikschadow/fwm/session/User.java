@@ -10,7 +10,15 @@ import java.io.Serializable;
 public class User implements Serializable {
     public static enum Role {
         Manager, User
-    };
+    }
+
+    ;
+
+    public static enum Unit {
+        mph, kmh
+    }
+
+    ;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +34,9 @@ public class User implements Serializable {
     private Role role;
     @NotNull
     private String salt;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
 
     public Integer getId() {
         return id;
@@ -65,5 +76,13 @@ public class User implements Serializable {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }
