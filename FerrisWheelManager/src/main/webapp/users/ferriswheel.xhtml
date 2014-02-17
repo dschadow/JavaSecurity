@@ -2,15 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+        xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
+    <script type="application/javascript">
+        function validate() {
+            var description = document.getElementById("createFerrisWheel:description");
+            if (description.value.contains("script")) {
+                alert("&lt;script&gt;-Tags are not allowed in description!");
+                return false;
+            }
+            return true;
+        }
+    </script>
     <h:outputStylesheet library="css" name="styles.css"/>
     <title>Ferris Wheel Manager - Create Ferris Wheel</title>
 </h:head>
 <h:body>
     <h1>Ferris Wheel Manager - Create Ferris Wheel</h1>
 
-    <h:form id="createFerrisWheel">
+    <h:form id="createFerrisWheel" onsubmit="return validate()">
         <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
         <h:panelGrid columns="2">
             <h:outputLabel value="Name" for="name" />
