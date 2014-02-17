@@ -2,6 +2,8 @@ package de.dominikschadow.fwm;
 
 import de.dominikschadow.fwm.session.FerrisWheelBean;
 import de.dominikschadow.fwm.session.LoginController;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -16,6 +18,7 @@ public class FerrisWheelController {
     @Inject
     private FerrisWheelBean ferrisWheelBean;
 
+    private PolicyFactory policyBuilder = new HtmlPolicyBuilder().allowElements("i", "b", "u", "strong", "em").toFactory();
     private FerrisWheel ferrisWheel;
 
     @ManagedProperty("#{loginController}")
@@ -30,6 +33,8 @@ public class FerrisWheelController {
     }
 
     public String saveFerrisWheel() {
+        ferrisWheel.setDescription(policyBuilder.sanitize(ferrisWheel.getDescription()));
+
         ferrisWheelBean.save(ferrisWheel, loginController.getCurrentUser());
 
         return "index";
