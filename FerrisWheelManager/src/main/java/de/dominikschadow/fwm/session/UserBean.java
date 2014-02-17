@@ -38,9 +38,9 @@ public class UserBean {
         String hash = hashPassword(password, username);
 
 //        Query query = em.createQuery("from User u where u.username=:username and u.password=:password");
-        Query query = em.createQuery("from User u where u.username='" + username + "' and u.password=:password");
+        Query query = em.createQuery("from User u where u.username='" + username + "' and u.password='" + hash + "'");
 //        query.setParameter("username", username);
-        query.setParameter("password", hash);
+//        query.setParameter("password", hash);
 
         List<User> users = query.getResultList();
 
