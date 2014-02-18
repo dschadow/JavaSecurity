@@ -83,7 +83,7 @@
             <h:outputLabel value="Advertise Ferris Wheel on Screen:" for="advertiseDesc" />
             <h:selectOneMenu id="advertiseDesc">
                 <f:selectItems value="#{ferrisWheelController.wheels}" var="fw"
-                               itemLabel="#{fw.name}" itemValue="#{a.description}"/>
+                               itemLabel="#{fw.name}" itemValue="#{fw.description}"/>
             </h:selectOneMenu>
             <h:commandButton id="advertise" value="Advertise" action="#{ferrisWheelController.advertise()}"/>
         </h:panelGrid>

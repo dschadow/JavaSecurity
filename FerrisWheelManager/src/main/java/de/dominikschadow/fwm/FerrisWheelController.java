@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class FerrisWheelController {
     @Inject
     private FerrisWheelBean ferrisWheelBean;
     private FerrisWheel ferrisWheel;
-    private Map<String, String> wheels = new LinkedHashMap<>();
+    private FerrisWheel[] wheels = new FerrisWheel[0];
 
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
@@ -38,10 +37,12 @@ public class FerrisWheelController {
     }
 
     private void updateAdvertisement(List<FerrisWheel> ferrisWheels) {
-        wheels.clear();
-        
+        wheels = new FerrisWheel[ferrisWheels.size()];
+        int i = 0;
+
         for (FerrisWheel ferrisWheel : ferrisWheels) {
-            wheels.put(ferrisWheel.getName(), ferrisWheel.getDescription());
+            wheels[i] = ferrisWheel;
+            i++;
         }
     }
 
@@ -99,7 +100,7 @@ public class FerrisWheelController {
         this.ferrisWheel = ferrisWheel;
     }
 
-    public Map<String, String> getWheels() {
+    public FerrisWheel[] getWheels() {
         return wheels;
     }
 }
