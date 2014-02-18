@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @ManagedBean
 @SessionScoped
@@ -16,15 +18,30 @@ public class FerrisWheelController {
     @Inject
     private FerrisWheelBean ferrisWheelBean;
     private FerrisWheel ferrisWheel;
+    private Map<String, String> wheels = new LinkedHashMap<>();
 
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
 
     public List<FerrisWheel> getFerrisWheels() {
+        List<FerrisWheel> ferrisWheels;
+
         if (loginController.isUserAdmin()) {
-            return ferrisWheelBean.getAllFerrisWheels();
+            ferrisWheels = ferrisWheelBean.getAllFerrisWheels();
         } else {
-            return ferrisWheelBean.getFerrisWheelsForUser(loginController.getCurrentUser());
+            ferrisWheels = ferrisWheelBean.getFerrisWheelsForUser(loginController.getCurrentUser());
+        }
+        
+        updateAdvertisement(ferrisWheels);
+
+        return ferrisWheels;
+    }
+
+    private void updateAdvertisement(List<FerrisWheel> ferrisWheels) {
+        wheels.clear();
+        
+        for (FerrisWheel ferrisWheel : ferrisWheels) {
+            wheels.put(ferrisWheel.getName(), ferrisWheel.getDescription());
         }
     }
 
@@ -80,5 +97,9 @@ public class FerrisWheelController {
 
     public void setFerrisWheel(FerrisWheel ferrisWheel) {
         this.ferrisWheel = ferrisWheel;
+    }
+
+    public Map<String, String> getWheels() {
+        return wheels;
     }
 }
