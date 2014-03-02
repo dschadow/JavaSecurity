@@ -1,4 +1,4 @@
-package de.dominikschadow.fwm.session;
+package de.dominikschadow.fwm.user;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,6 +21,10 @@ public class UserController {
 
     public List<User.Role> getRoles() {
         return Arrays.asList(User.Role.values());
+    }
+
+    public List<User.Unit> getUnits() {
+        return Arrays.asList(User.Unit.values());
     }
 
     public User getUser() {

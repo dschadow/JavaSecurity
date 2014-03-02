@@ -1,7 +1,7 @@
 package de.dominikschadow.fwm.search;
 
 import de.dominikschadow.fwm.FerrisWheel;
-import de.dominikschadow.fwm.session.FerrisWheelBean;
+import de.dominikschadow.fwm.FerrisWheelBean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

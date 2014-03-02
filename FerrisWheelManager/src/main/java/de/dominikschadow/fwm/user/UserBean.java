@@ -1,4 +1,4 @@
-package de.dominikschadow.fwm.session;
+package de.dominikschadow.fwm.user;
 
 import org.apache.shiro.crypto.hash.Sha512Hash;
 import org.slf4j.Logger;
@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 @Stateless

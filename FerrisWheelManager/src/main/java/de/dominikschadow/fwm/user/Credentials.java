@@ -1,4 +1,4 @@
-package de.dominikschadow.fwm.session;
+package de.dominikschadow.fwm.user;
 
 public class Credentials {
 	private String username;

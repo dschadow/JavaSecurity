@@ -1,6 +1,6 @@
 package de.dominikschadow.fwm;
 
-import de.dominikschadow.fwm.session.User;
+import de.dominikschadow.fwm.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

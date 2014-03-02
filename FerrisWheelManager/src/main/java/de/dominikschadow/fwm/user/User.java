@@ -1,4 +1,4 @@
-package de.dominikschadow.fwm.session;
+package de.dominikschadow.fwm.user;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,13 +12,9 @@ public class User implements Serializable {
         Manager, User
     }
 
-    ;
-
     public static enum Unit {
         mph, kmh
     }
-
-    ;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,11 +1,10 @@
-package de.dominikschadow.fwm.session;
+package de.dominikschadow.fwm.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;

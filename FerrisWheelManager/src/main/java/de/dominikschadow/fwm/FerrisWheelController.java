@@ -1,7 +1,6 @@
 package de.dominikschadow.fwm;
 
-import de.dominikschadow.fwm.session.FerrisWheelBean;
-import de.dominikschadow.fwm.session.LoginController;
+import de.dominikschadow.fwm.user.LoginController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -9,7 +8,6 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @ManagedBean
 @SessionScoped

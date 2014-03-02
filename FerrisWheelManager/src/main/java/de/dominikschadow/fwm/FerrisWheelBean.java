@@ -1,7 +1,7 @@
-package de.dominikschadow.fwm.session;
+package de.dominikschadow.fwm;
 
-import de.dominikschadow.fwm.FerrisWheel;
 import de.dominikschadow.fwm.search.Search;
+import de.dominikschadow.fwm.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
