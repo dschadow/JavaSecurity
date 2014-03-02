@@ -1,5 +1,6 @@
 package de.dominikschadow.fwm;
 
+import de.dominikschadow.fwm.advertise.AdvertiseBean;
 import de.dominikschadow.fwm.user.LoginController;
 
 import javax.faces.bean.ManagedBean;
@@ -14,6 +15,8 @@ import java.util.List;
 public class FerrisWheelController {
     @Inject
     private FerrisWheelBean ferrisWheelBean;
+    @Inject
+    private AdvertiseBean advertiseBean;
     private FerrisWheel ferrisWheel;
     private FerrisWheel[] wheels = new FerrisWheel[0];
 
@@ -82,6 +85,12 @@ public class FerrisWheelController {
     public String turnFerrisWheelOff(FerrisWheel ferrisWheel) {
         ferrisWheel.setOnline(false);
         ferrisWheelBean.save(ferrisWheel, loginController.getCurrentUser());
+
+        return "index";
+    }
+
+    public String advertise() {
+        advertiseBean.advertise(ferrisWheel, loginController.getCurrentUser());
 
         return "index";
     }

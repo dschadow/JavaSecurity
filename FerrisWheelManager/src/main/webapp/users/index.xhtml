@@ -27,7 +27,7 @@
         <span class="formGroup">
             <h:selectOneMenu id="advertiseDesc">
                 <f:selectItems value="#{ferrisWheelController.wheels}" var="fw"
-                               itemLabel="#{fw.name}" itemValue="#{fw.description}"/>
+                               itemLabel="#{fw.name}" itemValue="#{fw.id}"/>
             </h:selectOneMenu>
             <h:commandButton id="advertise" value="Advertise" action="#{ferrisWheelController.advertise()}"/>
         </span>
