@@ -17,8 +17,9 @@
                 <h:inputText value="#{loginController.credentials.username}" id="username" />
                 <h:outputLabel value="Password" for="password" />
                 <h:inputSecret value="#{loginController.credentials.password}" id="password" />
+                <h:outputText value="" />
+                <h:commandButton value="Login" action="#{loginController.login()}" styleClass="login-button" />
             </h:panelGrid>
-            <h:commandButton value="Login" action="#{loginController.login()}" styleClass="send-button" />
         </h:form>
     </h:body>
 </html>
