@@ -8,7 +8,13 @@
     <title>Ferris Wheel Manager - Create User</title>
 </h:head>
 <h:body>
-    <h1>Ferris Wheel Manager - Create User</h1>
+    <div class="header">
+        <h1>Ferris Wheel Manager - Create User</h1>
+    </div>
+
+    <h:form id="navigationForm">
+        <h:commandButton action="/users/index" id="back" value="Back"/>
+    </h:form>
 
     <h:form id="createUser">
         <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
@@ -17,13 +23,16 @@
             <h:inputText value="#{userController.user.username}" id="username" />
             <h:outputLabel value="Password" for="password" />
             <h:inputSecret value="#{userController.user.password}" id="password" />
+            <h:outputLabel value="Unit" for="unit" />
+            <h:selectOneMenu value="#{userController.user.unit}" label="Unit" id="unit">
+                <f:selectItems value="#{userController.units}" var="unit" itemLabel="#{unit}" itemValue="#{unit}"/>
+            </h:selectOneMenu>
             <h:outputLabel value="Role" for="role" />
             <h:selectOneMenu value="#{userController.user.role}" label="Role" id="role">
                 <f:selectItems value="#{userController.roles}" var="role" itemLabel="#{role}" itemValue="#{role}"/>
             </h:selectOneMenu>
         </h:panelGrid>
         <h:commandButton value="Save" action="#{userController.createUser}" styleClass="send-button" />
-        <h:commandButton value="Cancel" action="/users/index?faces-redirect=true" styleClass="send-button" immediate="true" />
     </h:form>
 </h:body>
 </html>

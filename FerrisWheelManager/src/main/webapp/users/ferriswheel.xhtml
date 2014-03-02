@@ -18,7 +18,13 @@
     <title>Ferris Wheel Manager - Create Ferris Wheel</title>
 </h:head>
 <h:body>
-    <h1>Ferris Wheel Manager - Create Ferris Wheel</h1>
+    <div class="header">
+        <h1>Ferris Wheel Manager - Create Ferris Wheel</h1>
+    </div>
+
+    <h:form id="navigationForm">
+        <h:commandButton action="/users/index" id="back" value="Back"/>
+    </h:form>
 
     <h:form id="createFerrisWheel" onsubmit="return validate()">
         <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
@@ -43,7 +49,6 @@
             </h:inputText>
         </h:panelGrid>
         <h:commandButton value="Save" action="#{ferrisWheelController.saveFerrisWheel()}" styleClass="send-button" />
-        <h:commandButton value="Cancel" action="index?faces-redirect=true" styleClass="send-button" immediate="true" />
     </h:form>
 </h:body>
 </html>

@@ -8,22 +8,32 @@
     <title>Ferris Wheel Manager</title>
 </h:head>
 <h:body>
-    <h1>Ferris Wheel Manager</h1>
+    <div class="header">
+        <h1>Ferris Wheel Manager</h1>
+    </div>
 
-    <h:form id="createForm">
-        <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="#{ferrisWheelController.goCreate()}"/>
-        <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}" action="/admin/user"/>
-    </h:form>
-
-    <h:form id="searchForm">
-        <h:panelGrid columns="3">
-            <h:outputLabel value="Ferris Wheel Search:" for="search" />
+    <h:form id="navigationForm">
+        <span class="formGroup">
+            <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="#{ferrisWheelController.goCreate()}"/>
+        </span>
+        <span class="formGroup">
+            <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}"
+                             action="/admin/user"/>
+        </span>
+        <span class="formGroup">
             <h:inputText id="search" value="#{searchController.search.name}"/>
             <h:commandButton id="newSearch" value="Search" action="#{searchController.search()}"/>
-        </h:panelGrid>
+        </span>
+        <span class="formGroup">
+            <h:selectOneMenu id="advertiseDesc">
+                <f:selectItems value="#{ferrisWheelController.wheels}" var="fw"
+                               itemLabel="#{fw.name}" itemValue="#{fw.description}"/>
+            </h:selectOneMenu>
+            <h:commandButton id="advertise" value="Advertise" action="#{ferrisWheelController.advertise()}"/>
+        </span>
     </h:form>
 
-    <h:form>
+    <h:form id="wheelsTableForm">
         <h:dataTable value="#{ferrisWheelController.ferrisWheels}" var="fw"
                      styleClass="wheel-table"
                      headerClass="wheel-table-header"
@@ -76,17 +86,6 @@
                                  action="#{ferrisWheelController.deleteFerrisWheel(fw.id)}"/>
             </h:column>
         </h:dataTable>
-    </h:form>
-
-    <h:form id="sendDescription">
-        <h:panelGrid columns="3">
-            <h:outputLabel value="Advertise Ferris Wheel on Screen:" for="advertiseDesc" />
-            <h:selectOneMenu id="advertiseDesc">
-                <f:selectItems value="#{ferrisWheelController.wheels}" var="fw"
-                               itemLabel="#{fw.name}" itemValue="#{fw.description}"/>
-            </h:selectOneMenu>
-            <h:commandButton id="advertise" value="Advertise" action="#{ferrisWheelController.advertise()}"/>
-        </h:panelGrid>
     </h:form>
 </h:body>
 </html>
