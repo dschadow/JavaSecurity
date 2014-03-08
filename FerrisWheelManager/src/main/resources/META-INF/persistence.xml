@@ -4,6 +4,7 @@
         <jta-data-source>jdbc/fwm</jta-data-source>
         <class>de.dominikschadow.fwm.user.User</class>
         <class>de.dominikschadow.fwm.FerrisWheel</class>
+        <class>de.dominikschadow.fwm.advertise.Advertise</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
     </persistence-unit>
 </persistence>
