@@ -1,7 +1,7 @@
 package de.dominikschadow.fwm;
 
-import de.dominikschadow.fwm.advertise.AdvertiseBean;
 import de.dominikschadow.fwm.user.LoginController;
+import org.apache.shiro.authc.AuthenticationException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -15,15 +15,16 @@ import java.util.List;
 public class FerrisWheelController {
     @Inject
     private FerrisWheelBean ferrisWheelBean;
-    @Inject
-    private AdvertiseBean advertiseBean;
     private FerrisWheel ferrisWheel;
-    private FerrisWheel[] wheels = new FerrisWheel[0];
 
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
 
     public List<FerrisWheel> getFerrisWheels() {
+        if (!loginController.isLoggedIn()) {
+            throw new AuthenticationException("User not authenticated");
+        }
+
         List<FerrisWheel> ferrisWheels;
 
         if (loginController.isUserAdmin()) {
@@ -31,20 +32,8 @@ public class FerrisWheelController {
         } else {
             ferrisWheels = ferrisWheelBean.getFerrisWheelsForUser(loginController.getCurrentUser());
         }
-        
-        updateAdvertisement(ferrisWheels);
 
         return ferrisWheels;
-    }
-
-    private void updateAdvertisement(List<FerrisWheel> ferrisWheels) {
-        wheels = new FerrisWheel[ferrisWheels.size()];
-        int i = 0;
-
-        for (FerrisWheel ferrisWheel : ferrisWheels) {
-            wheels[i] = ferrisWheel;
-            i++;
-        }
     }
 
     public String saveFerrisWheel() {
@@ -89,12 +78,6 @@ public class FerrisWheelController {
         return "index";
     }
 
-    public String advertise() {
-        advertiseBean.advertise(ferrisWheel, loginController.getCurrentUser());
-
-        return "index";
-    }
-
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
@@ -105,9 +88,5 @@ public class FerrisWheelController {
 
     public void setFerrisWheel(FerrisWheel ferrisWheel) {
         this.ferrisWheel = ferrisWheel;
-    }
-
-    public FerrisWheel[] getWheels() {
-        return wheels;
     }
 }

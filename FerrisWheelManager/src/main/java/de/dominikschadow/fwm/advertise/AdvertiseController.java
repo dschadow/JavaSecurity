@@ -3,6 +3,7 @@ package de.dominikschadow.fwm.advertise;
 import de.dominikschadow.fwm.FerrisWheel;
 import de.dominikschadow.fwm.FerrisWheelBean;
 import de.dominikschadow.fwm.user.LoginController;
+import org.apache.shiro.authc.AuthenticationException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,6 +25,10 @@ public class AdvertiseController {
     private LoginController loginController;
 
     public String advertise() {
+        if (!loginController.isLoggedIn()) {
+            throw new AuthenticationException("User not authenticated");
+        }
+
         advertiseBean.advertise(ferrisWheelId, loginController.getCurrentUser());
 
         return "index";

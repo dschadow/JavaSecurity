@@ -1,6 +1,9 @@
 package de.dominikschadow.fwm.user;
 
+import org.apache.shiro.authc.AuthenticationException;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -13,7 +16,14 @@ public class UserController {
     @Inject
     private UserBean userBean;
 
+    @ManagedProperty("#{loginController}")
+    private LoginController loginController;
+
     public String createUser() {
+        if (!loginController.isUserAdmin()) {
+            throw new AuthenticationException("User not authorized");
+        }
+
         userBean.createNewUser(user);
 
         return "/users/index";
@@ -33,5 +43,9 @@ public class UserController {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
 }
