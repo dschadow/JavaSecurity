@@ -7,3 +7,15 @@ html {
 #loginForm table td {
     text-align: right;
 }
+
+.errorMessage {
+    color: red;
+}
+
+.infoMessage {
+    color: blue;
+}
+
+.warnMessage {
+    color: orange;
+}
