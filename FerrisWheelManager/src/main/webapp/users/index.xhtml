@@ -17,8 +17,8 @@
             <h:commandButton id="newFerrisWheel" value="New Ferris Wheel" action="#{ferrisWheelController.goCreate()}"/>
         </span>
         <span class="formGroup">
-            <h:commandButton id="newUser" value="New User" rendered="#{loginController.userAdmin}"
-                             action="/admin/user"/>
+            <h:commandButton id="manageUser" value="Manage User" rendered="#{loginController.userAdmin}"
+                             action="/admin/users"/>
         </span>
         <span class="formGroup">
             <h:inputText id="search" value="#{searchController.search.name}"/>

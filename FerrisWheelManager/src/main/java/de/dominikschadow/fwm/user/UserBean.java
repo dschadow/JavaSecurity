@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
@@ -16,14 +17,22 @@ public class UserBean {
     @PersistenceContext(unitName = "fwm")
     private EntityManager em;
 
-    public void createNewUser(User user) {
+    public User save(User user) {
         String hash = hashPassword(user.getPassword(), user.getUsername());
         user.setPassword(hash);
         user.setSalt(user.getUsername());
 
-        logger.debug("Created a new user with password hash " + hash);
+        if (user.getId() == null) {
+            logger.debug("Created a new user with password hash " + hash);
 
-        em.persist(user);
+            em.persist(user);
+
+            return user;
+        } else {
+            logger.debug("Updated user with password hash " + hash);
+
+            return em.merge(user);
+        }
     }
 
     // username is not a good salt, but OK for demo...
@@ -44,5 +53,20 @@ public class UserBean {
             logger.info("No user found");
             return null;
         }
+    }
+
+    public List<User> getAllUser() {
+        Query query = em.createQuery("from User u", User.class);
+
+        return query.getResultList();
+    }
+
+    public User getUserById(int id) {
+        return em.find(User.class, id);
+    }
+
+    public void deleteUser(int id) {
+        User user = getUserById(id);
+        em.remove(user);
     }
 }

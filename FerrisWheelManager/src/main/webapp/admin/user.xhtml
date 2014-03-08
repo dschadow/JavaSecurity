@@ -32,7 +32,7 @@
                 <f:selectItems value="#{userController.roles}" var="role" itemLabel="#{role}" itemValue="#{role}"/>
             </h:selectOneMenu>
         </h:panelGrid>
-        <h:commandButton value="Save" action="#{userController.createUser}" styleClass="send-button" />
+        <h:commandButton value="Save" action="#{userController.saveUser()}" styleClass="send-button" />
     </h:form>
 </h:body>
 </html>

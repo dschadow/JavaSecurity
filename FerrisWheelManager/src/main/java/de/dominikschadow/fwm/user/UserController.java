@@ -4,29 +4,59 @@ import org.apache.shiro.authc.AuthenticationException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class UserController {
-    private User user = new User();
+    private User user;
     @Inject
     private UserBean userBean;
 
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
 
-    public String createUser() {
+    public List<User> getUsers() {
         if (!loginController.isUserAdmin()) {
             throw new AuthenticationException("User not authorized");
         }
 
-        userBean.createNewUser(user);
+        return userBean.getAllUser();
+    }
 
-        return "/users/index";
+    public String saveUser() {
+        if (!loginController.isUserAdmin()) {
+            throw new AuthenticationException("User not authorized");
+        }
+
+        userBean.save(user);
+
+        return "/admin/users";
+    }
+
+    public String goCreate() {
+        this.user = new User();
+
+        return "user";
+    }
+
+    public String goEdit(User user) {
+        this.user = user;
+
+        return "user";
+    }
+
+    public String deleteUser(int id) {
+        if (!loginController.isUserAdmin()) {
+            throw new AuthenticationException("User not authorized");
+        }
+
+        userBean.deleteUser(id);
+
+        return "users";
     }
 
     public List<User.Role> getRoles() {
