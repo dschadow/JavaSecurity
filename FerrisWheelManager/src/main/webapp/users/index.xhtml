@@ -25,11 +25,11 @@
             <h:commandButton id="newSearch" value="Search" action="#{searchController.search()}"/>
         </span>
         <span class="formGroup">
-            <h:selectOneMenu id="advertiseDesc">
-                <f:selectItems value="#{ferrisWheelController.wheels}" var="fw"
+            <h:selectOneMenu id="advertiseDesc" value="#{advertiseController.ferrisWheelId}">
+                <f:selectItems value="#{advertiseController.wheels}" var="fw"
                                itemLabel="#{fw.name}" itemValue="#{fw.id}"/>
             </h:selectOneMenu>
-            <h:commandButton id="advertise" value="Advertise" action="#{ferrisWheelController.advertise()}"/>
+            <h:commandButton id="advertise" value="Advertise" action="#{advertiseController.advertise()}"/>
         </span>
     </h:form>
 
