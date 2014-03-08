@@ -20,8 +20,9 @@ public class AdvertiseBean {
     private FerrisWheelBean ferrisWheelBean;
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    public void advertise(FerrisWheel ferrisWheel, User user) {
-        logger.info("Advertising for ferris wheel {}", ferrisWheel.getId());
+    public void advertise(int id, User user) {
+        logger.warn("Advertising for ferris wheel {}", id);
+        FerrisWheel ferrisWheel = ferrisWheelBean.getFerrisWheelById(id);
 
         Advertise advertise = new Advertise();
         advertise.setFerrisWheel(ferrisWheel);
