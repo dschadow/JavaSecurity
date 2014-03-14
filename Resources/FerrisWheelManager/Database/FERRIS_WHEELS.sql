@@ -6,14 +6,13 @@ CREATE TABLE `FERRIS_WHEELS` (
   `speed` int(4) DEFAULT '0',
   `installation_date` date DEFAULT NULL,
   `maintenance_date` date DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `online` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `ferris_wheel_owner` (`user_id`),
-  CONSTRAINT `ferris_wheel_owner` FOREIGN KEY (`user_id`) REFERENCES `USERS` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
-
+  CONSTRAINT `ferris_wheel_owner` FOREIGN KEY (`user_id`) REFERENCES `USERS` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 
 insert into ferris_wheels (name, description, location, speed,

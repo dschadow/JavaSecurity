@@ -10,6 +10,7 @@ CREATE TABLE `USERS` (
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
+
 insert into USERS (username, password, role, salt, unit) values 
 ('Marvin', 'aed5d790cb9bdb16a89c3c25a0d9b92282e17bf033879898b04922ff34a3cc8cc0b56cefb791edbdce1614ab85cd2bc790cd28b20bdebac6273c4a723d3da17c', 'Manager', 'Marvin', 'mph');
 
