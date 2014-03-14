@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "FERRIS_WHEELS")
+@Table(schema = "fwm", name = "FERRIS_WHEELS")
 public class FerrisWheel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

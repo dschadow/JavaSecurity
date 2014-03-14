@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "USERS")
+@Table(schema = "fwm", name = "USERS")
 public class User implements Serializable {
     public static enum Role {
         Manager, User
