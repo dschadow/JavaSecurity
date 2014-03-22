@@ -17,8 +17,11 @@
         <h:commandButton action="/users/index" id="back" value="Back"/>
     </h:form>
 
-    <p>Your search for <strong><h:outputText
-            value="#{searchController.search.name}" escape="false"/></strong> returned the following results:</p>
+    <div id="searchInfo" style="margin: 10px">
+        Your search for
+        <h:outputText style="font-weight: bold" value=" #{searchController.search.name} " escape="false"/>
+        returned the following results:
+    </div>
 
     <h:form id="searchResultForm">
         <h:dataTable value="#{searchController.results}" var="fw"
