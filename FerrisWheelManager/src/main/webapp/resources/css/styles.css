@@ -2,12 +2,8 @@ body {
     margin: 0;
 }
 
-#navigationForm {
+.navigationForm {
     padding-top: 50px;
-}
-
-.formGroup {
-    padding: 5px;
 }
 
 form, p {

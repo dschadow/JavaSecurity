@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet library="css" name="styles.css"/>
     <title>Ferris Wheel Manager - Create User</title>
@@ -12,8 +12,8 @@
         <h1>Ferris Wheel Manager - Create User</h1>
     </div>
 
-    <h:form id="navigationForm">
-        <h:commandButton action="/users/index" id="back" value="Back"/>
+    <h:form id="navigationForm" styleClass="navigationForm">
+        <h:commandButton action="/admin/users" id="back" value="Back"/>
     </h:form>
 
     <h:form id="createUser">
