@@ -50,7 +50,7 @@ public class CSPReportingServlet extends HttpServlet {
 
         response.setContentType("text/html");
         // the following line only reports violations and does not block anything
-//        response.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri CSPReporting");
+        response.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri CSPReporting");
 
         // use the following line to activate the policy and still report all violations
 //        response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
