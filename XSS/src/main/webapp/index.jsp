@@ -9,9 +9,9 @@
 <body>
 	<h1>Cross-Site Scripting (XSS)</h1>
 
-	<h2>Without Content Security Policy</h2>
+	<h2>OWASP Java Encoder</h2>
 	
-	<form name="javaEncoderForm" method="post" action="JavaEncoderServlet">
+	<form name="javaEncoderForm" method="post" action="javaEncoder.jsp">
 		<table>
 			<tr>
 				<td><label for="javaEncoder" title="Name">Name</label></td>
@@ -33,7 +33,7 @@
 		</table>
 	</form>
 
-    <h2>Content Security Policy Reporting</h2>
+    <h2>Content Security Policy Reporty Only</h2>
 
     <form name="cspReportingForm" method="post" action="CSPReportingServlet">
         <table>
