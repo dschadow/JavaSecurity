@@ -9,6 +9,8 @@
 <body>
 	<h1>Cross-Site Scripting (XSS)</h1>
 
+    <p>Use an input like <strong>&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;</strong> to test the output escaping functionality.</p>
+
 	<h2>OWASP Java Encoder</h2>
 	
 	<form name="javaEncoderForm" method="post" action="javaEncoder.jsp">
