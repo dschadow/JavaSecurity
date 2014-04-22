@@ -10,7 +10,7 @@
     <name>Cross-Site Scripting</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Cross-Site Scripting (XSS) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/XSS
+        plugin. After launching, open the web application in your browser at http://localhost:8080/xss
     </description>
 
     <properties>
