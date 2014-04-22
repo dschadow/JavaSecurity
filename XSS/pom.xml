@@ -13,6 +13,10 @@
         plugin. After launching, open the web application in your browser at http://localhost:8080/XSS
     </description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.owasp.encoder</groupId>
