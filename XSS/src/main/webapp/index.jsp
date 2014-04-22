@@ -14,37 +14,25 @@
 	<h2>OWASP Java Encoder</h2>
 	
 	<form name="javaEncoderForm" method="post" action="javaEncoder.jsp">
-		<table>
-			<tr>
-				<td><label for="name1" title="Name">Name</label></td>
-				<td><input type="text" id="name1" name="name1" class="text-input" /></td>
-				<td><input type="submit" value="Submit" /></td>
-			</tr>
-		</table>
+        <label for="name1" title="Name">Name</label>
+        <input type="text" id="name1" name="name1" class="text-input" />
+        <input type="submit" value="Submit" />
 	</form>
 
 	<h2>Content Security Policy</h2>
 
 	<form name="cspForm" method="post" action="CSPServlet">
-		<table>
-			<tr>
-				<td><label for="name2" title="Name">Name</label></td>
-				<td><input type="text" id="name2" name="name2" class="text-input" /></td>
-				<td><input type="submit" name="submit" value="Submit" /></td>
-			</tr>
-		</table>
+        <label for="name2" title="Name">Name</label>
+        <input type="text" id="name2" name="name2" class="text-input" />
+        <input type="submit" name="submit" value="Submit" />
 	</form>
 
     <h2>Content Security Policy Reporty Only</h2>
 
     <form name="cspReportingForm" method="post" action="CSPReportingServlet">
-        <table>
-            <tr>
-                <td><label for="name3" title="Name">Name</label></td>
-                <td><input type="text" id="name3" name="name3" class="text-input" /></td>
-                <td><input type="submit" name="submit" value="Submit" /></td>
-            </tr>
-        </table>
+        <label for="name3" title="Name">Name</label>
+        <input type="text" id="name3" name="name3" class="text-input" />
+        <input type="submit" name="submit" value="Submit" />
     </form>
 </body>
 </html>
