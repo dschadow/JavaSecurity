@@ -45,7 +45,7 @@ public class CSPReportingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing POST request with Content Security Policy Reporty Only");
 
-        String name = request.getParameter("cspReporting");
+        String name = request.getParameter("name3");
         logger.info("Received " + name + " as POST parameter");
 
         response.setContentType("text/html");

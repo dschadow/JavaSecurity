@@ -45,7 +45,7 @@ public class CSPServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing POST request with Content Security Policy");
 
-        String name = request.getParameter("csp");
+        String name = request.getParameter("name2");
         logger.info("Received " + name + " as POST parameter");
 
         response.setContentType("text/html");

@@ -11,11 +11,11 @@
 <body>
 	<h1>Cross-Site Scripting (XSS): OWASP Java Encoder</h1>
 
-    <p>Without escaping: <strong>Hello</strong> <%= request.getParameter("javaEncoder") %></p>
+    <p>Without escaping: <strong>Hello</strong> <%= request.getParameter("name1") %></p>
 
-    <p>HTML escaping: <strong>Hello</strong> <%= Encode.forHtml(request.getParameter("javaEncoder")) %></p>
+    <p>HTML escaping: <strong>Hello</strong> <%= Encode.forHtml(request.getParameter("name1")) %></p>
 
-    <p>HTML EL escaping: <strong>Hello</strong> <e:forHtml value="${param.javaEncoder}"/></p>
+    <p>HTML EL escaping: <strong>Hello</strong> <e:forHtml value="${param.name1}"/></p>
 
 </body>
 </html>

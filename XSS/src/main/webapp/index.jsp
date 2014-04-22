@@ -16,8 +16,8 @@
 	<form name="javaEncoderForm" method="post" action="javaEncoder.jsp">
 		<table>
 			<tr>
-				<td><label for="javaEncoder" title="Name">Name</label></td>
-				<td><input type="text" id="javaEncoder" name="javaEncoder" class="text-input" /></td>
+				<td><label for="name1" title="Name">Name</label></td>
+				<td><input type="text" id="name1" name="name1" class="text-input" /></td>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
@@ -28,8 +28,8 @@
 	<form name="cspForm" method="post" action="CSPServlet">
 		<table>
 			<tr>
-				<td><label for="csp" title="Name">Name</label></td>
-				<td><input type="text" id="csp" name="csp" class="text-input" /></td>
+				<td><label for="name2" title="Name">Name</label></td>
+				<td><input type="text" id="name2" name="name2" class="text-input" /></td>
 				<td><input type="submit" name="submit" value="Submit" /></td>
 			</tr>
 		</table>
@@ -40,8 +40,8 @@
     <form name="cspReportingForm" method="post" action="CSPReportingServlet">
         <table>
             <tr>
-                <td><label for="cspReporting" title="Name">Name</label></td>
-                <td><input type="text" id="cspReporting" name="cspReporting" class="text-input" /></td>
+                <td><label for="name3" title="Name">Name</label></td>
+                <td><input type="text" id="name3" name="name3" class="text-input" /></td>
                 <td><input type="submit" name="submit" value="Submit" /></td>
             </tr>
         </table>
