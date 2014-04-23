@@ -30,7 +30,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Spring Security secured order servlet for POST requests. Processes the order and returns the result
+ * Spring Security secured order servlet for POST requests. Processes the order and returns the result. Spring Security
+ * automatically checks the correct anti CSRF token value.
  *
  * @author Dominik Schadow
  */
