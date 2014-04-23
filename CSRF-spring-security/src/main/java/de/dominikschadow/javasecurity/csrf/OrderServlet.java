@@ -20,14 +20,13 @@ package de.dominikschadow.javasecurity.csrf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Spring Security secured order servlet for POST requests. Processes the order and returns the result. Spring Security
@@ -35,18 +34,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "SpringSecurityOrderServlet", urlPatterns = {"/SpringSecurityOrderServlet"})
-public class SpringSecurityOrderServlet extends HttpServlet {
+@WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
+public class OrderServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Processing Spring Security servlet...");
+        logger.info("Processing order servlet...");
 
-        String product = request.getParameter("product1");
-        int quantity = Integer.parseInt(request.getParameter("quantity1"));
+        String product = request.getParameter("product");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         logger.info("Ordered {} items of product {}", quantity, product);
 
