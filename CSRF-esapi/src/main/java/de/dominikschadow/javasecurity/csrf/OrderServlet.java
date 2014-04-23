@@ -36,15 +36,15 @@ import java.security.NoSuchProviderException;
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "ESAPIOrderServlet", urlPatterns = {"/ESAPIOrderServlet"})
-public class ESAPIOrderServlet extends HttpServlet {
+@WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
+public class OrderServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Processing ESAPI servlet...");
+        logger.info("Processing order servlet...");
 
         try {
             if (!EsapiTokenHandler.isValid(request)) {
@@ -74,8 +74,8 @@ public class ESAPIOrderServlet extends HttpServlet {
 
         logger.info("ESAPI servlet: CSRF token is valid");
 
-        String product = request.getParameter("product2");
-        int quantity = Integer.parseInt(request.getParameter("quantity2"));
+        String product = request.getParameter("product");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         logger.info("Ordered {} items of product {}", quantity, product);
 

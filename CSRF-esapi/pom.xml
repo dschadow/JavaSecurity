@@ -4,31 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <artifactId>csrf</artifactId>
+    <artifactId>csrf-esapi</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>Cross-Site Request Forgery</name>
+    <name>Cross-Site Request Forgery - ESAPI</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
-    <description>Cross-Site Request Forgery (CSRF) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/csrf
+    <description>Cross-Site Request Forgery (CSRF) with Enterprise Security API sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
+        plugin. After launching, open the web application in your browser at http://localhost:8080/csrf-esapi
     </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.security.version>3.2.3.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.owasp.esapi</groupId>
             <artifactId>esapi</artifactId>
@@ -68,7 +57,7 @@
     </dependencies>
 
     <build>
-        <finalName>csrf</finalName>
+        <finalName>csrf-esapi</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
