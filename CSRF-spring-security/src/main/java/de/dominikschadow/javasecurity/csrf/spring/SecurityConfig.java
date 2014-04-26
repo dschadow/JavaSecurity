@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * Simple Spring Security configuration. Requires use authentication and automatically protects from CSRF attacks
+ * Simple Spring Security configuration. Activates authentication and automatically protects from CSRF attacks
  * with an anti CSRF token.
  *
  * @author Dominik Schadow
@@ -17,6 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+        auth.inMemoryAuthentication().withUser("csrf").password("csrf").roles("USER");
     }
 }
