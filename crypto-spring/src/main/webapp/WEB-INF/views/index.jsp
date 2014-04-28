@@ -7,6 +7,6 @@
 	<title>Spring Crypto with jasypt</title>
 </head>
 <body>
-	<h1>Spring Crypto with jasypt</h1>
+	<h1>${greeting}</h1>
 </body>
 </html>

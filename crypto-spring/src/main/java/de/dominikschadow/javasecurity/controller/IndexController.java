@@ -17,9 +17,13 @@
  */
 package de.dominikschadow.javasecurity.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.sql.DataSource;
 
 /**
  * 
@@ -27,8 +31,16 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class IndexController {
+    private JdbcTemplate jdbcTemplate;
+
     @RequestMapping("/index")
     public ModelAndView showContacts() {
-        return new ModelAndView("index");
+        String greeting = jdbcTemplate.queryForObject("select greeting from greetings where greeting_id = 1", String.class);
+        return new ModelAndView("index", "greeting", greeting);
+    }
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 }
