@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2013 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2014 Dominik Schadow, dominikschadow@gmail.com
  *
- * This file is part of the Java Security Myths project.
+ * This file is part of the Java Security project.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
