@@ -5,27 +5,27 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
-    <!--
-    <bean class="org.jasypt.spring.properties.EncryptablePropertyPlaceholderConfigurer">
-        <constructor-arg>
-            <bean class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
-                <property name="config">
-                    <bean class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
-                        <property name="algorithm" value="PBEWithMD5AndDES" />
-                        <property name="passwordEnvName" value="APP_ENCRYPTION_PASSWORD" />
-                    </bean>
-                </property>
-            </bean>
-        </constructor-arg>
+    <bean id="environmentVariablesConfiguration" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+        <property name="algorithm" value="PBEWithMD5AndDES" />
+        <property name="passwordSysPropertyName" value="APP_ENCRYPTION_PASSWORD" />
+    </bean>
+
+    <bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+        <property name="config" ref="environmentVariablesConfiguration" />
+    </bean>
+
+    <bean id="propertyConfigurer" class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+        <constructor-arg ref="configurationEncryptor" />
         <property name="locations">
             <list>
                 <value>classpath:spring.properties</value>
             </list>
         </property>
     </bean>
-    -->
 
+    <!--
     <context:property-placeholder location="classpath:spring.properties" />
+    -->
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
