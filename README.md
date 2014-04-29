@@ -1,6 +1,6 @@
 Java Security
 ============
-This repository contains several Java (web) application projects covering different security topics. Using Mozilla Firefox as browser is strongly recommended.
+This repository contains several Java (web) application projects covering different security topics. Using Mozilla Firefox as browser is strongly recommended. The smaller projects all come with a ready to use **Tomcat7 Maven plugin** which should be started via **mvn tomcat7:run-war**.
 
 #CSRF-esapi
 Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer Pages (JSP) web application by utilizing [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API).
@@ -15,3 +15,6 @@ This web application was tested with [Java Enterprise Edition 7](http://www.orac
 
 #XSS
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP).
+
+#crypto-spring
+Crypto sample project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin).
