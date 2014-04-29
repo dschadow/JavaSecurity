@@ -10,8 +10,10 @@
     <name>Crypto Spring</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Spring project using encrypted properties with jasypt sample project. Requires a server like Apache
-        Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/crypto-spring
+        Tomcat or the Maven Tomcat7 plugin and a system property named APP_ENCRYPTION_PASSWORD (set automatically by
+        the Tomcat7 plugin).
+
+        After launching, open the web application in your browser at http://localhost:8080/crypto-spring
     </description>
 
     <properties>
