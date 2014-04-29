@@ -49,6 +49,8 @@ public class CSPServlet extends HttpServlet {
 
         response.setContentType("text/html");
         response.setHeader("Content-Security-Policy", "default-src 'self'");
+        // following line combines CSP protection with violation reporting
+//        response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
         // following line enables unsafe inline JavaScript
 //        response.setHeader("Content-Security-Policy", "default-src 'self' 'unsafe-inline'");
 
