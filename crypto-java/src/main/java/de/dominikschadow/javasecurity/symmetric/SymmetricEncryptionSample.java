@@ -37,7 +37,7 @@ import java.security.cert.CertificateException;
  * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts it. Note
  * that the <code>initializationVector</code> is not stored. One possibility to store it is to prepend it to the encrypted
  * message with a delimiter (all in Base64 encoding): <code>Base64(IV) + DELIMITER + Base64(ENCRYPTED MESSAGE)</code>
- *
+ * <p>
  * Uses Google Guava to Base64 print the encrypted message as readable format.
  *
  * @author Dominik Schadow
@@ -74,7 +74,7 @@ public class SymmetricEncryptionSample {
     private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
         InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
 
-                KeyStore ks = KeyStore.getInstance("JCEKS");
+        KeyStore ks = KeyStore.getInstance("JCEKS");
         ks.load(keystoreStream, keystorePassword);
 
         return ks;
