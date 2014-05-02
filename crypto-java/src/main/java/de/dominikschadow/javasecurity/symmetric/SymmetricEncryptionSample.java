@@ -34,8 +34,8 @@ import java.security.*;
 import java.security.cert.CertificateException;
 
 /**
- * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts it. Note
- * that the <code>initializationVector</code> is not stored. One possibility to store it is to prepend it to the encrypted
+ * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts sample text with it.
+ * Note that the <code>initializationVector</code> is not stored. One possibility to store it is to prepend it to the encrypted
  * message with a delimiter (all in Base64 encoding): <code>Base64(IV) + DELIMITER + Base64(ENCRYPTED MESSAGE)</code>
  * <p>
  * Uses Google Guava to Base64 print the encrypted message as readable format.
