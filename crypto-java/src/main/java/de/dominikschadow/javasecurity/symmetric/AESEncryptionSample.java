@@ -42,13 +42,13 @@ import java.security.cert.CertificateException;
  *
  * @author Dominik Schadow
  */
-public class SymmetricEncryptionSample {
-    private static final Logger logger = LoggerFactory.getLogger(SymmetricEncryptionSample.class);
+public class AESEncryptionSample {
+    private static final Logger logger = LoggerFactory.getLogger(AESEncryptionSample.class);
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        SymmetricEncryptionSample ses = new SymmetricEncryptionSample();
+        AESEncryptionSample ses = new AESEncryptionSample();
         final String initialText = "Encrypt me at Java Forum Stuttgart 2014";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "symmetric-sample";
