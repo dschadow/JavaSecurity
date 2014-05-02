@@ -82,7 +82,7 @@ public class AESEncryptionSample {
 
     private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
-            throw new RuntimeException("Alias " + keyAlias + " not found in keystore");
+            throw new RuntimeException("Secret key " + keyAlias + " not found in keystore");
         }
 
         Key key = ks.getKey(keyAlias, keyPassword);
