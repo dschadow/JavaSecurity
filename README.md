@@ -19,5 +19,11 @@ Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JS
 #crypto-java
 Crypto sample project using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) keys as well as to sign and verify data (DSA). All classes contain **main** methods to execute the sample. 
 
+#crypto-keyczar
+Crypto sample project using [Keyczar](http://www.keyczar.org) to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) keys as well as to sign and verify data (DSA). All classes contain **main** methods to execute the sample. 
+
+#crypto-shiro
+Crypto sample project using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) keys, to sign and verify data (DSA) as well as hash data (passwords). All classes contain **main** methods to execute the sample. 
+
 #crypto-spring
 Crypto sample project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin).
