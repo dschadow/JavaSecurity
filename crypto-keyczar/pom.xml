@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <artifactId>crypto-encrypt</artifactId>
+    <artifactId>crypto-keyczar</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Crypto Encrypt</name>
+    <name>Crypto Keyczar</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
-    <description>Java crypto sample project using Java libraries to encrypt and decrypt data. Each relevant class provides
+    <description>Java crypto sample project using Keyczar to encrypt/ decrypt and sign/ verify data. Each relevant class provides
         its own main method to get started.</description>
 
     <properties>
