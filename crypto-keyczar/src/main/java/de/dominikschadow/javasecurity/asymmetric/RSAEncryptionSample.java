@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RSAEncryptionSample {
     private static final Logger logger = LoggerFactory.getLogger(RSAEncryptionSample.class);
-    private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/symmetric";
+    private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
 
     public static void main(String[] args) {
         RSAEncryptionSample res = new RSAEncryptionSample();
