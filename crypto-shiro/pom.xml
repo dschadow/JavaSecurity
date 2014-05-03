@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <artifactId>crypto-hash</artifactId>
+    <artifactId>crypto-shiro</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Crypto Hash</name>
+    <name>Crypto Shiro</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
-    <description>Java crypto sample project using Java libraries to hash data. Each relevant class provides
+    <description>Java crypto sample project using Apache Shiro to hash data. Each relevant class provides
         its own main method to get started.</description>
 
     <properties>
