@@ -19,9 +19,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>17.0</version>
+            <groupId>org.keyczar</groupId>
+            <artifactId>keyczar</artifactId>
+            <version>0.71g</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
