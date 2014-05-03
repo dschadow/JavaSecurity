@@ -44,6 +44,13 @@ public class RSAEncryptionSample {
         }
     }
 
+    /**
+     * The encrypted String (ciphertext) returned is already encoded in Base64.
+     *
+     * @param initialText The text to encrypt (in UTF-8)
+     * @return The encrypted text (in Base64)
+     * @throws KeyczarException
+     */
     private String encrypt(String initialText) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
         String ciphertext = crypter.encrypt(initialText);
