@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
     <name>Crypto Shiro</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
-    <description>Java crypto sample project using Apache Shiro to hash data. Each relevant class provides
+    <description>Java crypto sample project using Apache Shiro to hash and encrypt data. Each relevant class provides
         its own main method to get started.</description>
 
     <properties>
@@ -22,11 +22,6 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>1.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>17.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
