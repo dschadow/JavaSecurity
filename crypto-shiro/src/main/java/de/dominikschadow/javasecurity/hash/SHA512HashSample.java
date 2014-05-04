@@ -35,7 +35,8 @@ import java.util.Arrays;
  */
 public class SHA512HashSample {
     private static final Logger logger = LoggerFactory.getLogger(SHA512HashSample.class);
-    private static final byte[] privateSaltBytes = {5, 7, 3, 9, 2, 4};
+    /** Nothing up my sleeve number as private salt. */
+    private static final byte[] privateSaltBytes = {3, 1, 4, 1, 5, 9, 2, 6, 5};
     private static final int iterations = 1000000;
 
     public static void main(String[] args) {
@@ -45,7 +46,7 @@ public class SHA512HashSample {
         Hash hash = hs.calculateHash(initialText);
         boolean correct = hs.verifyPassword(hash.getBytes(), hash.getSalt(), initialText);
 
-        logger.info("Entered password is correct {}", correct);
+        logger.info("Entered password is correct: {}", correct);
     }
 
     private Hash calculateHash(String initialText) {
