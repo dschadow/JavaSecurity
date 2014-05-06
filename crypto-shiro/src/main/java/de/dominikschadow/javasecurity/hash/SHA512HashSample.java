@@ -35,7 +35,7 @@ import java.util.Arrays;
  */
 public class SHA512HashSample {
     private static final Logger logger = LoggerFactory.getLogger(SHA512HashSample.class);
-    /** Nothing up my sleeve number as private salt. */
+    /** Nothing up my sleeve number as private salt, not good for production. */
     private static final byte[] privateSaltBytes = {3, 1, 4, 1, 5, 9, 2, 6, 5};
     private static final int iterations = 1000000;
 
