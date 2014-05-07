@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 /**
- * SHA512 hashing sample with Apache Shiro. Uses a private base salt, configures the number of ITERATIONS, automatically
+ * SHA512 hashing sample with Apache Shiro. Uses a private base salt, configures the number of iterations, automatically
  * generates a salt and calculates the hash value.
  *
  * @author Dominik Schadow
