@@ -61,7 +61,7 @@ public class SHA512HashSample {
 
         Hash hash = hashService.computeHash(builder.build());
 
-        logger.info("Hash algorithm {}, ITERATIONS {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
+        logger.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
 
         return hash;
     }
