@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 /**
- * SHA512 hashing sample with Apache Shiro. Uses a private base salt, configures the number of iterations, automatically
+ * SHA512 hashing sample with Apache Shiro. Uses a private base salt, configures the number of ITERATIONS, automatically
  * generates a salt and calculates the hash value.
  *
  * @author Dominik Schadow
@@ -36,8 +36,8 @@ import java.util.Arrays;
 public class SHA512HashSample {
     private static final Logger logger = LoggerFactory.getLogger(SHA512HashSample.class);
     /** Nothing up my sleeve number as private salt, not good for production. */
-    private static final byte[] privateSaltBytes = {3, 1, 4, 1, 5, 9, 2, 6, 5};
-    private static final int iterations = 1000000;
+    private static final byte[] PRIVATE_SALT_BYTES = {3, 1, 4, 1, 5, 9, 2, 6, 5};
+    private static final int ITERATIONS = 1000000;
 
     public static void main(String[] args) {
         SHA512HashSample hs = new SHA512HashSample();
@@ -50,27 +50,27 @@ public class SHA512HashSample {
     }
 
     private Hash calculateHash(String initialText) {
-        ByteSource privateSalt = ByteSource.Util.bytes(privateSaltBytes);
+        ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
         hashService.setPrivateSalt(privateSalt);
         hashService.setGeneratePublicSalt(true);
-        hashService.setHashIterations(iterations);
+        hashService.setHashIterations(ITERATIONS);
 
         HashRequest.Builder builder = new HashRequest.Builder();
         builder.setSource(ByteSource.Util.bytes(initialText));
 
         Hash hash = hashService.computeHash(builder.build());
 
-        logger.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
+        logger.info("Hash algorithm {}, ITERATIONS {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
 
         return hash;
     }
 
     private boolean verifyPassword(byte[] originalHash, ByteSource publicSalt, String initialText) {
-        ByteSource privateSalt = ByteSource.Util.bytes(privateSaltBytes);
+        ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
         hashService.setPrivateSalt(privateSalt);
-        hashService.setHashIterations(iterations);
+        hashService.setHashIterations(ITERATIONS);
 
         HashRequest.Builder builder = new HashRequest.Builder();
         builder.setSource(ByteSource.Util.bytes(initialText));
