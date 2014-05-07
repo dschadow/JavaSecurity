@@ -78,6 +78,7 @@ public class SHA512HashSample {
 
         Hash comparisonHash = hashService.computeHash(builder.build());
 
+        logger.info("initialText {}", initialText);
         logger.info("1 hash: {}", Base64.encodeToString(originalHash));
         logger.info("2 hash: {}", comparisonHash.toBase64());
 
