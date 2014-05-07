@@ -57,10 +57,16 @@ public class SHA512HashSample {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update((initialText + salt).getBytes("UTF-8"));
-
         byte[] hash = md.digest();
 
         logger.info("Hash algorithm {}, iterations {}, salt {}", ALGORITHM, ITERATIONS, salt);
+        logger.info("1 hash round: {}", BaseEncoding.base64().encode(hash));
+
+        for (int i = 0; i < ITERATIONS; i++) {
+            md.reset();
+            hash = md.digest(hash);
+        }
+
 
         return hash;
     }
@@ -69,12 +75,16 @@ public class SHA512HashSample {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update((initialText + salt).getBytes("UTF-8"));
-
         byte[] comparisonHash = md.digest();
 
+        for (int i = 0; i < ITERATIONS; i++) {
+            md.reset();
+            comparisonHash = md.digest(comparisonHash);
+        }
+
         logger.info("initialText {}", initialText);
-        logger.info("1 hash: {}", BaseEncoding.base64().encode(originalHash));
-        logger.info("2 hash: {}", BaseEncoding.base64().encode(comparisonHash));
+        logger.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
+        logger.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
 
         return Arrays.equals(originalHash, comparisonHash);
     }
