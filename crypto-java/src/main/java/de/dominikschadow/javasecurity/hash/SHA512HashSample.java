@@ -88,6 +88,22 @@ public class SHA512HashSample {
         logger.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
         logger.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
 
-        return Arrays.equals(originalHash, comparisonHash);
+        return comparePasswords(originalHash, comparisonHash);
+    }
+
+    /**
+     * Compares the two byte arrays in length-constant time using XOR.
+     *
+     * @param originalHash The original password hash
+     * @param comparisonHash The comparison password hash
+     * @return True if both match, false otherwise
+     */
+    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
+        int diff = originalHash.length ^ comparisonHash.length;
+        for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
+            diff |= originalHash[i] ^ comparisonHash[i];
+        }
+
+        return diff == 0;
     }
 }
