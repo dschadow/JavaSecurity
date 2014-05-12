@@ -41,7 +41,7 @@ public class PBKDF2HashSample {
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
     private static final int ITERATIONS = 100000;
     private static final int SALT_SIZE = 24;
-    private static final int HASH_SIZE = 24 * 8;
+    private static final int HASH_SIZE = 192;
 
     public static void main(String[] args) {
         PBKDF2HashSample hs = new PBKDF2HashSample();
