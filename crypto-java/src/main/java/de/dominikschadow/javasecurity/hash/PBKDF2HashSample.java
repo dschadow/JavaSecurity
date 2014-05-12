@@ -23,11 +23,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 
 /**
  * PBKDF2 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash value.
@@ -53,7 +51,7 @@ public class PBKDF2HashSample {
             boolean correct = hs.verifyPassword(hash, password, salt);
 
             logger.info("Entered password is correct: {}", correct);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException | InvalidKeySpecException ex) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             logger.error(ex.getMessage(), ex);
         }
     }
@@ -66,7 +64,7 @@ public class PBKDF2HashSample {
         return salt;
     }
 
-    private byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeySpecException {
+    private byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
         PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, HASH_SIZE);
         SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
 
@@ -75,7 +73,7 @@ public class PBKDF2HashSample {
         return skf.generateSecret(spec).getEncoded();
     }
 
-    private boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeySpecException {
+    private boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
         byte[] comparisonHash = calculateHash(password, salt);
 
         logger.info("password {}", password);
