@@ -26,7 +26,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 
 /**
  * SHA512 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash value.
