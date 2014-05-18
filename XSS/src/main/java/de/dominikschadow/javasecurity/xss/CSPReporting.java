@@ -39,9 +39,6 @@ import java.io.InputStreamReader;
 public class CSPReporting extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
             StringBuilder responseBuilder = new StringBuilder();
