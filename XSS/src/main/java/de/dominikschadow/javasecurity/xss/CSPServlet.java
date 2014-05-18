@@ -46,6 +46,7 @@ public class CSPServlet extends HttpServlet {
         logger.info("Received " + name + " as POST parameter");
 
         response.setContentType("text/html");
+        // report-uri is optional but a good start to block and report violations at first
         response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
 
         try (PrintWriter out = response.getWriter()) {
