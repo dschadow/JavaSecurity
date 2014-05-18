@@ -29,8 +29,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet which sets the <code>Content-Security-Policy</code> response header and stops any JavaScript code entered in the textfield.
- * Any entered script-tag will not be rendered any more in the result page.
+ * Servlet which sets the <code>Content-Security-Policy</code> response header and stops any JavaScript code entered
+ * in the textfield. Any entered script-tag will not be rendered any more in the result page. The <code>report-uri</code>
+ * parameter takes care of reporting any CSP violations via the CSPReportingServlet.
  *
  * @author Dominik Schadow
  */
@@ -38,9 +39,6 @@ import java.io.PrintWriter;
 public class CSPServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing POST request with Content Security Policy");
 
@@ -48,11 +46,7 @@ public class CSPServlet extends HttpServlet {
         logger.info("Received " + name + " as POST parameter");
 
         response.setContentType("text/html");
-        response.setHeader("Content-Security-Policy", "default-src 'self'");
-        // following line combines CSP protection with violation reporting
-//        response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
-        // following line enables unsafe inline JavaScript
-//        response.setHeader("Content-Security-Policy", "default-src 'self' 'unsafe-inline'");
+        response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
