@@ -9,7 +9,7 @@
     <packaging>war</packaging>
     <name>Crypto Spring</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
-    <description>Spring project using encrypted properties with jasypt sample project. Requires a server like Apache
+    <description>Spring project using encrypted properties with Jasypt sample project. Requires a server like Apache
         Tomcat or the Maven Tomcat7 plugin and a system property named APP_ENCRYPTION_PASSWORD (set automatically by
         the Tomcat7 plugin).
 
@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.0.4.RELEASE</spring.version>
+        <spring.version>4.0.5.RELEASE</spring.version>
     </properties>
 
     <dependencies>
