@@ -1,14 +1,14 @@
 /*
- * Copyright (C) 2013 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2014 Dominik Schadow, dominikschadow@gmail.com
  *
- * This file is part of the Java Security Myths project.
- * 
+ * This file is part of the Java Security project.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *  http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.csrf;
 
-import de.dominikschadow.javasecurity.csrf.esapi.EsapiTokenHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +31,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
 /**
- * Enterprise Security API secured order servlet for POST requests. Processes the order and returns the result
+ * CSRF secured order servlet for POST requests. Processes the order and returns the result.
  *
  * @author Dominik Schadow
  */
@@ -40,15 +39,12 @@ import java.security.NoSuchProviderException;
 public class OrderServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing order servlet...");
 
         try {
-            if (!EsapiTokenHandler.isValid(request)) {
-                logger.info("ESAPI servlet: CSRF token is invalid");
+            if (!CSRFTokenHandler.isValid(request)) {
+                logger.info("Order servlet: CSRF token is invalid");
                 response.setStatus(401);
 
                 try (PrintWriter out = response.getWriter()) {
@@ -72,7 +68,7 @@ public class OrderServlet extends HttpServlet {
             logger.error(ex.getMessage(), ex);
         }
 
-        logger.info("ESAPI servlet: CSRF token is valid");
+        logger.info("Order servlet: CSRF token is valid");
 
         String product = request.getParameter("product");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
