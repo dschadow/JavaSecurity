@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <artifactId>session-handling</artifactId>
+    <artifactId>spring-security-session-handling</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>Session-Handling</name>
+    <name>Spring Security Session Handling</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Session Handling sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
         plugin. After launching, open the web application in your browser at http://localhost:8080/session-handling
