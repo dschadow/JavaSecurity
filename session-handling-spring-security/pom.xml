@@ -10,8 +10,8 @@
     <name>Session Handling Spring Security</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Session Handling sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at
-        http://localhost:8080/session-handling-spring-security
+        plugin. Two users with two different roles exist: user/user and admin/admin. After launching, open the
+        web application in your browser at http://localhost:8080/session-handling-spring-security
     </description>
 
     <properties>
