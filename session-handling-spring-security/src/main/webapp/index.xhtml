@@ -8,8 +8,13 @@
     <h:outputStylesheet library="css" value="styles.css" name="styles.css" />
     <title>Session Handling with Spring Securiy</title>
 </h:head>
+
 <f:view>
     <h1>Session Handling with Spring Security</h1>
+
+    <div>
+        Session ID: #{sessionInformation.sessionId}
+    </div>
 
     <div>
         <h:link outcome="user/profile">User</h:link> | <h:link outcome="admin/manage">Admin</h:link>

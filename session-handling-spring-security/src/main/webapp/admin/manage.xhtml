@@ -12,7 +12,13 @@
 <f:view>
     <h1>Admin Management</h1>
 
-    <p>#{greetingBean.greetAdmin()}</p>
+    <div>
+        Session ID: #{sessionInformation.sessionId}
+    </div>
+
+    <div>
+        #{greetingBean.greetAdmin()}
+    </div>
 
     <div>
         <h:link outcome="/index">Home</h:link> | <h:link outcome="/logout">Logout</h:link>
