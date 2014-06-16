@@ -20,6 +20,8 @@ package de.dominikschadow.javasecurity.sessionhandling.greetings;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 /**
+ * GreetingService interface with role based access.
+ *
  * @author Dominik Schadow
  */
 public interface GreetingService {
