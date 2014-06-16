@@ -3,14 +3,17 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet library="css" value="styles.css" name="styles.css" />
-    <title>Session Handling with Spring Securiy</title>
+    <title>User Profile</title>
 </h:head>
 
 <f:view>
-    <h:outputLabel value="Profile"/>
+    <h1>User Profile</h1>
+
+    <div>
+        <h:link outcome="/index">Home</h:link> | <h:link outcome="/j_spring_security_logout">Logout</h:link>
+    </div>
 </f:view>
 </html>

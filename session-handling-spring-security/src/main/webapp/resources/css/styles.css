@@ -5,3 +5,7 @@ h1 {
 h2 {
 	font-size: 115%;
 }
+
+a {
+    padding-right: 10px;
+}
