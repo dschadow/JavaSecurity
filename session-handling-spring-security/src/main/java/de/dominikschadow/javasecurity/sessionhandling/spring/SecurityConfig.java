@@ -35,7 +35,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public GreetingService greetingService() {
@@ -45,16 +45,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("USER", "ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers("/*", "/resources/**").permitAll()
-            .antMatchers("/user/**").hasRole("USER")
-            .antMatchers("/admin/**").hasRole("ADMIN")
-            .anyRequest().authenticated()
-            .and().formLogin();
+        http
+            .authorizeRequests()
+                .antMatchers("/*", "/resources/**").permitAll()
+                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                    .formLogin()
+            .and()
+            .logout()
+                    .logoutSuccessUrl("/logout.xhtml")
+                    .invalidateHttpSession(true);
     }
 }

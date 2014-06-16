@@ -17,10 +17,10 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.greetings;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 /**
- *
  * @author Dominik Schadow
  */
 public interface GreetingService {
