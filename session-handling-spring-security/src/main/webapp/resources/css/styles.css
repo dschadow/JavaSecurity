@@ -5,3 +5,8 @@ h1 {
 a {
     color: darkblue;
 }
+
+div {
+    display: block;
+    padding: 10px;
+}
