@@ -12,7 +12,10 @@
     <p>Each response header can be called in an unprotected and in a protected version. Every header is added via a
     filter.</p>
 
-    <a href="form.jsp">Base form</a>
+    <p>
+        <a href="forms/protectedForm.jsp">Protected form</a><br>
+        <a href="forms/unprotectedForm.jsp">Unprotected form</a><br>
+    </p>
 
     <h2>X-Frame-Options</h2>
     <p>

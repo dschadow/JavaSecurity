@@ -1,8 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"/>
     <title>Security Response Header</title>
 </head>
 <body>

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>X-Frame-Options: Unprotected</title>
+    <title>X-Frame-Options: Protected</title>
 </head>
 <body>
 <body>
-<iframe src="../forms/unprotectedForm.jsp" id="form" style="border: 0; width: 100%; height: 100%">
+<iframe src="../forms/protectedForm.jsp" id="form" style="border: 0; width: 100%; height: 100%">
 </iframe>
 <div style="position: absolute; top: 0; left: 0; width: 50%; height: 50%; border: 5pt; border-color: orange; border-style: solid;">
     <form name="fakeLoginForm" action="FakeServlet" method="post">
