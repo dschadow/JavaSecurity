@@ -38,7 +38,7 @@ public class FeedbackServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Sending feedback...");
+        logger.info("Processing feedback POST request...");
 
         response.setContentType("text/html");
 
