@@ -6,20 +6,15 @@
     <title>Security Response Header</title>
 </head>
 <body>
-<form name="contactForm" action="FeedbackServlet" method="post">
+<form name="loginForm" action="LoginServlet" method="post">
     <div>
         <label for="username">Username</label>
         <input type="text" name="username" id="username"/>
     </div>
 
     <div>
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" id="subject"/>
-    </div>
-
-    <div>
-        <label for="message">Message</label>
-        <textarea name="message" id="message"></textarea>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password"/>
     </div>
 
     <div>
