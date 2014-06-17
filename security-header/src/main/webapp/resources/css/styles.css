@@ -14,16 +14,13 @@ input {
     display: inline-block;
     vertical-align: middle;
     margin-top: 2em;
+    width: 150px;
 }
 
 input[type=submit] {
-    margin: 5 0 0 27em;
-}
-
-textarea {
-    display : inline-block;
-    vertical-align: middle;
-    margin-top: 2em;
+    margin: 2em 0 0 25em;
+    width: 75px;
+    height: 20px;
 }
 
 label {
