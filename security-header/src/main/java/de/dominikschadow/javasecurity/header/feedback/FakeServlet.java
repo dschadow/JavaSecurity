@@ -29,16 +29,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Simple feedback servlet which returns a success message.
+ * Fake login servlet which returns a success message.
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "FeedbackServlet", urlPatterns = {"/FeedbackServlet"})
-public class FeedbackServlet extends HttpServlet {
+@WebServlet(name = "FakeServlet", urlPatterns = {"/x-frame-options/FakeServlet"})
+public class FakeServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Processing feedback POST request...");
+        logger.info("Processing fake request...");
 
         response.setContentType("text/html");
 
@@ -49,8 +49,8 @@ public class FeedbackServlet extends HttpServlet {
             out.println("<title>Security Response Header</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Feedback sent</h1>");
-            out.println("<div><a href=\"index.jsp\">Home</a></div>");
+            out.println("<h1>Fake login successful</h1>");
+            out.println("<div><a href=\"../index.jsp\">Home</a></div>");
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
