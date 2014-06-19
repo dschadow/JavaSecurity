@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <h:outputStylesheet library="css" value="styles.css" name="styles.css" />
+    <h:outputStylesheet library="css" name="styles.css" />
     <title>Session Handling with Spring Securiy</title>
 </h:head>
 
@@ -13,7 +13,7 @@
     <h1>Admin Management</h1>
 
     <div>
-        Session ID: #{sessionInformation.sessionId}
+        Session ID: #{userBean.sessionId}
     </div>
 
     <div>
@@ -21,7 +21,9 @@
     </div>
 
     <div>
-        <h:link outcome="/index">Home</h:link> | <h:link outcome="/logout">Logout</h:link>
+        <h:form>
+            <h:link outcome="/index">Home</h:link> | <h:commandLink action="#{userBean.logout}" id="logout" value="Logout" />
+        </h:form>
     </div>
 </f:view>
 </html>

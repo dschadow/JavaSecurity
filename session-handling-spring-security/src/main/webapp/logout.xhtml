@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <h:outputStylesheet library="css" value="styles.css" name="styles.css" />
+    <h:outputStylesheet library="css" name="styles.css"/>
     <title>Session Handling with Spring Securiy</title>
 </h:head>
 
@@ -13,7 +13,7 @@
     <h1>You have been logged out successfully.</h1>
 
     <div>
-        Session ID: #{sessionInformation.sessionId}
+        Session ID: #{userBean.sessionId}
     </div>
 
     <div>

@@ -46,15 +46,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/*", "/resources/**").permitAll()
+                .antMatchers("/*", "/javax.faces.resource/**").permitAll()
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                    .formLogin()
+            .and()
+                .formLogin()
             .and()
             .logout()
+                    .invalidateHttpSession(true)
                     .logoutSuccessUrl("/logout.xhtml")
-                    .invalidateHttpSession(true);
+            .and()
+                .csrf().disable();
     }
 }

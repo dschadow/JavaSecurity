@@ -15,19 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.sessionhandling;
+package de.dominikschadow.javasecurity.sessionhandling.users;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
- * Simple ManagedBean to return the current session id.
+ * Simple ManagedBean to log out the current user and to return the current session id.
  *
  * @author Dominik Schadow
  */
-@ManagedBean
-public class SessionInformation {
+@ManagedBean(name = "userBean")
+@RequestScoped
+public class UserBean {
+    public String logout() {
+        SecurityContextHolder.clearContext();
+        return "/logout";
+    }
+
     public String getSessionId() {
         return RequestContextHolder.currentRequestAttributes().getSessionId();
     }
