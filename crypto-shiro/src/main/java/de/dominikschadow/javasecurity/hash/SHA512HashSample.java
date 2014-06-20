@@ -41,15 +41,15 @@ public class SHA512HashSample {
 
     public static void main(String[] args) {
         SHA512HashSample hs = new SHA512HashSample();
-        String initialText = "Java Forum Stuttgart 2014";
+        String password = "SHA-512 hash sample text";
 
-        Hash hash = hs.calculateHash(initialText);
-        boolean correct = hs.verifyPassword(hash.getBytes(), hash.getSalt(), initialText);
+        Hash hash = hs.calculateHash(password);
+        boolean correct = hs.verifyPassword(hash.getBytes(), hash.getSalt(), password);
 
         logger.info("Entered password is correct: {}", correct);
     }
 
-    private Hash calculateHash(String initialText) {
+    private Hash calculateHash(String password) {
         ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
         hashService.setPrivateSalt(privateSalt);
@@ -57,7 +57,7 @@ public class SHA512HashSample {
         hashService.setHashIterations(ITERATIONS);
 
         HashRequest.Builder builder = new HashRequest.Builder();
-        builder.setSource(ByteSource.Util.bytes(initialText));
+        builder.setSource(ByteSource.Util.bytes(password));
 
         Hash hash = hashService.computeHash(builder.build());
 
@@ -66,19 +66,19 @@ public class SHA512HashSample {
         return hash;
     }
 
-    private boolean verifyPassword(byte[] originalHash, ByteSource publicSalt, String initialText) {
+    private boolean verifyPassword(byte[] originalHash, ByteSource publicSalt, String password) {
         ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
         hashService.setPrivateSalt(privateSalt);
         hashService.setHashIterations(ITERATIONS);
 
         HashRequest.Builder builder = new HashRequest.Builder();
-        builder.setSource(ByteSource.Util.bytes(initialText));
+        builder.setSource(ByteSource.Util.bytes(password));
         builder.setSalt(publicSalt);
 
         Hash comparisonHash = hashService.computeHash(builder.build());
 
-        logger.info("initialText {}", initialText);
+        logger.info("password: {}", password);
         logger.info("1 hash: {}", Base64.encodeToString(originalHash));
         logger.info("2 hash: {}", comparisonHash.toBase64());
 

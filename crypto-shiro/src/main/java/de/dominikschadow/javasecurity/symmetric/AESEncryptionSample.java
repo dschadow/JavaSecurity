@@ -40,7 +40,7 @@ public class AESEncryptionSample {
 
     public static void main(String[] args) {
         AESEncryptionSample res = new AESEncryptionSample();
-        final String initialText = "Encrypt me at Java Forum Stuttgart 2014";
+        final String initialText = "AES encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "symmetric-sample";
         final char[] keyPassword = "symmetric-sample".toCharArray();
@@ -97,9 +97,9 @@ public class AESEncryptionSample {
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        logger.info("initialText {}", initialText);
-        logger.info("cipherText as byte[] {}", new String(ciphertext));
-        logger.info("cipherText as Base64 {}", Base64.encodeToString(ciphertext));
-        logger.info("plaintext {}", CodecSupport.toString(plaintext));
+        logger.info("initialText: {}", initialText);
+        logger.info("cipherText as byte[]: {}", new String(ciphertext));
+        logger.info("cipherText as Base64: {}", Base64.encodeToString(ciphertext));
+        logger.info("plaintext: {}", CodecSupport.toString(plaintext));
     }
 }
