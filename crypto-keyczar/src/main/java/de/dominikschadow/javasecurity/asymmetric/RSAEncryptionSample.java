@@ -33,7 +33,7 @@ public class RSAEncryptionSample {
 
     public static void main(String[] args) {
         RSAEncryptionSample res = new RSAEncryptionSample();
-        final String initialText = "Encrypt me at Java Forum Stuttgart 2014";
+        final String initialText = "RSA encryption sample text";
         try {
             String ciphertext = res.encrypt(initialText);
             String plaintext = res.decrypt(ciphertext);
@@ -66,8 +66,8 @@ public class RSAEncryptionSample {
     }
 
     private void printReadableMessages(String initialText, String ciphertext, String plaintext) {
-        logger.info("initialText {}", initialText);
-        logger.info("cipherText {}", ciphertext);
-        logger.info("plaintext {}", plaintext);
+        logger.info("initialText: {}", initialText);
+        logger.info("cipherText as Base64: {}", ciphertext);
+        logger.info("plaintext: {}", plaintext);
     }
 }

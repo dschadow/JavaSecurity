@@ -34,7 +34,7 @@ public class DSASignatureSample {
 
     public static void main(String[] args) {
         DSASignatureSample res = new DSASignatureSample();
-        final String initialText = "Sign me at Java Forum Stuttgart 2014";
+        final String initialText = "DSA signature sample text";
         try {
             String signature = res.sign(initialText);
             boolean valid = res.verify(initialText, signature);
@@ -60,8 +60,8 @@ public class DSASignatureSample {
     }
 
     private void printReadableMessages(String initialText, String signature, boolean valid) {
-        logger.info("initialText {}", initialText);
-        logger.info("signature {}", signature);
-        logger.info("signature valid {}", valid);
+        logger.info("initialText: {}", initialText);
+        logger.info("signature as Base64: {}", signature);
+        logger.info("signature valid: {}", valid);
     }
 }
