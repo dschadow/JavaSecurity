@@ -42,7 +42,7 @@ public class SHA512HashSample {
 
     public static void main(String[] args) {
         SHA512HashSample hs = new SHA512HashSample();
-        String password = "Java Forum Stuttgart 2014";
+        String password = "SHA-512 hash sample text";
 
         try {
             byte[] salt = hs.generateSalt();
@@ -83,7 +83,7 @@ public class SHA512HashSample {
     private boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password, salt);
 
-        logger.info("password {}", password);
+        logger.info("password: {}", password);
         logger.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
         logger.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
 

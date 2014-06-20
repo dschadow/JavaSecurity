@@ -45,7 +45,7 @@ public class RSAEncryptionSample {
 
     public static void main(String[] args) {
         RSAEncryptionSample aes = new RSAEncryptionSample();
-        final String initialText = "Encrypt me at Java Forum Stuttgart 2014";
+        final String initialText = "RSA encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-rsa";
         final char[] keyPassword = "asymmetric-sample-rsa".toCharArray();
@@ -113,9 +113,9 @@ public class RSAEncryptionSample {
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        logger.info("initialText {}", initialText);
-        logger.info("cipherText as byte[] {}", new String(ciphertext));
-        logger.info("cipherText as Base64 {}", BaseEncoding.base64().encode(ciphertext));
-        logger.info("plaintext {}", new String(plaintext));
+        logger.info("initialText: {}", initialText);
+        logger.info("cipherText as byte[]: {}", new String(ciphertext));
+        logger.info("cipherText as Base64: {}", BaseEncoding.base64().encode(ciphertext));
+        logger.info("plaintext: {}", new String(plaintext));
     }
 }
