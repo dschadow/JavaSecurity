@@ -40,7 +40,7 @@ public class FakeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing fake request...");
 
-        response.setContentType("text/html");
+        response.setContentType("text/html; charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");

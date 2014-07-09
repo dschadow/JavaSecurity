@@ -1,0 +1,5 @@
+<html>
+<body bgcolor="#FF0000">
+    This page should not be rendered as HTML.
+</body>
+</html>

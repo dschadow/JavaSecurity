@@ -25,8 +25,8 @@
 
     <h2>X-Content-Type-Options</h2>
     <p>
-        <a href="x-content-type-options/unprotected.jsp">Unprotected</a><br>
-        <a href="x-content-type-options/protected.jsp">Protected</a>
+        <a href="x-content-type-options/unprotected.txt">Unprotected</a><br>
+        <a href="x-content-type-options/protected.txt">Protected</a>
     </p>
 
     <h2>HTTP Strict Transport Security</h2>
