@@ -9,7 +9,7 @@
 <body>
 	<h1>Security Response Header</h1>
 
-    <p>Each response header can be called in an unprotected and in a protected version. Every header is added via a
+    <p>Each response header can be called in an unprotected and in a protected version. Every header is added by a
     filter.</p>
 
     <p>
@@ -37,9 +37,9 @@
 
     <h2>Content Security Policy</h2>
     <p>
-        <a href="csp/unprotected.jsp">Unprotected</a><br>
-        <a href="csp/protected.jsp">Protected</a><br>
-        <a href="csp/protected-report-only.jsp">Protected (Reporting only)</a>
+        <a href="csp/unprotected.jsp?name=<script>alert('XSS')</script>">Unprotected</a><br>
+        <a href="csp/protected.jsp?name=<script>alert('XSS')</script>">Protected</a><br>
+        <a href="csp/reporting.jsp?name=<script>alert('XSS')</script>">Report only</a>
     </p>
 </body>
 </html>
