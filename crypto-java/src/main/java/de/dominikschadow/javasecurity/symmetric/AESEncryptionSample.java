@@ -46,6 +46,8 @@ public class AESEncryptionSample {
     private static final Logger logger = LoggerFactory.getLogger(AESEncryptionSample.class);
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String KEYSTORE_PATH = "/samples.ks";
+    /** Non-secret initialization vector with 16 bytes (publicly exchanged between participants), may be a random number changed every time or a counter. */
+    private static final byte[] initializationVector = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3};
 
     public static void main(String[] args) {
         AESEncryptionSample ses = new AESEncryptionSample();
@@ -53,7 +55,6 @@ public class AESEncryptionSample {
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "symmetric-sample";
         final char[] keyPassword = "symmetric-sample".toCharArray();
-        final byte[] initializationVector = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         final IvParameterSpec iv = new IvParameterSpec(initializationVector);
 
         try {
