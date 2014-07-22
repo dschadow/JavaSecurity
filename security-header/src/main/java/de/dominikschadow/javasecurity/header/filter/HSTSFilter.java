@@ -39,7 +39,7 @@ public class HSTSFilter implements Filter {
         logger.info("HSTSFilter header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.addHeader("Strict-Transport-Security", "max-age=2592000; includeSubDomains");
+        response.addHeader("Strict-Transport-Security", "max-age=31556926; includeSubDomains");
 
         filterChain.doFilter(servletRequest, response);
     }
