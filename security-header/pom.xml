@@ -10,7 +10,8 @@
     <name>Security Response Header</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Security Response Header sample project. Sets different security related response headers via filter classes
-        to each response. After launching, open the web application in your browser at http://localhost:8080/security-header
+        to each response. After launching, open the web application in your browser at http://localhost:8080/security-header or
+        https://localhost:8443/security-header
     </description>
 
     <properties>
@@ -44,7 +45,7 @@
         <dependency>
             <groupId>com.cedarsoftware</groupId>
             <artifactId>json-io</artifactId>
-            <version>2.6.1</version>
+            <version>2.7.0</version>
         </dependency>
     </dependencies>
 
@@ -66,6 +67,11 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
+                <configuration>
+                    <httpsPort>8443</httpsPort>
+                    <keystoreFile>${basedir}/certificates/keystore.jks</keystoreFile>
+                    <keystorePass>secureheaders</keystorePass>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
