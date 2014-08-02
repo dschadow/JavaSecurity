@@ -10,7 +10,7 @@
 	<h1>Security Response Header</h1>
 
     <p>Each response header can be called in an unprotected and in a protected version. Every header is added by a
-    filter.</p>
+    filter. There are no special pages for HSTS since this header is only active or inactive for the whole domain.</p>
 
     <p>
         <a href="forms/protectedForm.jsp">Protected form</a><br>
@@ -27,12 +27,6 @@
     <p>
         <a href="x-content-type-options/unprotected.txt">Unprotected</a><br>
         <a href="x-content-type-options/protected.txt">Protected</a>
-    </p>
-
-    <h2>HTTP Strict Transport Security</h2>
-    <p>
-        <a href="hsts/unprotected.jsp">Unprotected</a><br>
-        <a href="hsts/protected.jsp">Protected</a>
     </p>
 
     <h2>Content Security Policy</h2>
