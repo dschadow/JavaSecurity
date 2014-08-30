@@ -10,7 +10,7 @@
     <name>Cross-Site Request Forgery</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Cross-Site Request Forgery (CSRF) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/csrf-esapi
+        plugin. After launching, open the web application in your browser at http://localhost:8080/CSRF
     </description>
 
     <properties>
@@ -49,7 +49,6 @@
     </dependencies>
 
     <build>
-        <finalName>csrf-esapi</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
