@@ -48,7 +48,7 @@ public class CSPReporting extends HttpServlet {
                 responseBuilder.append(inputStr);
             }
 
-            logger.info("CSP REPORT " + JsonWriter.formatJson(responseBuilder.toString()));
+            logger.info("\n{}", JsonWriter.formatJson(responseBuilder.toString()));
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
         }

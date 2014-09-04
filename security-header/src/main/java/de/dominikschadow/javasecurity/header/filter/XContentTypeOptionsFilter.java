@@ -38,7 +38,7 @@ public class XContentTypeOptionsFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("XContentTypeOptionsFilter header added to response");
+        logger.info("X-Content-Type-Options header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setContentType("text/plain");

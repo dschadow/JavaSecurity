@@ -38,7 +38,7 @@ public class CSPReportingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("CSPReportingFilter header added to response");
+        logger.info("Content-Security-Policy-Report-Only header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri CSPReporting");

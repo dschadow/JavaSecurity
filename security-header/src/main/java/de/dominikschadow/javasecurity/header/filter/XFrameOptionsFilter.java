@@ -38,7 +38,7 @@ public class XFrameOptionsFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("XFrameOptionsFilter header added to response");
+        logger.info("X-Frame-Options header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.addHeader("X-Frame-Options", "DENY");

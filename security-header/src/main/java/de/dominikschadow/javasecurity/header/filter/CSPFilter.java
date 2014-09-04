@@ -38,7 +38,7 @@ public class CSPFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("CSPFilter header added to response");
+        logger.info("Content-Security-Policy header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("Content-Security-Policy", "default-src 'self'");
