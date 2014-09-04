@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the complete page by forcing HTTPS usage.
+ * This servlet filter protects the complete domain by forcing HTTPS usage.
  *
  * @author Dominik Schadow
  */
