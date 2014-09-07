@@ -76,6 +76,10 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
+                <!-- only for demonstration to access session id -->
+                <configuration>
+                    <contextFile>${project.basedir}/src/main/resources/context.xml</contextFile>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
