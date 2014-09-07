@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
 	<title>Cross-Site Request Forgery (CSRF) - Spring Security</title>
 </head>
 <body>
