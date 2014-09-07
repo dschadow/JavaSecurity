@@ -54,7 +54,7 @@ public class OrderServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("<title>Cross-Site Request Forgery (CSRF): Order Confirmation</title>");
             out.println("</head>");
             out.println("<body>");
