@@ -23,7 +23,7 @@ Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JS
 Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin).
 
 #security-header
-Security response header demo project which applies **X-Content-Frame**, **X-Content-Type-Options**, **HTTP Strict Transport Security (HSTS)** and **Content Security Policy (CSP)** headers to HTTP responses.
+Security response header demo project which applies **X-Content-Type-Options**, **Cache-Control**, **X-Frame-Options**, **HTTP Strict Transport Security (HSTS)**, **X-XSS-Protection** and **Content Security Policy (CSP)** (Level 1 and 2) headers to HTTP responses.
 
 #session-handling-spring-security
 Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs) and how to apply method level security. Uses Spring Security to create and update the session id.
