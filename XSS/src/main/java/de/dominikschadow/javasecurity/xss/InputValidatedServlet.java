@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.xss;
 
-import com.cedarsoftware.util.io.JsonWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,29 +25,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 /**
- * Simple CSP-Reporting servlet to receive and print out any JSON style CSP report with violations.
+ * Servlet expecting validated input from the frontend.
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "CSPReporting", urlPatterns = {"/CSPReporting"})
-public class CSPReporting extends HttpServlet {
+@WebServlet(name = "InputValidatedServlet", urlPatterns = {"/validated"})
+public class InputValidatedServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
-            StringBuilder responseBuilder = new StringBuilder();
+        String name = request.getParameter("inputValidatedName");
 
-            String inputStr;
-            while ((inputStr = reader.readLine()) != null) {
-                responseBuilder.append(inputStr);
-            }
+        logger.info("Received {} as name", name);
 
-            logger.info("REPORT " + JsonWriter.formatJson(responseBuilder.toString()));
+        response.setContentType("text/html");
+
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<html><head>");
+            out.println("<title>XSS - Input Validation</title>");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>XSS - Input Validation</h1>");
+            out.println("<p>[" + name + "]</p>");
+            out.println("<p><a href=\"index.jsp\">Home</a></p>");
+            out.println("</body></html>");
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
         }

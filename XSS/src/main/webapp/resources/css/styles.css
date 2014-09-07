@@ -1,0 +1,33 @@
+h1 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+a {
+    color: darkblue;
+}
+
+fieldset {
+    width: 450px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+input {
+    display: inline-block;
+    vertical-align: middle;
+    width: 250px;
+}
+
+input[type=submit] {
+    width: 75px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+label {
+    margin-right: 10px;
+}

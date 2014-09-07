@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.xss;
 
+import org.owasp.encoder.Encode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,36 +30,46 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet which sets the <code>Content-Security-Policy-Report-Only</code> response header and reports
- * any JavaScript code that would have been stopped by the policy. Violations are only reported, this CSP
- * mode does not prevent any JavaScript execution.
+ * Servlet to return output escaping user input to prevent Cross-Site Scripting (XSS).
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "CSPReportingServlet", urlPatterns = {"/CSPReportingServlet"})
-public class CSPReportingServlet extends HttpServlet {
+@WebServlet(name = "OutputEscapedServlet", urlPatterns = {"/escaped"})
+public class OutputEscapedServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Processing POST request with Content Security Policy Reporty Only");
+        String name = request.getParameter("outputEscapedName");
 
-        String name = request.getParameter("name3");
-        logger.info("Received " + name + " as POST parameter");
+        logger.info("Received {} as name", name);
 
         response.setContentType("text/html");
-        response.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri CSPReporting");
 
         try (PrintWriter out = response.getWriter()) {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />");
-            out.println("<title>Cross-Site Scripting (XSS): Content Security Policy Reporty Only</title>");
+            out.println("<html><head>");
+            out.println("<title>XSS - Output Escaping</title>");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Cross-Site Scripting (XSS): Content Security Policy Reporty Only</h1>");
-            out.println("<p><strong>Hello</strong> " + name + "</p>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<h1>XSS - Output Escaping</h1>");
+            out.println("<p><strong>For HTML </strong>");
+            Encode.forHtml(out, name);
+            out.println("</p>");
+            out.println("<p><strong>For HTML Content </strong>");
+            Encode.forHtmlContent(out, name) ;
+            out.println("</p>");
+            out.println("<p><strong>For HTML Attribute </strong>");
+            Encode.forHtmlAttribute(out, name);
+            out.println("</p>");
+            out.println("<p><strong>For CSS  </strong>");
+            Encode.forCssString(out, name);
+            out.println("</p>");
+            out.println("<p><strong>For URI </strong>");
+            Encode.forUri(out, name);
+            out.println("</p>");
+            out.println("<p><a href=\"index.jsp\">Home</a></p>");
+            out.println("</body></html>");
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
         }
