@@ -4,23 +4,39 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
 	<title>Cross-Site Request Forgery (CSRF)</title>
 </head>
 <body>
 	<h1>Cross-Site Request Forgery (CSRF)</h1>
 
-    <form name="orderForm" action="OrderServlet" method="post">
-        <input type="hidden" name="<%=CSRFTokenHandler.CSRF_TOKEN%>" value="<%=CSRFTokenHandler.getToken(request.getSession(false))%>">
+    <form name="orderFormUnprotected" action="OrderServlet" method="post">
+        <fieldset>
+            <legend>Without Anti-CSRF-Token</legend>
+            <label for="product" title="Product">Product</label>
+            <input type="text" id="product" name="product" class="text-input" />
 
-        <label for="product" title="Product">Product</label>
-        <input type="text" id="product" name="product" class="text-input" />
+            <label for="quantity" title="Quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity" class="text-input" />
 
-        <label for="quantity" title="Quantity">Quantity</label>
-        <input type="text" id="quantity" name="quantity" class="text-input" />
-
-        <input type="submit" value="Order" />
+            <input type="submit" value="Order" />
+        </fieldset>
     </form>
 
+    <form name="orderFormProtected" action="OrderServlet" method="post">
+        <fieldset>
+            <legend>With Anti-CSRF-Token</legend>
+            <input type="hidden" name="<%=CSRFTokenHandler.CSRF_TOKEN%>"
+                   value="<%=CSRFTokenHandler.getToken(request.getSession(false))%>">
+
+            <label for="product" title="Product">Product</label>
+            <input type="text" id="product" name="product" class="text-input" />
+
+            <label for="quantity" title="Quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity" class="text-input" />
+
+            <input type="submit" value="Order" />
+        </fieldset>
+    </form>
 </body>
 </html>
