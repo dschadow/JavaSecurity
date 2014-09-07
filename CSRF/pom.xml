@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <artifactId>CSRF</artifactId>
+    <artifactId>csrf</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Cross-Site Request Forgery</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Cross-Site Request Forgery (CSRF) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/CSRF
+        plugin. After launching, open the web application in your browser at http://localhost:8080/csrf
     </description>
 
     <properties>
@@ -49,6 +49,7 @@
     </dependencies>
 
     <build>
+        <finalName>csrf</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
