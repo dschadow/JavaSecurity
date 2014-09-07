@@ -9,16 +9,32 @@
 <body>
 	<h1>Cross-Site Request Forgery (CSRF) - Spring Security</h1>
 
-    <form name="orderForm" action="OrderServlet" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <form name="orderFormUnprotected" action="OrderServlet" method="post">
+        <fieldset>
+            <legend>Without Anti-CSRF-Token</legend>
+            <label for="product" title="Product">Product</label>
+            <input type="text" id="product" name="product" class="text-input" />
 
-        <label for="product" title="Product">Product</label>
-        <input type="text" id="product" name="product" class="text-input" />
+            <label for="quantity" title="Quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity" class="text-input" />
 
-        <label for="quantity" title="Quantity">Quantity</label>
-        <input type="text" id="quantity" name="quantity" class="text-input" />
+            <input type="submit" value="Order" />
+        </fieldset>
+    </form>
 
-        <input type="submit" value="Order" />
+    <form name="orderFormProtected" action="OrderServlet" method="post">
+        <fieldset>
+            <legend>With Anti-CSRF-Token</legend>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+            <label for="product" title="Product">Product</label>
+            <input type="text" id="product" name="product" class="text-input" />
+
+            <label for="quantity" title="Quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity" class="text-input" />
+
+            <input type="submit" value="Order" />
+        </fieldset>
     </form>
 </body>
 </html>
