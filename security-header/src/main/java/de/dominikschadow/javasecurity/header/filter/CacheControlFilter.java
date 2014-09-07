@@ -26,24 +26,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the {@code protectedForm.jsp} against clickjacking by adding the {@code X-Frame-Options}
- * header to the response. The {@code urlPatterns} should be far more wildcard in a real web application than in this
- * demo project.
+ * This servlet filter protects the {@code protectedForm.jsp} against being cached by the user agent.
+ * The {@code urlPatterns} should be far more wildcard in a real web application than in this demo project.
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "XFrameOptionsFilter", urlPatterns = {"/x-frame-options/protectedForm.jsp"})
-public class XFrameOptionsFilter implements Filter {
+@WebFilter(filterName = "CacheControlFilter", urlPatterns = {"/cache-control/protected.jsp"})
+public class CacheControlFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("X-Frame-Options header added to response");
+        logger.info("Cache-Control header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.addHeader("X-Frame-Options", "DENY");
-//        response.addHeader("X-Frame-Options", "SAMEORIGIN");
-//        response.addHeader("X-Frame-Options", "ALLOW-FROM http://localhost:8080");
+        response.addHeader("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate");
 
         filterChain.doFilter(servletRequest, response);
     }

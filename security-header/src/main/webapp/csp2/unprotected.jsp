@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>X-Frame-Options: Unprotected</title>
+    <title>Content Security Policy Level 2: Unprotected</title>
 </head>
 <body>
 <iframe src="unprotectedForm.jsp" id="form" style="border: 0; width: 100%; height: 100%">

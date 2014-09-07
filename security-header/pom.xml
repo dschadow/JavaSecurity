@@ -7,11 +7,11 @@
     <artifactId>security-header</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>Security Response Header</name>
+    <name>Java Security Header</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>Security Response Header sample project. Sets different security related response headers via filter classes
-        to each response. After launching, open the web application in your browser at http://localhost:8080/security-header or
-        https://localhost:8443/security-header
+        to each response. After launching, open the web application in your browser at http://localhost:8080/security-de.dominikschadow.javasecurity.header.header or
+        https://localhost:8443/security-de.dominikschadow.javasecurity.header.header
     </description>
 
     <properties>
@@ -50,7 +50,7 @@
     </dependencies>
 
     <build>
-        <finalName>security-header</finalName>
+        <finalName>security-de.dominikschadow.javasecurity.header.header</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>

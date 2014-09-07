@@ -4,7 +4,7 @@
     <title>X-Frame-Options: Protected</title>
 </head>
 <body>
-<iframe src="../forms/protectedForm.jsp" id="form" style="border: 0; width: 100%; height: 100%">
+<iframe src="protectedForm.jsp" id="form" style="border: 0; width: 100%; height: 100%">
 </iframe>
 <div style="position: absolute; top: 0; left: 0; width: 50%; height: 50%; border: 5pt solid orange;">
     <form name="fakeLoginForm" action="FakeServlet" method="post">

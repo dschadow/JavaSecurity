@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"/>
-    <title>Security Response Header</title>
+    <title>Protected Form</title>
 </head>
 <body>
 <form name="loginForm" action="LoginServlet" method="post">
