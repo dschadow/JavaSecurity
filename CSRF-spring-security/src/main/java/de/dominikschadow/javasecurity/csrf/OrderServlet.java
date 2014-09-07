@@ -60,6 +60,7 @@ public class OrderServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Cross-Site Request Forgery (CSRF): Order Confirmation</h1>");
             out.println("<p><strong>Ordered " + quantity + " of product " + product + "</strong></p>");
+            out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
