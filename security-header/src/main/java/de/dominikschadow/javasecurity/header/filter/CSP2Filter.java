@@ -41,7 +41,7 @@ public class CSP2Filter implements Filter {
         logger.info("Content-Security-Policy Level 2 header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none");
+        response.setHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none'");
 
         filterChain.doFilter(servletRequest, response);
     }
