@@ -40,7 +40,8 @@ public class CacheControlFilter implements Filter {
         logger.info("Cache-Control header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.addHeader("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate");
+        response.addHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        response.addDateHeader("Expires", -1);
 
         filterChain.doFilter(servletRequest, response);
     }
