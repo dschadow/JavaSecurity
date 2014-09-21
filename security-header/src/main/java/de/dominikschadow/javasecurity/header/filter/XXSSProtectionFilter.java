@@ -32,7 +32,7 @@ import java.io.IOException;
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "XXSSProtectionFilter", urlPatterns = {"/x-xss-protection/protected.jsp"})
+@WebFilter(filterName = "XXSSProtectionFilter", urlPatterns = {"/x-xss-protection/protected.jsp", "/all/all.jsp"})
 public class XXSSProtectionFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 

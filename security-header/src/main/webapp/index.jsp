@@ -49,5 +49,10 @@
         <a href="x-xss-protection/unprotected.jsp?name=<script>alert('XSS')</script>">Unprotected</a><br>
         <a href="x-xss-protection/protected.jsp?name=<script>alert('XSS')</script>">Protected</a>
     </p>
+
+    <h2>All</h2>
+    <p>
+        <a href="all/all.jsp">Protected</a>
+    </p>
 </body>
 </html>

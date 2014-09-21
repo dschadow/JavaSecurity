@@ -31,7 +31,7 @@ import java.io.IOException;
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "CacheControlFilter", urlPatterns = {"/cache-control/protected.jsp"})
+@WebFilter(filterName = "CacheControlFilter", urlPatterns = {"/cache-control/protected.jsp", "/all/all.jsp"})
 public class CacheControlFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 

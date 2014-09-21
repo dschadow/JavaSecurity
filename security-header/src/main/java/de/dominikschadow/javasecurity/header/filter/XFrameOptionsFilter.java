@@ -32,7 +32,7 @@ import java.io.IOException;
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "XFrameOptionsFilter", urlPatterns = {"/x-frame-options/protectedForm.jsp"})
+@WebFilter(filterName = "XFrameOptionsFilter", urlPatterns = {"/x-frame-options/protectedForm.jsp", "/all/all.jsp"})
 public class XFrameOptionsFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 

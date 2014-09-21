@@ -32,7 +32,7 @@ import java.io.IOException;
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "XContentTypeOptionsFilter", urlPatterns = {"/x-content-type-options/protected.txt"})
+@WebFilter(filterName = "XContentTypeOptionsFilter", urlPatterns = {"/x-content-type-options/protected.txt", "/all/all.jsp"})
 public class XContentTypeOptionsFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 

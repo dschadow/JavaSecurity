@@ -32,7 +32,7 @@ import java.io.IOException;
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "CSP2Filter", urlPatterns = {"/csp2/protectedForm.jsp"})
+@WebFilter(filterName = "CSP2Filter", urlPatterns = {"/csp2/protectedForm.jsp", "/all/all.jsp"})
 public class CSP2Filter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
