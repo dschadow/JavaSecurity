@@ -12,13 +12,9 @@
 
     <p><strong>For HTML </strong> <e:forHtml value="${param.outputEscapedJSPName}"/></p>
 
-    <p><strong>For HTML Content </strong> <e:forHtmlContent value="${param.outputEscapedJSPName}"/></p>
-
-    <p><strong>For HTML Attribute </strong> <e:forHtmlAttribute value="${param.outputEscapedJSPName}"/></p>
-
     <p><strong>For CSS </strong> <e:forCssString value="${param.outputEscapedJSPName}"/></p>
 
-    <p><strong>For URI </strong> <e:forUri value="${param.outputEscapedJSPName}"/></p>
+    <p><strong>For XML </strong> <e:forXml value="${param.outputEscapedJSPName}"/></p>
 
     <p><a href="index.jsp">Home</a></p>
 </body>
