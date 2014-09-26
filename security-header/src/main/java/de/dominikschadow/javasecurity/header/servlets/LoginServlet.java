@@ -33,7 +33,7 @@ import java.io.PrintWriter;
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/x-frame-options/LoginServlet", "/cache-control/LoginServlet"})
 public class LoginServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -45,12 +45,12 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/resources/css/styles.css\" />");
             out.println("<title>Security Response Header</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Login successful</h1>");
-            out.println("<div><a href=\"index.jsp\">Home</a></div>");
+            out.println("<div><a href=\"../index.jsp\">Home</a></div>");
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
