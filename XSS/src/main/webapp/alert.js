@@ -1,0 +1,1 @@
+alert("XSS from JS file");
