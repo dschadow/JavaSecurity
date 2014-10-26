@@ -33,7 +33,7 @@ import java.io.PrintWriter;
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "FakeServlet", urlPatterns = {"/x-frame-options/FakeServlet"})
+@WebServlet(name = "FakeServlet", urlPatterns = {"/x-frame-options/FakeServlet", "/csp2/FakeServlet"})
 public class FakeServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
