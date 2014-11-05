@@ -36,7 +36,7 @@
     <a href="x-frame-options/protected.jsp">Protected</a>
 </p>
 
-<h2>Content Security Policy</h2>
+<h2>Content Security Policy Level 1</h2>
 
 <p>
     <a href="csp/unprotected.jsp?name=<script>alert('XSS')</script>">Unprotected</a><br>
@@ -44,7 +44,7 @@
     <a href="csp/reporting.jsp?name=<script>alert('XSS')</script>">Report only</a>
 </p>
 
-<h2>Content Security Policy Level 2 (frame-ancestors)</h2>
+<h2>Content Security Policy Level 2</h2>
 
 <p>
     <a href="csp2/unprotected.jsp">Unprotected</a><br/>
