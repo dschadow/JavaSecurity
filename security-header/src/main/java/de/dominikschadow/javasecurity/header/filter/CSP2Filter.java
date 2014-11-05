@@ -27,9 +27,8 @@ import java.io.IOException;
 
 /**
  * This servlet filter protects the {@code csp2/protected.jsp} page by adding the {@code Content-Security-Policy}
- * Level 2
- * header to the response. The {@code urlPatterns} should be far more wildcard in a real web application than in this
- * demo project.
+ * Level 2 header to the response. The {@code urlPatterns} should be far more wildcard in a real web application than
+ * in this demo project.
  *
  * @author Dominik Schadow
  */
@@ -43,7 +42,8 @@ public class CSP2Filter implements Filter {
         logger.info("Content-Security-Policy Level 2 header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none'");
+        response.setHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none'; reflected-xss " +
+                "block");
 
         filterChain.doFilter(servletRequest, response);
     }
