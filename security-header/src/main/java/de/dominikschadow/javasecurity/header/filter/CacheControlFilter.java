@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the {@code protectedForm.jsp} against being cached by the user agent.
+ * This servlet filter protects the {@code cache-control/protected.jsp} page against being cached by the user agent.
  * The {@code urlPatterns} should be far more wildcard in a real web application than in this demo project.
  *
  * @author Dominik Schadow
@@ -36,7 +36,8 @@ public class CacheControlFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         logger.info("Cache-Control header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;

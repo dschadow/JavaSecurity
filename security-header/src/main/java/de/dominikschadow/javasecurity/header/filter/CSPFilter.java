@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the {@code protected.jsp} by adding the {@code Content-Security-Policy}
+ * This servlet filter protects the {@code csp/protected.jsp} page by adding the {@code Content-Security-Policy}
  * header to the response. The {@code urlPatterns} should be far more wildcard in a real web application than in this
  * demo project.
  *
@@ -37,7 +37,8 @@ public class CSPFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         logger.info("Content-Security-Policy header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;

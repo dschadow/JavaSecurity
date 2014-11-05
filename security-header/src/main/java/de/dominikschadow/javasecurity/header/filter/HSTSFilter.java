@@ -26,7 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the complete domain by forcing HTTPS usage.
+ * This servlet filter protects the complete domain by forcing HTTPS usage. The url pattern does not have any
+ * influence on this header.
  *
  * @author Dominik Schadow
  */
@@ -35,7 +36,8 @@ public class HSTSFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         logger.info("Strict-Transport-Security header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;

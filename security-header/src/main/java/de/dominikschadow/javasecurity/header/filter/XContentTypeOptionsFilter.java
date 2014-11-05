@@ -26,18 +26,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the {@code protected.txt} against content sniffing attacks by adding the {@code X-Content-Type-Options}
- * header and the content type to the response. The {@code urlPatterns} should be far more wildcard in a real web application than in this
- * demo project, and the content type would be provided individually e.g. by a servlet.
+ * This servlet filter protects the {@code x-content-type-options/protected.txt} against content sniffing attacks by
+ * adding the {@code X-Content-Type-Options} header and the content type to the response. The {@code urlPatterns}
+ * should be far more wildcard in a real web application than in this demo project,
+ * and the content type would be provided individually, e.g. by a servlet.
  *
  * @author Dominik Schadow
  */
-@WebFilter(filterName = "XContentTypeOptionsFilter", urlPatterns = {"/x-content-type-options/protected.txt", "/all/all.jsp"})
+@WebFilter(filterName = "XContentTypeOptionsFilter", urlPatterns = {"/x-content-type-options/protected.txt",
+        "/all/all.jsp"})
 public class XContentTypeOptionsFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         logger.info("X-Content-Type-Options header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;

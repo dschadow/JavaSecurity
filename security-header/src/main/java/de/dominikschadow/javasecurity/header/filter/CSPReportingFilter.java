@@ -26,9 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter checks any request for {@code reporting.jsp} by adding the {@code Content-Security-Policy-Report-Only}
- * header to the response. Violations are not blocked but reported to the {@see CSPReporting} servlet.
- * The {@code urlPatterns} should be far more wildcard in a real web application than in this demo project.
+ * This servlet filter checks any request for {@code reporting.jsp} by adding the {@code
+ * Content-Security-Policy-Report-Only} header to the response. Violations are not blocked but reported to the {@see
+ * CSPReporting} servlet. The {@code urlPatterns} should be far more wildcard in a real web application than in this
+ * demo project.
  *
  * @author Dominik Schadow
  */
@@ -37,7 +38,8 @@ public class CSPReportingFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         logger.info("Content-Security-Policy-Report-Only header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;

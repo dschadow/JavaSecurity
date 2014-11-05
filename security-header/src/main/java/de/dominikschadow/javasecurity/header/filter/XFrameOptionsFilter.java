@@ -26,9 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the {@code protectedForm.jsp} against clickjacking by adding the {@code X-Frame-Options}
- * header to the response. The {@code urlPatterns} should be far more wildcard in a real web application than in this
- * demo project.
+ * This servlet filter protects the {@code x-frame-options/protected.jsp} page against clickjacking by adding the
+ * {@code X-Frame-Options} header to the response. The {@code urlPatterns} should be far more wildcard in a real web
+ * application than in this demo project.
  *
  * @author Dominik Schadow
  */
@@ -37,7 +37,8 @@ public class XFrameOptionsFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         logger.info("X-Frame-Options header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;

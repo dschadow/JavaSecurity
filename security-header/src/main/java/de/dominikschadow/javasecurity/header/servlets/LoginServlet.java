@@ -33,7 +33,8 @@ import java.io.PrintWriter;
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/x-frame-options/LoginServlet", "/cache-control/LoginServlet", "/csp2/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/x-frame-options/LoginServlet", "/cache-control/LoginServlet",
+        "/csp2/LoginServlet"})
 public class LoginServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
