@@ -50,7 +50,7 @@
         <a href="x-xss-protection/protected.jsp?name=<script>alert('XSS')</script>">Protected</a>
     </p>
 
-    <h2>All</h2>
+    <h2>All Header and Meta Tags</h2>
     <p>
         <a href="all/all.jsp">Protected</a>
     </p>
