@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/resources/css/styles.css\" />");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"../resources/css/styles.css\" />");
             out.println("<title>Security Response Header</title>");
             out.println("</head>");
             out.println("<body>");
