@@ -17,6 +17,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.security.version>3.2.5.RELEASE</spring.security.version>
+        <jsf.version>2.2.8-04</jsf.version>
+        <slf4j.version>1.7.8</slf4j.version>
     </properties>
 
     <dependencies>
@@ -29,12 +31,12 @@
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
-            <version>2.2.8-02</version>
+            <version>${jsf.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <version>2.2.8-02</version>
+            <version>${jsf.version}</version>
         </dependency>
 
         <dependency>
@@ -51,12 +53,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.7</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.7</version>
+            <version>${slf4j.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
