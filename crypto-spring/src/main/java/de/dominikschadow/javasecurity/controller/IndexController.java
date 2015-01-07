@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2015 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  * 
@@ -20,23 +20,28 @@ package de.dominikschadow.javasecurity.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.DataSource;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * 
  * @author Dominik Schadow
  */
 @Controller
+@RequestMapping(value = "/")
 public class IndexController {
     private JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/index")
-    public ModelAndView showContacts() {
+    @RequestMapping(method = GET)
+    public String index(Model model) {
         String greeting = jdbcTemplate.queryForObject("select greeting from greetings where greeting_id = 1", String.class);
-        return new ModelAndView("index", "greeting", greeting);
+        model.addAttribute("greeting", greeting);
+
+        return "index";
     }
 
     @Autowired
