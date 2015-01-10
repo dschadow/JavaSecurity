@@ -39,3 +39,6 @@ Crypto demo project using [Keyczar](http://www.keyczar.org) to encrypt and decry
 
 ##crypto-shiro
 Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) keys as well as hash data (passwords). All classes contain **main** methods to execute the samples. 
+
+##Meta
+[![Build Status](https://travis-ci.org/dschadow/JavaSecurity.svg)](https://travis-ci.org/dschadow/JavaSecurity)
