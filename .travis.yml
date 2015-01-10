@@ -1,3 +1,5 @@
 language: java
 jdk:
   - oraclejdk8
+before_install:
+  - mvn install:install-file -Dfile=keyczar-0.71g-090613.jar -DgroupId=org.keyczar -DartifactId=keyczar -Dversion=0.71g -Dpackaging=jar
