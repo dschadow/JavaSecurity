@@ -25,9 +25,14 @@
     </properties>
 
     <repositories>
+        <!-- Either import keyczar.jar yourself to your local Maven repository or use this fork. -->
         <repository>
-            <id>KeyCzar</id>
-            <url>http://keyczar.googlecode.com/svn/trunk/java/maven/</url>
+            <id>keyczar-mvn-repo</id>
+            <url>https://raw.github.com/pyronicide/keyczar/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
     </repositories>
 
