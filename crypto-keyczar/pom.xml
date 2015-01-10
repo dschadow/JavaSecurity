@@ -14,8 +14,7 @@
     <packaging>jar</packaging>
     <name>Crypto Keyczar</name>
     <description>Java crypto sample project using Keyczar to encrypt/ decrypt and sign/ verify data. Each relevant class provides
-        its own main method to get started. The latest Keyczar dependency is not available in any public Maven repo so far.
-        Download the jar and add it to your local Maven repository manually.</description>
+        its own main method to get started..</description>
 
     <dependencies>
         <dependency>

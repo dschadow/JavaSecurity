@@ -24,6 +24,13 @@
         <owasp.encoder.version>1.1.1</owasp.encoder.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>KeyCzar</id>
+            <url>http://keyczar.googlecode.com/svn/trunk/java/maven/</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
