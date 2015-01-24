@@ -13,12 +13,12 @@
     <packaging>war</packaging>
     <name>Application Intrusion Detection</name>
 
-    <description>Cross-Site Scripting (XSS) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/xss
+    <description>Application Intrusion Detection with AppSensor sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
+        plugin. After launching, open the web application in your browser at http://localhost:8080/aid
     </description>
 
     <build>
-        <finalName>xss</finalName>
+        <finalName>aid</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
