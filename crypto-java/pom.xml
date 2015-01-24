@@ -8,11 +8,11 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.dominikschadow.javasecurity</groupId>
     <artifactId>crypto-java</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>Crypto Java</name>
+
     <description>Java crypto sample project using Java capabilities to encrypt and decrypt data. Each relevant class provides
     its own main method to get started.</description>
 

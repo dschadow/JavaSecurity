@@ -8,11 +8,11 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.dominikschadow.javasecurity</groupId>
     <artifactId>session-handling-spring-security</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Session Handling Spring Security</name>
+
     <description>Session Handling sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
         plugin. Two users with two different roles exist: user/user and admin/admin. After launching, open the
         web application in your browser at http://localhost:8080/session-handling-spring-security

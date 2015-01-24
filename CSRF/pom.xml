@@ -8,11 +8,11 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.dominikschadow.javasecurity</groupId>
     <artifactId>csrf</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Cross-Site Request Forgery</name>
+
     <description>Cross-Site Request Forgery (CSRF) sample project. Requires a server like Apache Tomcat or the Maven
         Tomcat7
         plugin. After launching, open the web application in your browser at http://localhost:8080/csrf
