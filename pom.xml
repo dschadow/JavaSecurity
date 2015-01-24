@@ -183,5 +183,6 @@
         <module>security-header</module>
         <module>session-handling-spring-security</module>
         <module>XSS</module>
+        <module>aid</module>
     </modules>
 </project>

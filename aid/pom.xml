@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>javasecurity</artifactId>
+        <groupId>de.dominikschadow.javasecurity</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>aid</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+    <name>Application Intrusion Detection</name>
+
+    <description>Cross-Site Scripting (XSS) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
+        plugin. After launching, open the web application in your browser at http://localhost:8080/xss
+    </description>
+
+    <build>
+        <finalName>xss</finalName>
+        <defaultGoal>tomcat7:run-war</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
