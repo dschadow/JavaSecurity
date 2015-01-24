@@ -17,6 +17,13 @@
         plugin. After launching, open the web application in your browser at http://localhost:8080/aid
     </description>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.owasp.appsensor</groupId>
+            <artifactId>appsensor-core</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>aid</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
@@ -24,6 +31,13 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>
