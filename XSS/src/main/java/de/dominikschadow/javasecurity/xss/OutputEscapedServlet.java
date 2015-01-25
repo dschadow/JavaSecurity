@@ -36,7 +36,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "OutputEscapedServlet", urlPatterns = {"/escaped"})
 public class OutputEscapedServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = -8333250290079201895L;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {

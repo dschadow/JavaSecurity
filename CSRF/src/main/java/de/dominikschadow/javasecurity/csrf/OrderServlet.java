@@ -37,7 +37,8 @@ import java.security.NoSuchProviderException;
  */
 @WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
 public class OrderServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = 168055850789919449L;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing order servlet...");

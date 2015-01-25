@@ -35,7 +35,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "InputValidatedServlet", urlPatterns = {"/validated"})
 public class InputValidatedServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = -6962936918492316493L;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {

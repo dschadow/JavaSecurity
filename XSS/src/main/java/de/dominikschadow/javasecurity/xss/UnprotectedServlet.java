@@ -35,7 +35,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "UnprotectedServlet", urlPatterns = {"/unprotected"})
 public class UnprotectedServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = -8978771621644673835L;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {

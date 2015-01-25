@@ -36,7 +36,8 @@ import java.io.PrintWriter;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/x-frame-options/LoginServlet", "/cache-control/LoginServlet",
         "/csp2/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = -660893987741671511L;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         logger.info("Processing login request...");

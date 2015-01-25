@@ -37,7 +37,8 @@ import java.io.InputStreamReader;
  */
 @WebServlet(name = "CSPReporting", urlPatterns = {"/csp/CSPReporting"})
 public class CSPReporting extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = 5150026442855960085L;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
