@@ -3,6 +3,7 @@
 .Idea*
 */target*
 .settings*
+.metadata*
 .classpath
 .project
 
