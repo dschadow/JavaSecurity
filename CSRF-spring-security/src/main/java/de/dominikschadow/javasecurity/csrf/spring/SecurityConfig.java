@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2015 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
