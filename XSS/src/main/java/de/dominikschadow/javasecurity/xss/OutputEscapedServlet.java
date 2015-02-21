@@ -57,7 +57,7 @@ public class OutputEscapedServlet extends HttpServlet {
             out.println("<p><strong>For HTML </strong>");
             Encode.forHtml(out, name);
             out.println("</p>");
-            out.println("<p><strong>For CSS  </strong>");
+            out.println("<p><strong>For CSS </strong>");
             Encode.forCssString(out, name);
             out.println("</p>");
             out.println("<p><strong>For XML </strong>");
