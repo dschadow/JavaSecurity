@@ -17,8 +17,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.1.5.RELEASE</spring.version>
-        <spring.security.version>3.2.6.RELEASE</spring.security.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.security.version>3.2.7.RELEASE</spring.security.version>
         <slf4j.version>1.7.10</slf4j.version>
         <jsf.version>2.2.10</jsf.version>
         <owasp.encoder.version>1.1.1</owasp.encoder.version>
