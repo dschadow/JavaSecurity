@@ -36,7 +36,7 @@ import java.security.SecureRandom;
  */
 public class SHA512HashSample {
     private static final Logger logger = LoggerFactory.getLogger(SHA512HashSample.class);
-    private static final String ALGORITHM = "SHA512";
+    private static final String ALGORITHM = "SHA-512";
     private static final int ITERATIONS = 1000000;
     private static final int SALT_SIZE = 64;
 
