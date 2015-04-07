@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="de.dominikschadow.javasecurity.domain.Customer" table="CUSTOMER">
+        <id name="custId" column="CUST_ID">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="NAME"/>
+        <property name="status" column="STATUS"/>
+        <property name="orderLimit" column="ORDER_LIMIT"/>
+    </class>
+</hibernate-mapping>
