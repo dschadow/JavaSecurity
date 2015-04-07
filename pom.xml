@@ -148,6 +148,16 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.3.2</version>
             </dependency>
+            <dependency>
+                <groupId>org.owasp.esapi</groupId>
+                <artifactId>esapi</artifactId>
+                <version>2.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>4.3.8.FINAL</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -187,6 +197,7 @@
         <module>CSRF-spring-security</module>
         <module>security-header</module>
         <module>session-handling-spring-security</module>
+        <module>SQL-Injection</module>
         <module>XSS</module>
         <module>aid</module>
         <module>InterceptMe</module>
