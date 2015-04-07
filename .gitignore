@@ -1,5 +1,7 @@
 *.class
 *.iml
+*.log
+*.lck
 .Idea*
 */target*
 .settings*
