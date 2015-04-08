@@ -32,7 +32,7 @@ public class Customer {
     private String name;
     @Column(name = "status")
     private String status;
-    @Column(name = "order_status")
+    @Column(name = "order_limit")
     private int orderLimit;
 
     public int getCustId() {

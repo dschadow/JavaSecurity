@@ -23,6 +23,7 @@
         <jsf.version>2.2.10</jsf.version>
         <owasp.encoder.version>1.1.1</owasp.encoder.version>
         <hibernate.version>4.3.8.FINAL</hibernate.version>
+        <flyway.version>3.2.1</flyway.version>
     </properties>
 
     <dependencyManagement>
@@ -98,9 +99,19 @@
                 <version>1.2.3</version>
             </dependency>
             <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.186</version>
+            </dependency>
+            <dependency>
                 <groupId>org.hsqldb</groupId>
                 <artifactId>hsqldb</artifactId>
                 <version>2.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.faces</groupId>
@@ -189,7 +200,15 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
-                </plugin>
+                </plugin><plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <url>jdbc:h2:file:~/SQL-Injection-DB</url>
+                    <user>sa</user>
+                </configuration>
+            </plugin>
             </plugins>
         </pluginManagement>
     </build>
