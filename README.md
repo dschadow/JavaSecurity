@@ -23,6 +23,7 @@ Simple web application to experiment with **OWASP ZAP** as intercepting proxy. T
 
 #SQL-Injection
 SQL Injection demo project using normal (vulnerable statements), statements with escaped input, prepared statements and Hibernate Query Language. After launching, open the web application in your browser at **http://localhost:8080/SQL-Injection**.
+This web application creates a sample database **SQL-Injection-DB.mv.db** in the **user.home** directory. In case this file is deleted it will be recreated during the next server start.
 
 #XSS
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
