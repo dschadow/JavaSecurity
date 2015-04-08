@@ -3,10 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
-	<title>InterceptMe</title>
+	<title>Intercept Me</title>
 </head>
 <body>
-	<h1>InterceptMe</h1>
+	<h1>Intercept Me</h1>
 
     <p>Target is to send the word <i>inject</i> (lowercase) to the backend so that the servlet returns <i>SUCCESS</i> (uppercase).</p>
 

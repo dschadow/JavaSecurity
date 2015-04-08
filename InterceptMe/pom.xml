@@ -11,7 +11,7 @@
     <artifactId>InterceptMe</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>InterceptMe</name>
+    <name>Intercept Me</name>
 
     <description>InterceptMe sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
         plugin. After launching, open the web application in your browser at http://localhost:8080/interceptme
