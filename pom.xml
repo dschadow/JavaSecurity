@@ -18,7 +18,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.1.6.RELEASE</spring.version>
-        <spring.security.version>3.2.7.RELEASE</spring.security.version>
+        <spring.security.version>4.0.0.RELEASE</spring.security.version>
         <slf4j.version>1.7.12</slf4j.version>
         <jsf.version>2.2.10</jsf.version>
         <owasp.encoder.version>1.1.1</owasp.encoder.version>
@@ -132,12 +132,6 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
