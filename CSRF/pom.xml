@@ -14,8 +14,7 @@
     <name>Cross-Site Request Forgery</name>
 
     <description>Cross-Site Request Forgery (CSRF) sample project. Requires a server like Apache Tomcat or the Maven
-        Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/csrf
+        Tomcat7 plugin. After launching, open the web application in your browser at http://localhost:8080/csrf
     </description>
 
     <dependencies>
