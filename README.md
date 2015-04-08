@@ -5,6 +5,8 @@ This repository contains several Java web applications and command line applicat
 #Web Applications in Detail
 Using Mozilla Firefox as browser is strongly recommended. The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which should be started via **mvn tomcat7:run-war**. 
 
+##application-intrusion-detection
+
 ##CSRF-spring-security
 Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer Pages (JSP) web application by utilizing [Spring Security](http://projects.spring.io/spring-security). After launching, open the web application in your browser at **http://localhost:8080/csrf-spring-security**. A valid user is **csrf** with password **csrf**.
 
@@ -18,6 +20,9 @@ This web application was tested with [Java Enterprise Edition 7](http://www.orac
 
 ##InterceptMe
 Simple web application to experiment with **OWASP ZAP** as intercepting proxy. Target is to receive **SUCCESS** (in uppercase) from the Servlet which will be returned when the name parameter in the form is **inject** (in lowercase). After launching, open the web application in your browser at **http://localhost:8080/interceptme**.
+
+#SQL-Injection
+SQL Injection demo project using normal (vulnerable statements), statements with escaped input, prepared statements and Hibernate Query Language. After launching, open the web application in your browser at **http://localhost:8080/SQL-Injection**.
 
 #XSS
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
