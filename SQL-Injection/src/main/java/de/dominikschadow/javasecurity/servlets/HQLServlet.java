@@ -17,29 +17,24 @@
  */
 package de.dominikschadow.javasecurity.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import de.dominikschadow.javasecurity.domain.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.dominikschadow.javasecurity.domain.Customer;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Servlet using Hibernate Query Language (HQL) to query the in-memory-database.
@@ -51,34 +46,28 @@ import de.dominikschadow.javasecurity.domain.Customer;
 public class HQLServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
     private static final long serialVersionUID = 1L;
-    private SessionFactory sessionFactory;
+    private EntityManager em;
 
     @PostConstruct
     public void init() {
-        Configuration configuration = new Configuration().configure();
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("customer-unit");
+        em = emf.createEntityManager();
     }
 
     @PreDestroy
     public void destroy() {
-        if (sessionFactory != null) {
-            sessionFactory.close();
+        if (em != null) {
+            em.close();
         }
     }
 
-    /**
-     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
         logger.info("Received " + name + " as POST parameter");
 
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("FROM Customer WHERE name = :name ORDER BY CUST_ID");
+        Query query = em.createQuery("FROM Customer c WHERE c.name = :name ORDER BY c.custId", Customer.class);
         query.setParameter("name", name);
-        @SuppressWarnings("unchecked")
-		List<Customer> customers = query.list();
+        List<Customer> customers = query.getResultList();
 
         response.setContentType("text/html");
 

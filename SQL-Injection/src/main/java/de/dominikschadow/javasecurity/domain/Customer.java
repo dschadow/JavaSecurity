@@ -17,10 +17,22 @@
  */
 package de.dominikschadow.javasecurity.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="customer")
 public class Customer {
+    @Id
+    @Column(name = "cust_id")
     private int custId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "status")
     private String status;
+    @Column(name = "order_status")
     private int orderLimit;
 
     public int getCustId() {
