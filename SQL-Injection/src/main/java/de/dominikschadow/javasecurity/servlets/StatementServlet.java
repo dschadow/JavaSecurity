@@ -18,21 +18,20 @@
 package de.dominikschadow.javasecurity.servlets;
 
 import de.dominikschadow.javasecurity.domain.Customer;
-
+import de.dominikschadow.javasecurity.listener.ConnectionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,32 +45,7 @@ import java.util.List;
 public class StatementServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass());
     private static final long serialVersionUID = 1L;
-    private Connection con = null;
 
-    @PostConstruct
-    public void init() {
-        try {
-        	Class.forName("org.hsqldb.jdbcDriver");
-            con = DriverManager.getConnection("jdbc:hsqldb:res:/customerDB; shutdown=true", "sa", "");
-        } catch (ClassNotFoundException | SQLException ex) {
-            logger.error(ex.getMessage(), ex);
-        }
-    }
-
-    @PreDestroy
-    public void destroy() {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException ex) {
-            logger.error(ex.getMessage(), ex);
-        }
-    }
-
-    /**
-     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
         logger.info("Received " + name + " as POST parameter");
@@ -85,7 +59,7 @@ public class StatementServlet extends HttpServlet {
         ResultSet rs = null;
 
         try {
-            stmt = con.createStatement();
+            stmt = ConnectionListener.con.createStatement();
             rs = stmt.executeQuery(query);
 
             while (rs.next()) {
