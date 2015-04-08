@@ -205,7 +205,7 @@
         <module>session-handling-spring-security</module>
         <module>SQL-Injection</module>
         <module>XSS</module>
-        <module>aid</module>
+        <module>application-intrusion-detection</module>
         <module>InterceptMe</module>
     </modules>
 </project>
