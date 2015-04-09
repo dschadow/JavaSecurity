@@ -29,13 +29,16 @@ This web application creates a sample database **SQL-Injection-DB.mv.db** in the
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
 
 #crypto-spring
-Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin).
+Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin). After launching, open the web application in your browser at **http://localhost:8080/crypto-spring**.
 
 #security-header
 Security response header demo project which applies **X-Content-Type-Options**, **Cache-Control**, **X-Frame-Options**, **HTTP Strict Transport Security (HSTS)**, **X-XSS-Protection** and **Content Security Policy (CSP)** (Level 1 and 2) headers to HTTP responses. This project requires a web container like Apache Tomcat (included via Maven Tomcat Plug-in). After launching, open the web application in your browser at **http://localhost:8080/security-header** or **https://localhost:8443/security-header**.
 
+#session-handling
+Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
+
 #session-handling-spring-security
-Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs) and how to apply method level security. Uses Spring Security to create and update the session id.
+Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs) and how to apply method level security. Uses Spring Security to create and update the session id after logging in. After launching, open the web application in your browser at **http://localhost:8080/session-handling-spring-security**.
 
 #Command Line Applications in Detail
 All projects contain **main** methods to get started.
