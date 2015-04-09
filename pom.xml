@@ -220,5 +220,6 @@
         <module>XSS</module>
         <module>application-intrusion-detection</module>
         <module>InterceptMe</module>
+        <module>session-handling</module>
     </modules>
 </project>
