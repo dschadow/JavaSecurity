@@ -8,6 +8,8 @@
 <body>
 	<h1>Session Handling</h1>
 
+	<p>Use any data to (fake) login.</p>
+
 	<form name="login" method="post" action="LoginServlet">
 		<label for="username" title="Username">Username</label>
 		<input type="text" id="username" name="username" class="text-input" />
