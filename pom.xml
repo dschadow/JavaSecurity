@@ -226,5 +226,6 @@
         <module>application-intrusion-detection</module>
         <module>InterceptMe</module>
         <module>session-handling</module>
+        <module>DirectObjectReferences</module>
     </modules>
 </project>
