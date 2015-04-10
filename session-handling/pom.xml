@@ -13,9 +13,9 @@
     <packaging>war</packaging>
     <name>Session Handling</name>
 
-    <description>Session Handling sample project. Requires a server like Apache Tomcat or the
-        Maven Tomcat7 plugin. Two users with two different roles exist: user/user and admin/admin. After launching,
-        open the web application in your browser at http://localhost:8080/session-handling
+    <description>Session Handling sample project. Requires a server like Apache Tomcat 8 (with Servlet 3.1 support)
+        or the Maven Jetty plugin. After launching, open the web application in your browser at
+        http://localhost:8080/session-handling
     </description>
 
     <dependencies>
@@ -38,8 +38,13 @@
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <webApp>
+                        <contextPath>/session-handling</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
