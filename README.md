@@ -35,7 +35,7 @@ Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](htt
 Security response header demo project which applies **X-Content-Type-Options**, **Cache-Control**, **X-Frame-Options**, **HTTP Strict Transport Security (HSTS)**, **X-XSS-Protection** and **Content Security Policy (CSP)** (Level 1 and 2) headers to HTTP responses. This project requires a web container like Apache Tomcat (included via Maven Tomcat Plug-in). After launching, open the web application in your browser at **http://localhost:8080/security-header** or **https://localhost:8443/security-header**.
 
 #session-handling
-Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
+Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
 
 #session-handling-spring-security
 Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs) and how to apply method level security. Uses Spring Security to create and update the session id after logging in. After launching, open the web application in your browser at **http://localhost:8080/session-handling-spring-security**.
