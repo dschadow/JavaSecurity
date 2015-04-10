@@ -5,7 +5,7 @@ This repository contains several Java web applications and command line applicat
 #Web Applications in Detail
 Using Mozilla Firefox as browser is strongly recommended. The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**. The web applications which require a **Servlet 3.1** capable server contain the **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
-##application-intrusion-detection
+##ApplicationIntrustionDetection
 
 ##CSRF-spring-security
 Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer Pages (JSP) web application by utilizing [Spring Security](http://projects.spring.io/spring-security). After launching, open the web application in your browser at **http://localhost:8080/csrf-spring-security**. 
@@ -14,7 +14,7 @@ Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer P
 Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer Pages (JSP) web application. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/csrf**.
 
 #DirectObjectReferences
-Direct object references (and indirect object references) demo project using plain Java. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/DirectObjectReferences**.
+Direct object references (and indirect object references) demo project using plain Java. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/direct-object-references**.
 
 #FerrisWheelManager
 Ferris Wheel Manager is a JEE 7 demo application containing security vulnerabilities like **SQL Injection** and **Cross-Site Scripting (XSS)**. A datasource named **jdbc/fwm** is required, which must contain the tables/ data provided by SQL scripts in the [Resources](https://github.com/dschadow/JavaSecurity/tree/master/Resources/FerrisWheelManager) project. 

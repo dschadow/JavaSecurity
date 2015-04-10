@@ -223,7 +223,7 @@
         <module>session-handling-spring-security</module>
         <module>SQL-Injection</module>
         <module>XSS</module>
-        <module>application-intrusion-detection</module>
+        <module>ApplicationIntrusionDetection</module>
         <module>InterceptMe</module>
         <module>session-handling</module>
         <module>DirectObjectReferences</module>

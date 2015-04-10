@@ -8,13 +8,13 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>DirectObjectReferences</artifactId>
+    <artifactId>direct-object-references</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Direct Object References</name>
 
-    <description>SQL-Injection sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/sql-injection
+    <description>Direct Object References (Indirect Object References) sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
+        plugin. After launching, open the web application in your browser at http://localhost:8080/direct-object-references
     </description>
 
     <dependencies>
