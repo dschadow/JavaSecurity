@@ -4,10 +4,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
-    <title>Java Security Header</title>
+    <title>Security Header</title>
 </head>
 <body>
-<h1>Java Security Header</h1>
+<h1>Security Header</h1>
 
 <p>Each response header can be called in an unprotected and in a protected version. Every header is added by a
     filter. There are no special pages for HSTS since this header is only active or inactive for the whole domain.</p>
