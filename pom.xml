@@ -214,12 +214,12 @@
         <module>crypto-keyczar</module>
         <module>crypto-shiro</module>
         <module>crypto-spring</module>
-        <module>CSRF</module>
-        <module>CSRF-spring-security</module>
+        <module>csrf</module>
+        <module>csrf-spring-security</module>
         <module>security-header</module>
         <module>session-handling-spring-security</module>
         <module>SQL-Injection</module>
-        <module>XSS</module>
+        <module>xss</module>
         <module>ApplicationIntrusionDetection</module>
         <module>InterceptMe</module>
         <module>session-handling</module>
