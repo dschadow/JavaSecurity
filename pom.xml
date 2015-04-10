@@ -218,11 +218,11 @@
         <module>csrf-spring-security</module>
         <module>security-header</module>
         <module>session-handling-spring-security</module>
-        <module>SQL-Injection</module>
+        <module>sql-injection</module>
         <module>xss</module>
-        <module>ApplicationIntrusionDetection</module>
-        <module>InterceptMe</module>
+        <module>application-intrusion-detection</module>
+        <module>intercept-me</module>
         <module>session-handling</module>
-        <module>DirectObjectReferences</module>
+        <module>direct-object-references</module>
     </modules>
 </project>
