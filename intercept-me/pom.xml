@@ -14,7 +14,7 @@
     <name>Intercept Me</name>
 
     <description>InterceptMe sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/interceptme
+        plugin. After launching, open the web application in your browser at http://localhost:8080/intercept-me
     </description>
 
     <dependencies>
@@ -37,7 +37,7 @@
     </dependencies>
 
     <build>
-        <finalName>interceptme</finalName>
+        <finalName>intercept-me</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
