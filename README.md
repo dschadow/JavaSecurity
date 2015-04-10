@@ -3,7 +3,7 @@ Java Security
 This repository contains several Java web applications and command line applications covering different security topics. 
 
 #Web Applications in Detail
-Using Mozilla Firefox as browser is strongly recommended. The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which should be started via **mvn tomcat7:run-war**. 
+Using Mozilla Firefox as browser is strongly recommended. The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**. The web applications which require a **Servlet 3.1** capable server contain the **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
 ##application-intrusion-detection
 
