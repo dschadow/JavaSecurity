@@ -22,7 +22,7 @@
         <slf4j.version>1.7.12</slf4j.version>
         <jsf.version>2.2.10</jsf.version>
         <owasp.encoder.version>1.1.1</owasp.encoder.version>
-        <hibernate.version>4.3.8.Final</hibernate.version>
+        <hibernate.version>4.3.8.FINAL</hibernate.version>
         <flyway.version>3.2.1</flyway.version>
     </properties>
 
