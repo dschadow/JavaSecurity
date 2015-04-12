@@ -22,7 +22,7 @@
         <slf4j.version>1.7.12</slf4j.version>
         <jsf.version>2.2.10</jsf.version>
         <owasp.encoder.version>1.1.1</owasp.encoder.version>
-        <hibernate.version>4.3.8.FINAL</hibernate.version>
+        <hibernate.version>4.3.8.Final</hibernate.version>
         <flyway.version>3.2.1</flyway.version>
     </properties>
 
@@ -101,7 +101,7 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.4.186</version>
+                <version>1.4.187</version>
             </dependency>
             <dependency>
                 <groupId>org.hsqldb</groupId>
@@ -152,7 +152,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.3.2</version>
+                <version>3.4</version>
             </dependency>
             <dependency>
                 <groupId>org.owasp.esapi</groupId>
