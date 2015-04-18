@@ -210,6 +210,7 @@
     </build>
 
     <modules>
+        <module>crypto-hash</module>
         <module>crypto-java</module>
         <module>crypto-keyczar</module>
         <module>crypto-shiro</module>
