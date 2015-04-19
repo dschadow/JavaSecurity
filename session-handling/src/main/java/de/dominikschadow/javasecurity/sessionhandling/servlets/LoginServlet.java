@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2015 Dominik Schadow, dominikschadow@gmail.com
+ *
+ * This file is part of the Java Security project.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package de.dominikschadow.javasecurity.sessionhandling.servlets;
 
 import org.slf4j.Logger;
@@ -21,10 +38,8 @@ public class LoginServlet extends HttpServlet {
 
         logger.info("Current session ID {}", currentSessionId);
 
-        // This method actually returns the new session ID right away but to proof the update we request it manually
-        request.changeSessionId();
-
-        String newSessionId = request.getSession().getId();
+        // changes the session id in the session, returns the new one
+        String newSessionId = request.changeSessionId();
 
         logger.info("New session ID {}", newSessionId);
 
