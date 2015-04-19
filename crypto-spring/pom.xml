@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <artifactId>javax.servlet-api</artifactId>v
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -48,7 +48,6 @@
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
