@@ -43,7 +43,7 @@ public class ListController {
     private JdbcTemplate jdbcTemplate;
 
     @RequestMapping(method = GET)
-    public String index(Model model) {
+    public String list(Model model) {
         List<Contact> contacts = jdbcTemplate.query("SELECT * FROM contacts WHERE username = ?", new
                         Object[]{getCurrentUsername()},
                 (rs, rowNum) -> {

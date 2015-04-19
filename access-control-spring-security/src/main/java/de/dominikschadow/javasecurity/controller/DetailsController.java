@@ -43,7 +43,7 @@ public class DetailsController {
     private JdbcTemplate jdbcTemplate;
 
     @RequestMapping(method = GET)
-    public String index(@PathVariable int contactId, Model model) {
+    public String details(@PathVariable int contactId, Model model) {
         logger.info("Loading contact with ID {} for user {}", contactId, getCurrentUsername());
 
         Contact contact = jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE contact_id = ? AND username = ?",
