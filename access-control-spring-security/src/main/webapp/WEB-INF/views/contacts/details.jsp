@@ -16,5 +16,9 @@
     <strong>Lastname:</strong> ${contact.lastname}<br>
     <strong>Comment:</strong> ${contact.comment}
 </p>
+
+<p>
+    <a href="list">All Contacts</a> | <a href="<c:url value="/logout"/>">Logout</a>
+</p>
 </body>
 </html>

@@ -8,12 +8,16 @@
     <title>Access Control - Spring Security</title>
 </head>
 <body>
-<h1>Contacts (User <sec:authentication property="principal.Username"/>)</h1>
+<h1>All Contacts (User <sec:authentication property="principal.Username"/>)</h1>
 
 <ul>
     <c:forEach var="contact" items="${contacts}">
         <li><a href="${contact.contactId}">${contact.firstname} ${contact.lastname}</a></li>
     </c:forEach>
 </ul>
+
+<p>
+    <a href="<c:url value="/logout"/>">Logout</a>
+</p>
 </body>
 </html>
