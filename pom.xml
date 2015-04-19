@@ -88,6 +88,12 @@
                 <version>${spring.security.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>${spring.security.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.jasypt</groupId>
                 <artifactId>jasypt-spring31</artifactId>
                 <version>1.9.2</version>
@@ -169,6 +175,11 @@
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>1.4</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -225,5 +236,6 @@
         <module>intercept-me</module>
         <module>session-handling</module>
         <module>direct-object-references</module>
+        <module>access-control-spring-security</module>
     </modules>
 </project>
