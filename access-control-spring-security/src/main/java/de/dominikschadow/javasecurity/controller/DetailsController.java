@@ -26,6 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
@@ -37,15 +38,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping(value = "/contacts/list")
-public class ListController {
+@RequestMapping(value = "/contacts/{contactId}")
+public class DetailsController {
     private Logger logger = LoggerFactory.getLogger(getClass());
     private JdbcTemplate jdbcTemplate;
 
     @RequestMapping(method = GET)
-    public String index(Model model) {
-        List<Contact> contacts = jdbcTemplate.query("SELECT * FROM contacts WHERE username = ?", new
-                        Object[]{getCurrentUsername()},
+    public String index(@PathVariable int contactId, Model model) {
+        logger.info("Loading contact with ID {} for user {}", contactId, getCurrentUsername());
+
+        Contact contact = jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE contact_id = ? AND username = ?",
+                new Object[]{contactId, getCurrentUsername()},
                 (rs, rowNum) -> {
                     Contact c = new Contact();
                     c.setContactId(rs.getInt("contact_id"));
@@ -56,11 +59,9 @@ public class ListController {
                     return c;
                 });
 
-        logger.info("Found {} contacts for user {}", contacts.size(), getCurrentUsername());
+        model.addAttribute("contact", contact);
 
-        model.addAttribute("contacts", contacts);
-
-        return "contacts/list";
+        return "contacts/details";
     }
 
     private String getCurrentUsername() {

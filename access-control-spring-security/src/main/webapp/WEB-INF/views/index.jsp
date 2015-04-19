@@ -11,6 +11,6 @@
 
     <p>There are two users available in this demo application: <strong>userA/userA</strong> and <strong>userB/userB</strong>.</p>
 
-    <p><a href="user/list">Login</a></p>
+    <p><a href="contacts/list">Login</a></p>
 </body>
 </html>
