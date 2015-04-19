@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String currentSessionId = request.getSession().getId();
 
-        logger.info("Current session ID {}", currentSessionId);
+        logger.info("Original session ID {}", currentSessionId);
 
         // changes the session id in the session, returns the new one
         String newSessionId = request.changeSessionId();
