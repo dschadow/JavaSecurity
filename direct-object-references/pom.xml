@@ -48,7 +48,7 @@
     </dependencies>
 
     <build>
-        <finalName>direct-object-references</finalName>
+        <finalName>${artifactId}</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
