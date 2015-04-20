@@ -19,7 +19,7 @@
 
     <form action="validated" id="validatedForm" method="post">
         <fieldset>
-            <legend>+ Input Validation</legend>
+            <legend>With Input Validation</legend>
             <label for="inputValidatedName">Name</label>
             <input type="text" id="inputValidatedName" name="inputValidatedName" pattern="^[^<>]+$" />
             <input type="submit" value=" Send" />
@@ -28,7 +28,7 @@
 
     <form action="escaped" id="escapedForm" method="post">
         <fieldset>
-            <legend>+ Output Escaping</legend>
+            <legend>With Output Escaping</legend>
             <label for="outputEscapedName">Name</label>
             <input type="text" id="outputEscapedName" name="outputEscapedName" />
             <input type="submit" value=" Send" />
@@ -37,7 +37,7 @@
 
     <form action="escaped.jsp" id="escapedJSPForm" method="post">
         <fieldset>
-            <legend>+ JSP Output Escaping</legend>
+            <legend>With JSP Output Escaping</legend>
             <label for="outputEscapedJSPName">Name</label>
             <input type="text" id="outputEscapedJSPName" name="outputEscapedJSPName" />
             <input type="submit" value=" Send" />
@@ -46,7 +46,7 @@
 
     <form action="csp" id="cspForm" method="post">
         <fieldset>
-            <legend>+ Content Security Policy (CSP)</legend>
+            <legend>With Content Security Policy (CSP)</legend>
             <label for="cspName">Name</label>
             <input type="text" id="cspName" name="cspName" />
             <input type="submit" value=" Send" />
