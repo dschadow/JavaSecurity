@@ -237,5 +237,6 @@
         <module>session-handling</module>
         <module>direct-object-references</module>
         <module>access-control-spring-security</module>
+        <module>password-hashing-spring-security</module>
     </modules>
 </project>
