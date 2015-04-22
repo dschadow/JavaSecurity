@@ -40,7 +40,7 @@ public class PBKDF2HashSample {
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
     // calculation should require about 0,5 seconds, increase with faster hardware
     private static final int ITERATIONS = 150000;
-    // salt size at least 32 bit
+    // salt size at least 32 byte
     private static final int SALT_SIZE = 32;
     private static final int HASH_SIZE = 512;
 
