@@ -220,7 +220,31 @@
         </pluginManagement>
     </build>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>1.2.10</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <modules>
+        <module>access-control-spring-security</module>
+        <module>application-intrusion-detection</module>
         <module>crypto-hash</module>
         <module>crypto-java</module>
         <module>crypto-keyczar</module>
@@ -228,15 +252,13 @@
         <module>crypto-spring</module>
         <module>csrf</module>
         <module>csrf-spring-security</module>
+        <module>direct-object-references</module>
+        <module>intercept-me</module>
+        <module>password-hashing-spring-security</module>
         <module>security-header</module>
+        <module>session-handling</module>
         <module>session-handling-spring-security</module>
         <module>sql-injection</module>
         <module>xss</module>
-        <module>application-intrusion-detection</module>
-        <module>intercept-me</module>
-        <module>session-handling</module>
-        <module>direct-object-references</module>
-        <module>access-control-spring-security</module>
-        <module>password-hashing-spring-security</module>
     </modules>
 </project>
