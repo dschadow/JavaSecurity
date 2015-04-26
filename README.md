@@ -1,14 +1,17 @@
 Java Security
 ============
-This repository contains several Java web applications and command line applications covering different security topics. 
+This repository contains several Java web applications and command line applications covering different security topics. Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering the applications in this repository. The **[Java Web Security Workshop](https://blog.dominikschadow.de/workshop)** talks about all these applications in much greater detail.
 
 #Web Applications in Detail
-Using Mozilla Firefox as browser is strongly recommended. The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**. The web applications which require a **Servlet 3.1** capable server contain the **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
+Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. 
+
+The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**. The web applications which require a **Servlet 3.1** capable server contain the **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
 ##access-control-spring-security
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080/access-control-spring-security**.
 
 ##application-intrusion-detection
+tbd
 
 ##crypto-spring
 Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin). After launching, open the web application in your browser at **http://localhost:8080/crypto-spring**.
