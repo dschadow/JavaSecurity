@@ -18,18 +18,14 @@
 package de.dominikschadow.javasecurity.controller;
 
 import de.dominikschadow.javasecurity.domain.Contact;
+import de.dominikschadow.javasecurity.services.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.sql.DataSource;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -40,35 +36,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = "/contacts/{contactId}")
 public class DetailsController {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private ContactService contactService;
 
     @RequestMapping(method = GET)
     public String details(@PathVariable int contactId, Model model) {
-        logger.info("Loading contact with ID {} for user {}", contactId, getCurrentUsername());
+        logger.info("Loading contact with ID {} for user", contactId);
 
-        Contact contact = jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE contact_id = ? AND username = ?",
-                new Object[]{contactId, getCurrentUsername()},
-                (rs, rowNum) -> {
-                    Contact c = new Contact();
-                    c.setContactId(rs.getInt("contact_id"));
-                    c.setUsername(rs.getString("username"));
-                    c.setFirstname(rs.getString("firstname"));
-                    c.setLastname(rs.getString("lastname"));
-                    c.setComment(rs.getString("comment"));
-                    return c;
-                });
+        Contact contact = contactService.getContact(contactId);
 
         model.addAttribute("contact", contact);
 
         return "contacts/details";
-    }
-
-    private String getCurrentUsername() {
-        return ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-    }
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 }

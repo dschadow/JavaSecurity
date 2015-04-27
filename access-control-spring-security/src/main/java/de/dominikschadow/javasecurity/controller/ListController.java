@@ -18,17 +18,14 @@
 package de.dominikschadow.javasecurity.controller;
 
 import de.dominikschadow.javasecurity.domain.Contact;
+import de.dominikschadow.javasecurity.services.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -40,35 +37,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = "/contacts/list")
 public class ListController {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private ContactService contactService;
 
     @RequestMapping(method = GET)
     public String list(Model model) {
-        List<Contact> contacts = jdbcTemplate.query("SELECT * FROM contacts WHERE username = ?", new
-                        Object[]{getCurrentUsername()},
-                (rs, rowNum) -> {
-                    Contact c = new Contact();
-                    c.setContactId(rs.getInt("contact_id"));
-                    c.setUsername(rs.getString("username"));
-                    c.setFirstname(rs.getString("firstname"));
-                    c.setLastname(rs.getString("lastname"));
-                    c.setComment(rs.getString("comment"));
-                    return c;
-                });
+        List<Contact> contacts = contactService.getContacts();
 
-        logger.info("Found {} contacts for user {}", contacts.size(), getCurrentUsername());
+        logger.info("Found {} contacts for user", contacts.size());
 
         model.addAttribute("contacts", contacts);
 
         return "contacts/list";
-    }
-
-    private String getCurrentUsername() {
-        return ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-    }
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 }
