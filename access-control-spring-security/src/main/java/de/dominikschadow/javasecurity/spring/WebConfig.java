@@ -40,7 +40,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("de.dominikschadow.javasecurity.controller")
+@ComponentScan(basePackages = {"de.dominikschadow.javasecurity.controller", "de.dominikschadow.javasecurity.services"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("classpath:database.sql")
     private Resource dataScript;

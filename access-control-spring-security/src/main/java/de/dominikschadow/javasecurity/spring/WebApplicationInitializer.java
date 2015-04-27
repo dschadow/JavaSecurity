@@ -22,7 +22,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /**
  * @author Dominik Schadow
  */
-public class CryptoSpringWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
