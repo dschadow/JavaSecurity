@@ -29,6 +29,8 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
+ * Service to load a contact identified by its id or to load all contacts for the authenticated user.
+ *
  * @author Dominik Schadow
  */
 @Service
@@ -51,6 +53,14 @@ public class ContactService {
                 });
     }
 
+    /**
+     * This method loads all contacts from the database and removes those contacts from the resulting list that don't
+     * belong to the currently authenticated user. In a real application the select query would already contain the
+     * user id and return only those contacts that the user is allowed to see. However to demonstrate some Spring
+     * Security capabilities, all filtering is done via the {@code PostFilter} annotation.
+     *
+     * @return The list of contacts for the currently authenticated user
+     */
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostFilter("filterObject.username == principal.username")
     public List<Contact> getContacts() {
