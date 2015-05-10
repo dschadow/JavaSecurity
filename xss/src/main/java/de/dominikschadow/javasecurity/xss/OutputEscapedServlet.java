@@ -50,20 +50,14 @@ public class OutputEscapedServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
             out.println("<title>XSS - Output Escaping</title>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
+            out.println("<link rel='stylesheet' type='text/css' href='resources/css/styles.css' />");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>XSS - Output Escaping</h1>");
-            out.println("<p><strong>For HTML </strong>");
+            out.println("<p title='Hello " + Encode.forHtmlAttribute(name) + "'><strong>Hello </strong>");
             Encode.forHtml(out, name);
             out.println("</p>");
-            out.println("<p><strong>For CSS </strong>");
-            Encode.forCssString(out, name);
-            out.println("</p>");
-            out.println("<p><strong>For XML </strong>");
-            Encode.forXml(out, name);
-            out.println("</p>");
-            out.println("<p><a href=\"index.jsp\">Home</a></p>");
+            out.println("<p><a href='index.jsp'>Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
