@@ -20,9 +20,9 @@
         <spring.version>4.1.6.RELEASE</spring.version>
         <spring.security.version>4.0.1.RELEASE</spring.security.version>
         <slf4j.version>1.7.12</slf4j.version>
-        <jsf.version>2.2.10</jsf.version>
+        <jsf.version>2.2.11</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
-        <hibernate.version>4.3.9.Final</hibernate.version>
+        <hibernate.version>4.3.10.Final</hibernate.version>
         <flyway.version>3.2.1</flyway.version>
     </properties>
 
@@ -143,7 +143,7 @@
             <dependency>
                 <groupId>com.cedarsoftware</groupId>
                 <artifactId>json-io</artifactId>
-                <version>3.0.2</version>
+                <version>3.1.0</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
