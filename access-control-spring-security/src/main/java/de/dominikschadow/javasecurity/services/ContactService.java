@@ -25,7 +25,6 @@ import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -35,6 +34,7 @@ import java.util.List;
  */
 @Service
 public class ContactService {
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -74,10 +74,5 @@ public class ContactService {
                     contact.setComment(rs.getString("comment"));
                     return contact;
                 });
-    }
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 }
