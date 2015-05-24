@@ -17,7 +17,10 @@
  */
 package de.dominikschadow.javasecurity.header.servlets;
 
-import com.cedarsoftware.util.io.JsonWriter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +40,8 @@ import java.io.InputStreamReader;
  */
 @WebServlet(name = "CSPReporting", urlPatterns = {"/csp/CSPReporting"})
 public class CSPReporting extends HttpServlet {
-	private static final long serialVersionUID = 5150026442855960085L;
-	private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final long serialVersionUID = 5150026442855960085L;
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
@@ -49,7 +52,10 @@ public class CSPReporting extends HttpServlet {
                 responseBuilder.append(inputStr);
             }
 
-            logger.info("\n{}", JsonWriter.formatJson(responseBuilder.toString()));
+            Gson gs = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+            JsonParser parser = new JsonParser();
+            JsonElement je = parser.parse(responseBuilder.toString());
+            logger.info("\n{}", (gs.toJson(je)));
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
         }
