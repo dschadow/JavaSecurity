@@ -17,7 +17,7 @@
  */
 package de.dominikschadow.javasecurity.servlets;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +47,7 @@ public class FormServlet extends HttpServlet {
 
         String result = "FAILURE";
 
-        if (StringUtils.equals(name, "inject")) {
+        if (Objects.equal(name, "inject")) {
             result = "SUCCESS";
         }
 
