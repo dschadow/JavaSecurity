@@ -17,7 +17,8 @@
  */
 package de.dominikschadow.javasecurity.csrf;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,7 @@ public final class CSRFTokenHandler {
 
         String token = (String) session.getAttribute(CSRF_TOKEN);
 
-        if (StringUtils.isEmpty(token)) {
+        if (Strings.isNullOrEmpty(token)) {
             token = getToken();
             session.setAttribute(CSRF_TOKEN, token);
         }
@@ -67,6 +68,6 @@ public final class CSRFTokenHandler {
             throw new ServletException(MISSING_SESSION);
         }
 
-        return StringUtils.equals(getToken(request.getSession(false)), request.getParameter(CSRF_TOKEN));
+        return Objects.equal(getToken(request.getSession(false)), request.getParameter(CSRF_TOKEN));
     }
 }
