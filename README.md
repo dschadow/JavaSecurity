@@ -33,14 +33,11 @@ This web application was tested with [Java Enterprise Edition 7](http://www.orac
 ##intercept-me
 Simple web application to experiment with [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) as intercepting proxy. Target is to receive **SUCCESS** (in uppercase) from the Servlet which will be returned when the name parameter in the form is **inject** (in lowercase). After launching, open the web application in your browser at **http://localhost:8080/intercept-me**.
 
-##password-hashing-spring-security
-Password hashing demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to use Spring Security for secure password encryption and verification. After launching, open the web application in your browser at **http://localhost:8080/password-hashing-spring-security**.
-
 ##security-header
 Security response header demo project which applies **X-Content-Type-Options**, **Cache-Control**, **X-Frame-Options**, **HTTP Strict Transport Security (HSTS)**, **X-XSS-Protection** and **Content Security Policy (CSP)** (Level 1 and 2) headers to HTTP responses. After launching, open the web application in your browser at **http://localhost:8080/security-header** or **https://localhost:8443/security-header**.
 
 ##session-handling-spring-security
-Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs) and how to apply method level security. Uses Spring Security to create and update the session id after logging in. After launching, open the web application in your browser at **http://localhost:8080/session-handling-spring-security**.
+Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs), how to apply method level security and how to securely store and verify passwords. Uses Spring Security to create and update the session id after logging in. Password hashing demo project utilizing [Spring Security](http://projects.spring.io/spring-security). After launching, open the web application in your browser at **http://localhost:8080/session-handling-spring-security**.
 
 ##session-handling
 Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
