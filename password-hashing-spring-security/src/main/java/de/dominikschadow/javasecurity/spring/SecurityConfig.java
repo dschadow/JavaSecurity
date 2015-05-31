@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:hsqldb:mem:hashing");
+        dataSource.setUrl("jdbc:h2:mem:passwordHashingSpringSecurity");
         dataSource.setUsername("hashing");
         dataSource.setPassword("hashing");
         return dataSource;
