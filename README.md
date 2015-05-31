@@ -43,7 +43,7 @@ Session handling demo project utilizing [Spring Security](http://projects.spring
 Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
 
 ##sql-injection
-SQL Injection demo project using normal (vulnerable statements), statements with escaped input, prepared statements and Hibernate Query Language. This web application creates a sample database **SQL-Injection-DB.mv.db** in the **user.home** directory. In case this file is deleted it will be recreated during the next server start. After launching, open the web application in your browser at **http://localhost:8080/sql-Injection**.
+SQL Injection demo project using normal (vulnerable statements), statements with escaped input, prepared statements and Hibernate Query Language. This web application creates a sample database **SQL-Injection-DB.mv.db** in the **user.home** directory. In case this file is deleted it will be recreated during the next server start. After launching, open the web application in your browser at **http://localhost:8080/sql-injection**.
 
 ##xss
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
