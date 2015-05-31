@@ -17,14 +17,25 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.spring;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 /**
  * Spring Security configuration for the session handling sample project.
@@ -36,10 +47,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @ComponentScan("de.dominikschadow.javasecurity.sessionhandling.greetings")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Value("classpath:database.sql")
+    private Resource dataScript;
+
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("USER", "ADMIN");
+    public void configAuthentication(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource)
+            .passwordEncoder(passwordEncoder())
+            .usersByUsernameQuery("select username, password, active from users where username = ?")
+            .authoritiesByUsernameQuery("select username, role from roles where username = ?");
     }
 
     @Override
@@ -53,9 +69,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
             .and()
             .logout()
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/logout.xhtml")
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/logout.xhtml")
             .and()
                 .csrf().disable();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:h2:mem:sessionHandlingSpringSecurity");
+        dataSource.setUsername("hashing");
+        dataSource.setPassword("hashing");
+        return dataSource;
+    }
+
+    @Bean
+    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
+        final DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(dataSource);
+        initializer.setDatabasePopulator(databasePopulator());
+        return initializer;
+    }
+
+    private DatabasePopulator databasePopulator() {
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(dataScript);
+        return populator;
     }
 }
