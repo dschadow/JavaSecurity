@@ -239,7 +239,6 @@
         <module>csrf-spring-security</module>
         <module>direct-object-references</module>
         <module>intercept-me</module>
-        <module>password-hashing-spring-security</module>
         <module>security-header</module>
         <module>session-handling</module>
         <module>session-handling-spring-security</module>
