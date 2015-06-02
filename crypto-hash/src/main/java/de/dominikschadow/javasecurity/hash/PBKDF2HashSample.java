@@ -45,16 +45,17 @@ public class PBKDF2HashSample {
 
     public static void main(String[] args) {
         PBKDF2HashSample hs = new PBKDF2HashSample();
-        String password = "TotallySecurePassword12345";
+        char[] password = "TotallySecurePassword12345".toCharArray();
 
         try {
+            SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] salt = hs.generateSalt();
 
-            logger.info("Password {}, hash algorithm {}, hash size {}, iterations {}, salt {}", password, ALGORITHM, HASH_SIZE, ITERATIONS,
-                    BaseEncoding.base64().encode(salt));
+            logger.info("Password {}, hash algorithm {}, hash size {}, iterations {}, salt {}", String.valueOf
+                            (password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base64().encode(salt));
 
-            byte[] hash = hs.calculateHash(password, salt);
-            boolean correct = hs.verifyPassword(hash, password, salt);
+            byte[] hash = hs.calculateHash(skf, password, salt);
+            boolean correct = hs.verifyPassword(skf, hash, password, salt);
 
             logger.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -70,17 +71,15 @@ public class PBKDF2HashSample {
         return salt;
     }
 
-    private byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException,
-            InvalidKeySpecException {
-        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, HASH_SIZE);
-        SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
+    private byte[] calculateHash(SecretKeyFactory skf, char[] password, byte[] salt) throws InvalidKeySpecException {
+        PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, HASH_SIZE);
 
         return skf.generateSecret(spec).getEncoded();
     }
 
-    private boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws
-            NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] comparisonHash = calculateHash(password, salt);
+    private boolean verifyPassword(SecretKeyFactory skf, byte[] originalHash, char[] password, byte[] salt) throws
+            InvalidKeySpecException {
+        byte[] comparisonHash = calculateHash(skf, password, salt);
 
         logger.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
         logger.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
