@@ -10,6 +10,13 @@
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>This repository contains different security related Java projects.</description>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/dschadow/JavaSecurity/issues</url>
@@ -169,6 +176,7 @@
     </dependencyManagement>
 
     <build>
+        <defaultGoal>clean package</defaultGoal>
         <pluginManagement>
             <plugins>
                 <plugin>
