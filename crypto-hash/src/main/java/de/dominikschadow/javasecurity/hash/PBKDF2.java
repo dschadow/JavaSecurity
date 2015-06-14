@@ -35,8 +35,8 @@ import java.security.spec.InvalidKeySpecException;
  *
  * @author Dominik Schadow
  */
-public class PBKDF2HashSample {
-    private static final Logger logger = LoggerFactory.getLogger(PBKDF2HashSample.class);
+public class PBKDF2 {
+    private static final Logger logger = LoggerFactory.getLogger(PBKDF2.class);
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
     private static final int ITERATIONS = 10000;
     // salt size at least 32 byte
@@ -44,7 +44,7 @@ public class PBKDF2HashSample {
     private static final int HASH_SIZE = 512;
 
     public static void main(String[] args) {
-        PBKDF2HashSample hs = new PBKDF2HashSample();
+        PBKDF2 hs = new PBKDF2();
         char[] password = "TotallySecurePassword12345".toCharArray();
 
         try {

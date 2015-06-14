@@ -35,14 +35,14 @@ import java.security.SecureRandom;
  *
  * @author Dominik Schadow
  */
-public class SHA512HashSample {
-    private static final Logger logger = LoggerFactory.getLogger(SHA512HashSample.class);
+public class SHA512 {
+    private static final Logger logger = LoggerFactory.getLogger(SHA512.class);
     private static final String ALGORITHM = "SHA-512";
     private static final int ITERATIONS = 1000000;
     private static final int SALT_SIZE = 64;
 
     public static void main(String[] args) {
-        SHA512HashSample hs = new SHA512HashSample();
+        SHA512 hs = new SHA512();
         String password = "TotallySecurePassword12345";
 
         try {
