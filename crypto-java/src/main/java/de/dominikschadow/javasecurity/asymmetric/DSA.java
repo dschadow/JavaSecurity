@@ -34,13 +34,13 @@ import java.security.cert.CertificateException;
  *
  * @author Dominik Schadow
  */
-public class DSASignatureSample {
-    private static final Logger logger = LoggerFactory.getLogger(DSASignatureSample.class);
+public class DSA {
+    private static final Logger logger = LoggerFactory.getLogger(DSA.class);
     private static final String ALGORITHM = "SHA1withDSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        DSASignatureSample aes = new DSASignatureSample();
+        DSA aes = new DSA();
         final String initialText = "DSA signature sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-dsa";

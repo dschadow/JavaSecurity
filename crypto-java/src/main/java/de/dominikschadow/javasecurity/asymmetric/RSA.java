@@ -38,13 +38,13 @@ import java.security.cert.CertificateException;
  *
  * @author Dominik Schadow
  */
-public class RSAEncryptionSample {
-    private static final Logger logger = LoggerFactory.getLogger(RSAEncryptionSample.class);
+public class RSA {
+    private static final Logger logger = LoggerFactory.getLogger(RSA.class);
     private static final String ALGORITHM = "RSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        RSAEncryptionSample aes = new RSAEncryptionSample();
+        RSA aes = new RSA();
         final String initialText = "RSA encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-rsa";
