@@ -1,9 +1,6 @@
 package de.dominikschadow.javasecurity.duke.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -25,6 +22,8 @@ public class Encounter {
     @NotNull
     @Column(nullable = false)
     private LocalDate date;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
     private int confirmations;
 
