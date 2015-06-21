@@ -10,9 +10,6 @@ The smaller web applications all come with a ready to use **Tomcat7 Maven plugin
 ##access-control-spring-security
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080/access-control-spring-security**.
 
-##application-intrusion-detection
-tbd
-
 ##crypto-spring
 Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin). After launching, open the web application in your browser at **http://localhost:8080/crypto-spring**.
 
@@ -24,6 +21,9 @@ Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer P
 
 ##direct-object-references
 Direct object references (and indirect object references) demo project using plain Java. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/direct-object-references**.
+
+##duke-encounters
+Application Intrusion Detection sample project based on [OWASP AppSensor](http://appsensor.org). After launching, open the web application in your browser at **http://localhost:8080/duke-encounters**.
 
 ##FerrisWheelManager
 Ferris Wheel Manager is a JEE 7 demo application containing security vulnerabilities like **SQL Injection** and **Cross-Site Scripting (XSS)**. A datasource named **jdbc/fwm** is required, which must contain the tables/ data provided by SQL scripts in the [Resources](https://github.com/dschadow/JavaSecurity/tree/master/Resources/FerrisWheelManager) project. 
