@@ -1,3 +1,18 @@
 h1 {
-    font-size: 1.5em;
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+}
+
+p {
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: navy;
 }
