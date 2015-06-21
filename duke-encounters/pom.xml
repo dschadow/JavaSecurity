@@ -6,33 +6,25 @@
         <artifactId>javasecurity</artifactId>
         <version>1.0.0</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>application-intrusion-detection</artifactId>
+    <artifactId>duke-encounters</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>Application Intrusion Detection</name>
+    <name>Duke Encounters</name>
 
-    <description>Application Intrusion Detection with AppSensor sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/application-intrusion-detection
+    <description>Application Intrusion Detection with AppSensor sample project. Requires a server like Apache Tomcat or the
+        usage of Spring Boot. After launching, open the web application in your browser at http://localhost:8080/duke-encounters
     </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>demo.DemoApplication</start-class>
-        <java.version>1.7</java.version>
+        <start-class>de.dominikschadow.javasecurity.duke.DukeEncountersApplication</start-class>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -50,6 +42,12 @@
         <dependency>
             <groupId>org.owasp.appsensor</groupId>
             <artifactId>appsensor-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

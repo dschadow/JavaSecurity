@@ -237,7 +237,6 @@
 
     <modules>
         <module>access-control-spring-security</module>
-        <module>application-intrusion-detection</module>
         <module>crypto-hash</module>
         <module>crypto-java</module>
         <module>crypto-keyczar</module>
@@ -246,6 +245,7 @@
         <module>csrf</module>
         <module>csrf-spring-security</module>
         <module>direct-object-references</module>
+        <module>duke-encounters</module>
         <module>intercept-me</module>
         <module>security-header</module>
         <module>session-handling</module>
