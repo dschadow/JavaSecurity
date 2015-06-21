@@ -23,7 +23,7 @@ Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer P
 Direct object references (and indirect object references) demo project using plain Java. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/direct-object-references**.
 
 ##duke-encounters
-Application Intrusion Detection sample project based on [OWASP AppSensor](http://appsensor.org). After launching, open the web application in your browser at **http://localhost:8080/duke-encounters**.
+Application Intrusion Detection sample project based on [OWASP AppSensor](http://appsensor.org). Run this application with **mvn spring-boot:run**. After launching, open the web application in your browser at **http://localhost:8080/duke-encounters**.
 
 ##FerrisWheelManager
 Ferris Wheel Manager is a JEE 7 demo application containing security vulnerabilities like **SQL Injection** and **Cross-Site Scripting (XSS)**. A datasource named **jdbc/fwm** is required, which must contain the tables/ data provided by SQL scripts in the [Resources](https://github.com/dschadow/JavaSecurity/tree/master/Resources/FerrisWheelManager) project. 
