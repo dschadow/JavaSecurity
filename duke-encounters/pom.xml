@@ -13,7 +13,7 @@
     <name>Duke Encounters</name>
 
     <description>Application Intrusion Detection with AppSensor sample project. Requires a server like Apache Tomcat or the
-        usage of Spring Boot. After launching, open the web application in your browser at http://localhost:8080/duke-encounters
+        usage of Spring Boot. After launching, open the web application in your browser at http://localhost:8080
     </description>
 
     <properties>
