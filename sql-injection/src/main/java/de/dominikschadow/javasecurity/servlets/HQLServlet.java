@@ -46,7 +46,7 @@ import java.util.List;
 public class HQLServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(HQLServlet.class);
     private static final long serialVersionUID = 1L;
-    private static EntityManager em;
+    private static transient EntityManager em;
 
     @PostConstruct
     public void init() {
