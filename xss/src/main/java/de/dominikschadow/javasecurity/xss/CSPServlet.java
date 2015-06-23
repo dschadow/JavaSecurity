@@ -38,12 +38,12 @@ import java.io.PrintWriter;
 @WebServlet(name = "CSPServlet", urlPatterns = {"/csp"})
 public class CSPServlet extends HttpServlet {
 	private static final long serialVersionUID = -926765463111069795L;
-	private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CSPServlet.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("cspName");
 
-        logger.info("Received {} as name", name);
+        LOGGER.info("Received {} as name", name);
 
         response.setContentType("text/html");
         response.setHeader("Content-Security-Policy", "default-src 'self'");
@@ -59,7 +59,7 @@ public class CSPServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

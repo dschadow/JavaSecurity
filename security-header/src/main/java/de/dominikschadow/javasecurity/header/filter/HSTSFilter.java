@@ -33,12 +33,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "HSTSFilter", urlPatterns = {"/*"})
 public class HSTSFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(HSTSFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("Strict-Transport-Security header added to response");
+        LOGGER.info("Strict-Transport-Security header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.addHeader("Strict-Transport-Security", "max-age=31556926; includeSubDomains");

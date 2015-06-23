@@ -37,10 +37,10 @@ import java.io.PrintWriter;
         "/csp2/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -660893987741671511L;
-	private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Processing login request...");
+        LOGGER.info("Processing login request...");
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

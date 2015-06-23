@@ -33,12 +33,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "CacheControlFilter", urlPatterns = {"/cache-control/protected.jsp", "/all/all.jsp"})
 public class CacheControlFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CacheControlFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("Cache-Control header added to response");
+        LOGGER.info("Cache-Control header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.addHeader("Cache-Control", "no-store, no-cache, must-revalidate");

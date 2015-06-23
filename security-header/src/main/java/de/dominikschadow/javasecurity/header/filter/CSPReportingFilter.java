@@ -35,12 +35,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "CSPReportingFilter", urlPatterns = {"/csp/reporting.jsp"})
 public class CSPReportingFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CSPReportingFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("Content-Security-Policy-Report-Only header added to response");
+        LOGGER.info("Content-Security-Policy-Report-Only header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri CSPReporting");

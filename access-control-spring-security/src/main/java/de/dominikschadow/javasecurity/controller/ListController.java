@@ -36,7 +36,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 @RequestMapping(value = "/contacts/list")
 public class ListController {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final  Logger LOGGER = LoggerFactory.getLogger(ListController.class);
     @Autowired
     private ContactService contactService;
 
@@ -44,7 +44,7 @@ public class ListController {
     public String list(Model model) {
         List<Contact> contacts = contactService.getContacts();
 
-        logger.info("Found {} contacts for user", contacts.size());
+        LOGGER.info("Found {} contacts for user", contacts.size());
 
         model.addAttribute("contacts", contacts);
 

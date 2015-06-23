@@ -30,18 +30,18 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String currentSessionId = request.getSession().getId();
 
-        logger.info("Original session ID {}", currentSessionId);
+        LOGGER.info("Original session ID {}", currentSessionId);
 
         // changes the session id in the session, returns the new one
         String newSessionId = request.changeSessionId();
 
-        logger.info("New session ID {}", newSessionId);
+        LOGGER.info("New session ID {}", newSessionId);
 
         response.setContentType("text/html");
 
@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

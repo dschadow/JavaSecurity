@@ -41,7 +41,7 @@ import java.io.InputStreamReader;
 @WebServlet(name = "CSPReporting", urlPatterns = {"/csp/CSPReporting"})
 public class CSPReporting extends HttpServlet {
     private static final long serialVersionUID = 5150026442855960085L;
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CSPReporting.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
@@ -55,9 +55,9 @@ public class CSPReporting extends HttpServlet {
             Gson gs = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
             JsonParser parser = new JsonParser();
             JsonElement je = parser.parse(responseBuilder.toString());
-            logger.info("\n{}", (gs.toJson(je)));
+            LOGGER.info("\n{}", (gs.toJson(je)));
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

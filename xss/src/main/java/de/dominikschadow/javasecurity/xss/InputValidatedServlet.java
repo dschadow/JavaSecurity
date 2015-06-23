@@ -36,13 +36,13 @@ import java.io.PrintWriter;
 @WebServlet(name = "InputValidatedServlet", urlPatterns = {"/validated"})
 public class InputValidatedServlet extends HttpServlet {
 	private static final long serialVersionUID = -6962936918492316493L;
-	private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(InputValidatedServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("inputValidatedName");
 
-        logger.info("Received {} as name", name);
+        LOGGER.info("Received {} as name", name);
 
         response.setContentType("text/html");
 
@@ -57,7 +57,7 @@ public class InputValidatedServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

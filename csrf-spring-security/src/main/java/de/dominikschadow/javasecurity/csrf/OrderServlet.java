@@ -37,18 +37,18 @@ import java.io.PrintWriter;
 @WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 168055850789919449L;
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(OrderServlet.class);
 
     /**
      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        logger.info("Processing order servlet...");
+        LOGGER.info("Processing order servlet...");
 
         String product = request.getParameter("product");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        logger.info("Ordered {} items of product {}", quantity, product);
+        LOGGER.info("Ordered {} items of product {}", quantity, product);
 
         response.setContentType("text/html");
 
@@ -65,7 +65,7 @@ public class OrderServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

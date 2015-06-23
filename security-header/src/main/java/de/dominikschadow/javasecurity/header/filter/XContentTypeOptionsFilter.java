@@ -36,12 +36,12 @@ import java.io.IOException;
 @WebFilter(filterName = "XContentTypeOptionsFilter", urlPatterns = {"/x-content-type-options/protected.txt",
         "/all/all.jsp"})
 public class XContentTypeOptionsFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(XContentTypeOptionsFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("X-Content-Type-Options header added to response");
+        LOGGER.info("X-Content-Type-Options header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setContentType("text/plain");

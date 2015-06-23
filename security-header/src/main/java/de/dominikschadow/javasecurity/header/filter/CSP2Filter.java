@@ -34,12 +34,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "CSP2Filter", urlPatterns = {"/csp2/protectedForm.jsp", "/all/all.jsp"})
 public class CSP2Filter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CSP2Filter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("Content-Security-Policy Level 2 header added to response");
+        LOGGER.info("Content-Security-Policy Level 2 header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none'; reflected-xss " +

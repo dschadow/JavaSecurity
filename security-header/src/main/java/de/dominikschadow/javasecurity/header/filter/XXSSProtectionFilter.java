@@ -34,12 +34,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "XXSSProtectionFilter", urlPatterns = {"/x-xss-protection/protected.jsp", "/all/all.jsp"})
 public class XXSSProtectionFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(XXSSProtectionFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("X-XSS-Protection header added to response");
+        LOGGER.info("X-XSS-Protection header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("X-XSS-Protection", "1; mode=block");

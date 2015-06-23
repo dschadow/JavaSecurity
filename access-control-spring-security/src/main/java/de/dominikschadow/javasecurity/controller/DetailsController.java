@@ -35,13 +35,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 @RequestMapping(value = "/contacts/{contactId}")
 public class DetailsController {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(DetailsController.class);
     @Autowired
     private ContactService contactService;
 
     @RequestMapping(method = GET)
     public String details(@PathVariable int contactId, Model model) {
-        logger.info("Loading contact with ID {} for user", contactId);
+        LOGGER.info("Loading contact with ID {} for user", contactId);
 
         Contact contact = contactService.getContact(contactId);
 

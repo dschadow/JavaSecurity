@@ -45,20 +45,20 @@ import java.util.List;
  */
 @WebServlet(name = "StatementEscapingServlet", urlPatterns = {"/StatementEscapingServlet"})
 public class StatementEscapingServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(StatementEscapingServlet.class);
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
-        logger.info("Received " + name + " as POST parameter");
+        LOGGER.info("Received " + name + " as POST parameter");
 
         String safeName = ESAPI.encoder().encodeForSQL(new OracleCodec(), name);
-        logger.info("Escaped name is " + safeName);
+        LOGGER.info("Escaped name is " + safeName);
 
         String query = "SELECT * FROM customer WHERE name = '" + safeName + "' ORDER BY CUST_ID";
         List<Customer> customers = new ArrayList<>();
 
-        logger.info("Final SQL query " + query);
+        LOGGER.info("Final SQL query " + query);
 
         Statement stmt = null;
         ResultSet rs = null;
@@ -77,21 +77,21 @@ public class StatementEscapingServlet extends HttpServlet {
                 customers.add(customer);
             }
         } catch (SQLException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         } finally {
             try {
                 if (rs != null) {
                     rs.close();
                 }
             } catch (SQLException ex) {
-                logger.error(ex.getMessage(), ex);
+                LOGGER.error(ex.getMessage(), ex);
             }
             try {
                 if (stmt != null) {
                     stmt.close();
                 }
             } catch (SQLException ex) {
-                logger.error(ex.getMessage(), ex);
+                LOGGER.error(ex.getMessage(), ex);
             }
         }
 
@@ -128,7 +128,7 @@ public class StatementEscapingServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }

@@ -37,13 +37,13 @@ import java.io.PrintWriter;
 @WebServlet(name = "Form", urlPatterns = {"/form"})
 public class FormServlet extends HttpServlet {
 	private static final long serialVersionUID = 8978771621385673835L;
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(FormServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
 
-        logger.info("Received {} as name", name);
+        LOGGER.info("Received {} as name", name);
 
         String result = "FAILURE";
 
@@ -64,7 +64,7 @@ public class FormServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 }
