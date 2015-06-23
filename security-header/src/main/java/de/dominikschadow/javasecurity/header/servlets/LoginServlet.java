@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -660893987741671511L;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         LOGGER.info("Processing login request...");
 

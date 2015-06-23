@@ -40,6 +40,7 @@ public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 168055850789919449L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         LOGGER.info("Processing order servlet...");
 

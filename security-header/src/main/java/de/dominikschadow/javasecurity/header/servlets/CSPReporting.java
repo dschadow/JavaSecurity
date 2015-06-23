@@ -43,6 +43,7 @@ public class CSPReporting extends HttpServlet {
     private static final long serialVersionUID = 5150026442855960085L;
     private static final Logger LOGGER = LoggerFactory.getLogger(CSPReporting.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
             StringBuilder responseBuilder = new StringBuilder();

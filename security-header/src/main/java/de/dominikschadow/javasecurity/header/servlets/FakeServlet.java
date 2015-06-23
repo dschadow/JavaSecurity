@@ -38,6 +38,7 @@ public class FakeServlet extends HttpServlet {
 	private static final long serialVersionUID = -6474742244481023685L;
     private static final Logger LOGGER = LoggerFactory.getLogger(FakeServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         LOGGER.info("Processing fake request...");
 

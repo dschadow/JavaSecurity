@@ -25,12 +25,14 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class FlywayListener implements ServletContextListener {
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         Flyway flyway = new Flyway();
         flyway.setDataSource("jdbc:h2:file:~/SQL-Injection-DB", "sa", "");
         flyway.migrate();
     }
 
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
     }
 }
