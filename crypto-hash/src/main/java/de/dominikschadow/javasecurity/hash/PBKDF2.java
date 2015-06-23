@@ -36,7 +36,7 @@ import java.security.spec.InvalidKeySpecException;
  * @author Dominik Schadow
  */
 public class PBKDF2 {
-    private static final Logger logger = LoggerFactory.getLogger(PBKDF2.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PBKDF2.class);
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
     private static final int ITERATIONS = 10000;
     // salt size at least 32 byte
@@ -51,15 +51,15 @@ public class PBKDF2 {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] salt = hs.generateSalt();
 
-            logger.info("Password {}, hash algorithm {}, hash size {}, iterations {}, salt {}", String.valueOf
-                            (password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base64().encode(salt));
+            LOGGER.info("Password {}, hash algorithm {}, hash size {}, iterations {}, salt {}", String.valueOf
+                    (password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base64().encode(salt));
 
             byte[] hash = hs.calculateHash(skf, password, salt);
             boolean correct = hs.verifyPassword(skf, hash, password, salt);
 
-            logger.info("Entered password is correct: {}", correct);
+            LOGGER.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 
@@ -81,8 +81,8 @@ public class PBKDF2 {
             InvalidKeySpecException {
         byte[] comparisonHash = calculateHash(skf, password, salt);
 
-        logger.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
-        logger.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
+        LOGGER.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
+        LOGGER.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

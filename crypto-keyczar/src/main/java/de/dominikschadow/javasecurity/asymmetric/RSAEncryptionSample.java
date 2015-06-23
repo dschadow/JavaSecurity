@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * @author Dominik Schadow
  */
 public class RSAEncryptionSample {
-    private static final Logger logger = LoggerFactory.getLogger(RSAEncryptionSample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RSAEncryptionSample.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
 
     public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class RSAEncryptionSample {
 
             res.printReadableMessages(initialText, ciphertext, plaintext);
         } catch (KeyczarException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 
@@ -66,8 +66,8 @@ public class RSAEncryptionSample {
     }
 
     private void printReadableMessages(String initialText, String ciphertext, String plaintext) {
-        logger.info("initialText: {}", initialText);
-        logger.info("cipherText as Base64: {}", ciphertext);
-        logger.info("plaintext: {}", plaintext);
+        LOGGER.info("initialText: {}", initialText);
+        LOGGER.info("cipherText as Base64: {}", ciphertext);
+        LOGGER.info("plaintext: {}", plaintext);
     }
 }

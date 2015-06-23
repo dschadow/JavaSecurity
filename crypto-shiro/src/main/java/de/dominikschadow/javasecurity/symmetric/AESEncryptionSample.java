@@ -35,7 +35,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AESEncryptionSample {
-    private static final Logger logger = LoggerFactory.getLogger(AESEncryptionSample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryptionSample.class);
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
@@ -53,7 +53,7 @@ public class AESEncryptionSample {
 
             res.printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchAlgorithmException | KeyStoreException | CertificateException | UnrecoverableKeyException | IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 
@@ -97,9 +97,9 @@ public class AESEncryptionSample {
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        logger.info("initialText: {}", initialText);
-        logger.info("cipherText as byte[]: {}", new String(ciphertext));
-        logger.info("cipherText as Base64: {}", Base64.encodeToString(ciphertext));
-        logger.info("plaintext: {}", CodecSupport.toString(plaintext));
+        LOGGER.info("initialText: {}", initialText);
+        LOGGER.info("cipherText as byte[]: {}", new String(ciphertext));
+        LOGGER.info("cipherText as Base64: {}", Base64.encodeToString(ciphertext));
+        LOGGER.info("plaintext: {}", CodecSupport.toString(plaintext));
     }
 }

@@ -35,7 +35,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class DSA {
-    private static final Logger logger = LoggerFactory.getLogger(DSA.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DSA.class);
     private static final String ALGORITHM = "SHA1withDSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
@@ -57,7 +57,7 @@ public class DSA {
             aes.printReadableMessages(initialText, signature, valid);
         } catch (NoSuchAlgorithmException | SignatureException | KeyStoreException | CertificateException |
                 UnrecoverableKeyException | InvalidKeyException | IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 
@@ -109,9 +109,9 @@ public class DSA {
     }
 
     private void printReadableMessages(String initialText, byte[] signature, boolean valid) {
-        logger.info("initialText: {}", initialText);
-        logger.info("signature as byte[]: {}", new String(signature));
-        logger.info("signature as Base64: {}", BaseEncoding.base64().encode(signature));
-        logger.info("signature valid: {}", valid);
+        LOGGER.info("initialText: {}", initialText);
+        LOGGER.info("signature as byte[]: {}", new String(signature));
+        LOGGER.info("signature as Base64: {}", BaseEncoding.base64().encode(signature));
+        LOGGER.info("signature valid: {}", valid);
     }
 }

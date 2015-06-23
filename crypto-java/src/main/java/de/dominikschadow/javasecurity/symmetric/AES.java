@@ -43,7 +43,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AES {
-    private static final Logger logger = LoggerFactory.getLogger(AES.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AES.class);
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String KEYSTORE_PATH = "/samples.ks";
     /** Non-secret initialization vector with 16 bytes (publicly exchanged between participants), may be a random number changed every time or a counter. */
@@ -68,7 +68,7 @@ public class AES {
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
                 KeyStoreException | CertificateException | UnrecoverableKeyException | InvalidAlgorithmParameterException |
                 InvalidKeyException | IOException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 
@@ -112,9 +112,9 @@ public class AES {
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        logger.info("initialText: {}", initialText);
-        logger.info("cipherText as byte[]: {}", new String(ciphertext));
-        logger.info("cipherText as Base64: {}", BaseEncoding.base64().encode(ciphertext));
-        logger.info("plaintext: {}", new String(plaintext));
+        LOGGER.info("initialText: {}", initialText);
+        LOGGER.info("cipherText as byte[]: {}", new String(ciphertext));
+        LOGGER.info("cipherText as Base64: {}", BaseEncoding.base64().encode(ciphertext));
+        LOGGER.info("plaintext: {}", new String(plaintext));
     }
 }

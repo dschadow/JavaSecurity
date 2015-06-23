@@ -18,14 +18,12 @@
 package de.dominikschadow.javasecurity.hash;
 
 import com.google.common.io.BaseEncoding;
-import com.google.common.primitives.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 /**
  * MD5 hashing sample with plain Java. No salt and no iterations are used to calculate the hash
@@ -36,7 +34,7 @@ import java.security.SecureRandom;
  * @author Dominik Schadow
  */
 public class MD5 {
-    private static final Logger logger = LoggerFactory.getLogger(MD5.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MD5.class);
     private static final String ALGORITHM = "MD5";
 
     public static void main(String[] args) {
@@ -47,9 +45,9 @@ public class MD5 {
             byte[] hash = hs.calculateHash(password);
             boolean correct = hs.verifyPassword(hash, password);
 
-            logger.info("Entered password is correct: {}", correct);
+            LOGGER.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-            logger.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }
 
@@ -69,8 +67,8 @@ public class MD5 {
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password);
 
-        logger.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
-        logger.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
+        LOGGER.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
+        LOGGER.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

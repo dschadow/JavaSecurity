@@ -34,7 +34,7 @@ import java.util.Arrays;
  * @author Dominik Schadow
  */
 public class SHA512HashSample {
-    private static final Logger logger = LoggerFactory.getLogger(SHA512HashSample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SHA512HashSample.class);
     /** Nothing up my sleeve number as private salt, not good for production. */
     private static final byte[] PRIVATE_SALT_BYTES = {3, 1, 4, 1, 5, 9, 2, 6, 5};
     private static final int ITERATIONS = 1000000;
@@ -46,7 +46,7 @@ public class SHA512HashSample {
         Hash hash = hs.calculateHash(password);
         boolean correct = hs.verifyPassword(hash.getBytes(), hash.getSalt(), password);
 
-        logger.info("Entered password is correct: {}", correct);
+        LOGGER.info("Entered password is correct: {}", correct);
     }
 
     private Hash calculateHash(String password) {
@@ -61,7 +61,8 @@ public class SHA512HashSample {
 
         Hash hash = hashService.computeHash(builder.build());
 
-        logger.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
+        LOGGER.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations()
+                , hash.getSalt());
 
         return hash;
     }
@@ -78,9 +79,9 @@ public class SHA512HashSample {
 
         Hash comparisonHash = hashService.computeHash(builder.build());
 
-        logger.info("password: {}", password);
-        logger.info("1 hash: {}", Base64.encodeToString(originalHash));
-        logger.info("2 hash: {}", comparisonHash.toBase64());
+        LOGGER.info("password: {}", password);
+        LOGGER.info("1 hash: {}", Base64.encodeToString(originalHash));
+        LOGGER.info("2 hash: {}", comparisonHash.toBase64());
 
         return Arrays.equals(originalHash, comparisonHash.getBytes());
     }
