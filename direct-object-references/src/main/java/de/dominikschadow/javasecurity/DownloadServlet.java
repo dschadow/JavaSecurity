@@ -33,43 +33,44 @@ import java.io.*;
  *
  * @author Dominik Schadow
  */
-@WebServlet(name = "DownloadServlet", urlPatterns = { "/download" })
+@WebServlet(name = "DownloadServlet", urlPatterns = {"/download"})
 public class DownloadServlet extends HttpServlet {
-	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadServlet.class);
-	private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DownloadServlet.class);
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String indirectReference = request.getParameter("file");
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+        String indirectReference = request.getParameter("file");
 
-		LOGGER.info("File {} requested for download", indirectReference);
+        LOGGER.info("File {} requested for download", indirectReference);
 
-		InputStream is = null;
-		OutputStream os = null;
+        InputStream is = null;
+        OutputStream os = null;
 
-		try {
-			File file = ReferenceUtil.getFileByIndirectReference(indirectReference);
+        try {
+            File file = ReferenceUtil.getFileByIndirectReference(indirectReference);
 
-			is = new FileInputStream(file);
+            is = new FileInputStream(file);
 
-			byte[] bytes = new byte[1024];  
-			os = response.getOutputStream();
+            byte[] bytes = new byte[1024];
+            os = response.getOutputStream();
 
-			int read;
-			while((read = is.read(bytes)) != -1) {  
-				os.write(bytes, 0, read);  
-			}  
-			os.flush();
-		} catch (AccessControlException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} finally {
-			if (os != null) {
-				os.close();
-			}
+            int read;
+            while ((read = is.read(bytes)) != -1) {
+                os.write(bytes, 0, read);
+            }
+            os.flush();
+        } catch (AccessControlException ex) {
+            LOGGER.error(ex.getMessage(), ex);
+        } finally {
+            if (os != null) {
+                os.close();
+            }
 
-			if (is != null) {
-				is.close();
-			}
-		}
-	}
+            if (is != null) {
+                is.close();
+            }
+        }
+    }
 }
