@@ -40,6 +40,12 @@ public final class CSRFTokenHandler {
     public static final String CSRF_TOKEN = "CSRF_TOKEN";
     private static final String MISSING_SESSION = "No session available";
 
+    /**
+     * Private constructor to prevent initialization.
+     */
+    private CSRFTokenHandler() {
+    }
+
     private static String getToken() throws NoSuchAlgorithmException, NoSuchProviderException {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
         sr.nextBytes(new byte[20]);
