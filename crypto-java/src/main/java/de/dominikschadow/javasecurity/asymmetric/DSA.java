@@ -28,8 +28,9 @@ import java.security.*;
 import java.security.cert.CertificateException;
 
 /**
- * Digital signature sample with plain Java. Loads the DSA key from the sample keystore, signs and verifies sample text with it.
- * <p>
+ * Digital signature sample with plain Java. Loads the DSA key from the sample keystore, signs and verifies sample
+ * text with it.
+ * <p/>
  * Uses Google Guava to Base64 print the encrypted message as readable format.
  *
  * @author Dominik Schadow
@@ -61,7 +62,8 @@ public class DSA {
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+            CertificateException, NoSuchAlgorithmException, IOException {
         InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
@@ -70,14 +72,13 @@ public class DSA {
         return ks;
     }
 
-    private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
+    private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
+            UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new RuntimeException("Private key " + keyAlias + " not found in keystore");
         }
 
-        PrivateKey key = (PrivateKey) ks.getKey(keyAlias, keyPassword);
-
-        return key;
+        return (PrivateKey) ks.getKey(keyAlias, keyPassword);
     }
 
     private PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException {
@@ -85,27 +86,23 @@ public class DSA {
             throw new RuntimeException("Public key " + keyAlias + " not found in keystore");
         }
 
-        PublicKey key = ks.getCertificate(keyAlias).getPublicKey();
-
-        return key;
+        return ks.getCertificate(keyAlias).getPublicKey();
     }
 
-    private byte[] sign(PrivateKey privateKey, String initialText) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
+    private byte[] sign(PrivateKey privateKey, String initialText) throws NoSuchAlgorithmException,
+            InvalidKeyException, SignatureException, UnsupportedEncodingException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initSign(privateKey);
         dsa.update(initialText.getBytes("UTF-8"));
-        byte[] signature = dsa.sign();
-
-        return signature;
+        return dsa.sign();
     }
 
-    private boolean verify(PublicKey publicKey, byte[] signature, String initialText) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
+    private boolean verify(PublicKey publicKey, byte[] signature, String initialText) throws
+            NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initVerify(publicKey);
         dsa.update(initialText.getBytes("UTF-8"));
-        boolean valid = dsa.verify(signature);
-
-        return valid;
+        return dsa.verify(signature);
     }
 
     private void printReadableMessages(String initialText, byte[] signature, boolean valid) {

@@ -28,12 +28,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author Dominik Schadow
  */
-public class DSASignatureSample {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DSASignatureSample.class);
+public class DSASignature {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DSASignature.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/sign";
 
     public static void main(String[] args) {
-        DSASignatureSample res = new DSASignatureSample();
+        DSASignature res = new DSASignature();
         final String initialText = "DSA signature sample text";
         try {
             String signature = res.sign(initialText);
@@ -47,16 +47,12 @@ public class DSASignatureSample {
 
     private String sign(String initialText) throws KeyczarException {
         Signer signer = new Signer(KEYSET_PATH);
-        String signature = signer.sign(initialText);
-
-        return signature;
+        return signer.sign(initialText);
     }
 
     private boolean verify(String initialText, String signature) throws KeyczarException {
         Verifier verifier = new Verifier(KEYSET_PATH);
-        boolean valid = verifier.verify(initialText, signature);
-
-        return valid;
+        return verifier.verify(initialText, signature);
     }
 
     private void printReadableMessages(String initialText, String signature, boolean valid) {

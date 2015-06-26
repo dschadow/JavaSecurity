@@ -27,12 +27,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author Dominik Schadow
  */
-public class RSAEncryptionSample {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RSAEncryptionSample.class);
+public class RSAEncryption {
+    private static final Logger LOGGER = LoggerFactory.getLogger(RSAEncryption.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
 
     public static void main(String[] args) {
-        RSAEncryptionSample res = new RSAEncryptionSample();
+        RSAEncryption res = new RSAEncryption();
         final String initialText = "RSA encryption sample text";
         try {
             String ciphertext = res.encrypt(initialText);
@@ -53,16 +53,12 @@ public class RSAEncryptionSample {
      */
     private String encrypt(String initialText) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
-        String ciphertext = crypter.encrypt(initialText);
-
-        return ciphertext;
+        return crypter.encrypt(initialText);
     }
 
     private String decrypt(String ciphertext) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
-        String plaintext = crypter.decrypt(ciphertext);
-
-        return plaintext;
+        return crypter.decrypt(ciphertext);
     }
 
     private void printReadableMessages(String initialText, String ciphertext, String plaintext) {

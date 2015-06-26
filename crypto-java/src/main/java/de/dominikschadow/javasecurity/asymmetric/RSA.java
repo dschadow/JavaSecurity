@@ -32,8 +32,9 @@ import java.security.*;
 import java.security.cert.CertificateException;
 
 /**
- * Asymmetric encryption sample with plain Java. Loads the RSA key from the sample keystore, encrypts and decrypts sample text with it.
- * <p>
+ * Asymmetric encryption sample with plain Java. Loads the RSA key from the sample keystore, encrypts and decrypts
+ * sample text with it.
+ * <p/>
  * Uses Google Guava to Base64 print the encrypted message as readable format.
  *
  * @author Dominik Schadow
@@ -60,12 +61,14 @@ public class RSA {
 
             aes.printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
-                KeyStoreException | CertificateException | UnrecoverableKeyException | InvalidKeyException | IOException ex) {
+                KeyStoreException | CertificateException | UnrecoverableKeyException | InvalidKeyException |
+                IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+            CertificateException, NoSuchAlgorithmException, IOException {
         InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
@@ -74,14 +77,13 @@ public class RSA {
         return ks;
     }
 
-    private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
+    private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
+            UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new RuntimeException("Private key " + keyAlias + " not found in keystore");
         }
 
-        PrivateKey key = (PrivateKey) ks.getKey(keyAlias, keyPassword);
-
-        return key;
+        return (PrivateKey) ks.getKey(keyAlias, keyPassword);
     }
 
     private PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException {
@@ -89,27 +91,23 @@ public class RSA {
             throw new RuntimeException("Public key " + keyAlias + " not found in keystore");
         }
 
-        PublicKey key = ks.getCertificate(keyAlias).getPublicKey();
-
-        return key;
+        return ks.getCertificate(keyAlias).getPublicKey();
     }
 
-    private byte[] encrypt(PublicKey publicKey, String initialText) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    private byte[] encrypt(PublicKey publicKey, String initialText) throws NoSuchPaddingException,
+            NoSuchAlgorithmException,
             InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] encryptedMessage = cipher.doFinal(initialText.getBytes("UTF-8"));
-
-        return encryptedMessage;
+        return cipher.doFinal(initialText.getBytes("UTF-8"));
     }
 
-    private byte[] decrypt(PrivateKey privateKey, byte[] ciphertext) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    private byte[] decrypt(PrivateKey privateKey, byte[] ciphertext) throws NoSuchPaddingException,
+            NoSuchAlgorithmException,
             InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] decryptedTextBytes = cipher.doFinal(ciphertext);
-
-        return decryptedTextBytes;
+        return cipher.doFinal(ciphertext);
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {

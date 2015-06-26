@@ -34,10 +34,12 @@ import java.security.*;
 import java.security.cert.CertificateException;
 
 /**
- * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts sample text with it.
- * Note that the <code>INITIALIZATION_VECTOR</code> is not stored. One possibility to store it is to prepend it to the encrypted
+ * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts
+ * sample text with it.
+ * Note that the <code>INITIALIZATION_VECTOR</code> is not stored. One possibility to store it is to prepend it to
+ * the encrypted
  * message with a delimiter (all in Base64 encoding): <code>Base64(IV) + DELIMITER + Base64(ENCRYPTED MESSAGE)</code>
- * <p>
+ * <p/>
  * Uses Google Guava to Base64 print the encrypted message as readable format.
  *
  * @author Dominik Schadow
@@ -46,7 +48,10 @@ public class AES {
     private static final Logger LOGGER = LoggerFactory.getLogger(AES.class);
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String KEYSTORE_PATH = "/samples.ks";
-    /** Non-secret initialization vector with 16 bytes (publicly exchanged between participants), may be a random number changed every time or a counter. */
+    /**
+     * Non-secret initialization vector with 16 bytes (publicly exchanged between participants), may be a random
+     * number changed every time or a counter.
+     */
     private static final byte[] INITIALIZATION_VECTOR = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3};
 
     public static void main(String[] args) {
@@ -66,13 +71,15 @@ public class AES {
 
             ses.printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
-                KeyStoreException | CertificateException | UnrecoverableKeyException | InvalidAlgorithmParameterException |
+                KeyStoreException | CertificateException | UnrecoverableKeyException |
+                InvalidAlgorithmParameterException |
                 InvalidKeyException | IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+            CertificateException, NoSuchAlgorithmException, IOException {
         InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
@@ -81,14 +88,13 @@ public class AES {
         return ks;
     }
 
-    private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
+    private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
+            UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new RuntimeException("Secret key " + keyAlias + " not found in keystore");
         }
 
-        Key key = ks.getKey(keyAlias, keyPassword);
-
-        return key;
+        return ks.getKey(keyAlias, keyPassword);
     }
 
     private byte[] encrypt(SecretKeySpec secretKeySpec, IvParameterSpec initialVector, String initialText)
@@ -96,9 +102,7 @@ public class AES {
             IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, initialVector);
-        byte[] encryptedMessage = cipher.doFinal(initialText.getBytes("UTF-8"));
-
-        return encryptedMessage;
+        return cipher.doFinal(initialText.getBytes("UTF-8"));
     }
 
     private byte[] decrypt(SecretKeySpec secretKeySpec, IvParameterSpec initialVector, byte[] ciphertext)
@@ -106,9 +110,7 @@ public class AES {
             InvalidAlgorithmParameterException, InvalidKeyException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, initialVector);
-        byte[] decryptedTextBytes = cipher.doFinal(ciphertext);
-
-        return decryptedTextBytes;
+        return cipher.doFinal(ciphertext);
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
