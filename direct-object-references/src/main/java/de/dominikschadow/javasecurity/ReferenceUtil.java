@@ -36,6 +36,12 @@ public class ReferenceUtil {
     private static Set<Object> files = new HashSet<>();
     private static final RandomAccessReferenceMap REFERENCE_MAP = new RandomAccessReferenceMap(files);
 
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private ReferenceUtil() {
+    }
+
     static {
         File coverImage = new File("src/main/webapp/resources/files/cover.jpg");
         REFERENCE_MAP.addDirectReference(coverImage);
