@@ -52,15 +52,11 @@ public class MD5 {
     }
 
 
-    private byte[] calculateHash(String password) throws NoSuchAlgorithmException,
-            UnsupportedEncodingException {
+    private byte[] calculateHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update(password.getBytes("UTF-8"));
-        byte[] hash = md.digest();
-
-
-        return hash;
+        return md.digest();
     }
 
     private boolean verifyPassword(byte[] originalHash, String password) throws
