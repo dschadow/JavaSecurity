@@ -30,14 +30,15 @@ import java.io.PrintWriter;
 
 /**
  * Servlet which sets the <code>Content-Security-Policy</code> response header and stops any JavaScript code entered
- * in the textfield. Any entered script-tag will not be rendered any more in the result page. The <code>report-uri</code>
+ * in the textfield. Any entered script-tag will not be rendered any more in the result page. The
+ * <code>report-uri</code>
  * parameter takes care of reporting any CSP violations via the CSPReportingServlet.
  *
  * @author Dominik Schadow
  */
 @WebServlet(name = "CSPServlet", urlPatterns = {"/csp"})
 public class CSPServlet extends HttpServlet {
-	private static final long serialVersionUID = -926765463111069795L;
+    private static final long serialVersionUID = -926765463111069795L;
     private static final Logger LOGGER = LoggerFactory.getLogger(CSPServlet.class);
 
     @Override
