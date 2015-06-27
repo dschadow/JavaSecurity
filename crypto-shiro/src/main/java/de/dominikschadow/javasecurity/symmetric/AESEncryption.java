@@ -34,12 +34,12 @@ import java.security.cert.CertificateException;
  *
  * @author Dominik Schadow
  */
-public class AESEncryptionSample {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryptionSample.class);
+public class AESEncryption {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryption.class);
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        AESEncryptionSample res = new AESEncryptionSample();
+        AESEncryption res = new AESEncryption();
         final String initialText = "AES encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "symmetric-sample";
@@ -68,12 +68,10 @@ public class AESEncryptionSample {
 
     private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
-            throw new RuntimeException("Secret key " + keyAlias + " not found in keystore");
+            throw new UnrecoverableKeyException("Secret key " + keyAlias + " not found in keystore");
         }
 
-        Key key = ks.getKey(keyAlias, keyPassword);
-
-        return key;
+        return ks.getKey(keyAlias, keyPassword);
     }
 
     /**

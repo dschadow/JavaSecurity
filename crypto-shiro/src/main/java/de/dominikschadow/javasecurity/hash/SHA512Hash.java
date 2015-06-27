@@ -33,14 +33,14 @@ import java.util.Arrays;
  *
  * @author Dominik Schadow
  */
-public class SHA512HashSample {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SHA512HashSample.class);
+public class SHA512Hash {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SHA512Hash.class);
     /** Nothing up my sleeve number as private salt, not good for production. */
     private static final byte[] PRIVATE_SALT_BYTES = {3, 1, 4, 1, 5, 9, 2, 6, 5};
     private static final int ITERATIONS = 1000000;
 
     public static void main(String[] args) {
-        SHA512HashSample hs = new SHA512HashSample();
+        SHA512Hash hs = new SHA512Hash();
         String password = "SHA-512 hash sample text";
 
         Hash hash = hs.calculateHash(password);
