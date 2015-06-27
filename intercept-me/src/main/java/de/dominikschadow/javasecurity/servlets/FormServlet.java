@@ -36,8 +36,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "Form", urlPatterns = {"/form"})
 public class FormServlet extends HttpServlet {
-	private static final long serialVersionUID = 8978771621385673835L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(FormServlet.class);
+    private static final long serialVersionUID = 8978771621385673835L;
+    private static final Logger LOGGER = LoggerFactory.getLogger(FormServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {

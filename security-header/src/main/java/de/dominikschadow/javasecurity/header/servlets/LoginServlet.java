@@ -36,7 +36,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/x-frame-options/LoginServlet", "/cache-control/LoginServlet",
         "/csp2/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = -660893987741671511L;
+    private static final long serialVersionUID = -660893987741671511L;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
 
     @Override
