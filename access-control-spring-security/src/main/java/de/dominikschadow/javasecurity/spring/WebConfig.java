@@ -17,11 +17,9 @@
  */
 package de.dominikschadow.javasecurity.spring;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -40,9 +38,6 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @ComponentScan(basePackages = {"de.dominikschadow.javasecurity.controller", "de.dominikschadow.javasecurity.services"})
 public class WebConfig extends WebMvcConfigurerAdapter {
-    @Value("classpath:database.sql")
-    private Resource dataScript;
-
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
