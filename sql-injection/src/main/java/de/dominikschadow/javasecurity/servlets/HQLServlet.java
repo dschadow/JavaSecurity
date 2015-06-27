@@ -49,12 +49,14 @@ public class HQLServlet extends HttpServlet {
     private static transient EntityManager em;
 
     @PostConstruct
+    @Override
     public void init() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("customer-unit");
         em = emf.createEntityManager();
     }
 
     @PreDestroy
+    @Override
     public void destroy() {
         if (em != null) {
             em.close();
