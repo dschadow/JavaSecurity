@@ -91,7 +91,7 @@ public class AES {
     private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
             UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
-            throw new RuntimeException("Secret key " + keyAlias + " not found in keystore");
+            throw new UnrecoverableKeyException("Secret key " + keyAlias + " not found in keystore");
         }
 
         return ks.getKey(keyAlias, keyPassword);

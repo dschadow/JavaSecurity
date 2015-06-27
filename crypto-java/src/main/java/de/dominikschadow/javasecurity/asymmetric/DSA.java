@@ -75,15 +75,15 @@ public class DSA {
     private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
             UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
-            throw new RuntimeException("Private key " + keyAlias + " not found in keystore");
+            throw new UnrecoverableKeyException("Private key " + keyAlias + " not found in keystore");
         }
 
         return (PrivateKey) ks.getKey(keyAlias, keyPassword);
     }
 
-    private PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException {
+    private PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException, UnrecoverableKeyException {
         if (!ks.containsAlias(keyAlias)) {
-            throw new RuntimeException("Public key " + keyAlias + " not found in keystore");
+            throw new UnrecoverableKeyException("Public key " + keyAlias + " not found in keystore");
         }
 
         return ks.getCertificate(keyAlias).getPublicKey();
