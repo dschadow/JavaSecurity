@@ -23,16 +23,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Symmetric encryption sample with Keyczar. Loads the AES key from the sample key set, encrypts and decrypts sample text with it.
+ * Symmetric encryption sample with Keyczar. Loads the AES key from the sample key set, encrypts and decrypts sample
+ * text with it.
  *
  * @author Dominik Schadow
  */
-public class AESEncryptionSample {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryptionSample.class);
+public class AESEncryption {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryption.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/symmetric";
 
     public static void main(String[] args) {
-        AESEncryptionSample res = new AESEncryptionSample();
+        AESEncryption res = new AESEncryption();
         final String initialText = "AES encryption sample text";
         try {
             String ciphertext = res.encrypt(initialText);
@@ -53,16 +54,12 @@ public class AESEncryptionSample {
      */
     private String encrypt(String initialText) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
-        String ciphertext = crypter.encrypt(initialText);
-
-        return ciphertext;
+        return crypter.encrypt(initialText);
     }
 
     private String decrypt(String ciphertext) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
-        String plaintext = crypter.decrypt(ciphertext);
-
-        return plaintext;
+        return crypter.decrypt(ciphertext);
     }
 
     private void printReadableMessages(String initialText, String ciphertext, String plaintext) {
