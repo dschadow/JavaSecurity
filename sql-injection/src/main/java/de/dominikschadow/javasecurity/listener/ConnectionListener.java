@@ -35,9 +35,8 @@ public class ConnectionListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            Class.forName("org.h2.Driver");
             con = DriverManager.getConnection("jdbc:h2:file:~/SQL-Injection-DB", "sa", "");
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
