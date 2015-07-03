@@ -10,6 +10,11 @@
     <url>https://github.com/dschadow/JavaSecurity</url>
     <description>This repository contains different security related Java projects.</description>
 
+    <organization>
+        <name>Dominik Schadow</name>
+        <url>http://www.dominikschadow.de</url>
+    </organization>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
