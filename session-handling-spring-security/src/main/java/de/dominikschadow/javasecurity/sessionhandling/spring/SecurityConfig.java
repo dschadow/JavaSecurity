@@ -98,8 +98,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private DatabasePopulator databasePopulator() {
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(dataScript);
-        return populator;
+        return new ResourceDatabasePopulator(dataScript);
     }
 }
