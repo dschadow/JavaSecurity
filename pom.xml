@@ -20,14 +20,6 @@
         <url>https://github.com/dschadow/JavaSecurity/issues</url>
     </issueManagement>
 
-    <repositories>
-        <repository>
-            <id>gemfire-repository</id>
-            <name>Gemfire Repository</name>
-            <url>http://dist.gemstone.com/maven/release</url>
-        </repository>
-    </repositories>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.1.7.RELEASE</spring.version>
