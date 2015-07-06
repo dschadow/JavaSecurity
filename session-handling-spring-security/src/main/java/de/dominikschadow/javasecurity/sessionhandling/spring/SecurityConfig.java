@@ -53,9 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-            .passwordEncoder(passwordEncoder())
-            .usersByUsernameQuery("select username, password, active from users where username = ?")
-            .authoritiesByUsernameQuery("select username, role from roles where username = ?");
+                .passwordEncoder(passwordEncoder())
+                .usersByUsernameQuery("select username, password, active from users where username = ?")
+                .authoritiesByUsernameQuery("select username, role from roles where username = ?");
     }
 
     @Override
@@ -68,15 +68,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .formLogin()
             .and()
-            .logout()
+                .logout()
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/logout.xhtml")
             .and()
                 .csrf().disable();
     }
 
+    /**
+     * BCryptPasswordEncoder constructor takes a work factor as first argument. The default is 10, the valid range is
+     * 4 to 31. The amount of work increases exponentially.
+     *
+     * @return The PasswordEncoder to use for all user passwords
+     */
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
