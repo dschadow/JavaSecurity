@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://www.owasp.org/index.php/OWASP_Dependency_Check_Suppression">
+   <suppress>
+      <notes><![CDATA[
+      file name: crypto-shiro-1.0.0.jar
+      ]]></notes>
+      <sha1>6e15dff5af44f67871fb1385fe7fca5d83c4ac9d</sha1>
+   </suppress>
+</suppressions>
