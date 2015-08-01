@@ -22,12 +22,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.1.7.RELEASE</spring.version>
+        <spring.version>4.2.0.RELEASE</spring.version>
         <spring.security.version>4.0.2.RELEASE</spring.security.version>
         <slf4j.version>1.7.12</slf4j.version>
-        <jsf.version>2.2.11</jsf.version>
+        <jsf.version>2.2.12</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
-        <hibernate.version>4.3.10.Final</hibernate.version>
+        <hibernate.version>4.3.20.Final</hibernate.version>
         <flyway.version>3.2.1</flyway.version>
     </properties>
 
@@ -102,7 +102,7 @@
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
-                <version>1.2.3</version>
+                <version>1.2.4</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -196,7 +196,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.3.0.v20150612</version>
+                    <version>9.3.2.v20150730</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
