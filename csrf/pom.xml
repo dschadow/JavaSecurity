@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>csrf</artifactId>
-    <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Cross-Site Request Forgery</name>
 
