@@ -27,7 +27,7 @@
         <slf4j.version>1.7.12</slf4j.version>
         <jsf.version>2.2.12</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
-        <hibernate.version>4.3.10.Final</hibernate.version>
+        <hibernate.version>4.3.11.Final</hibernate.version>
         <flyway.version>3.2.1</flyway.version>
     </properties>
 
@@ -107,7 +107,7 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.4.187</version>
+                <version>1.4.188</version>
             </dependency>
             <dependency>
                 <groupId>org.flywaydb</groupId>
