@@ -171,6 +171,11 @@
                 <artifactId>commons-dbcp</artifactId>
                 <version>1.4</version>
             </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -208,6 +213,7 @@
                     <artifactId>flyway-maven-plugin</artifactId>
                     <version>${flyway.version}</version>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
