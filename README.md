@@ -5,7 +5,7 @@ This repository contains several Java web applications and command line applicat
 #Web Applications in Detail
 Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. 
 
-The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**. The web applications which require a **Servlet 3.1** capable server contain the **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
+The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**.
 
 ##access-control-spring-security
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080/access-control-spring-security**.
