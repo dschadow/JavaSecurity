@@ -12,3 +12,11 @@ div {
     padding-bottom: 10px;
     font-size: 1.2rem;
 }
+
+form {
+    padding-top: 25px;
+}
+
+input, button {
+    font-size: 1.2rem;
+}
