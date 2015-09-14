@@ -10,19 +10,21 @@
 </h:head>
 
 <f:view>
-    <h1>User Profile</h1>
-
     <div>
-        Session ID: #{userBean.sessionId}
+        <h1>User Profile</h1>
+
+        <p>Session ID: #{userBean.sessionId}</p>
     </div>
 
-    <div>
+    <div style="font-style: italic">
         #{greetingBean.greetUser()}
     </div>
 
     <div>
+        User | <h:link outcome="/admin/manage">Admin</h:link> | <h:link outcome="/index">Home</h:link>
+
         <h:form>
-            <h:link outcome="/index">Home</h:link> | <h:commandLink action="#{userBean.logout}" id="logout" value="Logout"/>
+            <h:commandLink action="#{userBean.logout}" id="logout" value="Logout"/>
         </h:form>
     </div>
 </f:view>

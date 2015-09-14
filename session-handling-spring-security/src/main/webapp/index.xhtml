@@ -10,17 +10,18 @@
 </h:head>
 
 <f:view>
-    <h1>Session Handling (Spring Security)</h1>
-
-    <p>Valid users are <strong>user/user</strong> and <strong>admin/admin</strong>.</p>
-
     <div>
-        Session ID: #{userBean.sessionId}
+        <h1>Session Handling (Spring Security)</h1>
+
+        <p>Valid users are <strong>user/user</strong> and <strong>admin/admin</strong>.</p>
+
+        <p>Session ID: #{userBean.sessionId}</p>
     </div>
 
     <div>
+        <h:link outcome="user/profile">User</h:link> | <h:link outcome="admin/manage">Admin</h:link>
+
         <h:form>
-            <h:link outcome="user/profile">User</h:link> | <h:link outcome="admin/manage">Admin</h:link> |
             <h:commandLink action="#{userBean.logout}" id="logout" value="Logout"/>
         </h:form>
     </div>
