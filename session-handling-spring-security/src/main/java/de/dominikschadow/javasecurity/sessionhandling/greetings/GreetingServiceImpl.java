@@ -28,11 +28,11 @@ import org.springframework.stereotype.Service;
 public class GreetingServiceImpl implements GreetingService {
     @Override
     public String greetUser() {
-        return "Spring bean says hello to the user!";
+        return "Spring Security says hello to the user!";
     }
 
     @Override
     public String greetAdmin() {
-        return "Spring bean says hello to the admin!";
+        return "Spring Security says hello to the admin!";
     }
 }
