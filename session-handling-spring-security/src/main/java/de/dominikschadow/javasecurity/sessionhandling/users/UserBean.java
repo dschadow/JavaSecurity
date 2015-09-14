@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.users;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.faces.bean.ManagedBean;
@@ -31,11 +30,6 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name = "userBean")
 @RequestScoped
 public class UserBean {
-    public String logout() {
-        SecurityContextHolder.clearContext();
-        return "/logout";
-    }
-
     public String getSessionId() {
         return RequestContextHolder.currentRequestAttributes().getSessionId();
     }
