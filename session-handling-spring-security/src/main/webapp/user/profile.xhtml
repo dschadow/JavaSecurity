@@ -23,9 +23,10 @@
     <div>
         User | <h:link outcome="/admin/manage">Admin</h:link> | <h:link outcome="/index">Home</h:link>
 
-        <h:form>
-            <h:commandLink action="#{userBean.logout}" id="logout" value="Logout"/>
-        </h:form>
+        <form action="#{request.contextPath}/logout" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <input type="submit" value="Logout" />
+        </form>
     </div>
 </f:view>
 </html>
