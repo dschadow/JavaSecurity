@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 public class AESEncryption {
     private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryption.class);
-    private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
+    private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/symmetric";
 
     public static void main(String[] args) {
         AESEncryption res = new AESEncryption();
