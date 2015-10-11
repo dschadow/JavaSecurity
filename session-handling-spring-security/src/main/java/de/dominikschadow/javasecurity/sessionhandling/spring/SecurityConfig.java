@@ -70,7 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                 .logoutUrl("/logout")
-                .invalidateHttpSession(true)
                 .logoutSuccessUrl("/logout.xhtml");
     }
 
