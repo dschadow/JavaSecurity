@@ -33,7 +33,7 @@ public class RSAEncryption {
 
     public static void main(String[] args) {
         RSAEncryption res = new RSAEncryption();
-        final String initialText = "RSA encryption sample text";
+        final String initialText = "Some dummy text for encryption";
         try {
             String ciphertext = res.encrypt(initialText);
             String plaintext = res.decrypt(ciphertext);

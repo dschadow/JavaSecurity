@@ -34,7 +34,7 @@ public class DSASignature {
 
     public static void main(String[] args) {
         DSASignature res = new DSASignature();
-        final String initialText = "DSA signature sample text";
+        final String initialText = "Some dummy text to sign";
         try {
             String signature = res.sign(initialText);
             boolean valid = res.verify(initialText, signature);
