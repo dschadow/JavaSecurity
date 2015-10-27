@@ -77,8 +77,9 @@ public class AESEncryption {
     /**
      * Encrypts the given text using all Shiro defaults: 128 bit size, CBC mode, PKCS5 padding scheme.
      *
-     * @param initialText
-     * @return
+     * @param key The key to use
+     * @param initialText The text to encrypt
+     * @return The encrypted text
      */
     private byte[] encrypt(Key key, byte[] initialText) {
         AesCipherService cipherService = new AesCipherService();
