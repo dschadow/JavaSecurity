@@ -29,9 +29,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet which sets the <code>Content-Security-Policy</code> response header and stops any JavaScript code entered
- * in the textfield. Any entered script-tag will not be rendered any more in the result page. The
- * <code>report-uri</code>
+ * Servlet which sets the {@code Content-Security-Policy} response header and stops any JavaScript code entered in
+ * the textfield. Any entered script-tag will not be rendered any more in the result page. The {@code report-uri}
  * parameter takes care of reporting any CSP violations via the CSPReportingServlet.
  *
  * @author Dominik Schadow
