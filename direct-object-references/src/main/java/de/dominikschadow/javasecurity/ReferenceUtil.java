@@ -33,8 +33,8 @@ import org.slf4j.LoggerFactory;
  */
 public class ReferenceUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceUtil.class);
-    private static final Set<Object> files = new HashSet<>();
-    private static final RandomAccessReferenceMap REFERENCE_MAP = new RandomAccessReferenceMap(files);
+    private static final Set<Object> FILES = new HashSet<>();
+    private static final RandomAccessReferenceMap REFERENCE_MAP = new RandomAccessReferenceMap(FILES);
 
     /**
      * Private constructor to avoid initialization.
@@ -43,19 +43,19 @@ public class ReferenceUtil {
     }
 
     static {
-        File coverImage = new File("src/main/webapp/resources/files/cover.jpg");
+        File coverImage = new File("src/main/webapp/resources/FILES/cover.jpg");
         REFERENCE_MAP.addDirectReference(coverImage);
-        files.add(coverImage);
+        FILES.add(coverImage);
 
-        File coverPdf = new File("src/main/webapp/resources/files/cover.pdf");
+        File coverPdf = new File("src/main/webapp/resources/FILES/cover.pdf");
         REFERENCE_MAP.addDirectReference(coverPdf);
-        files.add(coverPdf);
+        FILES.add(coverPdf);
     }
 
     public static Set<String> getAllIndirectReferences() {
         Set<String> indirectReferences = new HashSet<>();
 
-        for (Object file : files) {
+        for (Object file : FILES) {
             String indirectReference = REFERENCE_MAP.getIndirectReference(file);
             indirectReferences.add(indirectReference);
         }
