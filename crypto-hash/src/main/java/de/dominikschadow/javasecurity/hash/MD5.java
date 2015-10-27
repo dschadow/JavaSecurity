@@ -29,7 +29,7 @@ import java.security.NoSuchAlgorithmException;
  * MD5 hashing sample with plain Java. No salt and no iterations are used to calculate the hash
  * value. This sample (and the MD5 algorithm) is totally insecure.
  * <p/>
- * Uses Google Guava to Base64 print the encrypted message as readable format.
+ * Uses Google Guava to hex encode the hash in a readable format.
  *
  * @author Dominik Schadow
  */
@@ -63,8 +63,8 @@ public class MD5 {
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password);
 
-        LOGGER.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
-        LOGGER.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
+        LOGGER.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
+        LOGGER.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

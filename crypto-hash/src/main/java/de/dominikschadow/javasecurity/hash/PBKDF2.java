@@ -31,7 +31,7 @@ import java.security.spec.InvalidKeySpecException;
  * PBKDF2 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash
  * value.
  * <p/>
- * Uses Google Guava to Base64 print the encrypted message as readable format.
+ * Uses Google Guava to hex encode the hash in a readable format.
  *
  * @author Dominik Schadow
  */
@@ -52,7 +52,7 @@ public class PBKDF2 {
             byte[] salt = hs.generateSalt();
 
             LOGGER.info("Password {}, hash algorithm {}, hash size {}, iterations {}, salt {}", String.valueOf
-                    (password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base64().encode(salt));
+                    (password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base16().encode(salt));
 
             byte[] hash = hs.calculateHash(skf, password, salt);
             boolean correct = hs.verifyPassword(skf, hash, password, salt);
@@ -81,8 +81,8 @@ public class PBKDF2 {
             InvalidKeySpecException {
         byte[] comparisonHash = calculateHash(skf, password, salt);
 
-        LOGGER.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
-        LOGGER.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
+        LOGGER.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
+        LOGGER.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

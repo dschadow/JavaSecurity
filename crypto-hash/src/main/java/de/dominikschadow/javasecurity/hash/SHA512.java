@@ -31,7 +31,7 @@ import java.security.SecureRandom;
  * SHA512 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash
  * value.
  * <p/>
- * Uses Google Guava to Base64 print the encrypted message as readable format.
+ * Uses Google Guava to hex the hash in a readable format.
  *
  * @author Dominik Schadow
  */
@@ -49,7 +49,7 @@ public class SHA512 {
             byte[] salt = hs.generateSalt();
 
             LOGGER.info("Password {}. hash algorithm {}, iterations {}, salt {}", password, ALGORITHM, ITERATIONS,
-                    BaseEncoding.base64().encode(salt));
+                    BaseEncoding.base16().encode(salt));
 
             byte[] hash = hs.calculateHash(password, salt);
             boolean correct = hs.verifyPassword(hash, password, salt);
@@ -87,8 +87,8 @@ public class SHA512 {
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password, salt);
 
-        LOGGER.info("hash 1: {}", BaseEncoding.base64().encode(originalHash));
-        LOGGER.info("hash 2: {}", BaseEncoding.base64().encode(comparisonHash));
+        LOGGER.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
+        LOGGER.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }
