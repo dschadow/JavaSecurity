@@ -49,28 +49,28 @@ public class AES {
     private static final Logger LOGGER = LoggerFactory.getLogger(AES.class);
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String KEYSTORE_PATH = "/samples.ks";
-    /**
-     * Non-secret initialization vector with 16 bytes (publicly exchanged between participants), may be a random
-     * number changed every time or a counter.
-     */
-    private static final byte[] INITIALIZATION_VECTOR = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3};
+    private Cipher cipher;
 
     public static void main(String[] args) {
-        AES ses = new AES();
+        AES aes = new AES();
+        aes.encrypt();
+    }
+
+    private void encrypt() {
         final String initialText = "AES encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "symmetric-sample";
         final char[] keyPassword = "symmetric-sample".toCharArray();
-        final IvParameterSpec iv = new IvParameterSpec(INITIALIZATION_VECTOR);
 
         try {
-            KeyStore ks = ses.loadKeystore(KEYSTORE_PATH, keystorePassword);
-            Key key = ses.loadKey(ks, keyAlias, keyPassword);
+            cipher = Cipher.getInstance(ALGORITHM);
+            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            Key key = loadKey(ks, keyAlias, keyPassword);
             SecretKeySpec secretKeySpec = new SecretKeySpec(key.getEncoded(), "AES");
-            byte[] ciphertext = ses.encrypt(secretKeySpec, iv, initialText);
-            byte[] plaintext = ses.decrypt(secretKeySpec, iv, ciphertext);
+            byte[] ciphertext = encrypt(secretKeySpec, initialText);
+            byte[] plaintext = decrypt(secretKeySpec, ciphertext);
 
-            ses.printReadableMessages(initialText, ciphertext, plaintext);
+            printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
                 KeyStoreException | CertificateException | UnrecoverableKeyException |
                 InvalidAlgorithmParameterException |
@@ -98,19 +98,17 @@ public class AES {
         return ks.getKey(keyAlias, keyPassword);
     }
 
-    private byte[] encrypt(SecretKeySpec secretKeySpec, IvParameterSpec initialVector, String initialText)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, BadPaddingException,
+    private byte[] encrypt(SecretKeySpec secretKeySpec, String initialText) throws NoSuchPaddingException,
+            NoSuchAlgorithmException, UnsupportedEncodingException, BadPaddingException,
             IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, initialVector);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         return cipher.doFinal(initialText.getBytes("UTF-8"));
     }
 
-    private byte[] decrypt(SecretKeySpec secretKeySpec, IvParameterSpec initialVector, byte[] ciphertext)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException,
+    private byte[] decrypt(SecretKeySpec secretKeySpec, byte[] ciphertext) throws NoSuchPaddingException,
+            NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException,
             InvalidAlgorithmParameterException, InvalidKeyException {
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, initialVector);
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(cipher.getIV()));
         return cipher.doFinal(ciphertext);
     }
 
