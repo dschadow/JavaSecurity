@@ -23,7 +23,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="customer")
+@Table(name = "customer")
 public class Customer {
     @Id
     @Column(name = "cust_id")
@@ -66,15 +66,9 @@ public class Customer {
     public void setOrderLimit(int orderLimit) {
         this.orderLimit = orderLimit;
     }
-    
+
     @Override
     public String toString() {
-        StringBuilder customer = new StringBuilder();
-        customer.append("ID ").append(custId);
-        customer.append(", Name ").append(name);
-        customer.append(", Status ").append(status);
-        customer.append(", Order Limit ").append(orderLimit);
-        
-        return customer.toString();
+        return "ID " + custId + ", Name " + name + ", Status " + status + ", Order Limit " + orderLimit;
     }
 }
