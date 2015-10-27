@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ReferenceUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceUtil.class);
-    private static Set<Object> files = new HashSet<>();
+    private static final Set<Object> files = new HashSet<>();
     private static final RandomAccessReferenceMap REFERENCE_MAP = new RandomAccessReferenceMap(files);
 
     /**
