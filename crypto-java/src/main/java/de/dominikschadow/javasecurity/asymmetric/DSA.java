@@ -31,7 +31,7 @@ import java.security.cert.CertificateException;
  * Digital signature sample with plain Java. Loads the DSA key from the sample keystore, signs and verifies sample
  * text with it.
  * <p/>
- * Uses Google Guava to Base64 print the encrypted message as readable format.
+ * Uses Google Guava to hex the encrypted message as readable format.
  *
  * @author Dominik Schadow
  */
@@ -106,9 +106,8 @@ public class DSA {
     }
 
     private void printReadableMessages(String initialText, byte[] signature, boolean valid) {
-        LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("signature as byte[]: {}", new String(signature));
-        LOGGER.info("signature as Base64: {}", BaseEncoding.base64().encode(signature));
+        LOGGER.info("initial text: {}", initialText);
+        LOGGER.info("signature: {}", BaseEncoding.base16().encode(signature));
         LOGGER.info("signature valid: {}", valid);
     }
 }

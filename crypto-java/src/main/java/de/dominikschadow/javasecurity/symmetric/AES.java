@@ -40,7 +40,7 @@ import java.security.cert.CertificateException;
  * the encrypted
  * message with a delimiter (all in Base64 encoding): <code>Base64(IV) + DELIMITER + Base64(ENCRYPTED MESSAGE)</code>
  * <p/>
- * Uses Google Guava to Base64 print the encrypted message as readable format.
+ * Uses Google Guava to hex the encrypted message as readable format.
  *
  * @author Dominik Schadow
  */
@@ -114,9 +114,8 @@ public class AES {
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("cipherText as byte[]: {}", new String(ciphertext));
-        LOGGER.info("cipherText as Base64: {}", BaseEncoding.base64().encode(ciphertext));
-        LOGGER.info("plaintext: {}", new String(plaintext));
+        LOGGER.info("initial text: {}", initialText);
+        LOGGER.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
+        LOGGER.info("plain text: {}", new String(plaintext));
     }
 }

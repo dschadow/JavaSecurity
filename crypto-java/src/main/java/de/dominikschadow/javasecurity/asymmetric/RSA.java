@@ -35,7 +35,7 @@ import java.security.cert.CertificateException;
  * Asymmetric encryption sample with plain Java. Loads the RSA key from the sample keystore, encrypts and decrypts
  * sample text with it.
  * <p/>
- * Uses Google Guava to Base64 print the encrypted message as readable format.
+ * Uses Google Guava to hex the encrypted message as readable format.
  *
  * @author Dominik Schadow
  */
@@ -111,9 +111,8 @@ public class RSA {
     }
 
     private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("cipherText as byte[]: {}", new String(ciphertext));
-        LOGGER.info("cipherText as Base64: {}", BaseEncoding.base64().encode(ciphertext));
-        LOGGER.info("plaintext: {}", new String(plaintext));
+        LOGGER.info("initial text: {}", initialText);
+        LOGGER.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
+        LOGGER.info("plain text: {}", new String(plaintext));
     }
 }
