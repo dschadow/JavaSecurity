@@ -41,21 +41,25 @@ public class DSA {
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        DSA aes = new DSA();
+        DSA dsa = new DSA();
+        dsa.sign();
+    }
+
+    private void sign() {
         final String initialText = "DSA signature sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-dsa";
         final char[] keyPassword = "asymmetric-sample-dsa".toCharArray();
 
         try {
-            KeyStore ks = aes.loadKeystore(KEYSTORE_PATH, keystorePassword);
-            PrivateKey privateKey = aes.loadPrivateKey(ks, keyAlias, keyPassword);
-            PublicKey publicKey = aes.loadPublicKey(ks, keyAlias);
+            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            PrivateKey privateKey = loadPrivateKey(ks, keyAlias, keyPassword);
+            PublicKey publicKey = loadPublicKey(ks, keyAlias);
 
-            byte[] signature = aes.sign(privateKey, initialText);
-            boolean valid = aes.verify(publicKey, signature, initialText);
+            byte[] signature = sign(privateKey, initialText);
+            boolean valid = verify(publicKey, signature, initialText);
 
-            aes.printReadableMessages(initialText, signature, valid);
+            printReadableMessages(initialText, signature, valid);
         } catch (NoSuchAlgorithmException | SignatureException | KeyStoreException | CertificateException |
                 UnrecoverableKeyException | InvalidKeyException | IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
