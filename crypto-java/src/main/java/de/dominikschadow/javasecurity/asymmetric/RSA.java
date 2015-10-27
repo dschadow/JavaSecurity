@@ -45,21 +45,25 @@ public class RSA {
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        RSA aes = new RSA();
+        RSA rsa = new RSA();
+        rsa.encrypt();
+    }
+
+    private void encrypt() {
         final String initialText = "RSA encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-rsa";
         final char[] keyPassword = "asymmetric-sample-rsa".toCharArray();
 
         try {
-            KeyStore ks = aes.loadKeystore(KEYSTORE_PATH, keystorePassword);
-            PrivateKey privateKey = aes.loadPrivateKey(ks, keyAlias, keyPassword);
-            PublicKey publicKey = aes.loadPublicKey(ks, keyAlias);
+            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            PrivateKey privateKey = loadPrivateKey(ks, keyAlias, keyPassword);
+            PublicKey publicKey = loadPublicKey(ks, keyAlias);
 
-            byte[] ciphertext = aes.encrypt(publicKey, initialText);
-            byte[] plaintext = aes.decrypt(privateKey, ciphertext);
+            byte[] ciphertext = encrypt(publicKey, initialText);
+            byte[] plaintext = decrypt(privateKey, ciphertext);
 
-            aes.printReadableMessages(initialText, ciphertext, plaintext);
+            printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
                 KeyStoreException | CertificateException | UnrecoverableKeyException | InvalidKeyException |
                 IOException ex) {
