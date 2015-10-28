@@ -60,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http
             .authorizeRequests()
                 .antMatchers("/*", "/javax.faces.resource/**").permitAll()
@@ -71,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/logout.xhtml");
+        // @formatter:on
     }
 
     /**
