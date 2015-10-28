@@ -44,18 +44,22 @@ public class PBKDF2 {
     private static final int HASH_SIZE = 512;
 
     public static void main(String[] args) {
-        PBKDF2 hs = new PBKDF2();
+        PBKDF2 hash = new PBKDF2();
+        hash.hash();
+    }
+
+    private void hash() {
         char[] password = "TotallySecurePassword12345".toCharArray();
 
         try {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
-            byte[] salt = hs.generateSalt();
+            byte[] salt = generateSalt();
 
-            LOGGER.info("Password {}, hash algorithm {}, hash size {}, iterations {}, salt {}", String.valueOf
-                    (password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base16().encode(salt));
+            LOGGER.info("Hashing password {} with hash algorithm {}, hash size {}, # of iterations {} and salt {}",
+                    String.valueOf(password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base16().encode(salt));
 
-            byte[] hash = hs.calculateHash(skf, password, salt);
-            boolean correct = hs.verifyPassword(skf, hash, password, salt);
+            byte[] hash = calculateHash(skf, password, salt);
+            boolean correct = verifyPassword(skf, hash, password, salt);
 
             LOGGER.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
