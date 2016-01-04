@@ -12,14 +12,14 @@
     <packaging>jar</packaging>
     <name>Crypto Keyczar</name>
 
-    <description>Java crypto sample project using Keyczar to encrypt/ decrypt and sign/ verify data. Each relevant class provides
-        its own main method to get started..</description>
+    <description>Java crypto sample project using Keyczar to encrypt/ decrypt and sign/ verify data. Each relevant class
+        provides its own main method to get started..
+    </description>
 
     <dependencies>
         <dependency>
-            <groupId>org.keyczar</groupId>
-            <artifactId>keyczar</artifactId>
-            <version>0.71g</version>
+            <groupId>org.zalando.stups</groupId>
+            <artifactId>crypto-keyczar</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
