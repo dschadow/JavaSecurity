@@ -41,6 +41,12 @@ public class SHA512 {
     private static final int ITERATIONS = 1000000;
     private static final int SALT_SIZE = 64;
 
+    /**
+     * Private constructor.
+     */
+    private SHA512() {
+    }
+
     public static void main(String[] args) {
         String password = "TotallySecurePassword12345";
 

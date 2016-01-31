@@ -32,6 +32,12 @@ public class DSASignature {
     private static final Logger LOGGER = LoggerFactory.getLogger(DSASignature.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/sign";
 
+    /**
+     * Private constructor.
+     */
+    private DSASignature() {
+    }
+
     public static void main(String[] args) {
         final String initialText = "Some dummy text to sign";
         try {

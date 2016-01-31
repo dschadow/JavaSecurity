@@ -38,6 +38,12 @@ public class AESEncryption {
     private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryption.class);
     private static final String KEYSTORE_PATH = "/samples.ks";
 
+    /**
+     * Private constructor.
+     */
+    private AESEncryption() {
+    }
+
     public static void main(String[] args) {
         final String initialText = "AES encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();

@@ -37,6 +37,12 @@ public class MD5 {
     private static final Logger LOGGER = LoggerFactory.getLogger(MD5.class);
     private static final String ALGORITHM = "MD5";
 
+    /**
+     * Private constructor.
+     */
+    private MD5() {
+    }
+
     public static void main(String[] args) {
         String password = "TotallySecurePassword12345";
 

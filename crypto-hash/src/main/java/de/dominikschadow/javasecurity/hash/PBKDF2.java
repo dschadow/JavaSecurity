@@ -43,6 +43,12 @@ public class PBKDF2 {
     private static final int SALT_SIZE = 32;
     private static final int HASH_SIZE = 512;
 
+    /**
+     * Private constructor.
+     */
+    private PBKDF2() {
+    }
+
     public static void main(String[] args) {
         hash();
     }

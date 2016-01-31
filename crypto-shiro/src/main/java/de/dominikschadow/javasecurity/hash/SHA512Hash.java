@@ -41,6 +41,12 @@ public class SHA512Hash {
     private static final byte[] PRIVATE_SALT_BYTES = {3, 1, 4, 1, 5, 9, 2, 6, 5};
     private static final int ITERATIONS = 1000000;
 
+    /**
+     * Private constructor.
+     */
+    private SHA512Hash() {
+    }
+
     public static void main(String[] args) {
         String password = "SHA-512 hash sample text";
 

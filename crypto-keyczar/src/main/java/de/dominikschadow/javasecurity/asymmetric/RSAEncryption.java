@@ -31,6 +31,12 @@ public class RSAEncryption {
     private static final Logger LOGGER = LoggerFactory.getLogger(RSAEncryption.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
 
+    /**
+     * Private constructor.
+     */
+    private RSAEncryption() {
+    }
+
     public static void main(String[] args) {
         final String initialText = "Some dummy text for encryption";
         try {

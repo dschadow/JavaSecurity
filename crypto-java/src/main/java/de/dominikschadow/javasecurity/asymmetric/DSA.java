@@ -40,6 +40,12 @@ public class DSA {
     private static final String ALGORITHM = "SHA1withDSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
+    /**
+     * Private constructor.
+     */
+    private DSA() {
+    }
+
     public static void main(String[] args) {
         sign();
     }

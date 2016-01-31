@@ -44,6 +44,12 @@ public class RSA {
     private static final String ALGORITHM = "RSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
+    /**
+     * Private constructor.
+     */
+    private RSA() {
+    }
+
     public static void main(String[] args) {
         encrypt();
     }
