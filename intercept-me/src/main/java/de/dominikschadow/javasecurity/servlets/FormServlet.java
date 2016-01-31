@@ -55,11 +55,11 @@ public class FormServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
-            out.println("<title>InterceptMe</title>");
+            out.println("<title>Intercept Me</title>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>InterceptMe</h1>");
+            out.println("<h1>Intercept Me</h1>");
             out.println("<p>" + result + "</p>");
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
