@@ -42,17 +42,16 @@ public class SHA512 {
     private static final int SALT_SIZE = 64;
 
     public static void main(String[] args) {
-        SHA512 hs = new SHA512();
         String password = "TotallySecurePassword12345";
 
         try {
-            byte[] salt = hs.generateSalt();
+            byte[] salt = generateSalt();
 
             LOGGER.info("Password {}. hash algorithm {}, iterations {}, salt {}", password, ALGORITHM, ITERATIONS,
                     BaseEncoding.base16().encode(salt));
 
-            byte[] hash = hs.calculateHash(password, salt);
-            boolean correct = hs.verifyPassword(hash, password, salt);
+            byte[] hash = calculateHash(password, salt);
+            boolean correct = verifyPassword(hash, password, salt);
 
             LOGGER.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
@@ -60,7 +59,7 @@ public class SHA512 {
         }
     }
 
-    private byte[] generateSalt() {
+    private static byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
@@ -68,7 +67,7 @@ public class SHA512 {
         return salt;
     }
 
-    private byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException,
+    private static byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException,
             UnsupportedEncodingException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
@@ -83,7 +82,7 @@ public class SHA512 {
         return hash;
     }
 
-    private boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws
+    private static boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password, salt);
 
@@ -100,7 +99,7 @@ public class SHA512 {
      * @param comparisonHash The comparison password hash
      * @return True if both match, false otherwise
      */
-    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
+    private static boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
         int diff = originalHash.length ^ comparisonHash.length;
         for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
             diff |= originalHash[i] ^ comparisonHash[i];

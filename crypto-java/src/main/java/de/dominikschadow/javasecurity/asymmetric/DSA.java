@@ -41,11 +41,10 @@ public class DSA {
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        DSA dsa = new DSA();
-        dsa.sign();
+        sign();
     }
 
-    private void sign() {
+    private static void sign() {
         final String initialText = "DSA signature sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-dsa";
@@ -66,9 +65,9 @@ public class DSA {
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+    private static KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
             CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
+        InputStream keystoreStream = DSA.class.getResourceAsStream(keystorePath);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
         ks.load(keystoreStream, keystorePassword);
@@ -76,7 +75,7 @@ public class DSA {
         return ks;
     }
 
-    private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
+    private static PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
             UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new UnrecoverableKeyException("Private key " + keyAlias + " not found in keystore");
@@ -85,7 +84,7 @@ public class DSA {
         return (PrivateKey) ks.getKey(keyAlias, keyPassword);
     }
 
-    private PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException, UnrecoverableKeyException {
+    private static PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException, UnrecoverableKeyException {
         if (!ks.containsAlias(keyAlias)) {
             throw new UnrecoverableKeyException("Public key " + keyAlias + " not found in keystore");
         }
@@ -93,7 +92,7 @@ public class DSA {
         return ks.getCertificate(keyAlias).getPublicKey();
     }
 
-    private byte[] sign(PrivateKey privateKey, String initialText) throws NoSuchAlgorithmException,
+    private static byte[] sign(PrivateKey privateKey, String initialText) throws NoSuchAlgorithmException,
             InvalidKeyException, SignatureException, UnsupportedEncodingException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initSign(privateKey);
@@ -101,7 +100,7 @@ public class DSA {
         return dsa.sign();
     }
 
-    private boolean verify(PublicKey publicKey, byte[] signature, String initialText) throws
+    private static boolean verify(PublicKey publicKey, byte[] signature, String initialText) throws
             NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initVerify(publicKey);
@@ -109,7 +108,7 @@ public class DSA {
         return dsa.verify(signature);
     }
 
-    private void printReadableMessages(String initialText, byte[] signature, boolean valid) {
+    private static void printReadableMessages(String initialText, byte[] signature, boolean valid) {
         LOGGER.info("initial text: {}", initialText);
         LOGGER.info("signature: {}", BaseEncoding.base16().encode(signature));
         LOGGER.info("signature valid: {}", valid);

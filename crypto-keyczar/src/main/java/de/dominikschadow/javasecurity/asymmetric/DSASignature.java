@@ -33,31 +33,30 @@ public class DSASignature {
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/sign";
 
     public static void main(String[] args) {
-        DSASignature res = new DSASignature();
         final String initialText = "Some dummy text to sign";
         try {
-            String signature = res.sign(initialText);
-            boolean valid = res.verify(initialText, signature);
+            String signature = sign(initialText);
+            boolean valid = verify(initialText, signature);
 
-            res.printReadableMessages(initialText, signature, valid);
+            printReadableMessages(initialText, signature, valid);
         } catch (KeyczarException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
 
-    private String sign(String initialText) throws KeyczarException {
+    private static String sign(String initialText) throws KeyczarException {
         Signer signer = new Signer(KEYSET_PATH);
         return signer.sign(initialText);
     }
 
-    private boolean verify(String initialText, String signature) throws KeyczarException {
+    private static boolean verify(String initialText, String signature) throws KeyczarException {
         Verifier verifier = new Verifier(KEYSET_PATH);
         return verifier.verify(initialText, signature);
     }
 
-    private void printReadableMessages(String initialText, String signature, boolean valid) {
+    private static void printReadableMessages(String initialText, String signature, boolean valid) {
         LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("signature as Base64: {}", signature);
+        LOGGER.info("signature: {}", signature);
         LOGGER.info("signature valid: {}", valid);
     }
 }

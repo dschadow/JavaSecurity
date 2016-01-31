@@ -45,11 +45,10 @@ public class RSA {
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        RSA rsa = new RSA();
-        rsa.encrypt();
+        encrypt();
     }
 
-    private void encrypt() {
+    private static void encrypt() {
         final String initialText = "RSA encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "asymmetric-sample-rsa";
@@ -71,9 +70,9 @@ public class RSA {
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+    private static KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
             CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
+        InputStream keystoreStream = RSA.class.getResourceAsStream(keystorePath);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
         ks.load(keystoreStream, keystorePassword);
@@ -81,7 +80,7 @@ public class RSA {
         return ks;
     }
 
-    private PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
+    private static PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
             UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new UnrecoverableKeyException("Private key " + keyAlias + " not found in keystore");
@@ -90,7 +89,7 @@ public class RSA {
         return (PrivateKey) ks.getKey(keyAlias, keyPassword);
     }
 
-    private PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException, UnrecoverableKeyException {
+    private static PublicKey loadPublicKey(KeyStore ks, String keyAlias) throws KeyStoreException, UnrecoverableKeyException {
         if (!ks.containsAlias(keyAlias)) {
             throw new UnrecoverableKeyException("Public key " + keyAlias + " not found in keystore");
         }
@@ -98,7 +97,7 @@ public class RSA {
         return ks.getCertificate(keyAlias).getPublicKey();
     }
 
-    private byte[] encrypt(PublicKey publicKey, String initialText) throws NoSuchPaddingException,
+    private static byte[] encrypt(PublicKey publicKey, String initialText) throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -106,7 +105,7 @@ public class RSA {
         return cipher.doFinal(initialText.getBytes("UTF-8"));
     }
 
-    private byte[] decrypt(PrivateKey privateKey, byte[] ciphertext) throws NoSuchPaddingException,
+    private static byte[] decrypt(PrivateKey privateKey, byte[] ciphertext) throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -114,7 +113,7 @@ public class RSA {
         return cipher.doFinal(ciphertext);
     }
 
-    private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
+    private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         LOGGER.info("initial text: {}", initialText);
         LOGGER.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
         LOGGER.info("plain text: {}", new String(plaintext));

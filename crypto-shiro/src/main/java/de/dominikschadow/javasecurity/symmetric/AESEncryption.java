@@ -17,8 +17,8 @@
  */
 package de.dominikschadow.javasecurity.symmetric;
 
-import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.CodecSupport;
+import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
@@ -39,26 +39,25 @@ public class AESEncryption {
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     public static void main(String[] args) {
-        AESEncryption res = new AESEncryption();
         final String initialText = "AES encryption sample text";
         final char[] keystorePassword = "samples".toCharArray();
         final String keyAlias = "symmetric-sample";
         final char[] keyPassword = "symmetric-sample".toCharArray();
 
         try {
-            KeyStore ks = res.loadKeystore(KEYSTORE_PATH, keystorePassword);
-            Key key = res.loadKey(ks, keyAlias, keyPassword);
-            byte[] ciphertext = res.encrypt(key, CodecSupport.toBytes(initialText));
-            byte[] plaintext = res.decrypt(key, ciphertext);
+            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            Key key = loadKey(ks, keyAlias, keyPassword);
+            byte[] ciphertext = encrypt(key, CodecSupport.toBytes(initialText));
+            byte[] plaintext = decrypt(key, ciphertext);
 
-            res.printReadableMessages(initialText, ciphertext, plaintext);
+            printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchAlgorithmException | KeyStoreException | CertificateException | UnrecoverableKeyException | IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
+    private static KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+        InputStream keystoreStream = AESEncryption.class.getResourceAsStream(keystorePath);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
         ks.load(keystoreStream, keystorePassword);
@@ -66,7 +65,7 @@ public class AESEncryption {
         return ks;
     }
 
-    private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
+    private static Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new UnrecoverableKeyException("Secret key " + keyAlias + " not found in keystore");
         }
@@ -81,24 +80,24 @@ public class AESEncryption {
      * @param initialText The text to encrypt
      * @return The encrypted text
      */
-    private byte[] encrypt(Key key, byte[] initialText) {
+    private static byte[] encrypt(Key key, byte[] initialText) {
         AesCipherService cipherService = new AesCipherService();
         ByteSource cipherText = cipherService.encrypt(initialText, key.getEncoded());
 
         return cipherText.getBytes();
     }
 
-    private byte[] decrypt(Key key, byte[] ciphertext) {
+    private static byte[] decrypt(Key key, byte[] ciphertext) {
         AesCipherService cipherService = new AesCipherService();
         ByteSource plainText = cipherService.decrypt(ciphertext, key.getEncoded());
 
         return plainText.getBytes();
     }
 
-    private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
+    private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         LOGGER.info("initialText: {}", initialText);
         LOGGER.info("cipherText as byte[]: {}", new String(ciphertext));
-        LOGGER.info("cipherText as Base64: {}", Base64.encodeToString(ciphertext));
+        LOGGER.info("cipherText as HEX: {}", Hex.encodeToString(ciphertext));
         LOGGER.info("plaintext: {}", CodecSupport.toString(plaintext));
     }
 }

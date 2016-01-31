@@ -32,13 +32,12 @@ public class RSAEncryption {
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
 
     public static void main(String[] args) {
-        RSAEncryption res = new RSAEncryption();
         final String initialText = "Some dummy text for encryption";
         try {
-            String ciphertext = res.encrypt(initialText);
-            String plaintext = res.decrypt(ciphertext);
+            String ciphertext = encrypt(initialText);
+            String plaintext = decrypt(ciphertext);
 
-            res.printReadableMessages(initialText, ciphertext, plaintext);
+            printReadableMessages(initialText, ciphertext, plaintext);
         } catch (KeyczarException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
@@ -51,19 +50,19 @@ public class RSAEncryption {
      * @return The encrypted text (in Base64)
      * @throws KeyczarException
      */
-    private String encrypt(String initialText) throws KeyczarException {
+    private static String encrypt(String initialText) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
         return crypter.encrypt(initialText);
     }
 
-    private String decrypt(String ciphertext) throws KeyczarException {
+    private static String decrypt(String ciphertext) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
         return crypter.decrypt(ciphertext);
     }
 
-    private void printReadableMessages(String initialText, String ciphertext, String plaintext) {
+    private static void printReadableMessages(String initialText, String ciphertext, String plaintext) {
         LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("cipherText as Base64: {}", ciphertext);
+        LOGGER.info("cipherText: {}", ciphertext);
         LOGGER.info("plaintext: {}", plaintext);
     }
 }

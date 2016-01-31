@@ -38,12 +38,11 @@ public class MD5 {
     private static final String ALGORITHM = "MD5";
 
     public static void main(String[] args) {
-        MD5 hs = new MD5();
         String password = "TotallySecurePassword12345";
 
         try {
-            byte[] hash = hs.calculateHash(password);
-            boolean correct = hs.verifyPassword(hash, password);
+            byte[] hash = calculateHash(password);
+            boolean correct = verifyPassword(hash, password);
 
             LOGGER.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
@@ -52,14 +51,14 @@ public class MD5 {
     }
 
 
-    private byte[] calculateHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    private static byte[] calculateHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update(password.getBytes("UTF-8"));
         return md.digest();
     }
 
-    private boolean verifyPassword(byte[] originalHash, String password) throws
+    private static boolean verifyPassword(byte[] originalHash, String password) throws
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password);
 
@@ -76,7 +75,7 @@ public class MD5 {
      * @param comparisonHash The comparison password hash
      * @return True if both match, false otherwise
      */
-    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
+    private static boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
         int diff = originalHash.length ^ comparisonHash.length;
         for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
             diff |= originalHash[i] ^ comparisonHash[i];
