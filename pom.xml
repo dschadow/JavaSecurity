@@ -30,10 +30,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.2.4.RELEASE</spring.version>
         <spring.security.version>4.0.3.RELEASE</spring.security.version>
-        <slf4j.version>1.7.13</slf4j.version>
+        <slf4j.version>1.7.14</slf4j.version>
         <jsf.version>2.2.12</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hibernate.version>5.0.7.Final</hibernate.version>
         <flyway.version>3.2.1</flyway.version>
         <sonar.language>java</sonar.language>
     </properties>
@@ -114,7 +114,7 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.4.190</version>
+                <version>1.4.191</version>
             </dependency>
             <dependency>
                 <groupId>org.flywaydb</groupId>
@@ -198,7 +198,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.5</version>
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <source>1.8</source>
@@ -228,7 +228,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>2.7.1</version>
+                    <version>3.0.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
