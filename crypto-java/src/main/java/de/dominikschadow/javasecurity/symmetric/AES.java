@@ -89,7 +89,7 @@ public class AES {
         return ks;
     }
 
-    private Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
+    private static Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
             UnrecoverableKeyException, NoSuchAlgorithmException {
         if (!ks.containsAlias(keyAlias)) {
             throw new UnrecoverableKeyException("Secret key " + keyAlias + " not found in keystore");
@@ -112,7 +112,7 @@ public class AES {
         return cipher.doFinal(ciphertext);
     }
 
-    private void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
+    private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         LOGGER.info("initial text: {}", initialText);
         LOGGER.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
         LOGGER.info("plain text: {}", new String(plaintext));
