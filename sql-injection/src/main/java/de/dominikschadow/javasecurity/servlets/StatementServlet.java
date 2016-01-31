@@ -56,12 +56,7 @@ public class StatementServlet extends HttpServlet {
 
         LOGGER.info("Final SQL query " + query);
 
-        Statement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            stmt = ConnectionListener.con.createStatement();
-            rs = stmt.executeQuery(query);
+        try (Statement stmt = ConnectionListener.con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
                 Customer customer = new Customer();
@@ -74,21 +69,6 @@ public class StatementServlet extends HttpServlet {
             }
         } catch (SQLException ex) {
             LOGGER.error(ex.getMessage(), ex);
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.error(ex.getMessage(), ex);
-            }
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.error(ex.getMessage(), ex);
-            }
         }
 
         response.setContentType("text/html");
