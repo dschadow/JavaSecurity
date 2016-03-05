@@ -35,7 +35,7 @@ public class ConnectionListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            con = DriverManager.getConnection("jdbc:h2:file:~/SQL-Injection-DB", "sa", "");
+            con = DriverManager.getConnection("jdbc:h2:mem:SQL-Injection-DB", "sa", "");
         } catch (SQLException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }

@@ -28,7 +28,7 @@ public class FlywayListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         Flyway flyway = new Flyway();
-        flyway.setDataSource("jdbc:h2:file:~/SQL-Injection-DB", "sa", "");
+        flyway.setDataSource("jdbc:h2:mem:SQL-Injection-DB", "sa", "");
         flyway.migrate();
     }
 
