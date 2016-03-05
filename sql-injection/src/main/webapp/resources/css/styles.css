@@ -11,12 +11,26 @@ h2 {
 }
 
 td {
-	font-size: 115%;
+    font-size: 1.2em;
 }
 
 th {
     background-color: darkgrey;
     padding: 2pt;
     font-weight: bold;
-    font-size: 125%;
+    font-size: 1.2em;
+}
+
+.text-input {
+    width: 250px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+fieldset {
+    width: 800px;
+    font-size: 1.2em;
+    margin-top: 20px;
 }

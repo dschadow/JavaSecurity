@@ -10,52 +10,42 @@
 
     <p><strong>Valid customers are:</strong> Arthur Dent, Ford Prefect, Tricia Trillian McMillan, Zaphod Beeblebrox, Marvin, Slartibartfast</p>
 
-	<h2>Using Statement</h2>
-	
-	<form name="stmt" method="post" action="StatementServlet">
-		<table>
-			<tr>
-				<td><label for="stmt" title="Name">Name</label></td>
-				<td><input type="text" id="stmt" name="name" class="text-input" /></td>
-				<td><input type="submit" value="Submit" /></td>
-			</tr>
-		</table>
-	</form>
+	<p>Use <strong>&apos; or &apos;1&apos;=&apos;1</strong> to attack the database.</p>
 
-    <h2>Using Statement with Escaping</h2>
+	<form name="stmt" method="post" action="StatementServlet">
+		<fieldset>
+			<legend>Using a simple Statement</legend>
+				<label for="stmt" title="Name">Name</label>
+				<input type="text" id="stmt" name="name" class="text-input" />
+				<input type="submit" value="Search" />
+		</fieldset>
+	</form>
 
     <form name="stmtEsc" method="post" action="StatementEscapingServlet">
-        <table>
-            <tr>
-                <td><label for="stmtEsc" title="Name">Name</label></td>
-                <td><input type="text" id="stmtEsc" name="name" class="text-input" /></td>
-                <td><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
+        <fieldset>
+			<legend>Using an escaped Statement</legend>
+                <label for="stmtEsc" title="Name">Name</label>
+                <input type="text" id="stmtEsc" name="name" class="text-input" />
+                <input type="submit" value="Search" />
+        </fieldset>
     </form>
 
-	<h2>Using Prepared Statement</h2>
-	
 	<form name="pstmt" method="post" action="PreparedStatementServlet">
-		<table>
-			<tr>
-				<td><label for="pstmt" title="Name">Name</label></td>
-				<td><input type="text" id="pstmt" name="name" class="text-input" /></td>
-				<td><input type="submit" name="submit" value="Submit" /></td>
-			</tr>
-		</table>
+		<fieldset>
+			<legend>Using a Prepared Statement</legend>
+				<label for="pstmt" title="Name">Name</label>
+				<input type="text" id="pstmt" name="name" class="text-input" />
+				<input type="submit" name="submit" value="Search" />
+		</fieldset>
 	</form>
 
-    <h2>Using Hibernate Query Language (HQL)</h2>
-
     <form name="hql" method="post" action="HQLServlet">
-        <table>
-            <tr>
-                <td><label for="hql" title="Name">Name</label></td>
-                <td><input type="text" id="hql" name="name" class="text-input" /></td>
-                <td><input type="submit" name="submit" value="Submit" /></td>
-            </tr>
-        </table>
+        <fieldset>
+			<legend>Using the Hibernate Query Language (HQL)</legend>
+               <label for="hql" title="Name">Name</label>
+               <input type="text" id="hql" name="name" class="text-input" />
+               <input type="submit" name="submit" value="Search" />
+        </fieldset>
     </form>
 </body>
 </html>
