@@ -8,7 +8,7 @@
     <title>Access Control - Spring Security</title>
 </head>
 <body>
-<h1>All Contacts (User <sec:authentication property="principal.Username"/>)</h1>
+<h1>All my contacts (<sec:authentication property="principal.Username"/>)</h1>
 
 <ul>
     <c:forEach var="contact" items="${contacts}">

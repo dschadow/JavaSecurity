@@ -8,7 +8,7 @@
     <title>Access Control - Spring Security</title>
 </head>
 <body>
-<h1>Contact Details (User <sec:authentication property="principal.Username"/>)</h1>
+<h1>Contact Details</h1>
 
 <p>
     <strong>ID:</strong> ${contact.contactId}<br>
