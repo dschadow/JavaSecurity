@@ -25,6 +25,8 @@ import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -43,13 +45,7 @@ public class ContactService {
         return jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE contact_id = ?",
                 new Object[]{contactId},
                 (rs, rowNum) -> {
-                    Contact contact = new Contact();
-                    contact.setContactId(rs.getInt("contact_id"));
-                    contact.setUsername(rs.getString("username"));
-                    contact.setFirstname(rs.getString("firstname"));
-                    contact.setLastname(rs.getString("lastname"));
-                    contact.setComment(rs.getString("comment"));
-                    return contact;
+                    return createContact(rs);
                 });
     }
 
@@ -66,13 +62,17 @@ public class ContactService {
     public List<Contact> getContacts() {
         return jdbcTemplate.query("SELECT * FROM contacts",
                 (rs, rowNum) -> {
-                    Contact contact = new Contact();
-                    contact.setContactId(rs.getInt("contact_id"));
-                    contact.setUsername(rs.getString("username"));
-                    contact.setFirstname(rs.getString("firstname"));
-                    contact.setLastname(rs.getString("lastname"));
-                    contact.setComment(rs.getString("comment"));
-                    return contact;
+                    return createContact(rs);
                 });
+    }
+
+    private Contact createContact(ResultSet rs) throws SQLException {
+        Contact contact = new Contact();
+        contact.setContactId(rs.getInt("contact_id"));
+        contact.setUsername(rs.getString("username"));
+        contact.setFirstname(rs.getString("firstname"));
+        contact.setLastname(rs.getString("lastname"));
+        contact.setComment(rs.getString("comment"));
+        return contact;
     }
 }
