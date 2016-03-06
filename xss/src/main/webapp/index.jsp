@@ -8,6 +8,8 @@
 <body>
 	<h1>Cross-Site Scripting (XSS)</h1>
 
+    <p>Use &lt;script&gt;alert(document.cookie)&lt;/script&gt; as input to simulate a Cross-Site Scripting attack.</p>
+
     <form action="unprotected" id="unprotectedForm" method="post">
         <fieldset>
             <legend>Unprotected</legend>
