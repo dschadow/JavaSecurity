@@ -73,12 +73,11 @@ public class DSA {
 
     private static KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
             CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = DSA.class.getResourceAsStream(keystorePath);
-
-        KeyStore ks = KeyStore.getInstance("JCEKS");
-        ks.load(keystoreStream, keystorePassword);
-
-        return ks;
+        try (InputStream keystoreStream = DSA.class.getResourceAsStream(keystorePath)) {
+            KeyStore ks = KeyStore.getInstance("JCEKS");
+            ks.load(keystoreStream, keystorePassword);
+            return ks;
+        }
     }
 
     private static PrivateKey loadPrivateKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
