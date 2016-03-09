@@ -81,12 +81,12 @@ public class AES {
 
     private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
             CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = getClass().getResourceAsStream(keystorePath);
+        try (InputStream keystoreStream = getClass().getResourceAsStream(keystorePath)) {
+            KeyStore ks = KeyStore.getInstance("JCEKS");
+            ks.load(keystoreStream, keystorePassword);
 
-        KeyStore ks = KeyStore.getInstance("JCEKS");
-        ks.load(keystoreStream, keystorePassword);
-
-        return ks;
+            return ks;
+        }
     }
 
     private static Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
