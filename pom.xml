@@ -38,6 +38,10 @@
         <sonar.language>java</sonar.language>
     </properties>
 
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
