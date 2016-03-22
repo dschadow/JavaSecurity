@@ -55,7 +55,7 @@ public class DownloadServlet extends HttpServlet {
             while ((read = is.read(bytes)) != -1) {
                 os.write(bytes, 0, read);
             }
-        } catch (AccessControlException ex) {
+        } catch (AccessControlException | IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
