@@ -17,16 +17,11 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.spring;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-import org.springframework.jdbc.datasource.init.DataSourceInitializer;
-import org.springframework.jdbc.datasource.init.DatabasePopulator;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,6 +31,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
+
+import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
 
 /**
  * Spring Security configuration for the session handling sample project.
@@ -47,9 +44,6 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @ComponentScan("de.dominikschadow.javasecurity.sessionhandling.greetings")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Value("classpath:database.sql")
-    private Resource dataScript;
-
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
@@ -88,22 +82,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:h2:mem:sessionHandlingSpringSecurity");
-        dataSource.setUsername("hashing");
-        dataSource.setPassword("hashing");
-        return dataSource;
-    }
-
-    @Bean
-    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
-        final DataSourceInitializer initializer = new DataSourceInitializer();
-        initializer.setDataSource(dataSource);
-        initializer.setDatabasePopulator(databasePopulator());
-        return initializer;
-    }
-
-    private DatabasePopulator databasePopulator() {
-        return new ResourceDatabasePopulator(dataScript);
+        return new EmbeddedDatabaseBuilder().setType(H2).addScript("schema.sql").addScripts("data.sql").build();
     }
 }
