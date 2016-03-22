@@ -26,7 +26,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Servlet downloading files from inside the web application.
@@ -45,32 +48,15 @@ public class DownloadServlet extends HttpServlet {
 
         LOGGER.info("File {} requested for download", indirectReference);
 
-        InputStream is = null;
-        OutputStream os = null;
-
-        try {
-            File file = ReferenceUtil.getFileByIndirectReference(indirectReference);
-
-            is = new FileInputStream(file);
-
+        try (InputStream is = new FileInputStream(ReferenceUtil.getFileByIndirectReference(indirectReference)); OutputStream os = response.getOutputStream()) {
             byte[] bytes = new byte[1024];
-            os = response.getOutputStream();
 
             int read;
             while ((read = is.read(bytes)) != -1) {
                 os.write(bytes, 0, read);
             }
-            os.flush();
         } catch (AccessControlException ex) {
             LOGGER.error(ex.getMessage(), ex);
-        } finally {
-            if (os != null) {
-                os.close();
-            }
-
-            if (is != null) {
-                is.close();
-            }
         }
     }
 }
