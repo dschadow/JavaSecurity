@@ -25,9 +25,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
  * @author Dominik Schadow
  */
 public interface GreetingService {
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     String greetUser();
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     String greetAdmin();
 }
