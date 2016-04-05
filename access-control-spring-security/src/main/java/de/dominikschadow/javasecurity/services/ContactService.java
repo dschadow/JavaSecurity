@@ -39,7 +39,7 @@ public class ContactService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('USER')")
     @PostAuthorize("returnObject.username == principal.username")
     public Contact getContact(int contactId) {
         return jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE contact_id = ?",
@@ -54,7 +54,7 @@ public class ContactService {
      *
      * @return The list of contacts for the currently authenticated user
      */
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('USER')")
     @PostFilter("filterObject.username == principal.username")
     public List<Contact> getContacts() {
         return jdbcTemplate.query("SELECT * FROM contacts", (rs, rowNum) -> createContact(rs));
