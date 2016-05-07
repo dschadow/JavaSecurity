@@ -28,13 +28,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.2.5.RELEASE</spring.version>
-        <spring.security.version>4.0.4.RELEASE</spring.security.version>
-        <slf4j.version>1.7.19</slf4j.version>
+        <spring.version>4.2.6.RELEASE</spring.version>
+        <spring.security.version>4.1.0.RELEASE</spring.security.version>
+        <slf4j.version>1.7.21</slf4j.version>
         <jsf.version>2.2.13</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
         <hibernate.version>5.1.0.Final</hibernate.version>
-        <flyway.version>4.0</flyway.version>
+        <flyway.version>4.0.1</flyway.version>
         <sonar.language>java</sonar.language>
     </properties>
 
@@ -267,7 +267,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>1.3.5</version>
+                <version>1.3.6</version>
                 <reportSets>
                     <reportSet>
                         <reports>
