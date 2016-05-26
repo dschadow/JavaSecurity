@@ -32,6 +32,7 @@
 <h2>X-Frame-Options</h2>
 
 <p>
+    <a href="x-frame-options/unprotectedForm.jsp">Original Form</a><br/>
     <a href="x-frame-options/unprotected.jsp">Unprotected</a><br/>
     <a href="x-frame-options/protected.jsp">Protected</a>
 </p>
@@ -41,12 +42,13 @@
 <p>
     <a href="csp/unprotected.jsp?name=<script>alert('XSS')</script>">Unprotected</a><br>
     <a href="csp/protected.jsp?name=<script>alert('XSS')</script>">Protected</a><br>
-    <a href="csp/reporting.jsp?name=<script>alert('XSS')</script>">Report only</a>
+    <a href="csp/reporting.jsp?name=<script>alert('XSS')</script>">Report Only</a>
 </p>
 
 <h2>Content Security Policy Level 2</h2>
 
 <p>
+    <a href="csp2/unprotectedForm.jsp">Original Form</a><br/>
     <a href="csp2/unprotected.jsp">Unprotected</a><br/>
     <a href="csp2/protected.jsp">Protected</a>
 </p>

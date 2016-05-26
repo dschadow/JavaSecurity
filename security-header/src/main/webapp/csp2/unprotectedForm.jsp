@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"/>
     <title>Unprotected Form</title>
 </head>
-<body>
+<body style="background-color: lawngreen">
 <form name="loginForm" action="LoginServlet" method="post">
     <div>
         <label for="username">Username</label>
