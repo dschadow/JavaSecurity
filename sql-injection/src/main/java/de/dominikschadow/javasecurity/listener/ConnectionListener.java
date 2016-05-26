@@ -30,7 +30,7 @@ import java.sql.SQLException;
 @WebListener
 public class ConnectionListener implements ServletContextListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionListener.class);
-    public Connection con = null;
+    public static Connection con = null;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
