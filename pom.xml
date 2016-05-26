@@ -113,12 +113,12 @@
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
-                <version>1.2.4</version>
+                <version>1.2.5</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.4.191</version>
+                <version>1.4.192</version>
             </dependency>
             <dependency>
                 <groupId>org.flywaydb</groupId>
@@ -186,6 +186,11 @@
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
                 <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.5</version>
             </dependency>
             <dependency>
                 <groupId>org.zalando.stups</groupId>
