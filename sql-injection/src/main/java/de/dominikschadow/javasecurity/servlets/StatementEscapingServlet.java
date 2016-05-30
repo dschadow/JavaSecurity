@@ -46,7 +46,6 @@ import java.util.List;
 @WebServlet(name = "StatementEscapingServlet", urlPatterns = {"/StatementEscapingServlet"})
 public class StatementEscapingServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatementEscapingServlet.class);
-    private static final long serialVersionUID = 1L;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
