@@ -1,17 +1,9 @@
-.text-input {
-    width: 250px;
-}
-
 h1 {
-	font-size: 150%;
+	font-size: 1.5em;
 }
 
 h2 {
-	font-size: 125%;
-}
-
-td {
-    font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 th {
@@ -25,12 +17,7 @@ th {
     width: 250px;
 }
 
-p {
-    font-size: 1.2em;
-}
-
 fieldset {
-    width: 800px;
-    font-size: 1.2em;
+    width: 500px;
     margin-top: 20px;
 }
