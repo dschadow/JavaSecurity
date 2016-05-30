@@ -37,7 +37,6 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "CSPServlet", urlPatterns = {"/csp"})
 public class CSPServlet extends HttpServlet {
-    private static final long serialVersionUID = -926765463111069795L;
     private static final Logger LOGGER = LoggerFactory.getLogger(CSPServlet.class);
 
     @Override
@@ -51,11 +50,11 @@ public class CSPServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
-            out.println("<title>XSS - Content Security Policy</title>");
+            out.println("<title>Cross-Site Scripting (XSS) - Content Security Policy</title>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>XSS - Content Security Policy</h1>");
+            out.println("<h1>Cross-Site Scripting (XSS) - Content Security Policy</h1>");
             out.println("<p>[" + name + "]</p>");
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");

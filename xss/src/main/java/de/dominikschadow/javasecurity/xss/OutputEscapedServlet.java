@@ -36,7 +36,6 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "OutputEscapedServlet", urlPatterns = {"/escaped"})
 public class OutputEscapedServlet extends HttpServlet {
-    private static final long serialVersionUID = -8333250290079201895L;
     private static final Logger LOGGER = LoggerFactory.getLogger(OutputEscapedServlet.class);
 
     @Override
@@ -49,11 +48,11 @@ public class OutputEscapedServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
-            out.println("<title>XSS - Output Escaping</title>");
+            out.println("<title>Cross-Site Scripting (XSS) - Output Escaping</title>");
             out.println("<link rel='stylesheet' type='text/css' href='resources/css/styles.css' />");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>XSS - Output Escaping</h1>");
+            out.println("<h1>Cross-Site Scripting (XSS) - Output Escaping</h1>");
             out.println("<p title='Hello " + Encode.forHtmlAttribute(name) + "'><strong>Hello </strong>");
             Encode.forHtml(out, name);
             out.println("</p>");

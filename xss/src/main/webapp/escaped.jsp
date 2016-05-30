@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
-	<title>Cross-Site Scripting (XSS): JSP Escaping</title>
+	<title>Cross-Site Scripting (XSS) - JSP Output Escaping</title>
 </head>
 <body>
-	<h1>Cross-Site Scripting (XSS): JSP Escaping</h1>
+	<h1>Cross-Site Scripting (XSS) - JSP Output Escaping</h1>
 
     <p><strong>For HTML </strong> <e:forHtml value="${param.outputEscapedJSPName}"/></p>
 

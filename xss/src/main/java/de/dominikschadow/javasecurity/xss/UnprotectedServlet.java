@@ -35,7 +35,6 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "UnprotectedServlet", urlPatterns = {"/unprotected"})
 public class UnprotectedServlet extends HttpServlet {
-    private static final long serialVersionUID = -8978771621644673835L;
     private static final Logger LOGGER = LoggerFactory.getLogger(UnprotectedServlet.class);
 
     @Override
@@ -48,11 +47,11 @@ public class UnprotectedServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
-            out.println("<title>XSS - Unprotected</title>");
+            out.println("<title>Cross-Site Scripting (XSS) - Unprotected</title>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>XSS - Unprotected</h1>");
+            out.println("<h1>Cross-Site Scripting (XSS) - Unprotected</h1>");
             out.println("<p>[" + name + "]</p>");
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
