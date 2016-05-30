@@ -3,7 +3,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
 
 a {
@@ -11,8 +11,7 @@ a {
 }
 
 fieldset {
-    width: 450px;
-    font-size: 1.2em;
+    width: 500px;
     margin-top: 20px;
 }
 
