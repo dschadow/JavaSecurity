@@ -10,7 +10,7 @@
 
 	<h2>Instructions</h2>
 
-    <p>Try to attack the database with the following input fields and to return more than one result.</p>
+    <p>Try to attack the database with the following input fields and to return more than one result or manipulating its entries.</p>
 
     <p><strong>Valid customers are:</strong> Arthur Dent, Ford Prefect, Tricia Trillian McMillan, Zaphod Beeblebrox,
         Marvin, Slartibartfast.</p>
