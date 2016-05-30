@@ -8,9 +8,12 @@
 <body>
 	<h1>SQL Injection</h1>
 
-    <p><strong>Valid customers are:</strong> Arthur Dent, Ford Prefect, Tricia Trillian McMillan, Zaphod Beeblebrox, Marvin, Slartibartfast</p>
+	<h2>Instructions</h2>
 
-	<p>Use <strong>&apos; or &apos;1&apos;=&apos;1</strong> to attack the database.</p>
+    <p>Try to attack the database with the following input fields and to return more than one result.</p>
+
+    <p><strong>Valid customers are:</strong> Arthur Dent, Ford Prefect, Tricia Trillian McMillan, Zaphod Beeblebrox,
+        Marvin, Slartibartfast.</p>
 
 	<form name="stmt" method="post" action="StatementServlet">
 		<fieldset>
