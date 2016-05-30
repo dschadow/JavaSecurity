@@ -8,14 +8,16 @@
 <body>
 	<h1>Cross-Site Scripting (XSS)</h1>
 
-    <p>Use &lt;script&gt;alert(document.cookie)&lt;/script&gt; as input to simulate a Cross-Site Scripting attack.</p>
+    <h2>Instructions</h2>
+
+    <p>Show the user's session id in an alert box.</p>
 
     <form action="unprotected" id="unprotectedForm" method="post">
         <fieldset>
             <legend>Unprotected</legend>
             <label for="unprotectedName">Name</label>
             <input type="text" id="unprotectedName" name="unprotectedName" />
-            <input type="submit" value=" Send" />
+            <input type="submit" value="Send" />
         </fieldset>
     </form>
 
@@ -24,7 +26,7 @@
             <legend>With Input Validation</legend>
             <label for="inputValidatedName">Name</label>
             <input type="text" id="inputValidatedName" name="inputValidatedName" pattern="^[^<>]+$" />
-            <input type="submit" value=" Send" />
+            <input type="submit" value="Send" />
         </fieldset>
     </form>
 
@@ -33,7 +35,7 @@
             <legend>With Output Escaping</legend>
             <label for="outputEscapedName">Name</label>
             <input type="text" id="outputEscapedName" name="outputEscapedName" />
-            <input type="submit" value=" Send" />
+            <input type="submit" value="Send" />
         </fieldset>
     </form>
 
@@ -42,7 +44,7 @@
             <legend>With JSP Output Escaping</legend>
             <label for="outputEscapedJSPName">Name</label>
             <input type="text" id="outputEscapedJSPName" name="outputEscapedJSPName" />
-            <input type="submit" value=" Send" />
+            <input type="submit" value="Send" />
         </fieldset>
     </form>
 
@@ -51,7 +53,7 @@
             <legend>With Content Security Policy (CSP)</legend>
             <label for="cspName">Name</label>
             <input type="text" id="cspName" name="cspName" />
-            <input type="submit" value=" Send" />
+            <input type="submit" value="Send" />
         </fieldset>
     </form>
 </body>
