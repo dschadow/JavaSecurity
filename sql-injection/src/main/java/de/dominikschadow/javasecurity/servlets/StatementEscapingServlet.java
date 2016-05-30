@@ -61,24 +61,10 @@ public class StatementEscapingServlet extends HttpServlet {
 
         LOGGER.info("Final SQL query " + query);
 
-        try (Statement stmt = ConnectionListener.con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-                Customer customer = new Customer();
-                customer.setCustId(rs.getInt(1));
-                customer.setName(rs.getString(2));
-                customer.setStatus(rs.getString(3));
-                customer.setOrderLimit(rs.getInt(4));
-
-                customers.add(customer);
-            }
-        } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        }
-
         response.setContentType("text/html");
 
-        try (PrintWriter out = response.getWriter()) {
+        try (Statement stmt = ConnectionListener.con.createStatement(); ResultSet rs = stmt.executeQuery(query);
+             PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
             out.println("<title>SQL Injection - Statement with Escaping</title>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
@@ -95,12 +81,12 @@ public class StatementEscapingServlet extends HttpServlet {
             out.println("<th>Order Limit</th>");
             out.println("</tr>");
 
-            for (Customer customer : customers) {
+            while (rs.next()) {
                 out.println("<tr>");
-                out.println("<td>" + customer.getCustId() + "</td>");
-                out.println("<td>" + customer.getName() + "</td>");
-                out.println("<td>" + customer.getStatus() + "</td>");
-                out.println("<td>" + customer.getOrderLimit() + "</td>");
+                out.println("<td>" + rs.getInt(1) + "</td>");
+                out.println("<td>" + rs.getString(2) + "</td>");
+                out.println("<td>" + rs.getString(3) + "</td>");
+                out.println("<td>" + rs.getInt(4) + "</td>");
                 out.println("</tr>");
             }
 
@@ -108,7 +94,7 @@ public class StatementEscapingServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body>");
             out.println("</html>");
-        } catch (IOException ex) {
+        } catch (SQLException | IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
     }
