@@ -33,8 +33,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Servlet using a normal Statement to query the in-memory-database.
- * User input is not modified and used directly in the SQL query.
+ * Servlet using a normal Statement to query the in-memory-database. User input is not modified and used directly in the
+ * SQL query. {@code ' or '1'='1} is a good input to return all statements, {@code '; drop table customer;--} to delete
+ * the complete table.
  *
  * @author Dominik Schadow
  */
