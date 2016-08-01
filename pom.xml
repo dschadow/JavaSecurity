@@ -272,7 +272,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>1.4.0</version>
+                <version>1.4.2</version>
                 <reportSets>
                     <reportSet>
                         <reports>
