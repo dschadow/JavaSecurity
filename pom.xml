@@ -34,7 +34,7 @@
         <jsf.version>2.2.13</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
         <flyway.version>4.0.3</flyway.version>
-        <hibernate.version>5.2.2.Final</hibernate.version>
+        <hibernate.version>5.2.3.Final</hibernate.version>
         <sonar.language>java</sonar.language>
     </properties>
 
@@ -222,7 +222,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.3.11.v20160721</version>
+                    <version>9.3.12.v20160915</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
