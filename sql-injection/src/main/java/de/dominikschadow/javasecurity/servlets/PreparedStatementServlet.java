@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.servlets;
 
-import de.dominikschadow.javasecurity.domain.Customer;
 import de.dominikschadow.javasecurity.listener.ConnectionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +31,6 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Servlet using a Prepared Statement to query the in-memory-database.
@@ -51,7 +48,6 @@ public class PreparedStatementServlet extends HttpServlet {
         LOGGER.info("Received " + name + " as POST parameter");
 
         String query = "SELECT * FROM customer WHERE name = ? ORDER BY CUST_ID";
-        List<Customer> customers = new ArrayList<>();
         ResultSet rs = null;
 
         response.setContentType("text/html");

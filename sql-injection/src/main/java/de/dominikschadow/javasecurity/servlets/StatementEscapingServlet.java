@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.servlets;
 
-import de.dominikschadow.javasecurity.domain.Customer;
 import de.dominikschadow.javasecurity.listener.ConnectionListener;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.codecs.OracleCodec;
@@ -34,8 +33,6 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Servlet using a normal Statement to query the in-memory-database.
@@ -56,7 +53,6 @@ public class StatementEscapingServlet extends HttpServlet {
         LOGGER.info("Escaped name is " + safeName);
 
         String query = "SELECT * FROM customer WHERE name = '" + safeName + "' ORDER BY CUST_ID";
-        List<Customer> customers = new ArrayList<>();
 
         LOGGER.info("Final SQL query " + query);
 
