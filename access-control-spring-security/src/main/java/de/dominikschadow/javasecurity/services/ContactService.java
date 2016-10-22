@@ -18,7 +18,6 @@
 package de.dominikschadow.javasecurity.services;
 
 import de.dominikschadow.javasecurity.domain.Contact;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PostFilter;
@@ -36,8 +35,11 @@ import java.util.List;
  */
 @Service
 public class ContactService {
-    @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    public ContactService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @PreAuthorize("hasRole('USER')")
     @PostAuthorize("returnObject.username == principal.username")

@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contacts/**").hasRole("USER")
             .and()
                 .formLogin()
-                .defaultSuccessUrl("/contacts/list")
+                .defaultSuccessUrl("/contacts")
             .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

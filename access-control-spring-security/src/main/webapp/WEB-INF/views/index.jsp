@@ -11,6 +11,6 @@
 
     <p>There are two users available in this demo application: <strong>userA/userA</strong> and <strong>userB/userB</strong>.</p>
 
-    <p>List all <a href="contacts/list">My Contacts</a></p>
+    <p>List all <a href="<c:url value="contacts"/>">My Contacts</a></p>
 </body>
 </html>

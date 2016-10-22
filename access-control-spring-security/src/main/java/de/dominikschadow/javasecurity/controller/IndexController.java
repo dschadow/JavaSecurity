@@ -18,18 +18,18 @@
 package de.dominikschadow.javasecurity.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 /**
- * 
+ * Index controller for all home page related operations.
+ *
  * @author Dominik Schadow
  */
 @Controller
 @RequestMapping(value = "/")
 public class IndexController {
-    @RequestMapping(method = GET)
+    @GetMapping
     public String index() {
         return "index";
     }

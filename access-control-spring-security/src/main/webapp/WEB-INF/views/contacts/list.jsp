@@ -12,7 +12,7 @@
 
 <ul>
     <c:forEach var="contact" items="${contacts}">
-        <li><a href="${contact.contactId}">${contact.firstname} ${contact.lastname}</a></li>
+        <li><a href="<c:url value="contacts/${contact.contactId}" />">${contact.firstname} ${contact.lastname}</a></li>
     </c:forEach>
 </ul>
 

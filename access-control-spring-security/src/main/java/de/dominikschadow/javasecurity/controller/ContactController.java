@@ -21,26 +21,30 @@ import de.dominikschadow.javasecurity.domain.Contact;
 import de.dominikschadow.javasecurity.services.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 /**
+ * Contact controller for all contact related operations.
+ *
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping(value = "/contacts/list")
-public class ListController {
-    private static final  Logger LOGGER = LoggerFactory.getLogger(ListController.class);
-    @Autowired
+@RequestMapping(value = "/contacts")
+public class ContactController {
+    private static final  Logger LOGGER = LoggerFactory.getLogger(ContactController.class);
     private ContactService contactService;
 
-    @RequestMapping(method = GET)
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
+    }
+
+    @GetMapping
     public String list(Model model) {
         List<Contact> contacts = contactService.getContacts();
 
@@ -49,5 +53,16 @@ public class ListController {
         model.addAttribute("contacts", contacts);
 
         return "contacts/list";
+    }
+
+    @GetMapping("{contactId}")
+    public String details(@PathVariable int contactId, Model model) {
+        LOGGER.info("Loading contact with ID {} for user", contactId);
+
+        Contact contact = contactService.getContact(contactId);
+
+        model.addAttribute("contact", contact);
+
+        return "contacts/details";
     }
 }

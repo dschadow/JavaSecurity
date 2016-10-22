@@ -18,7 +18,7 @@
 </p>
 
 <p>
-    <a href="list">All Contacts</a> | <a href="<c:url value="/logout"/>">Logout</a>
+    <a href="<c:url value="/contacts"/>">All Contacts</a> | <a href="<c:url value="/logout"/>">Logout</a>
 </p>
 </body>
 </html>
