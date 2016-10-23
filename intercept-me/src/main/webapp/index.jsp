@@ -8,12 +8,13 @@
 <body>
 	<h1>Intercept Me</h1>
 
-    <p>Target is to send the word <i>inject</i> (lowercase) to the backend so that the servlet returns <i>SUCCESS</i> (uppercase).</p>
+    <p>Your task is to send the word <strong>inject</strong> (lowercase) to the backend so that the servlet returns
+        <strong>SUCCESS</strong> (uppercase).</p>
 
     <form action="form" id="InjectForm" method="post">
         <fieldset>
-            <legend>Enter your name</legend>
-            <label for="name">Name</label>
+            <legend>Enter Text</legend>
+            <label for="name">Text</label>
             <input type="text" id="name" name="name" pattern="^(?!.*inject).*$" />
             <input type="submit" value=" Send" />
         </fieldset>
