@@ -55,7 +55,7 @@ public class AESEncryption {
      *
      * @param initialText The text to encrypt (in UTF-8)
      * @return The encrypted text (in Base64)
-     * @throws KeyczarException
+     * @throws KeyczarException General Keyczar exception
      */
     private static String encrypt(String initialText) throws KeyczarException {
         Crypter crypter = new Crypter(KEYSET_PATH);
