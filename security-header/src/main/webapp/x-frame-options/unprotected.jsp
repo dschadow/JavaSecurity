@@ -15,8 +15,8 @@
         <div style="position: absolute; top: 72px; left: 190px;">
             <input style="width: 175px; height: 25px;" type="password" name="password" id="password"/>
         </div>
-        <div id="hiddenButton" style="cursor: pointer; position: absolute; top: 105; left: 275; z-index: 1; width: 90; height: 40; border: 5pt solid red;">
-            <input type="submit" value="Send" style="position: relative; top: 5; left: 5px; width: 80px; height: 30px; cursor: pointer; "/>
+        <div id="hiddenButton" style="cursor: pointer; position: absolute; top: 105px; left: 275px; z-index: 1; width: 90px; height: 40px; border: 5pt solid red;">
+            <input type="submit" value="Send" style="position: relative; top: 5px; left: 5px; width: 80px; height: 30px; cursor: pointer; "/>
         </div>
     </form>
 </div>
