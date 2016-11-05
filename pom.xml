@@ -36,6 +36,7 @@
         <flyway.version>4.0.3</flyway.version>
         <hibernate.version>5.2.4.Final</hibernate.version>
         <sonar.language>java</sonar.language>
+        <findbugs.version>3.0.4</findbugs.version>
     </properties>
 
     <prerequisites>
@@ -207,7 +208,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>3.6.0</version>
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <source>1.8</source>
@@ -222,7 +223,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.3.13.v20161014</version>
+                    <version>9.3.14.v20161028</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -242,7 +243,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>3.0.4</version>
+                    <version>${findbugs.version}</version>
                     <configuration>
                         <effort>Max</effort>
                         <threshold>Low</threshold>
@@ -272,7 +273,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>1.4.3</version>
+                <version>1.4.4</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -284,7 +285,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
+                <version>${findbugs.version}</version>
                 <configuration>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
                     <xmlOutput>true</xmlOutput>
