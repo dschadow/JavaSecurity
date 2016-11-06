@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * This servlet filter protects the {@code x-xss-protection/protected.jsp} page by adding the {@code X-XSS-Protection}
  * header to the response. The {@code urlPatterns} should be far more wildcard in a real web application than in this
- * demo project. This header is only working in Microsoft Internet Explorer.
+ * demo project.
  *
  * @author Dominik Schadow
  */
