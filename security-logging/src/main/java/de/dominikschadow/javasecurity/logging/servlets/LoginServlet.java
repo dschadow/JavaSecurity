@@ -41,19 +41,18 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        log.info("Processing login request...");
-
         String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-        log.warn(SecurityMarkers.CONFIDENTIAL, "User {} is logging in", username);
-        log.warn(SecurityMarkers.EVENT_FAILURE, "User {} is logging in", username);
-        log.warn(SecurityMarkers.EVENT_SUCCESS, "User {} is logging in", username);
-        log.warn(SecurityMarkers.RESTRICTED, "User {} is logging in", username);
-        log.warn(SecurityMarkers.SECRET, "User {} is logging in", username);
-        log.warn(SecurityMarkers.SECURITY_AUDIT, "User {} is logging in", username);
-        log.warn(SecurityMarkers.SECURITY_FAILURE, "User {} is logging in", username);
-        log.warn(SecurityMarkers.SECURITY_SUCCESS, "User {} is logging in", username);
-        log.warn(SecurityMarkers.TOP_SECRET, "User {} is logging in", username);
+        log.info(SecurityMarkers.CONFIDENTIAL, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.EVENT_FAILURE, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.EVENT_SUCCESS, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.RESTRICTED, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.SECRET, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.SECURITY_AUDIT, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.SECURITY_FAILURE, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.SECURITY_SUCCESS, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.TOP_SECRET, "User {} with password {} is logging in", username, password);
 
         response.setContentType("text/html; charset=UTF-8");
 
