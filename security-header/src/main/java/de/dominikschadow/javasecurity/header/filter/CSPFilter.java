@@ -34,12 +34,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "CSPFilter", urlPatterns = {"/csp/protected.jsp"})
 public class CSPFilter implements Filter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CSPFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(CSPFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        LOGGER.info("Content-Security-Policy header added to response");
+        log.info("Content-Security-Policy header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("Content-Security-Policy", "default-src 'self'");

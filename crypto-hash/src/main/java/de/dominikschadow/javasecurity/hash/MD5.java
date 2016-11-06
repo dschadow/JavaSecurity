@@ -34,7 +34,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Dominik Schadow
  */
 public class MD5 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MD5.class);
+    private static final Logger log = LoggerFactory.getLogger(MD5.class);
     private static final String ALGORITHM = "MD5";
 
     /**
@@ -50,9 +50,9 @@ public class MD5 {
             byte[] hash = calculateHash(password);
             boolean correct = verifyPassword(hash, password);
 
-            LOGGER.info("Entered password is correct: {}", correct);
+            log.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -68,8 +68,8 @@ public class MD5 {
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password);
 
-        LOGGER.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
-        LOGGER.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
+        log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
+        log.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

@@ -36,11 +36,11 @@ import java.io.PrintWriter;
 @WebServlet(name = "FakeServlet", urlPatterns = {"/x-frame-options/FakeServlet", "/csp2/FakeServlet"})
 public class FakeServlet extends HttpServlet {
     private static final long serialVersionUID = -6474742244481023685L;
-    private static final Logger LOGGER = LoggerFactory.getLogger(FakeServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(FakeServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        LOGGER.info("Processing fake request...");
+        log.info("Processing fake request...");
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -56,7 +56,7 @@ public class FakeServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

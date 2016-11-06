@@ -40,7 +40,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class RSA {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RSA.class);
+    private static final Logger log = LoggerFactory.getLogger(RSA.class);
     private static final String ALGORITHM = "RSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
@@ -72,7 +72,7 @@ public class RSA {
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
                 KeyStoreException | CertificateException | UnrecoverableKeyException | InvalidKeyException |
                 IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -119,8 +119,8 @@ public class RSA {
     }
 
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        LOGGER.info("initial text: {}", initialText);
-        LOGGER.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
-        LOGGER.info("plain text: {}", new String(plaintext));
+        log.info("initial text: {}", initialText);
+        log.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
+        log.info("plain text: {}", new String(plaintext));
     }
 }

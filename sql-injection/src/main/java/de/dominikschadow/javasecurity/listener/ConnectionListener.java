@@ -29,7 +29,7 @@ import java.sql.SQLException;
 
 @WebListener
 public class ConnectionListener implements ServletContextListener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionListener.class);
+    private static final Logger log = LoggerFactory.getLogger(ConnectionListener.class);
     public static Connection con = null;
 
     @Override
@@ -37,7 +37,7 @@ public class ConnectionListener implements ServletContextListener {
         try {
             con = DriverManager.getConnection("jdbc:h2:mem:SQL-Injection-DB", "sa", "");
         } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -48,7 +48,7 @@ public class ConnectionListener implements ServletContextListener {
                 con.close();
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

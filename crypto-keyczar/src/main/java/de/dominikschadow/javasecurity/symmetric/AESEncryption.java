@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * @author Dominik Schadow
  */
 public class AESEncryption {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryption.class);
+    private static final Logger log = LoggerFactory.getLogger(AESEncryption.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/symmetric";
 
     /**
@@ -46,7 +46,7 @@ public class AESEncryption {
 
             printReadableMessages(initialText, ciphertext, plaintext);
         } catch (KeyczarException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -68,8 +68,8 @@ public class AESEncryption {
     }
 
     private static void printReadableMessages(String initialText, String ciphertext, String plaintext) {
-        LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("cipherText as Base64: {}", ciphertext);
-        LOGGER.info("plaintext: {}", plaintext);
+        log.info("initialText: {}", initialText);
+        log.info("cipherText as Base64: {}", ciphertext);
+        log.info("plaintext: {}", plaintext);
     }
 }

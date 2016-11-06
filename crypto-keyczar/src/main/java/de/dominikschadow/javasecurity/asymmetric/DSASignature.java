@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * @author Dominik Schadow
  */
 public class DSASignature {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DSASignature.class);
+    private static final Logger log = LoggerFactory.getLogger(DSASignature.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/sign";
 
     /**
@@ -46,7 +46,7 @@ public class DSASignature {
 
             printReadableMessages(initialText, signature, valid);
         } catch (KeyczarException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -61,8 +61,8 @@ public class DSASignature {
     }
 
     private static void printReadableMessages(String initialText, String signature, boolean valid) {
-        LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("signature: {}", signature);
-        LOGGER.info("signature valid: {}", valid);
+        log.info("initialText: {}", initialText);
+        log.info("signature: {}", signature);
+        log.info("signature valid: {}", valid);
     }
 }

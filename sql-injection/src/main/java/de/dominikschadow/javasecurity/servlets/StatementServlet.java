@@ -41,16 +41,16 @@ import java.sql.Statement;
  */
 @WebServlet(name = "StatementServlet", urlPatterns = {"/StatementServlet"})
 public class StatementServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StatementServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(StatementServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
-        LOGGER.info("Received " + name + " as POST parameter");
+        log.info("Received " + name + " as POST parameter");
 
         String query = "SELECT * FROM customer WHERE name = '" + name + "' ORDER BY CUST_ID";
 
-        LOGGER.info("Final SQL query " + query);
+        log.info("Final SQL query " + query);
 
         response.setContentType("text/html");
 
@@ -86,7 +86,7 @@ public class StatementServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (SQLException | IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

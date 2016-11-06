@@ -36,7 +36,7 @@ import java.security.SecureRandom;
  * @author Dominik Schadow
  */
 public class SHA512 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SHA512.class);
+    private static final Logger log = LoggerFactory.getLogger(SHA512.class);
     private static final String ALGORITHM = "SHA-512";
     private static final int ITERATIONS = 1000000;
     private static final int SALT_SIZE = 64;
@@ -53,15 +53,15 @@ public class SHA512 {
         try {
             byte[] salt = generateSalt();
 
-            LOGGER.info("Password {}. hash algorithm {}, iterations {}, salt {}", password, ALGORITHM, ITERATIONS,
+            log.info("Password {}. hash algorithm {}, iterations {}, salt {}", password, ALGORITHM, ITERATIONS,
                     BaseEncoding.base16().encode(salt));
 
             byte[] hash = calculateHash(password, salt);
             boolean correct = verifyPassword(hash, password, salt);
 
-            LOGGER.info("Entered password is correct: {}", correct);
+            log.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -92,8 +92,8 @@ public class SHA512 {
             NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] comparisonHash = calculateHash(password, salt);
 
-        LOGGER.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
-        LOGGER.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
+        log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
+        log.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

@@ -34,12 +34,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "XFrameOptionsFilter", urlPatterns = {"/x-frame-options/protectedForm.jsp", "/all/all.jsp"})
 public class XFrameOptionsFilter implements Filter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(XFrameOptionsFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(XFrameOptionsFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        LOGGER.info("X-Frame-Options header added to response");
+        log.info("X-Frame-Options header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.addHeader("X-Frame-Options", "DENY");

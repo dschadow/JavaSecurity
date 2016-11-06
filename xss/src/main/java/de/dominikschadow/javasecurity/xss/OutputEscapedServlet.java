@@ -36,13 +36,13 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "OutputEscapedServlet", urlPatterns = {"/escaped"})
 public class OutputEscapedServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OutputEscapedServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(OutputEscapedServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("outputEscapedName");
 
-        LOGGER.info("Received {} as name", name);
+        log.info("Received {} as name", name);
 
         response.setContentType("text/html");
 
@@ -59,7 +59,7 @@ public class OutputEscapedServlet extends HttpServlet {
             out.println("<p><a href='index.jsp'>Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

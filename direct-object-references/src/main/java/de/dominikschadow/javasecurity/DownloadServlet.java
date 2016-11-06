@@ -38,7 +38,7 @@ import java.io.OutputStream;
  */
 @WebServlet(name = "DownloadServlet", urlPatterns = {"/download"})
 public class DownloadServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DownloadServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(DownloadServlet.class);
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -46,7 +46,7 @@ public class DownloadServlet extends HttpServlet {
             IOException {
         String indirectReference = request.getParameter("file");
 
-        LOGGER.info("File {} requested for download", indirectReference);
+        log.info("File {} requested for download", indirectReference);
 
         try (InputStream is = new FileInputStream(ReferenceUtil.getFileByIndirectReference(indirectReference)); OutputStream os = response.getOutputStream()) {
             byte[] bytes = new byte[1024];
@@ -56,7 +56,7 @@ public class DownloadServlet extends HttpServlet {
                 os.write(bytes, 0, read);
             }
         } catch (AccessControlException | IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

@@ -35,7 +35,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AESEncryption {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AESEncryption.class);
+    private static final Logger log = LoggerFactory.getLogger(AESEncryption.class);
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     /**
@@ -58,7 +58,7 @@ public class AESEncryption {
 
             printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchAlgorithmException | KeyStoreException | CertificateException | UnrecoverableKeyException | IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -101,9 +101,9 @@ public class AESEncryption {
     }
 
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        LOGGER.info("initialText: {}", initialText);
-        LOGGER.info("cipherText as byte[]: {}", new String(ciphertext));
-        LOGGER.info("cipherText as HEX: {}", Hex.encodeToString(ciphertext));
-        LOGGER.info("plaintext: {}", CodecSupport.toString(plaintext));
+        log.info("initialText: {}", initialText);
+        log.info("cipherText as byte[]: {}", new String(ciphertext));
+        log.info("cipherText as HEX: {}", Hex.encodeToString(ciphertext));
+        log.info("plaintext: {}", CodecSupport.toString(plaintext));
     }
 }

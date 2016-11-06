@@ -34,7 +34,7 @@ import java.util.Arrays;
  * @author Dominik Schadow
  */
 public class SHA512Hash {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SHA512Hash.class);
+    private static final Logger log = LoggerFactory.getLogger(SHA512Hash.class);
     /**
      * Nothing up my sleeve number as private salt, not good for production.
      */
@@ -53,7 +53,7 @@ public class SHA512Hash {
         Hash hash = calculateHash(password);
         boolean correct = verifyPassword(hash.getBytes(), hash.getSalt(), password);
 
-        LOGGER.info("Entered password is correct: {}", correct);
+        log.info("Entered password is correct: {}", correct);
     }
 
     private static Hash calculateHash(String password) {
@@ -68,7 +68,7 @@ public class SHA512Hash {
 
         Hash hash = hashService.computeHash(builder.build());
 
-        LOGGER.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
+        log.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
 
         return hash;
     }
@@ -85,9 +85,9 @@ public class SHA512Hash {
 
         Hash comparisonHash = hashService.computeHash(builder.build());
 
-        LOGGER.info("password: {}", password);
-        LOGGER.info("1 hash: {}", Hex.encodeToString(originalHash));
-        LOGGER.info("2 hash: {}", comparisonHash.toHex());
+        log.info("password: {}", password);
+        log.info("1 hash: {}", Hex.encodeToString(originalHash));
+        log.info("2 hash: {}", comparisonHash.toHex());
 
         return Arrays.equals(originalHash, comparisonHash.getBytes());
     }

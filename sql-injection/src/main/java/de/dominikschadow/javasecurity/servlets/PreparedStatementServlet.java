@@ -40,12 +40,12 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "PreparedStatementServlet", urlPatterns = {"/PreparedStatementServlet"})
 public class PreparedStatementServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PreparedStatementServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(PreparedStatementServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
-        LOGGER.info("Received " + name + " as POST parameter");
+        log.info("Received " + name + " as POST parameter");
 
         String query = "SELECT * FROM customer WHERE name = ? ORDER BY CUST_ID";
         ResultSet rs = null;
@@ -86,14 +86,14 @@ public class PreparedStatementServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (SQLException | IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         } finally {
             try {
                 if (rs != null) {
                     rs.close();
                 }
             } catch (SQLException ex) {
-                LOGGER.error(ex.getMessage(), ex);
+                log.error(ex.getMessage(), ex);
             }
         }
     }

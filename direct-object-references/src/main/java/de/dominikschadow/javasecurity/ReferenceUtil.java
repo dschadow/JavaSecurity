@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author Dominik Schadow
  */
 public class ReferenceUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(ReferenceUtil.class);
     private static final Set<Object> FILES = new HashSet<>();
     private static final RandomAccessReferenceMap REFERENCE_MAP = new RandomAccessReferenceMap(FILES);
 
@@ -66,7 +66,7 @@ public class ReferenceUtil {
     public static String getFileNameByIndirectReference(String indirectReference) throws AccessControlException {
         File file = REFERENCE_MAP.getDirectReference(indirectReference);
 
-        LOGGER.info("File name {}, path {}", file.getName(), file.getAbsolutePath());
+        log.info("File name {}, path {}", file.getName(), file.getAbsolutePath());
 
         return file.getName();
     }
@@ -74,7 +74,7 @@ public class ReferenceUtil {
     public static File getFileByIndirectReference(String indirectReference) throws AccessControlException {
         File file = REFERENCE_MAP.getDirectReference(indirectReference);
 
-        LOGGER.info("File name {}, path {}", file.getName(), file.getAbsolutePath());
+        log.info("File name {}, path {}", file.getName(), file.getAbsolutePath());
 
         return file;
     }

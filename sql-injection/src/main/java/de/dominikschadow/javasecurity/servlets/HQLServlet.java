@@ -44,7 +44,7 @@ import java.util.List;
  */
 @WebServlet(name = "HQLServlet", urlPatterns = {"/HQLServlet"})
 public class HQLServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HQLServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(HQLServlet.class);
     private static transient EntityManager em;
 
     @PostConstruct
@@ -65,7 +65,7 @@ public class HQLServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
-        LOGGER.info("Received " + name + " as POST parameter");
+        log.info("Received " + name + " as POST parameter");
 
         Query query = em.createQuery("FROM Customer c WHERE c.name = :name ORDER BY c.custId", Customer.class);
         query.setParameter("name", name);
@@ -104,7 +104,7 @@ public class HQLServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

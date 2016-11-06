@@ -37,7 +37,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/contacts")
 public class ContactController {
-    private static final  Logger LOGGER = LoggerFactory.getLogger(ContactController.class);
+    private static final Logger log = LoggerFactory.getLogger(ContactController.class);
     private ContactService contactService;
 
     public ContactController(ContactService contactService) {
@@ -48,7 +48,7 @@ public class ContactController {
     public String list(Model model) {
         List<Contact> contacts = contactService.getContacts();
 
-        LOGGER.info("Found {} contacts for user", contacts.size());
+        log.info("Found {} contacts for user", contacts.size());
 
         model.addAttribute("contacts", contacts);
 
@@ -57,7 +57,7 @@ public class ContactController {
 
     @GetMapping("{contactId}")
     public String details(@PathVariable int contactId, Model model) {
-        LOGGER.info("Loading contact with ID {} for user", contactId);
+        log.info("Loading contact with ID {} for user", contactId);
 
         Contact contact = contactService.getContact(contactId);
 

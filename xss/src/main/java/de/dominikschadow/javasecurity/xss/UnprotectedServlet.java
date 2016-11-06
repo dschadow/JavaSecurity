@@ -35,13 +35,13 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "UnprotectedServlet", urlPatterns = {"/unprotected"})
 public class UnprotectedServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UnprotectedServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(UnprotectedServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("unprotectedName");
 
-        LOGGER.info("Received {} as name", name);
+        log.info("Received {} as name", name);
 
         response.setContentType("text/html");
 
@@ -56,7 +56,7 @@ public class UnprotectedServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

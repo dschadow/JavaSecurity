@@ -38,15 +38,15 @@ import java.security.NoSuchProviderException;
 @WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
 public class OrderServlet extends HttpServlet {
     private static final long serialVersionUID = 168055850789919449L;
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(OrderServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        LOGGER.info("Processing order servlet...");
+        log.info("Processing order servlet...");
 
         try {
             if (!CSRFTokenHandler.isValid(request)) {
-                LOGGER.info("Order servlet: CSRF token is invalid");
+                log.info("Order servlet: CSRF token is invalid");
                 response.setStatus(401);
 
                 try (PrintWriter out = response.getWriter()) {
@@ -62,21 +62,21 @@ public class OrderServlet extends HttpServlet {
                     out.println("</body>");
                     out.println("</html>");
                 } catch (IOException ex) {
-                    LOGGER.error(ex.getMessage(), ex);
+                    log.error(ex.getMessage(), ex);
                 }
 
                 return;
             }
         } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
 
-        LOGGER.info("Order servlet: CSRF token is valid");
+        log.info("Order servlet: CSRF token is valid");
 
         String product = request.getParameter("product");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        LOGGER.info("Ordered {} items of product {}", quantity, product);
+        log.info("Ordered {} items of product {}", quantity, product);
 
         response.setContentType("text/html");
 
@@ -93,7 +93,7 @@ public class OrderServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }

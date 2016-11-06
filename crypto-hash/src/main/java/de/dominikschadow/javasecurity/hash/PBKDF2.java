@@ -36,7 +36,7 @@ import java.security.spec.InvalidKeySpecException;
  * @author Dominik Schadow
  */
 public class PBKDF2 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PBKDF2.class);
+    private static final Logger log = LoggerFactory.getLogger(PBKDF2.class);
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
     private static final int ITERATIONS = 10000;
     // salt size at least 32 byte
@@ -60,15 +60,15 @@ public class PBKDF2 {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] salt = generateSalt();
 
-            LOGGER.info("Hashing password {} with hash algorithm {}, hash size {}, # of iterations {} and salt {}",
+            log.info("Hashing password {} with hash algorithm {}, hash size {}, # of iterations {} and salt {}",
                     String.valueOf(password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base16().encode(salt));
 
             byte[] hash = calculateHash(skf, password, salt);
             boolean correct = verifyPassword(skf, hash, password, salt);
 
-            LOGGER.info("Entered password is correct: {}", correct);
+            log.info("Entered password is correct: {}", correct);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -90,8 +90,8 @@ public class PBKDF2 {
             InvalidKeySpecException {
         byte[] comparisonHash = calculateHash(skf, password, salt);
 
-        LOGGER.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
-        LOGGER.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
+        log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
+        log.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

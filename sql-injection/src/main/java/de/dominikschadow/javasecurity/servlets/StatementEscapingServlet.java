@@ -42,19 +42,19 @@ import java.sql.Statement;
  */
 @WebServlet(name = "StatementEscapingServlet", urlPatterns = {"/StatementEscapingServlet"})
 public class StatementEscapingServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StatementEscapingServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(StatementEscapingServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String name = request.getParameter("name");
-        LOGGER.info("Received " + name + " as POST parameter");
+        log.info("Received " + name + " as POST parameter");
 
         String safeName = ESAPI.encoder().encodeForSQL(new OracleCodec(), name);
-        LOGGER.info("Escaped name is " + safeName);
+        log.info("Escaped name is " + safeName);
 
         String query = "SELECT * FROM customer WHERE name = '" + safeName + "' ORDER BY CUST_ID";
 
-        LOGGER.info("Final SQL query " + query);
+        log.info("Final SQL query " + query);
 
         response.setContentType("text/html");
 
@@ -90,7 +90,7 @@ public class StatementEscapingServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (SQLException | IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            log.error(ex.getMessage(), ex);
         }
     }
 }
