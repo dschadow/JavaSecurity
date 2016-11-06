@@ -42,10 +42,7 @@ public class CSPFilter implements Filter {
         log.info("Content-Security-Policy header added to response");
 
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setHeader("Content-Security-Policy", "default-src 'self'");
-
-        // Block and report violations
-        //response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
+        response.setHeader("Content-Security-Policy", "default-src 'self'; report-uri CSPReporting");
 
         filterChain.doFilter(servletRequest, response);
     }
