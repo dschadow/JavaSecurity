@@ -44,15 +44,15 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        log.info(SecurityMarkers.CONFIDENTIAL, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.EVENT_FAILURE, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.EVENT_SUCCESS, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.RESTRICTED, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.SECRET, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.SECURITY_AUDIT, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.SECURITY_FAILURE, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.SECURITY_SUCCESS, "User {} with password {} is logging in", username, password);
-        log.info(SecurityMarkers.TOP_SECRET, "User {} with password {} is logging in", username, password);
+        log.info(SecurityMarkers.CONFIDENTIAL, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.EVENT_FAILURE, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.EVENT_SUCCESS, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.RESTRICTED, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.SECRET, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.SECURITY_AUDIT, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.SECURITY_FAILURE, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.SECURITY_SUCCESS, "User {} with password {} logged in", username, password);
+        log.info(SecurityMarkers.TOP_SECRET, "User {} with password {} logged in", username, password);
 
         response.setContentType("text/html; charset=UTF-8");
 
