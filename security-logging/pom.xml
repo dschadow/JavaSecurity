@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>de.dominikschadow.javasecurity</groupId>
+        <artifactId>javasecurity</artifactId>
+        <version>1.1.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>security-logging</artifactId>
+    <packaging>war</packaging>
+    <name>Security Logging</name>
+
+    <description>Security Logging sample project. Demonstrates how security relevant events can be logged using the
+        OWASP Security Logging project. After launching, open the web application in your browser at
+        http://localhost:8080/security-logging
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp</groupId>
+            <artifactId>security-logging-logback</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <defaultGoal>tomcat7:run-war</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
