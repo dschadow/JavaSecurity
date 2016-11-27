@@ -34,7 +34,7 @@
         <jsf.version>2.2.14</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
         <flyway.version>4.0.3</flyway.version>
-        <hibernate.version>5.2.4.Final</hibernate.version>
+        <hibernate.version>5.2.5.Final</hibernate.version>
         <sonar.language>java</sonar.language>
         <findbugs.version>3.0.4</findbugs.version>
     </properties>
