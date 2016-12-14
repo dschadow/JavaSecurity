@@ -30,7 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.4.RELEASE</spring.version>
         <spring.security.version>4.2.0.RELEASE</spring.security.version>
-        <slf4j.version>1.7.21</slf4j.version>
+        <slf4j.version>1.7.22</slf4j.version>
         <jsf.version>2.2.14</jsf.version>
         <owasp.encoder.version>1.2</owasp.encoder.version>
         <flyway.version>4.0.3</flyway.version>
