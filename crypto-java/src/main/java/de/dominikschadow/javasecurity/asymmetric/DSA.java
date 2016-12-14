@@ -57,7 +57,7 @@ public class DSA {
         final char[] keyPassword = "asymmetric-sample-dsa".toCharArray();
 
         try {
-            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            KeyStore ks = loadKeystore(keystorePassword);
             PrivateKey privateKey = loadPrivateKey(ks, keyAlias, keyPassword);
             PublicKey publicKey = loadPublicKey(ks, keyAlias);
 
@@ -71,9 +71,9 @@ public class DSA {
         }
     }
 
-    private static KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+    private static KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException,
             CertificateException, NoSuchAlgorithmException, IOException {
-        try (InputStream keystoreStream = DSA.class.getResourceAsStream(keystorePath)) {
+        try (InputStream keystoreStream = DSA.class.getResourceAsStream(KEYSTORE_PATH)) {
             KeyStore ks = KeyStore.getInstance("JCEKS");
             ks.load(keystoreStream, keystorePassword);
             return ks;

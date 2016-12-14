@@ -64,7 +64,7 @@ public class AES {
 
         try {
             cipher = Cipher.getInstance(ALGORITHM);
-            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            KeyStore ks = loadKeystore(keystorePassword);
             Key key = loadKey(ks, keyAlias, keyPassword);
             SecretKeySpec secretKeySpec = new SecretKeySpec(key.getEncoded(), "AES");
             byte[] ciphertext = encrypt(secretKeySpec, initialText);
@@ -79,9 +79,9 @@ public class AES {
         }
     }
 
-    private KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException,
+    private KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException,
             CertificateException, NoSuchAlgorithmException, IOException {
-        try (InputStream keystoreStream = getClass().getResourceAsStream(keystorePath)) {
+        try (InputStream keystoreStream = getClass().getResourceAsStream(KEYSTORE_PATH)) {
             KeyStore ks = KeyStore.getInstance("JCEKS");
             ks.load(keystoreStream, keystorePassword);
 
@@ -98,15 +98,15 @@ public class AES {
         return ks.getKey(keyAlias, keyPassword);
     }
 
-    private byte[] encrypt(SecretKeySpec secretKeySpec, String initialText) throws NoSuchPaddingException,
-            NoSuchAlgorithmException, UnsupportedEncodingException, BadPaddingException,
-            IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
+    private byte[] encrypt(SecretKeySpec secretKeySpec, String initialText) throws
+            UnsupportedEncodingException, BadPaddingException,
+            IllegalBlockSizeException, InvalidKeyException {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         return cipher.doFinal(initialText.getBytes("UTF-8"));
     }
 
-    private byte[] decrypt(SecretKeySpec secretKeySpec, byte[] ciphertext) throws NoSuchPaddingException,
-            NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException,
+    private byte[] decrypt(SecretKeySpec secretKeySpec, byte[] ciphertext) throws
+            BadPaddingException, IllegalBlockSizeException,
             InvalidAlgorithmParameterException, InvalidKeyException {
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(cipher.getIV()));
         return cipher.doFinal(ciphertext);

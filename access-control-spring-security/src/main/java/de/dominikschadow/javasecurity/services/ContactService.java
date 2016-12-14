@@ -35,7 +35,7 @@ import java.util.List;
  */
 @Service
 public class ContactService {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public ContactService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

@@ -51,7 +51,7 @@ public class AESEncryption {
         final char[] keyPassword = "symmetric-sample".toCharArray();
 
         try {
-            KeyStore ks = loadKeystore(KEYSTORE_PATH, keystorePassword);
+            KeyStore ks = loadKeystore(keystorePassword);
             Key key = loadKey(ks, keyAlias, keyPassword);
             byte[] ciphertext = encrypt(key, CodecSupport.toBytes(initialText));
             byte[] plaintext = decrypt(key, ciphertext);
@@ -62,8 +62,8 @@ public class AESEncryption {
         }
     }
 
-    private static KeyStore loadKeystore(String keystorePath, char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = AESEncryption.class.getResourceAsStream(keystorePath);
+    private static KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+        InputStream keystoreStream = AESEncryption.class.getResourceAsStream(KEYSTORE_PATH);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
         ks.load(keystoreStream, keystorePassword);

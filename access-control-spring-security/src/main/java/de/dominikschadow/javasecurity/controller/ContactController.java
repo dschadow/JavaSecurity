@@ -38,7 +38,7 @@ import java.util.List;
 @RequestMapping(value = "/contacts")
 public class ContactController {
     private static final Logger log = LoggerFactory.getLogger(ContactController.class);
-    private ContactService contactService;
+    private final ContactService contactService;
 
     public ContactController(ContactService contactService) {
         this.contactService = contactService;
