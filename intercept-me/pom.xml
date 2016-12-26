@@ -12,8 +12,8 @@
     <packaging>war</packaging>
     <name>Intercept Me</name>
 
-    <description>InterceptMe sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/intercept-me
+    <description>InterceptMe sample project. Requires a server like the embedded Jetty plugin. After launching, open the
+        web application in your browser at http://localhost:8080/intercept-me
     </description>
 
     <dependencies>
@@ -37,11 +37,16 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <defaultGoal>tomcat7:run-war</defaultGoal>
+        <defaultGoal>jetty:run-war</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <webApp>
+                        <contextPath>/${project.artifactId}</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
