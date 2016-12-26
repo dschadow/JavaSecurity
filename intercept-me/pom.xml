@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
     <name>Intercept Me</name>
 
-    <description>InterceptMe sample project. Start via the main method in the Application class. After launching, open
+    <description>Intercept Me sample project. Start via the main method in the Application class. After launching, open
         the web application in your browser at http://localhost:8080/intercept-me.
     </description>
 
@@ -32,6 +32,24 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <defaultGoal>spring-boot:run</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

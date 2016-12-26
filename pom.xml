@@ -44,6 +44,7 @@
         <hibernate.version>5.2.5.Final</hibernate.version>
         <sonar.language>java</sonar.language>
         <findbugs.version>3.0.4</findbugs.version>
+        <docker.image.prefix>dschadow</docker.image.prefix>
     </properties>
 
     <prerequisites>
@@ -270,6 +271,11 @@
                             </plugin>
                         </plugins>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.4.13</version>
                 </plugin>
             </plugins>
         </pluginManagement>
