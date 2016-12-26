@@ -5,7 +5,7 @@ This repository contains several Java web applications and command line applicat
 #Web Applications in Detail
 Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. 
 
-The smaller web applications all come with a ready to use **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**. The web applications which require a **Servlet 3.1** capable server contain the **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
+Some web applications are based on Spring Boot and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** . The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
 ##access-control-spring-security
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080/access-control-spring-security**.
@@ -26,7 +26,7 @@ Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer P
 Direct object references (and indirect object references) demo project using plain Java. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/direct-object-references**.
 
 ##intercept-me
-Simple web application to experiment with [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) as intercepting proxy. Target is to receive **SUCCESS** (in uppercase) from the Servlet which will be returned when the name parameter in the form is **inject** (in lowercase). After launching, open the web application in your browser at **http://localhost:8080/intercept-me**.
+Spring Boot based web application to experiment with [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) as intercepting proxy. Target is to receive **SUCCESS** from the backend. After launching, open the web application in your browser at **http://localhost:8080/intercept-me**.
 
 ##security-header
 Security response header demo project which applies **X-Content-Type-Options**, **Cache-Control**, **X-Frame-Options**, **HTTP Strict Transport Security (HSTS)**, **X-XSS-Protection** and **Content Security Policy (CSP)** (Level 1 and 2) headers to HTTP responses. After launching, open the web application in your browser at **http://localhost:8080/security-header** or **https://localhost:8443/security-header**.
