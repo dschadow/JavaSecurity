@@ -9,52 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>intercept-me</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>Intercept Me</name>
 
-    <description>InterceptMe sample project. Requires a server like the embedded Jetty plugin. After launching, open the
-        web application in your browser at http://localhost:8080/intercept-me
+    <description>InterceptMe sample project. Start via the main method in the Application class. After launching, open
+        the web application in your browser at http://localhost:8080/intercept-me.
     </description>
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
-        <defaultGoal>jetty:run-war</defaultGoal>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <configuration>
-                    <webApp>
-                        <contextPath>/${project.artifactId}</contextPath>
-                    </webApp>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-        </plugins>
+        <defaultGoal>spring-boot:run</defaultGoal>
     </build>
 </project>
