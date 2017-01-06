@@ -63,3 +63,4 @@ Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and
 
 ##Meta
 [![Build Status](https://travis-ci.org/dschadow/JavaSecurity.svg)](https://travis-ci.org/dschadow/JavaSecurity)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
