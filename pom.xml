@@ -45,6 +45,7 @@
         <sonar.language>java</sonar.language>
         <findbugs.version>3.0.4</findbugs.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
     <prerequisites>
