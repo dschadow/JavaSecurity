@@ -29,19 +29,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.3.RELEASE</version>
+        <version>1.5.1.RELEASE</version>
         <relativePath/>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <spring.version>4.3.6.RELEASE</spring.version>
         <spring.security.version>4.2.1.RELEASE</spring.security.version>
-        <slf4j.version>1.7.22</slf4j.version>
+        <slf4j.version>1.7.23</slf4j.version>
         <jsf.version>2.2.14</jsf.version>
-        <owasp.encoder.version>1.2</owasp.encoder.version>
-        <flyway.version>4.0.3</flyway.version>
-        <hibernate.version>5.2.5.Final</hibernate.version>
+        <owasp.encoder.version>1.2.1</owasp.encoder.version>
+        <flyway.version>4.1.1</flyway.version>
+        <hibernate.version>5.2.8.Final</hibernate.version>
         <sonar.language>java</sonar.language>
         <findbugs.version>3.0.4</findbugs.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
@@ -169,7 +169,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>20.0</version>
+                <version>21.0</version>
             </dependency>
             <dependency>
                 <groupId>org.owasp.esapi</groupId>
@@ -237,7 +237,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.0.v20161208</version>
+                    <version>9.4.1.v20170120</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -292,7 +292,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>1.4.4.1</version>
+                <version>1.4.5</version>
                 <reportSets>
                     <reportSet>
                         <reports>
