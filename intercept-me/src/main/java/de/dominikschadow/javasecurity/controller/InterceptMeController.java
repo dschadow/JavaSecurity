@@ -32,13 +32,13 @@ import org.thymeleaf.util.StringUtils;
  */
 @Controller
 public class InterceptMeController {
-    @GetMapping("/intercept-me")
+    @GetMapping
     public String home(Model model) {
         model.addAttribute("firstTask", new FirstTask());
         return "index";
     }
 
-    @PostMapping("/intercept-me/first")
+    @PostMapping("first")
     public String firstTask(@ModelAttribute FirstTask firstTask, Model model) {
         String result = "FAILURE";
 
@@ -51,7 +51,7 @@ public class InterceptMeController {
         return "result";
     }
 
-    @PostMapping("/intercept-me/second")
+    @PostMapping("second")
     public String secondTask(Model model) {
         model.addAttribute("result", "FAILURE");
 

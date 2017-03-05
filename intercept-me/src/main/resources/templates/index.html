@@ -23,7 +23,7 @@
             <p>Your first task is to send <strong>inject</strong> (lowercase) via the form so that the backend
                 returns <strong>SUCCESS</strong> (uppercase).</p>
 
-            <form action="#" th:action="@{/intercept-me/first}" th:object="${firstTask}" method="post">
+            <form action="#" th:action="@{/first}" th:object="${firstTask}" method="post">
                 <fieldset>
                     <label for="name">Text</label>
                     <input type="text" id="name" th:field="*{name}" pattern="^(?!.*inject).*$"/>
@@ -39,7 +39,7 @@
             <p>Your second task is to send the form so that the backend returns <strong>SUCCESS</strong>
                 (uppercase).</p>
 
-            <form action="#" th:action="@{/intercept-me/second}" method="post">
+            <form action="#" th:action="@{/second}" method="post">
                 <fieldset>
                     <input type="submit" value="Submit"/>
                 </fieldset>
