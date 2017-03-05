@@ -40,7 +40,6 @@
         <slf4j.version>1.7.24</slf4j.version>
         <jsf.version>2.2.14</jsf.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
-        <flyway.version>4.1.1</flyway.version>
         <hibernate.version>5.2.8.Final</hibernate.version>
         <sonar.language>java</sonar.language>
         <findbugs.version>3.0.4</findbugs.version>
@@ -134,11 +133,6 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>1.4.193</version>
-            </dependency>
-            <dependency>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-core</artifactId>
-                <version>${flyway.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.faces</groupId>
@@ -243,11 +237,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.0.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.flywaydb</groupId>
-                    <artifactId>flyway-maven-plugin</artifactId>
-                    <version>${flyway.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
