@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<base href="/"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+	<title>SQL Injection</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>SQL Injection</h1>
+            <p>This exercise consists of the three tasks described below. You don't need OWASP ZAP or any other
+                intercepting proxy to complete them.<br/>
+                <strong>Valid customers are:</strong> Arthur Dent, Ford Prefect, Tricia Trillian McMillan, Zaphod
+                Beeblebrox, Marvin, Slartibartfast.
+            </p>
+        </div>
+    </div>
+
+    <div class="row" id="firstTask">
+        <div class="col-12">
+            <h2>Simple JDBC Statements</h2>
+            <p>Your first task is to attack the database that is queried with simple JDBC statements. Can you
+                successfully attack the database?</p>
+
+            <form action="#" th:action="@{/plain}" th:object="${plain}" method="post">
+                <fieldset>
+                    <label for="plain">Customer</label>
+                    <input type="text" id="plain" th:field="*{name}"/>
+                    <input type="submit" value="Submit"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" id="secondTask">
+        <div class="col-12">
+            <h2>Escaped JDBC Statements</h2>
+            <p>Your second task is to attack the database that is queried with escaped JDBC statements. Can you
+                successfully attack the database with the query working before?</p>
+
+            <form action="#" th:action="@{/escaped}" th:object="${escaped}" method="post">
+                <fieldset>
+                    <label for="escaped">Customer</label>
+                    <input type="text" id="escaped" th:field="*{name}"/>
+                    <input type="submit" value="Submit"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" id="thirdTask">
+        <div class="col-12">
+            <h2>Prepared Statements</h2>
+            <p>Your third task is to attack the database that is queried with prepared statements. Can you
+                successfully attack the database with the query working before?</p>
+
+            <form action="#" th:action="@{/prepared}" th:object="${prepared}" method="post">
+                <fieldset>
+                    <label for="prepared">Customer</label>
+                    <input type="text" id="prepared" th:field="*{name}"/>
+                    <input type="submit" value="Submit"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

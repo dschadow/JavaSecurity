@@ -26,8 +26,8 @@ import javax.persistence.Table;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @Column(name = "cust_id")
-    private int custId;
+    @Column(name = "id")
+    private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "status")
@@ -35,12 +35,12 @@ public class Customer {
     @Column(name = "order_limit")
     private int orderLimit;
 
-    public int getCustId() {
-        return custId;
+    public int getId() {
+        return id;
     }
 
-    public void setCustId(int custId) {
-        this.custId = custId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -69,6 +69,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "ID " + custId + ", Name " + name + ", Status " + status + ", Order Limit " + orderLimit;
+        return "ID " + id + ", Name " + name + ", Status " + status + ", Order Limit " + orderLimit;
     }
 }

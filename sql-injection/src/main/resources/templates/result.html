@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>SQL Injection</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>SQL Injection</h1>
+        </div>
+    </div>
+
+    <div class="row" id="result">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Order Limit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="customer : ${customers}">
+                        <td th:text="${customer.id}"></td>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.status}"></td>
+                        <td th:text="${customer.orderLimit}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="again">
+        <div class="col-12">
+            <a href="/sql-injection">Try again</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

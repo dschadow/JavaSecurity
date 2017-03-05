@@ -9,33 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>sql-injection</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>SQL-Injection</name>
 
-    <description>SQL-Injection sample project. Requires a server like Apache Tomcat or the Maven Tomcat7
-        plugin. After launching, open the web application in your browser at http://localhost:8080/sql-injection
+    <description>SQL-Injection sample project. Start via the main method in the Application class. After launching,
+        open the web application in your browser at http://localhost:8080/sql-injection
     </description>
 
     <dependencies>
         <dependency>
-            <groupId>org.owasp.encoder</groupId>
-            <artifactId>encoder</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.owasp.encoder</groupId>
-            <artifactId>encoder-jsp</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.owasp.esapi</groupId>
@@ -52,33 +48,28 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
         </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <defaultGoal>tomcat7:run-war</defaultGoal>
+        <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
-                    <url>jdbc:h2:mem:SQL-Injection-DB</url>
-                    <user>sa</user>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>

@@ -15,24 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.listener;
+package de.dominikschadow.javasecurity;
 
-import org.flywaydb.core.Flyway;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-
-@WebListener
-public class FlywayListener implements ServletContextListener {
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        Flyway flyway = new Flyway();
-        flyway.setDataSource("jdbc:h2:mem:SQL-Injection-DB", "sa", "");
-        flyway.migrate();
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
+/**
+ * Starter class for the Spring Boot application.
+ *
+ * @author Dominik Schadow
+ */
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
     }
 }
