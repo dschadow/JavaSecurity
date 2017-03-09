@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<base href="/"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+	<title>Content Security Policy - Spring Security</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>Content Security Policy - Spring Security</h1>
+            <p>This demo application shows you how to integrate the Content Security Policy (CSP) in a Spring Boot
+                based web application. Since Thymeleaf automatically protects from Cross-Site Scripting this
+                functionality is turned off explicitly.
+            </p>
+        </div>
+    </div>
+
+    <div class="row" id="firstTask">
+        <div class="col-12">
+            <h2>Content Security Policy</h2>
+            <p>You can see the CSP in action by trying to inject JavaScript code into the text field below. Open a
+            browser console to see the error message for blocked content.</p>
+
+            <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+                <fieldset>
+                    <label for="name">Greeting</label>
+                    <input type="text" id="name" th:field="*{name}"/>
+                    <input type="submit" value="Submit"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

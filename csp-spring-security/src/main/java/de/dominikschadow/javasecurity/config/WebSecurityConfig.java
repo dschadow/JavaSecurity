@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csp.config;
+package de.dominikschadow.javasecurity.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http
             .headers()
-                .contentSecurityPolicy("default-src 'self'; frame-ancestors 'none'; reflected-xss block");
+                .contentSecurityPolicy("default-src 'self'");
         // @formatter:on
     }
 }

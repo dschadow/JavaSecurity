@@ -15,17 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csp.config;
+package de.dominikschadow.javasecurity.domain;
 
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+public class Greeting {
+    private String name;
 
-/**
- * Activates the Spring Security configuration.
- *
- * @author Dominik Schadow
- */
-public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
-    public SecurityWebApplicationInitializer() {
-        super(WebSecurityConfig.class);
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
