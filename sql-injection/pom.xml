@@ -13,7 +13,7 @@
     <name>SQL-Injection</name>
 
     <description>SQL-Injection sample project. Start via the main method in the Application class. After launching,
-        open the web application in your browser at http://localhost:8080/sql-injection
+        open the web application in your browser at http://localhost:8080.
     </description>
 
     <dependencies>
