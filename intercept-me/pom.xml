@@ -13,7 +13,7 @@
     <name>Intercept Me</name>
 
     <description>Intercept Me sample project. Start via the main method in the Application class. After launching, open
-        the web application in your browser at http://localhost:8080/intercept-me.
+        the web application in your browser at http://localhost:8080.
     </description>
 
     <dependencies>
