@@ -14,7 +14,7 @@ Access control demo project utilizing [Spring Security](http://projects.spring.i
 Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin). After launching, open the web application in your browser at **http://localhost:8080/crypto-spring**.
 
 ##csp-spring-security
-Content Security Policy (CSP) with Spring Security demo project. After launching, open the web application in your browser at **http://localhost:8080/csp-spring-security**.
+Spring Boot based web application using a Content Security Policy (CSP) header. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##csrf-spring-security
 Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer Pages (JSP) web application by utilizing [Spring Security](http://projects.spring.io/spring-security). After launching, open the web application in your browser at **http://localhost:8080/csrf-spring-security**. 
@@ -26,7 +26,7 @@ Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer P
 Direct object references (and indirect object references) demo project using plain Java. Sample code is based on the [Enterprise Security API (ESAPI)](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API). After launching, open the web application in your browser at **http://localhost:8080/direct-object-references**.
 
 ##intercept-me
-Spring Boot based web application to experiment with [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) as intercepting proxy. Target is to receive **SUCCESS** from the backend. After launching, open the web application in your browser at **http://localhost:8080/intercept-me**.
+Spring Boot based web application to experiment with [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) as intercepting proxy. Target is to receive **SUCCESS** from the backend. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##security-header
 Security response header demo project which applies **X-Content-Type-Options**, **Cache-Control**, **X-Frame-Options**, **HTTP Strict Transport Security (HSTS)**, **X-XSS-Protection** and **Content Security Policy (CSP)** (Level 1 and 2) headers to HTTP responses. After launching, open the web application in your browser at **http://localhost:8080/security-header** or **https://localhost:8443/security-header**.
@@ -41,7 +41,7 @@ Session handling demo project utilizing [Spring Security](http://projects.spring
 Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
 
 ##sql-injection
-Spring Boot based web application to experiment with normal (vulnerable) statements, statements with escaped input, and prepared statements. After launching, open the web application in your browser at **http://localhost:8080/sql-injection**.
+Spring Boot based web application to experiment with normal (vulnerable) statements, statements with escaped input, and prepared statements. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##xss
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
