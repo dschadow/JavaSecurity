@@ -16,6 +16,10 @@
         the web application in your browser at http://localhost:8080.
     </description>
 
+    <properties>
+        <start-class>de.dominikschadow.javasecurity.Application</start-class>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
