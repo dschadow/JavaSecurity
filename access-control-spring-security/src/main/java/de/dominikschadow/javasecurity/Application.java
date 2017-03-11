@@ -15,14 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.spring;
+package de.dominikschadow.javasecurity;
 
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Activates the Spring Security configuration.
+ * Starter class for the Spring Boot application.
  *
  * @author Dominik Schadow
  */
-public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }

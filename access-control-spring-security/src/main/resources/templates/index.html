@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>Access Control - Spring Security</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>Access Control - Spring Security</h1>
+            <p>This application shows you how Spring Security enables you to automatically filter the returned results
+                based on the currently logged in user.</p>
+        </div>
+    </div>
+
+    <div class="row" id="firstTask">
+        <div class="col-12">
+            <h2>First Task</h2>
+            <p>Log in and list all <a th:href="@{contacts}">contacts</a> for the selected user. Two users are available:
+                <strong>userA/userA</strong> and <strong>userB/userB</strong>.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

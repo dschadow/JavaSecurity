@@ -44,7 +44,7 @@ public class ContactService {
     @PreAuthorize("hasRole('USER')")
     @PostAuthorize("returnObject.username == principal.username")
     public Contact getContact(int contactId) {
-        return jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE contact_id = ?",
+        return jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE id = ?",
                 new Object[]{contactId}, (rs, rowNum) -> createContact(rs));
     }
 
@@ -64,7 +64,7 @@ public class ContactService {
 
     private static Contact createContact(ResultSet rs) throws SQLException {
         Contact contact = new Contact();
-        contact.setContactId(rs.getInt("contact_id"));
+        contact.setId(rs.getInt("id"));
         contact.setUsername(rs.getString("username"));
         contact.setFirstname(rs.getString("firstname"));
         contact.setLastname(rs.getString("lastname"));

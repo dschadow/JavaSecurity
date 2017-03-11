@@ -17,23 +17,36 @@
  */
 package de.dominikschadow.javasecurity.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author Dominik Schadow
  */
+@Entity
+@Table(name = "contacts")
 public class Contact {
-    private int contactId;
+    @Id
+    @Column(name = "id")
+    private int id;
+    @Column(name = "firstname")
     private String firstname;
+    @Column(name = "lastname")
     private String lastname;
+    @Column(name = "comment")
     private String comment;
+    @Column(name = "username")
     private String username;
 
-    public int getContactId() {
-        return contactId;
+    public int getId() {
+        return id;
     }
 
-    public void setContactId(int contactId) {
-        this.contactId = contactId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
