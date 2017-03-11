@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.spring;
+package de.dominikschadow.javasecurity.csrf.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +23,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * Simple Spring Security configuration. Activates authentication and automatically protects from CSRF attacks
+ * Simple Spring Security configuration. Deactivates authentication and automatically protects from CSRF attacks
  * with an anti CSRF token.
  *
  * @author Dominik Schadow

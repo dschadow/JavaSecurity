@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>Cross-Site Request Forgery (CSRF) - Spring Security</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>Cross-Site Request Forgery (CSRF) - Spring Security</h1>
+            <p>This simple web application shows how Spring Security automatically adds an anti CSRF token to each form.
+                You can change the token value and see how Spring rejects the request without any code required.</p>
+        </div>
+    </div>
+
+    <div class="row" id="firstTask">
+        <div class="col-12">
+            <h2>Automatic Anti-CSRF Token</h2>
+            <p>This form contains an automatically added anti CSRF token.</p>
+
+            <form action="#" th:action="@{/order}" th:object="${order}" method="post">
+                <fieldset>
+                    <label for="item">Item</label>
+                    <input type="text" id="item" name="item" th:field="*{item}"/>
+                    <input type="submit" value="Submit"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

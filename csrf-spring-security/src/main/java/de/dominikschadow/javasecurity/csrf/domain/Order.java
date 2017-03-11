@@ -15,17 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.spring;
-
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+package de.dominikschadow.javasecurity.csrf.domain;
 
 /**
- * Activates the Spring Security configuration.
+ * Order entity.
  *
  * @author Dominik Schadow
  */
-public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
-    public SecurityWebApplicationInitializer() {
-        super(SecurityConfig.class);
+public class Order {
+    private String item;
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
     }
 }
