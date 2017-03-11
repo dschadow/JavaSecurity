@@ -12,7 +12,7 @@
     <div class="row" id="welcome">
         <div class="col-12">
             <h1>All Contacts
-                <small th:text="'for ' + ${#httpServletRequest.remoteUser}"></small>
+                <small th:text="|for ${#httpServletRequest.remoteUser}|"></small>
             </h1>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <ul>
                     <li th:each="contact : ${contacts}">
-                        <a th:text="${contact.firstname} + ' '+ ${contact.lastname}" th:href="@{|contacts/${contact.id}|}"></a>
+                        <a th:text="|${contact.firstname} ${contact.lastname}|" th:href="@{|contacts/${contact.id}|}"></a>
                     </li>
                 </ul>
             </div>
