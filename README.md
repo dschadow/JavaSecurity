@@ -1,6 +1,12 @@
 Java Security
 ============
-This repository contains several Java web applications and command line applications covering different security topics. Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering the applications in this repository. The **[Java Web Security Workshop](https://blog.dominikschadow.de/workshop)** uses all these applications in much greater detail.
+This repository contains several Java web applications and command line applications covering different security topics. 
+Projects containing a Dockerfile can be launched via `docker run -d -i -p 8080:8080 -t dschadow/[PROJECT]` after the 
+image has been created.
+
+Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering the applications in this 
+repository. The **[Java Web Security Workshop](https://blog.dominikschadow.de/workshop)** uses all these applications in 
+much greater detail.
 
 #Web Applications in Detail
 Some web applications contain exercises. Instructions are provided in detail in each web application.
