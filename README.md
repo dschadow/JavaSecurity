@@ -8,7 +8,7 @@ Some web applications contain exercises. Instructions are provided in detail in 
 Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. Some web applications are based on Spring Boot and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** . The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
 ##access-control-spring-security
-Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080/access-control-spring-security**.
+Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security) in a Spring Boot application. Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##crypto-spring
 Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin). After launching, open the web application in your browser at **http://localhost:8080/crypto-spring**.
