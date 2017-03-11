@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>Session Handling - Spring Security</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>User Profile
+                <small th:text="${greeting}"></small>
+            </h1>
+
+            <p>Your current session is <strong th:text="${#httpServletRequest.session.id}"></strong>.</p>
+        </div>
+    </div>
+
+    <div class="row" id="links">
+        <div class="col-12">
+            User | <a th:href="@{admin/admin}">Admin</a>
+        </div>
+    </div>
+
+    <div class="row" id="logout" th:if="${#httpServletRequest.remoteUser}">
+        <div class="col-12">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-off"></span> Log out
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

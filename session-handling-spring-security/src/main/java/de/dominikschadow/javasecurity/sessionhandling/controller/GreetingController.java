@@ -15,34 +15,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.sessionhandling.users;
+package de.dominikschadow.javasecurity.sessionhandling.controller;
 
 import de.dominikschadow.javasecurity.sessionhandling.greetings.GreetingService;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * Greeting ManagedBean which integrates a Spring Bean to return the user/ admin greeting to the calling JSF page.
+ * Greeting controller to return the user/ admin greeting to the caller.
  *
  * @author Dominik Schadow
  */
-@ManagedBean
-@RequestScoped
-public class GreetingBean {
-    @ManagedProperty(value = "#{greetingServiceImpl}")
+@Controller
+public class GreetingController {
     private GreetingService greetingService;
 
-    public String greetUser() {
-        return greetingService.greetUser();
-    }
-
-    public String greetAdmin() {
-        return greetingService.greetAdmin();
-    }
-
-    public void setGreetingService(GreetingService greetingService) {
+    public GreetingController(GreetingService greetingService) {
         this.greetingService = greetingService;
+    }
+
+    @GetMapping("user/user")
+    public String greetUser(Model model) {
+        model.addAttribute("greeting", greetingService.greetUser());
+
+        return "user/user";
+    }
+
+    @GetMapping("admin/admin")
+    public String greetAdmin(Model model) {
+        model.addAttribute("greeting", greetingService.greetAdmin());
+
+        return "admin/admin";
     }
 }
