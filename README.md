@@ -41,7 +41,7 @@ Security response header demo project which applies **X-Content-Type-Options**, 
 Security logging demo project based on the [OWASP Security Logging Project](https://www.owasp.org/index.php/OWASP_Security_Logging_Project). After launching, open the web application in your browser at **http://localhost:8080/security-logging**.
 
 ##session-handling-spring-security
-Session handling demo project utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs), how to apply method level security and how to securely store and verify passwords. Uses Spring Security for all security related functionality. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling-spring-security**.
+Session handling demo project based on Spring Boot utilizing [Spring Security](http://projects.spring.io/spring-security). Shows how to restrict access to resources (URLs), how to apply method level security and how to securely store and verify passwords. Uses Spring Security for all security related functionality. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##session-handling
 Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
