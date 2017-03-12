@@ -17,7 +17,7 @@ Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommen
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security) in a Spring Boot application. Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##crypto-spring
-Crypto demo project using [Jasypt](http://www.jasypt.org) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property **APP_ENCRYPTION_PASSWORD** with the value **spring-jasypt** present on startup (set automatically by the Tomcat7 Maven plugin). After launching, open the web application in your browser at **http://localhost:8080/crypto-spring**.
+Crypto demo project based on Spring Boot using [Jasypt](http://www.jasypt.org) and [jasypt-spring-boot](https://github.com/ulisesbocchio/jasypt-spring-boot) to secure [Spring](http://spring.io) configuration (property) files. Requires a system property (environment variable) **jasypt.encryptor.password** with the value **spring-jasypt** present on startup. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##csp-spring-security
 Spring Boot based web application using a Content Security Policy (CSP) header. After launching, open the web application in your browser at **http://localhost:8080**.
