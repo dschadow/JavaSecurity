@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping("/")
 public class IndexController {
     @GetMapping
     public String index() {

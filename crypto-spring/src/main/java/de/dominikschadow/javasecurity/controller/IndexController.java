@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * Index controller for all home page related operations.
+ *
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping()
+@RequestMapping("/")
 public class IndexController {
     private final GreetingRepository greetingRepository;
 
