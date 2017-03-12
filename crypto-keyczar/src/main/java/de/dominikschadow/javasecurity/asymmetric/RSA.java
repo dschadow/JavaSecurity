@@ -27,14 +27,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Dominik Schadow
  */
-public class RSAEncryption {
-    private static final Logger log = LoggerFactory.getLogger(RSAEncryption.class);
+public class RSA {
+    private static final Logger log = LoggerFactory.getLogger(RSA.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/asymmetric";
 
     /**
      * Private constructor.
      */
-    private RSAEncryption() {
+    private RSA() {
     }
 
     public static void main(String[] args) {

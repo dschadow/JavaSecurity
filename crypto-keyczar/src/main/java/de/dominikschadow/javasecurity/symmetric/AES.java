@@ -28,14 +28,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Dominik Schadow
  */
-public class AESEncryption {
-    private static final Logger log = LoggerFactory.getLogger(AESEncryption.class);
+public class AES {
+    private static final Logger log = LoggerFactory.getLogger(AES.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/symmetric";
 
     /**
      * Private constructor.
      */
-    private AESEncryption() {
+    private AES() {
     }
 
     public static void main(String[] args) {

@@ -28,14 +28,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Dominik Schadow
  */
-public class DSASignature {
-    private static final Logger log = LoggerFactory.getLogger(DSASignature.class);
+public class DSA {
+    private static final Logger log = LoggerFactory.getLogger(DSA.class);
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/sign";
 
     /**
      * Private constructor.
      */
-    private DSASignature() {
+    private DSA() {
     }
 
     public static void main(String[] args) {
