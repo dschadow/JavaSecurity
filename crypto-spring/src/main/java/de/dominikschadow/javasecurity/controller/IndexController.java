@@ -17,35 +17,30 @@
  */
 package de.dominikschadow.javasecurity.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import de.dominikschadow.javasecurity.domain.Greeting;
+import de.dominikschadow.javasecurity.domain.GreetingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.sql.DataSource;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 /**
- * 
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping()
 public class IndexController {
-    private JdbcTemplate jdbcTemplate;
+    private final GreetingRepository greetingRepository;
 
-    @RequestMapping(method = GET)
+    public IndexController(GreetingRepository greetingRepository) {
+        this.greetingRepository = greetingRepository;
+    }
+
+    @GetMapping
     public String index(Model model) {
-        String greeting = jdbcTemplate.queryForObject("select greeting from greetings where greeting_id = 1", String.class);
+        Greeting greeting = greetingRepository.findOne(1);
         model.addAttribute("greeting", greeting);
 
         return "index";
-    }
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 }

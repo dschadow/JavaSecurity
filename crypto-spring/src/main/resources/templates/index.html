@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>Crypto Spring</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>Crypto Spring</h1>
+            <p>This demo application shows you how to encrypt sensitive properties using Jasypt and Jasypt Spring Boot
+            Starter.</p>
+        </div>
+    </div>
+
+    <div class="row" id="firstTask">
+        <div class="col-12">
+            <h2 th:text="${greeting.greeting}"></h2>
+            <p>Relax, there is nothing more to do here.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
