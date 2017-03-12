@@ -34,14 +34,14 @@ import java.security.cert.CertificateException;
  *
  * @author Dominik Schadow
  */
-public class AESEncryption {
-    private static final Logger log = LoggerFactory.getLogger(AESEncryption.class);
+public class AES {
+    private static final Logger log = LoggerFactory.getLogger(AES.class);
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     /**
      * Private constructor.
      */
-    private AESEncryption() {
+    private AES() {
     }
 
     public static void main(String[] args) {
@@ -63,7 +63,7 @@ public class AESEncryption {
     }
 
     private static KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = AESEncryption.class.getResourceAsStream(KEYSTORE_PATH);
+        InputStream keystoreStream = AES.class.getResourceAsStream(KEYSTORE_PATH);
 
         KeyStore ks = KeyStore.getInstance("JCEKS");
         ks.load(keystoreStream, keystorePassword);

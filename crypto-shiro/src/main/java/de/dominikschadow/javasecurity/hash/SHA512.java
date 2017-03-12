@@ -33,8 +33,8 @@ import java.util.Arrays;
  *
  * @author Dominik Schadow
  */
-public class SHA512Hash {
-    private static final Logger log = LoggerFactory.getLogger(SHA512Hash.class);
+public class SHA512 {
+    private static final Logger log = LoggerFactory.getLogger(SHA512.class);
     /**
      * Nothing up my sleeve number as private salt, not good for production.
      */
@@ -44,7 +44,7 @@ public class SHA512Hash {
     /**
      * Private constructor.
      */
-    private SHA512Hash() {
+    private SHA512() {
     }
 
     public static void main(String[] args) {
