@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
     <name>Cross-Site Request Forgery - Spring Security</name>
 
-    <description>Cross-Site Request Forgery (CSRF) with Spring Security sample project.Start via the main method in the
+    <description>Cross-Site Request Forgery (CSRF) with Spring Security sample project. Start via the main method in the
         Application class. After launching, open the web application in your browser at http://localhost:8080.
     </description>
 
