@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>Direct Object References</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>Direct Object References</h1>
+            <p>This simple web application shows how the OWASP Enterprise Security API can mask direct references and
+                hide them behind unpredictable indirect references.</p>
+        </div>
+    </div>
+
+    <div class="row" id="firstTask">
+        <div class="col-12">
+            <h2>Random Access Reference Map</h2>
+            <p>The following file references are created randomly but still enable you to download the file.</p>
+
+            <ul>
+                <li th:each="indirectReference : ${indirectReferences}">
+                    <a th:text="|Download ${indirectReferenceStat.count}|" th:href="@{/download(name=${indirectReference})}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" id="secondTask">
+        <div class="col-12">
+            <h2>Direct Download</h2>
+            <p>The following file references are direct references using the file name and will not work since this is
+                not a valid entry in the reference map.</p>
+
+            <ul>
+                <li><a th:href="@{/download(name=cover.jpg)}">Download 1</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
