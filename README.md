@@ -1,8 +1,6 @@
 Java Security
 ============
 This repository contains several Java web applications and command line applications covering different security topics. 
-Projects containing a Dockerfile can be launched via `docker run -d -i -p 8080:8080 -t dschadow/[PROJECT]` after the 
-image has been created.
 
 Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering the applications in this 
 repository. The **[Java Web Security Workshop](https://blog.dominikschadow.de/workshop)** uses all these applications in 
@@ -11,7 +9,11 @@ much greater detail.
 #Web Applications in Detail
 Some web applications contain exercises. Instructions are provided in detail in each web application.
 
-Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. Some web applications are based on Spring Boot and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** . The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
+Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. Some web applications are based on 
+Spring Boot and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** . 
+Projects containing a Dockerfile can be launched via `docker run -d -i -p 8080:8080 -t dschadow/[PROJECT]` after the 
+image has been created. The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be 
+started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
 ##access-control-spring-security
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security) in a Spring Boot application. Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080**.
