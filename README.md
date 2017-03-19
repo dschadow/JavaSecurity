@@ -6,7 +6,7 @@ Have a look at the [slides](https://blog.dominikschadow.de/events) from various 
 repository. The **[Java Web Security Workshop](https://blog.dominikschadow.de/workshop)** uses all these applications in 
 much greater detail.
 
-#Web Applications in Detail
+# Web Applications in Detail
 Some web applications contain exercises. Instructions are provided in detail in each web application.
 
 Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. Some web applications are based on 
