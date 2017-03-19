@@ -9,7 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>sso-with-github</artifactId>
 	<packaging>jar</packaging>
-	<name>SSO with Spring Boot</name>
+	<name>SSO with GitHub</name>
 
 	<description>SSO with GitHub sample project. Start via the main method in the Application class. After launching,
         open the web application in your browser at http://localhost:8080.</description>
