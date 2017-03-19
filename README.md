@@ -51,6 +51,9 @@ Session handling demo project using plain Java. Uses plain Java to create and up
 ##sql-injection
 Spring Boot based web application to experiment with normal (vulnerable) statements, statements with escaped input, and prepared statements. After launching, open the web application in your browser at **http://localhost:8080**.
 
+#sso-with-github
+Contains a Spring Boot demo application with GitHub login. Requires to setup an application in your GitHub account and to provide `github.client.clientId` and `github.client.clientSecret` as runtime parameters. After launching, open the web application in your browser at **http://localhost:8080**.
+
 ##xss
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
 

@@ -117,6 +117,16 @@
                 <artifactId>bootstrap</artifactId>
                 <version>3.3.7-1</version>
             </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>angularjs</artifactId>
+                <version>1.6.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>jquery</artifactId>
+                <version>2.2.4</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -230,6 +240,7 @@
         <module>session-handling</module>
         <module>session-handling-spring-security</module>
         <module>sql-injection</module>
+        <module>sso-with-github</module>
         <module>xss</module>
     </modules>
 </project>
