@@ -51,7 +51,7 @@ Session handling demo project using plain Java. Uses plain Java to create and up
 ##sql-injection
 Spring Boot based web application to experiment with normal (vulnerable) statements, statements with escaped input, and prepared statements. After launching, open the web application in your browser at **http://localhost:8080**.
 
-#sso-with-github
+##sso-with-github
 Contains a Spring Boot demo application with GitHub login. Requires to setup an application in your GitHub account and to provide `github.client.clientId` and `github.client.clientSecret` as runtime parameters. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ##xss
