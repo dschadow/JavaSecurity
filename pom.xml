@@ -35,7 +35,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>1.7.24</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
         <sonar.language>java</sonar.language>
         <findbugs.version>3.0.4</findbugs.version>
