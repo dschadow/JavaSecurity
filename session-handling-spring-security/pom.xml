@@ -12,8 +12,9 @@
     <packaging>jar</packaging>
     <name>Session Handling - Spring Security</name>
 
-    <description>Session Handling with Spring Security sample project. Start via the main method in the Application
-        class. After launching, open the web application in your browser at http://localhost:8080.
+    <description>Session Handling with Spring Security sample project. Requires a system property (environment variable)
+        jasypt.encryptor.password with the value session-handling-spring-security present on startup.Start via the main
+        method in the Application class. After launching, open the web application in your browser at http://localhost:8080.
     </description>
 
     <properties>
