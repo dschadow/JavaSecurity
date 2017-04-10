@@ -1,1 +1,0 @@
-insert into greetings (id, greeting) values (1, 'Hello, Spring Crypto with Jasypt Spring Boot Starter');
