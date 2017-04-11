@@ -60,8 +60,9 @@ Session handling demo project based on Spring Boot utilizing [Spring Security](h
 and [jasypt-spring-boot](https://github.com/ulisesbocchio/jasypt-spring-boot) to secure [Spring](http://spring.io) 
 configuration (property) files. Shows how to restrict access to resources (URLs), how to apply method level security and 
 how to securely store and verify passwords. Uses Spring Security for all security related functionality. Requires a 
-system property (environment variable) **jasypt.encryptor.password** with the value **session-handling-spring-security** 
-present on startup. After launching, open the web application in your browser at **http://localhost:8080**.
+system property (or environment variable or command line argument) named **jasypt.encryptor.password** with the value 
+**session-handling-spring-security** present on startup. After launching, open the web application in your browser at 
+**http://localhost:8080**.
 
 ## session-handling
 Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. 
