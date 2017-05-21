@@ -11,7 +11,7 @@ Some web applications contain exercises. Instructions are provided in detail in 
 
 Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. Some web applications are based on 
 Spring Boot and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** . 
-Projects containing a Dockerfile can be launched via `docker run -d -i -p 8080:8080 -t dschadow/[PROJECT]` after the 
+Projects containing a Dockerfile can be launched via `docker run -d  -p 8080:8080 -t dschadow/[PROJECT]` after the 
 image has been created. The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be 
 started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
