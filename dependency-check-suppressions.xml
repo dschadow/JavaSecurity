@@ -16,6 +16,20 @@
         <gav regex="true">^org\.apache\.xmlgraphics:batik-css:.*$</gav>
         <cpe>cpe:/a:apache:batik</cpe>
     </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: batik-ext-1.8.jar
+   ]]></notes>
+        <gav regex="true">^org\.apache\.xmlgraphics:batik-ext:.*$</gav>
+        <cpe>cpe:/a:apache:batik</cpe>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: batik-util-1.8.jar
+   ]]></notes>
+        <gav regex="true">^org\.apache\.xmlgraphics:batik-util:.*$</gav>
+        <cpe>cpe:/a:apache:batik</cpe>
+    </suppress>
     <!-- no Groovy usage -->
     <suppress>
         <notes><![CDATA[
