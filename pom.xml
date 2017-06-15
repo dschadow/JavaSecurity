@@ -177,7 +177,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.5.v20170502</version>
+                    <version>9.4.6.v20170531</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -211,7 +211,7 @@
                 <plugin>
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
-                    <version>0.4.14</version>
+                    <version>1.0.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
