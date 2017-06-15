@@ -197,8 +197,8 @@
                         <effort>Max</effort>
                         <threshold>Low</threshold>
                         <failOnError>true</failOnError>
-                        <includeFilterFile>findbugs-security-include.xml</includeFilterFile>
-                        <excludeFilterFile>findbugs-security-exclude.xml</excludeFilterFile>
+                        <includeFilterFile>${session.executionRootDirectory}/findbugs-security-include.xml</includeFilterFile>
+                        <excludeFilterFile>${session.executionRootDirectory}/findbugs-security-exclude.xml</excludeFilterFile>
                         <plugins>
                             <plugin>
                                 <groupId>com.h3xstream.findsecbugs</groupId>
