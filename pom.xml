@@ -197,8 +197,8 @@
                         <effort>Max</effort>
                         <threshold>Low</threshold>
                         <failOnError>true</failOnError>
-                        <includeFilterFile>${session.executionRootDirectory}/findbugs-security-include.xml</includeFilterFile>
-                        <excludeFilterFile>${session.executionRootDirectory}/findbugs-security-exclude.xml</excludeFilterFile>
+                        <includeFilterFile>findbugs-security-include.xml</includeFilterFile>
+                        <excludeFilterFile>findbugs-security-exclude.xml</excludeFilterFile>
                         <plugins>
                             <plugin>
                                 <groupId>com.h3xstream.findsecbugs</groupId>
@@ -228,6 +228,10 @@
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
                 <version>1.4.5</version>
+                <configuration>
+                    <skipProvidedScope>true</skipProvidedScope>
+                    <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+                </configuration>
                 <reportSets>
                     <reportSet>
                         <reports>
