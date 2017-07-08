@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
-    <!-- this is actually one of the project artifacts and not a dependency -->
-    <suppress>
-        <notes><![CDATA[
-      file name: sso-with-github.jar
-      ]]></notes>
-        <filePath regex="true">.*\bsso-with-github\.jar</filePath>
-        <cve>CVE-2010-2542</cve>
-    </suppress>
     <!-- no SVG usage -->
     <suppress>
         <notes><![CDATA[
