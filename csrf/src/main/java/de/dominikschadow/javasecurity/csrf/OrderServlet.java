@@ -27,8 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 
 /**
  * CSRF secured order servlet for POST requests. Processes the order and returns the result.
@@ -44,31 +42,27 @@ public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         log.info("Processing order servlet...");
 
-        try {
-            if (!CSRFTokenHandler.isValid(request)) {
-                log.info("Order servlet: CSRF token is invalid");
-                response.setStatus(401);
+        if (!CSRFTokenHandler.isValid(request)) {
+            log.info("Order servlet: CSRF token is invalid");
+            response.setStatus(401);
 
-                try (PrintWriter out = response.getWriter()) {
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
-                    out.println("<title>Cross-Site Request Forgery (CSRF): Invalid token</title>");
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Cross-Site Request Forgery (CSRF): Invalid token</h1>");
-                    out.println("<p><strong>Anti CSRF token is invalid!</strong></p>");
-                    out.println("<p><a href=\"index.jsp\">Home</a></p>");
-                    out.println("</body>");
-                    out.println("</html>");
-                } catch (IOException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-
-                return;
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
+                out.println("<title>Cross-Site Request Forgery (CSRF): Invalid token</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Cross-Site Request Forgery (CSRF): Invalid token</h1>");
+                out.println("<p><strong>Anti CSRF token is invalid!</strong></p>");
+                out.println("<p><a href=\"index.jsp\">Home</a></p>");
+                out.println("</body>");
+                out.println("</html>");
+            } catch (IOException ex) {
+                log.error(ex.getMessage(), ex);
             }
-        } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
-            log.error(ex.getMessage(), ex);
+
+            return;
         }
 
         log.info("Order servlet: CSRF token is valid");
