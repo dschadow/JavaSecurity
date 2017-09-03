@@ -37,7 +37,8 @@
         <slf4j.version>1.7.25</slf4j.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
         <sonar.language>java</sonar.language>
-        <findbugs.version>3.0.4</findbugs.version>
+        <findbugs.version>3.0.5</findbugs.version>
+        <jacoco.version>0.7.9</jacoco.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,7 +59,7 @@
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
-                <version>1.12</version>
+                <version>1.15</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -100,7 +101,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>22.0</version>
+                <version>23.0</version>
             </dependency>
             <dependency>
                 <groupId>org.owasp.esapi</groupId>
@@ -133,6 +134,11 @@
                 <artifactId>jquery</artifactId>
                 <version>2.2.4</version>
             </dependency>
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -157,6 +163,26 @@
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -227,7 +253,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>2.1.0</version>
+                <version>2.1.1</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
                     <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
