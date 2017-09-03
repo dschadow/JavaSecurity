@@ -74,7 +74,13 @@ public class OrderServlet extends HttpServlet {
         log.info("Order servlet: CSRF token is valid");
 
         String product = request.getParameter("product");
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int quantity;
+
+        try {
+            quantity = Integer.parseInt(request.getParameter("quantity"));
+        } catch (NumberFormatException ex) {
+            quantity = 0;
+        }
 
         log.info("Ordered {} items of product {}", quantity, product);
 

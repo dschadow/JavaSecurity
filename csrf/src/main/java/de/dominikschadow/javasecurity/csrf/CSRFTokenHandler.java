@@ -68,12 +68,15 @@ public final class CSRFTokenHandler {
         return token;
     }
 
-    public static boolean isValid(HttpServletRequest request) throws ServletException, NoSuchAlgorithmException,
-            NoSuchProviderException {
+    public static boolean isValid(HttpServletRequest request) throws ServletException {
         if (request.getSession(false) == null) {
             throw new ServletException(MISSING_SESSION);
         }
 
-        return Objects.equal(getToken(request.getSession(false)), request.getParameter(CSRF_TOKEN));
+        try {
+            return Objects.equal(getToken(request.getSession(false)), request.getParameter(CSRF_TOKEN));
+        } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+            return false;
+        }
     }
 }

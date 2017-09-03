@@ -17,10 +17,7 @@
  */
 package de.dominikschadow.javasecurity.header.servlets;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,7 +54,7 @@ public class CSPReporting extends HttpServlet {
             JsonParser parser = new JsonParser();
             JsonElement je = parser.parse(responseBuilder.toString());
             log.info("\n{}", gs.toJson(je));
-        } catch (IOException ex) {
+        } catch (IOException | JsonSyntaxException ex) {
             log.error(ex.getMessage(), ex);
         }
     }
