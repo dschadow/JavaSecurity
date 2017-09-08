@@ -1,17 +1,17 @@
 Java Security
 ============
 This repository contains several Java web applications and command line applications covering different security topics. 
-
 Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering the applications in this 
-repository. The **[Java Web Security Workshop](https://blog.dominikschadow.de/workshop)** uses all these applications in 
-much greater detail.
+repository.
 
 # Web Applications in Detail
-Some web applications contain exercises. Instructions are provided in detail in each web application.
+Some web applications contain exercises. Instructions are provided in detail on the start page of each web application. 
+Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. 
+[Java 8](http://www.oracle.com/technetwork/java) and [Maven 3](http://maven.apache.org/) must be installed.
 
-Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended. Some web applications are based on 
-Spring Boot and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** . 
-Projects containing a Dockerfile can be launched via `docker run -d  -p 8080:8080 -t dschadow/[PROJECT]` after the 
+Some web applications are based on [Spring Boot](http://projects.spring.io/spring-boot) and can be started via the 
+**main** method in the **Application** class or via **mvn spring-boot:run** in the project directory. Projects 
+containing a Dockerfile can be launched via `docker container run -d  -p 8080:8080 -t dschadow/[PROJECT]` after the 
 image has been created. The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be 
 started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
@@ -81,11 +81,11 @@ web application in your browser at **http://localhost:8080**.
 ## xss
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input 
 validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and 
-the [Content Security Policy (CSP)](http://www.w3.org/TR/CSP). After launching, open the web application in your 
+the Content Security Policy (CSP). After launching, open the web application in your 
 browser at **http://localhost:8080/xss**.
 
 # Command Line Applications in Detail
-All projects contain **main** methods to get started.
+All projects contain **main** methods to start the demo.
 
 ## crypto-hash
 Crypto demo project using Java to hash passwords with different hashing algorithms. All classes contain **main** methods 
