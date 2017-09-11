@@ -72,7 +72,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <dockerDirectory>.</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
