@@ -7,3 +7,4 @@
 .metadata*
 .classpath
 .project
+/dependency-check-report.html
