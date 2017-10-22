@@ -22,7 +22,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * Simple Spring Security configuration. Deamctivates authentication and automatically protects from CSRF attacks
+ * Simple Spring Security configuration. Deactivates authentication and automatically protects from CSRF attacks
  * with an anti CSRF token.
  *
  * @author Dominik Schadow
