@@ -10,9 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>sql-injection</artifactId>
     <packaging>jar</packaging>
-    <name>SQL-Injection</name>
+    <name>SQL Injection</name>
 
-    <description>SQL-Injection sample project. Start via the main method in the Application class. After launching,
+    <description>SQL Injection sample project. Start via the main method in the Application class. After launching,
         open the web application in your browser at http://localhost:8080.
     </description>
 
