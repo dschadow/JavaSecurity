@@ -132,6 +132,7 @@ public class SsoWithGitHubApplication extends WebSecurityConfigurerAdapter {
                     if (cookie == null || token != null && !token.equals(cookie.getValue())) {
                         cookie = new Cookie("XSRF-TOKEN", token);
                         cookie.setPath("/");
+                        cookie.setHttpOnly(true);
                         response.addCookie(cookie);
                     }
                 }
@@ -146,7 +147,7 @@ public class SsoWithGitHubApplication extends WebSecurityConfigurerAdapter {
         return repository;
     }
 
-    class ClientResources {
+    static class ClientResources {
         private OAuth2ProtectedResourceDetails client = new AuthorizationCodeResourceDetails();
         private ResourceServerProperties resource = new ResourceServerProperties();
 
