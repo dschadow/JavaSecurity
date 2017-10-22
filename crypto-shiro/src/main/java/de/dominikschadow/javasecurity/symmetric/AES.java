@@ -82,7 +82,7 @@ public class AES {
     /**
      * Encrypts the given text using all Shiro defaults: 128 bit size, CBC mode, PKCS5 padding scheme.
      *
-     * @param key The key to use
+     * @param key         The key to use
      * @param initialText The text to encrypt
      * @return The encrypted text
      */
@@ -102,7 +102,6 @@ public class AES {
 
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         log.info("initialText: {}", initialText);
-        log.info("cipherText as byte[]: {}", new String(ciphertext));
         log.info("cipherText as HEX: {}", Hex.encodeToString(ciphertext));
         log.info("plaintext: {}", CodecSupport.toString(plaintext));
     }

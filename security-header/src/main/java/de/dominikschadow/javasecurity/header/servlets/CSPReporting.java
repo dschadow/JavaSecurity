@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 /**
  * Simple CSP-Reporting servlet to receive and print out any JSON style CSP report with violations.
@@ -42,7 +43,7 @@ public class CSPReporting extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream(), Charset.forName("UTF-8")))) {
             StringBuilder responseBuilder = new StringBuilder();
 
             String inputStr;

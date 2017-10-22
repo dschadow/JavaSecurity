@@ -28,6 +28,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.security.*;
 import java.security.cert.CertificateException;
 
@@ -121,6 +122,6 @@ public class RSA {
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
-        log.info("plain text: {}", new String(plaintext));
+        log.info("plain text: {}", new String(plaintext, Charset.forName("UTF-8")));
     }
 }
