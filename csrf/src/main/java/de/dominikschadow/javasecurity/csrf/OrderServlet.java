@@ -49,6 +49,7 @@ public class OrderServlet extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 out.println("<html>");
                 out.println("<head>");
+                out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>");
                 out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
                 out.println("<title>Cross-Site Request Forgery (CSRF): Invalid token</title>");
                 out.println("</head>");
@@ -83,6 +84,7 @@ public class OrderServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("<title>Cross-Site Request Forgery (CSRF): Order Confirmation</title>");
             out.println("</head>");
