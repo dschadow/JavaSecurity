@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<base href="/"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-	<title>SQL Injection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>SQL Injection</title>
 </head>
 <body>
 <div class="container" id="main">
     <div class="row" id="welcome">
         <div class="col-12">
             <h1>SQL Injection</h1>
-            <p>This exercise consists of the three tasks described below. You don't need OWASP ZAP or any other
+            <p>This exercise consists of the tasks described below. You don't need OWASP ZAP or any other
                 intercepting proxy to complete them.<br/>
+                After completing all tasks you should try to secure the <strong>Simple JDBC Statement</strong> with
+                escaping and after that with a prepared statement. Remember to restart the application if you have
+                successfully dropped the database.<br/>
                 <strong>Valid customers are:</strong> Arthur Dent, Ford Prefect, Tricia Trillian McMillan, Zaphod
                 Beeblebrox, Marvin, Slartibartfast.
             </p>
