@@ -53,13 +53,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http
             .authorizeRequests()
-                .antMatchers("/*").permitAll()
+                .antMatchers("/*", "/h2-console/**").permitAll()
                 .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-            .and()
-                .formLogin()
-            .and()
-                .logout()
+                .and()
+            .csrf()
+                .ignoringAntMatchers("/h2-console/*")
+                .and()
+            .headers()
+                .frameOptions().sameOrigin()
+                .and()
+            .formLogin()
+                .and()
+            .logout()
                 .logoutSuccessUrl("/")
                 .permitAll();
         // @formatter:on

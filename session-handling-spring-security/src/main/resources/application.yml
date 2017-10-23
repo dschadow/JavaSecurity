@@ -1,4 +1,8 @@
 spring:
   datasource:
-    username: ses-han-spr-sec-admin
-    password: ENC(9bjqRQFmO73Gj6gh+XVv3qv7IE7iBs76UGi8bWKLQyH4CoE+w6kUgg==)
+    username: admin
+    password: samplePassword
+    name: session-handling
+  h2:
+    console:
+      enabled: true

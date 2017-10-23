@@ -12,10 +12,8 @@
     <packaging>jar</packaging>
     <name>Session Handling - Spring Security</name>
 
-    <description>Session Handling with Spring Security sample project. Requires a system property (or environment
-        variable or command line argument) named jasypt.encryptor.password with the value
-        session-handling-spring-security present on startup. Start via the main method in the Application class. After
-        launching, open the web application in your browser at http://localhost:8080.
+    <description>Session Handling with Spring Security sample project. Start via the main method in the Application
+        class. After launching, open the web application in your browser at http://localhost:8080.
     </description>
 
     <properties>
@@ -35,10 +33,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
