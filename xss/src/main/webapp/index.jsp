@@ -11,7 +11,8 @@
 <h2>Instructions</h2>
 
 <p>Enter some attack data to show the user's session id in an alert box. You will not be successful with every form.
-    Can you explain why?</p>
+    Can you explain why? Can you secure the validated form (<strong>With Input Validation</strong>) with output escaping
+    and the Context Security Policy?</p>
 
 <form action="unprotected" id="unprotectedForm" method="post">
     <fieldset>
