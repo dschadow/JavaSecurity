@@ -36,7 +36,6 @@
     <properties>
         <slf4j.version>1.7.25</slf4j.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
-        <sonar.language>java</sonar.language>
         <findbugs.version>3.0.5</findbugs.version>
         <jacoco.version>0.7.9</jacoco.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
@@ -213,8 +212,10 @@
                         <effort>Max</effort>
                         <threshold>Low</threshold>
                         <failOnError>true</failOnError>
-                        <includeFilterFile>${session.executionRootDirectory}/findbugs-security-include.xml</includeFilterFile>
-                        <excludeFilterFile>${session.executionRootDirectory}/findbugs-security-exclude.xml</excludeFilterFile>
+                        <includeFilterFile>${session.executionRootDirectory}/findbugs-security-include.xml
+                        </includeFilterFile>
+                        <excludeFilterFile>${session.executionRootDirectory}/findbugs-security-exclude.xml
+                        </excludeFilterFile>
                         <plugins>
                             <plugin>
                                 <groupId>com.h3xstream.findsecbugs</groupId>
