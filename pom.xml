@@ -37,6 +37,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
         <findbugs.version>3.0.5</findbugs.version>
+        <jacoco.version>0.7.9</jacoco.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -156,6 +157,26 @@
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
