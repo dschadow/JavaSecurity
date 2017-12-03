@@ -29,7 +29,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
+        <version>1.5.9.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -126,7 +126,7 @@
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>angularjs</artifactId>
-                <version>1.6.4</version>
+                <version>1.6.6</version>
             </dependency>
             <dependency>
                 <groupId>org.webjars</groupId>
@@ -192,7 +192,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.7.v20170914</version>
+                    <version>9.4.8.v20171121</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
