@@ -36,7 +36,6 @@
     <properties>
         <slf4j.version>1.7.25</slf4j.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
-        <findbugs.version>3.0.5</findbugs.version>
         <jacoco.version>0.7.9</jacoco.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -180,6 +179,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>LATEST</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -193,27 +208,6 @@
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>9.4.8.v20171121</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs.version}</version>
-                    <configuration>
-                        <effort>Max</effort>
-                        <threshold>Low</threshold>
-                        <failOnError>true</failOnError>
-                        <includeFilterFile>${session.executionRootDirectory}/findbugs-security-include.xml
-                        </includeFilterFile>
-                        <excludeFilterFile>${session.executionRootDirectory}/findbugs-security-exclude.xml
-                        </excludeFilterFile>
-                        <plugins>
-                            <plugin>
-                                <groupId>com.h3xstream.findsecbugs</groupId>
-                                <artifactId>findsecbugs-plugin</artifactId>
-                                <version>LATEST</version>
-                            </plugin>
-                        </plugins>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>com.spotify</groupId>
