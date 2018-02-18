@@ -26,6 +26,13 @@
         <url>https://github.com/dschadow/JavaSecurity</url>
     </scm>
 
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -99,7 +106,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>23.0</version>
+                <version>24.0-jre</version>
             </dependency>
             <dependency>
                 <groupId>org.owasp.esapi</groupId>
