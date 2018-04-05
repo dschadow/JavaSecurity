@@ -36,14 +36,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
+        <version>1.5.11.RELEASE</version>
         <relativePath/>
     </parent>
 
     <properties>
         <slf4j.version>1.7.25</slf4j.version>
         <owasp.encoder.version>1.2.1</owasp.encoder.version>
-        <jacoco.version>0.8.0</jacoco.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,21 +50,8 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>spring-plugins-repository</id>
-            <name>Spring Artifactory Plugins (Dependencies) Repository</name>
-            <url>http://repo.springsource.org/plugins-release</url>
-        </repository>
-    </repositories>
-
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.github.ulisesbocchio</groupId>
-                <artifactId>jasypt-spring-boot-starter</artifactId>
-                <version>1.18</version>
-            </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
@@ -106,7 +92,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>24.0-jre</version>
+                <version>24.1-jre</version>
             </dependency>
             <dependency>
                 <groupId>org.owasp.esapi</groupId>
@@ -132,7 +118,7 @@
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>angularjs</artifactId>
-                <version>1.6.6</version>
+                <version>1.6.9</version>
             </dependency>
             <dependency>
                 <groupId>org.webjars</groupId>
@@ -147,29 +133,9 @@
 
         <plugins>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.1.3</version>
                 <configuration>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
@@ -194,7 +160,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.8.v20171121</version>
+                    <version>9.4.9.v20180320</version>
                 </plugin>
                 <plugin>
                     <groupId>com.spotify</groupId>
@@ -215,7 +181,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.2</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
                     <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
