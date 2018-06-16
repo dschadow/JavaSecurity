@@ -36,7 +36,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.13.RELEASE</version>
+        <version>1.5.14.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -160,7 +160,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.10.v20180503</version>
+                    <version>9.4.11.v20180605</version>
                 </plugin>
                 <plugin>
                     <groupId>com.spotify</groupId>
