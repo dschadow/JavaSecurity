@@ -131,25 +131,6 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
 
-        <plugins>
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.5</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <plugins>
-                        <plugin>
-                            <groupId>com.h3xstream.findsecbugs</groupId>
-                            <artifactId>findsecbugs-plugin</artifactId>
-                            <version>LATEST</version>
-                        </plugin>
-                    </plugins>
-                </configuration>
-            </plugin>
-        </plugins>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -174,14 +155,25 @@
     <reporting>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.0.0</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>3.1.6</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>LATEST</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>3.2.1</version>
+                <version>3.3.0</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
                     <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
