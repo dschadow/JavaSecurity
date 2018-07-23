@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.dominikschadow.javasecurity</groupId>
         <artifactId>javasecurity</artifactId>
-        <version>2.0.1</version>
+        <version>3.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>crypto-hash</artifactId>
@@ -13,7 +13,8 @@
     <name>Crypto Hash</name>
 
     <description>Java hashing sample project using Java capabilities to hash passwords. Each relevant class provides
-        its own main method to get started.</description>
+        its own main method to get started.
+    </description>
 
     <dependencies>
         <dependency>
