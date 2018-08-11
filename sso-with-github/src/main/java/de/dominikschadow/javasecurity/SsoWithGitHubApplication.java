@@ -129,7 +129,7 @@ public class SsoWithGitHubApplication extends WebSecurityConfigurerAdapter {
                 if (csrf != null) {
                     Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
                     String token = csrf.getToken();
-                    if (cookie == null || token != null && !token.equals(cookie.getValue())) {
+                    if (cookie == null || (token != null && !token.equals(cookie.getValue()))) {
                         cookie = new Cookie("XSRF-TOKEN", token);
                         cookie.setPath("/");
                         cookie.setHttpOnly(true);
