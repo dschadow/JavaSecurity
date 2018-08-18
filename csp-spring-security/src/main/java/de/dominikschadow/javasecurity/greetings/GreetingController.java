@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,9 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.controller;
+package de.dominikschadow.javasecurity.greetings;
 
-import de.dominikschadow.javasecurity.domain.Greeting;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author Dominik Schadow
  */
 @Controller
-public class IndexController {
+public class GreetingController {
     @GetMapping
     public String home(Model model) {
         model.addAttribute("greeting", new Greeting());
