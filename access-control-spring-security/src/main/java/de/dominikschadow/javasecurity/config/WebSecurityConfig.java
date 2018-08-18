@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,12 +17,17 @@
  */
 package de.dominikschadow.javasecurity.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -33,23 +38,33 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("userA").password("userA").roles("USER");
-        auth.inMemoryAuthentication().withUser("userB").password("userB").roles("USER");
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails userA = User.builder().username("userA").password("$2a$10$DPvGhj5Y4vjVhSKx8nT1i.1LeALEk7.njHrql1g2k3kGm3l82bu8O").roles("USER").build();
+        UserDetails userB = User.builder().username("userB").password("$2a$10$XM1VDywhhoIqZfwC5f.3I.NW5.ahj5Yoo4au5jv4IStKmVK3LFxme").roles("USER").build();
+
+        return new InMemoryUserDetailsManager(userA, userB);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http
             .authorizeRequests()
-                .antMatchers("/*").permitAll()
-                .antMatchers("/contacts/**").hasRole("USER")
+            .antMatchers("/*").permitAll()
+            .antMatchers("/contacts/**").hasRole("USER")
             .and()
-                .formLogin()
-                .defaultSuccessUrl("/contacts")
+            .formLogin()
+            .defaultSuccessUrl("/contacts")
             .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+            .logout()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+        // @formatter:on
     }
 }
