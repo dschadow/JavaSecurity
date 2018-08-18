@@ -15,21 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+package de.dominikschadow.javasecurity.csrf.orders;
 
 /**
- * Starter class for the Spring Boot application.
+ * Order entity.
  *
  * @author Dominik Schadow
  */
-@SpringBootApplication
-@EnableWebSecurity
-public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+public class Order {
+    private String item;
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
     }
 }

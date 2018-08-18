@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,21 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.domain;
+package de.dominikschadow.javasecurity.csrf.home;
+
+import de.dominikschadow.javasecurity.csrf.orders.Order;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Order entity.
+ * Index controller for all home page related operations.
  *
  * @author Dominik Schadow
  */
-public class Order {
-    private String item;
+@Controller
+@RequestMapping(value = "/")
+public class IndexController {
+    @GetMapping
+    public String index(Model model) {
+        model.addAttribute("order", new Order());
 
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
+        return "index";
     }
 }
