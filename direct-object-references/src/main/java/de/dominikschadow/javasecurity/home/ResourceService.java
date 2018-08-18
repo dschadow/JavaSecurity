@@ -1,4 +1,21 @@
-package de.dominikschadow.javasecurity;
+/*
+ * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ *
+ * This file is part of the Java Security project.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package de.dominikschadow.javasecurity.home;
 
 import org.owasp.esapi.errors.AccessControlException;
 import org.owasp.esapi.reference.RandomAccessReferenceMap;
@@ -36,7 +53,7 @@ public class ResourceService {
         resources.add(coverPdf);
     }
 
-    public Set<String> getAllIndirectReferences() {
+    Set<String> getAllIndirectReferences() {
         Set<String> indirectReferences = new HashSet<>();
 
         for (Object file : resources) {
@@ -47,7 +64,7 @@ public class ResourceService {
         return indirectReferences;
     }
 
-    public File getFileByIndirectReference(String indirectReference) throws AccessControlException {
+    File getFileByIndirectReference(String indirectReference) throws AccessControlException {
         File file = referenceMap.getDirectReference(indirectReference);
 
         log.info("File name {}", file.getName());
@@ -55,7 +72,7 @@ public class ResourceService {
         return file;
     }
 
-    public Resource loadAsResource(String filename) throws MalformedURLException {
+    Resource loadAsResource(String filename) throws MalformedURLException {
         Resource resource = new UrlResource(rootLocation + filename);
         if (resource.exists() || resource.isReadable()) {
             return resource;
