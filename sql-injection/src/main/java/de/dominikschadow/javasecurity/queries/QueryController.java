@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,12 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.controller;
+package de.dominikschadow.javasecurity.queries;
 
-import de.dominikschadow.javasecurity.database.EscapedQuery;
-import de.dominikschadow.javasecurity.database.PreparedStatementQuery;
-import de.dominikschadow.javasecurity.domain.Customer;
-import de.dominikschadow.javasecurity.database.PlainSqlQuery;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +54,7 @@ public class QueryController {
      * Handles requests for a plain SQL query.
      *
      * @param customer The Customer data
-     * @param model The model
+     * @param model    The model
      * @return The result page
      */
     @PostMapping("plain")
@@ -72,7 +68,7 @@ public class QueryController {
      * Handles requests for an escaped SQL query.
      *
      * @param customer The Customer data
-     * @param model The model
+     * @param model    The model
      * @return The result page
      */
     @PostMapping("escaped")
@@ -86,7 +82,7 @@ public class QueryController {
      * Handles requests for a prepared statement SQL query.
      *
      * @param customer The Customer data
-     * @param model The model
+     * @param model    The model
      * @return The result page
      */
     @PostMapping("prepared")

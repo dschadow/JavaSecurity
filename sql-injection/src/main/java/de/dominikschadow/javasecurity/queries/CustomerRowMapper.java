@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,9 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.database;
-
-import de.dominikschadow.javasecurity.domain.Customer;
+package de.dominikschadow.javasecurity.queries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +26,8 @@ import java.util.Map;
  *
  * @author Dominik Schadow
  */
-public class CustomerRowMapper {
-    public static List<Customer> mapRows(List<Map<String, Object>> rows) {
+class CustomerRowMapper {
+    static List<Customer> mapRows(List<Map<String, Object>> rows) {
         List<Customer> customers = new ArrayList<>();
 
         for (Map row : rows) {
