@@ -76,9 +76,7 @@ Spring Boot based web application to experiment with normal (vulnerable) stateme
 prepared statements. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ## sso-with-github
-Contains a Spring Boot demo application with GitHub login. Requires you to set up an application in your GitHub account 
-and to provide `github.client.clientId` and `github.client.clientSecret` as runtime parameters. After launching, open 
-the web application in your browser at **http://localhost:8080**.
+Contains a Spring Boot demo application with GitHub login. Requires you to set up an [OAuth App](https://github.com/settings/developers) application in your GitHub account (with a homepage URL and authorization callback URL of http://localhost:8080) and to provide its `github.client.clientId` and `github.client.clientSecret` as runtime parameters. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ## xss
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input 
