@@ -7,10 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SsoWithGitHubApplication.class)
+@SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class SsoWithGitHubApplicationTests {
-	@Test
-	public void contextLoads() {
-	}
+public class ApplicationTests {
+    @Test
+    public void contextLoads() {
+    }
 }

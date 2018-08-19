@@ -1,7 +1,10 @@
-spring:
-  resources:
-    chain:
-      enabled: true
+security:
+  oauth2:
+    client:
+      client-id: java-security
+      client-secret: java-security-secret
+      scope: read,write
+      auto-approve-scopes: '.*'
 
 github:
   client:
@@ -13,4 +16,4 @@ github:
 
 logging:
   level:
-    org.springframework.security: DEBUG
+    root: INFO
