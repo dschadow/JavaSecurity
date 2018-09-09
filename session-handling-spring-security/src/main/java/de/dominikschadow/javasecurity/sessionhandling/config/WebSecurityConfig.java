@@ -38,7 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-
     /**
      * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is
      * 4 to 31. The amount of work increases exponentially.
