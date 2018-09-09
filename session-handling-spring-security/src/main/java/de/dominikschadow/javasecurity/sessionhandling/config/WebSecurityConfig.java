@@ -40,12 +40,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("select username, password, active from users where username = ?")
-                .authoritiesByUsernameQuery("select username, role from roles where username = ?");
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // @formatter:off
+        auth
+            .jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder());
+        // @formatter:on
     }
 
     @Override
@@ -59,12 +61,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .csrf()
                 .ignoringAntMatchers("/h2-console/*")
-                .and()
+            .and()
             .headers()
                 .frameOptions().sameOrigin()
-                .and()
+            .and()
             .formLogin()
-                .and()
+            .and()
             .logout()
                 .logoutSuccessUrl("/")
                 .permitAll();
