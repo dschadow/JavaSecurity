@@ -42,7 +42,7 @@ public class ContactService {
 
     @PreAuthorize("hasRole('USER')")
     @PostAuthorize("returnObject.username == principal.username")
-    public Contact getContact(int contactId) {
+    Contact getContact(int contactId) {
         return jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE id = ?",
                 new Object[]{contactId}, (rs, rowNum) -> createContact(rs));
     }
@@ -57,13 +57,13 @@ public class ContactService {
      */
     @PreAuthorize("hasRole('USER')")
     @PostFilter("filterObject.username == principal.username")
-    public List<Contact> getContacts() {
+    List<Contact> getContacts() {
         return jdbcTemplate.query("SELECT * FROM contacts", (rs, rowNum) -> createContact(rs));
     }
 
     private static Contact createContact(ResultSet rs) throws SQLException {
         Contact contact = new Contact();
-        contact.setId(rs.getInt("id"));
+        contact.setId(rs.getLong("id"));
         contact.setUsername(rs.getString("username"));
         contact.setFirstname(rs.getString("firstname"));
         contact.setLastname(rs.getString("lastname"));

@@ -58,8 +58,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http
             .authorizeRequests()
-                .antMatchers("/*").permitAll()
+                .antMatchers("/*", "/h2-console/**").permitAll()
                 .antMatchers("/contacts/**").hasRole("USER")
+             .and()
+                .csrf()
+                .ignoringAntMatchers("/h2-console/*")
+            .and()
+            .headers()
+                .frameOptions().sameOrigin()
             .and()
             .formLogin()
                 .defaultSuccessUrl("/contacts")

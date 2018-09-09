@@ -17,34 +17,29 @@
  */
 package de.dominikschadow.javasecurity.contacts;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
-/**
- * @author Dominik Schadow
- */
 @Entity
 @Table(name = "contacts")
 public class Contact {
     @Id
-    @Column(name = "id")
-    private int id;
-    @Column(name = "firstname")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Size(min = 5, max = 50)
     private String firstname;
-    @Column(name = "lastname")
+    @Size(min = 5, max = 50)
     private String lastname;
-    @Column(name = "comment")
+    @Size(max = 100)
     private String comment;
-    @Column(name = "username")
+    @Size(min = 5, max = 50)
     private String username;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

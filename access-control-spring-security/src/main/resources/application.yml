@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: sa
+    password: sa
+    name: access-control
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
