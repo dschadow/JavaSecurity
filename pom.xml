@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>javasecurity</artifactId>
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <packaging>pom</packaging>
     <name>Java Security</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
