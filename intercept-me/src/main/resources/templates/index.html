@@ -13,15 +13,18 @@
         <div class="col-12">
             <h1>Intercept Me</h1>
             <p>This exercise consists of the two tasks described below. You will need OWASP ZAP or another intercepting
-                proxy to complete them.</p>
+                proxy to complete them. Remember to configure OWASP ZAP and your browser first before starting the
+                exercise.</p>
         </div>
     </div>
 
     <div class="row" id="firstTask">
         <div class="col-12">
             <h2>First Task</h2>
-            <p>Your first task is to send <strong>inject</strong> (lowercase) via the form so that the backend
-                returns <strong>SUCCESS</strong> (uppercase).</p>
+            <p>Your first task is to use the following form to send <strong>inject</strong> (completely in lowercase)
+                as value of the <strong>Text</strong> field so that the backend returns <strong>SUCCESS</strong>
+                (completely in uppercase) on the resulting page.
+            </p>
 
             <form action="#" th:action="@{/first}" th:object="${firstTask}" method="post">
                 <fieldset>
@@ -36,8 +39,9 @@
     <div class="row" id="secondTask">
         <div class="col-12">
             <h2>Second Task</h2>
-            <p>Your second task is to send the form so that the backend returns <strong>SUCCESS</strong>
-                (uppercase).</p>
+            <p>Your second task is to use the following form so that the backend returns <strong>SUCCESS</strong>
+                (completely in uppercase). As you can see, this form does not contain any input field so you have to
+                figure out another way.</p>
 
             <form action="#" th:action="@{/second}" method="post">
                 <fieldset>
