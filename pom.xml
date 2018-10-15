@@ -197,6 +197,7 @@
         <module>intercept-me</module>
         <module>security-header</module>
         <module>security-logging</module>
+        <module>serialize-me</module>
         <module>session-handling</module>
         <module>session-handling-spring-security</module>
         <module>sql-injection</module>
