@@ -192,6 +192,7 @@
         <module>crypto-java</module>
         <module>crypto-keyczar</module>
         <module>crypto-shiro</module>
+        <module>crypto-tink</module>
         <module>csp-spring-security</module>
         <module>csrf</module>
         <module>csrf-spring-security</module>
