@@ -92,17 +92,21 @@ Crypto demo project using Java to hash passwords with different hashing algorith
 to execute the samples. 
 
 ## crypto-java
-Crypto demo project using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) keys as well 
-as to sign and verify data (DSA). All classes contain **main** methods to execute the samples. 
+Crypto demo project using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as 
+well as to sign and verify data (DSA). All classes contain **main** methods to execute the samples. 
 
 ## crypto-keyczar
 Crypto demo project using [Keyczar](http://www.keyczar.org) to encrypt and decrypt data with asymmetric (RSA) and 
-symmetric (AES) keys as well as to sign and verify data (DSA). All classes contain **main** methods to execute the 
+symmetric (AES) algorithms as well as to sign and verify data (DSA). All classes contain **main** methods to execute the 
 samples. 
 
 ## crypto-shiro
-Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) keys 
-as well as hash data (passwords). All classes contain **main** methods to execute the samples. 
+Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) 
+algorithms as well as hash data (passwords). All classes contain **main** methods to execute the samples. 
+
+## crypto-tink
+Crypto demo project using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and 
+symmetric algorithms as well as to sign and verify data. All classes contain **main** methods to execute the samples. 
 
 ## Meta
 [![Build Status](https://travis-ci.org/dschadow/JavaSecurity.svg)](https://travis-ci.org/dschadow/JavaSecurity)
