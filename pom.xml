@@ -8,7 +8,9 @@
     <packaging>pom</packaging>
     <name>Java Security</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
-    <description>This repository contains different security related Java projects.</description>
+    <description>This repository contains different security related Java projects, some of them with intentional
+        security vulnerabilities.
+    </description>
 
     <organization>
         <name>Dominik Schadow</name>
