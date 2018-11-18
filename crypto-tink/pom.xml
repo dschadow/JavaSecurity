@@ -12,7 +12,9 @@
     <packaging>jar</packaging>
     <name>Crypto Tink</name>
 
-    <description>Java crypto sample project using Google Tink to encrypt/ decrypt and sign/ verify data.</description>
+    <description>Java crypto sample project using Google Tink to encrypt/ decrypt and sign/ verify data. Each relevant
+        class provides its own main method to get started.
+    </description>
 
     <dependencies>
         <dependency>

@@ -13,7 +13,7 @@
     <name>Crypto Keyczar</name>
 
     <description>Java crypto sample project using Keyczar to encrypt/ decrypt and sign/ verify data. Each relevant class
-        provides its own main method to get started..
+        provides its own main method to get started.
     </description>
 
     <dependencies>
