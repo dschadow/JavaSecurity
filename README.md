@@ -75,9 +75,6 @@ Requires a web server with Servlet 3.1 support. After launching, open the web ap
 Spring Boot based web application to experiment with normal (vulnerable) statements, statements with escaped input, and 
 prepared statements. After launching, open the web application in your browser at **http://localhost:8080**.
 
-## sso-with-github
-Contains a Spring Boot demo application with GitHub login. Requires you to set up an [OAuth App](https://github.com/settings/developers) application in your GitHub account (with a homepage URL and authorization callback URL of http://localhost:8080) and to provide its `github.client.clientId` and `github.client.clientSecret` as runtime parameters. After launching, open the web application in your browser at **http://localhost:8080**.
-
 ## xss
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input 
 validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and 

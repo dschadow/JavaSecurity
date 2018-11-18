@@ -202,7 +202,6 @@
         <module>session-handling</module>
         <module>session-handling-spring-security</module>
         <module>sql-injection</module>
-        <module>sso-with-github</module>
         <module>xss</module>
     </modules>
 </project>
