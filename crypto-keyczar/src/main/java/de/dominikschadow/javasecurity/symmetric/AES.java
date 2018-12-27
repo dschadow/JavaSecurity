@@ -69,7 +69,7 @@ public class AES {
 
     private static void printReadableMessages(String initialText, String ciphertext, String plaintext) {
         log.info("initialText: {}", initialText);
-        log.info("cipherText as Base64: {}", ciphertext);
+        log.info("cipherText: {}", ciphertext);
         log.info("plaintext: {}", plaintext);
     }
 }
