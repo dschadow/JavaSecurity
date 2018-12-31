@@ -19,17 +19,14 @@ package de.dominikschadow.javasecurity.tink.symmetric;
 
 import com.google.common.io.BaseEncoding;
 import com.google.crypto.tink.Aead;
-import com.google.crypto.tink.CleartextKeysetHandle;
-import com.google.crypto.tink.JsonKeysetWriter;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
 import com.google.crypto.tink.aead.AeadFactory;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
+import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 
@@ -50,12 +47,11 @@ public class AeadDemo {
         try {
             AeadConfig.register();
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to initialize AeadConfig", ex);
+            log.error("Failed to initialize Tink", ex);
         }
     }
 
     public static void main(String[] args) {
-
         AeadDemo demo = new AeadDemo();
 
         try {
@@ -66,7 +62,7 @@ public class AeadDemo {
 
             demo.printCryptoData(keysetHandle, cipherText, plainText);
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to encrypt/decrypt with AEAD", ex);
+            log.error("Failure during Tink usage", ex);
         }
     }
 
@@ -90,14 +86,6 @@ public class AeadDemo {
         log.info("initial text: {}", INITIAL_TEXT);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
         log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
-
-        try {
-            log.info("keyset data:");
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(outputStream));
-            log.info(new String(outputStream.toByteArray()));
-        } catch (IOException ex) {
-            log.error("Failed to write keyset", ex);
-        }
+        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
     }
 }
