@@ -52,13 +52,21 @@ public class TinkUtils {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
         log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
-        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
+        log.info("keyset data: {}", printKeyset(keysetHandle));
+    }
+
+    public static void printHybridEncryptionData(KeysetHandle privateKeysetHandle, KeysetHandle publicKeysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
+        log.info("initial text: {}", initialText);
+        log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
+        log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
+        log.info("private keyset data: {}", printKeyset(privateKeysetHandle));
+        log.info("public keyset data: {}", printKeyset(publicKeysetHandle));
     }
 
     public static void printMacData(KeysetHandle keysetHandle, String initialText, byte[] tag, boolean valid) {
         log.info("initial text: {}", initialText);
         log.info("MAC: {}", BaseEncoding.base16().encode(tag));
         log.info("MAC is valid: {}", valid);
-        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
+        log.info("keyset data: {}", printKeyset(keysetHandle));
     }
 }
