@@ -25,7 +25,6 @@ import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
 import com.google.crypto.tink.aead.AeadFactory;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
-import com.google.crypto.tink.proto.KeyTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,9 +71,7 @@ public class AeadDemo {
     }
 
     private KeysetHandle generateKey() throws GeneralSecurityException {
-        KeyTemplate keyTemplate = AeadKeyTemplates.AES128_GCM;
-
-        return KeysetHandle.generateNew(keyTemplate);
+        return KeysetHandle.generateNew(AeadKeyTemplates.AES128_GCM);
     }
 
     private byte[] encrypt(KeysetHandle keysetHandle) throws GeneralSecurityException {
