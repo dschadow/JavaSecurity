@@ -40,7 +40,7 @@ import java.security.GeneralSecurityException;
  */
 public class AeadDemo {
     private static final Logger log = LoggerFactory.getLogger(AeadDemo.class);
-    private static final String INITIAL_TEXT = "Some dummy text for encryption";
+    private static final String INITIAL_TEXT = "Some dummy text to work with";
     private static final String ASSOCIATED_DATA = "Some additional data";
 
     /**
