@@ -36,37 +36,35 @@ import java.nio.charset.Charset;
 public class TinkUtils {
     private static final Logger log = LoggerFactory.getLogger(TinkUtils.class);
 
-    public static String printKeyset(KeysetHandle keysetHandle) {
+    public static void printKeyset(String type, KeysetHandle keysetHandle) {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(outputStream));
-            return new String(outputStream.toByteArray());
+            log.info("{}: {}", type, new String(outputStream.toByteArray()));
         } catch (IOException ex) {
             log.error("Failed to write keyset", ex);
         }
-
-        return "";
     }
 
     public static void printSymmetricEncryptionData(KeysetHandle keysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
         log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
-        log.info("keyset data: {}", printKeyset(keysetHandle));
+        printKeyset("keyset data", keysetHandle);
     }
 
     public static void printHybridEncryptionData(KeysetHandle privateKeysetHandle, KeysetHandle publicKeysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
         log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
-        log.info("private keyset data: {}", printKeyset(privateKeysetHandle));
-        log.info("public keyset data: {}", printKeyset(publicKeysetHandle));
+        printKeyset("private key set data", privateKeysetHandle);
+        printKeyset("public key set data", publicKeysetHandle);
     }
 
     public static void printMacData(KeysetHandle keysetHandle, String initialText, byte[] tag, boolean valid) {
         log.info("initial text: {}", initialText);
         log.info("MAC: {}", BaseEncoding.base16().encode(tag));
         log.info("MAC is valid: {}", valid);
-        log.info("keyset data: {}", printKeyset(keysetHandle));
+        printKeyset("keyset data", keysetHandle);
     }
 }
