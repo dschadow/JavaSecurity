@@ -31,7 +31,8 @@ import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 
 /**
- * Shows crypto usage with Google Tink for the Authenticated Encryption with Associated Data (AEAD) primitive.
+ * Shows crypto usage with Google Tink for the Authenticated Encryption with Associated Data (AEAD) primitive. The used
+ * key is generated during runtime.
  *
  * @author Dominik Schadow
  */
