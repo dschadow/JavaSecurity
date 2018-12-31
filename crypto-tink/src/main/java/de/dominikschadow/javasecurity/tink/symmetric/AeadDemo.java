@@ -59,7 +59,7 @@ public class AeadDemo {
             byte[] cipherText = demo.encrypt(keysetHandle);
             byte[] plainText = demo.decrypt(keysetHandle, cipherText);
 
-            TinkUtils.printEncryptionData(keysetHandle, INITIAL_TEXT, cipherText, plainText);
+            TinkUtils.printSymmetricEncryptionData(keysetHandle, INITIAL_TEXT, cipherText, plainText);
         } catch (GeneralSecurityException ex) {
             log.error("Failure during Tink usage", ex);
         }

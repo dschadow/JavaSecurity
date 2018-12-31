@@ -48,7 +48,7 @@ public class TinkUtils {
         return "";
     }
 
-    public static void printEncryptionData(KeysetHandle keysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
+    public static void printSymmetricEncryptionData(KeysetHandle keysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
         log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
