@@ -60,6 +60,7 @@ public class HybridDemoWithKeyRotation {
             KeysetHandle privateKeysetHandle = demo.generatePrivateKey();
             TinkUtils.printKeyset("original keyset data", privateKeysetHandle);
             KeysetHandle rotatedPrivateKeysetHandle = demo.rotateKey(privateKeysetHandle);
+            rotatedPrivateKeysetHandle = demo.disableOriginalKey(rotatedPrivateKeysetHandle);
             TinkUtils.printKeyset("rotated keyset data", rotatedPrivateKeysetHandle);
             KeysetHandle publicKeysetHandle = demo.generatePublicKey(rotatedPrivateKeysetHandle);
 
@@ -72,8 +73,18 @@ public class HybridDemoWithKeyRotation {
         }
     }
 
-    private KeysetHandle rotateKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
-        return KeysetManager.withKeysetHandle(privateKeysetHandle).rotate(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM).getKeysetHandle();
+    /**
+     * Generate a new key and add it to the keyset.
+     */
+    private KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
+        return KeysetManager.withKeysetHandle(keysetHandle).rotate(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM).getKeysetHandle();
+    }
+
+    /**
+     * Optional step to disable the original key.
+     */
+    private KeysetHandle disableOriginalKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
+        return KeysetManager.withKeysetHandle(keysetHandle).disable(keysetHandle.getKeysetInfo().getKeyInfo(0).getKeyId()).getKeysetHandle();
     }
 
     private KeysetHandle generatePrivateKey() throws GeneralSecurityException {
