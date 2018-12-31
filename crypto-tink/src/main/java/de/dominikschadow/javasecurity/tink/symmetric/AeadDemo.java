@@ -30,7 +30,7 @@ import java.security.GeneralSecurityException;
 
 /**
  * Shows crypto usage with Google Tink for the Authenticated Encryption with Associated Data (AEAD) primitive. The used
- * key is generated during runtime.
+ * key is generated during runtime and not saved.
  *
  * @author Dominik Schadow
  */

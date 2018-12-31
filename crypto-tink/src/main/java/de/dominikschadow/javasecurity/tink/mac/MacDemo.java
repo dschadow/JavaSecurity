@@ -29,7 +29,8 @@ import org.slf4j.LoggerFactory;
 import java.security.GeneralSecurityException;
 
 /**
- * Shows crypto usage with Google Tink for the Hash-based Message Authentication Code (HMAC) primitive.
+ * Shows crypto usage with Google Tink for the Hash-based Message Authentication Code (HMAC) primitive. The used key is
+ * generated during runtime and not saved
  *
  * @author Dominik Schadow
  */
