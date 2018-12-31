@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.tink.symmetric;
 
-import com.google.common.io.BaseEncoding;
 import com.google.crypto.tink.Aead;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
@@ -27,7 +26,6 @@ import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 
 /**
@@ -61,7 +59,7 @@ public class AeadDemo {
             byte[] cipherText = demo.encrypt(keysetHandle);
             byte[] plainText = demo.decrypt(keysetHandle, cipherText);
 
-            demo.printCryptoData(keysetHandle, cipherText, plainText);
+            TinkUtils.printEncryptionData(keysetHandle, INITIAL_TEXT, cipherText, plainText);
         } catch (GeneralSecurityException ex) {
             log.error("Failure during Tink usage", ex);
         }
@@ -81,12 +79,5 @@ public class AeadDemo {
         Aead aead = AeadFactory.getPrimitive(keysetHandle);
 
         return aead.decrypt(cipherText, ASSOCIATED_DATA.getBytes());
-    }
-
-    private void printCryptoData(KeysetHandle keysetHandle, byte[] cipherText, byte[] plainText) {
-        log.info("initial text: {}", INITIAL_TEXT);
-        log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
-        log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
-        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
     }
 }

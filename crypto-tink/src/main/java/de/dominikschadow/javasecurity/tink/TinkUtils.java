@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.tink;
 
+import com.google.common.io.BaseEncoding;
 import com.google.crypto.tink.CleartextKeysetHandle;
 import com.google.crypto.tink.JsonKeysetWriter;
 import com.google.crypto.tink.KeysetHandle;
@@ -25,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * Google Tink utils for demo projects.
@@ -44,5 +46,19 @@ public class TinkUtils {
         }
 
         return "";
+    }
+
+    public static void printEncryptionData(KeysetHandle keysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
+        log.info("initial text: {}", initialText);
+        log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
+        log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
+        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
+    }
+
+    public static void printMacData(KeysetHandle keysetHandle, String initialText, byte[] tag, boolean valid) {
+        log.info("initial text: {}", initialText);
+        log.info("MAC: {}", BaseEncoding.base16().encode(tag));
+        log.info("MAC is valid: {}", valid);
+        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
     }
 }

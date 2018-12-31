@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.tink.mac;
 
-import com.google.common.io.BaseEncoding;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.Mac;
 import com.google.crypto.tink.mac.MacConfig;
@@ -58,7 +57,7 @@ public class MacDemo {
             byte[] tag = demo.computeMac(keysetHandle);
             boolean valid = demo.verifyMac(keysetHandle, tag);
 
-            demo.printCryptoData(keysetHandle, tag, valid);
+            TinkUtils.printMacData(keysetHandle, INITIAL_TEXT, tag, valid);
         } catch (GeneralSecurityException ex) {
             log.error("Failure during Tink usage", ex);
         }
@@ -84,12 +83,5 @@ public class MacDemo {
 
     private KeysetHandle generateKey() throws GeneralSecurityException {
         return KeysetHandle.generateNew(MacKeyTemplates.HMAC_SHA256_128BITTAG);
-    }
-
-    private void printCryptoData(KeysetHandle keysetHandle, byte[] mac, boolean valid) {
-        log.info("initial text: {}", INITIAL_TEXT);
-        log.info("MAC: {}", BaseEncoding.base16().encode(mac));
-        log.info("MAC is valid: {}", valid);
-        log.info("keyset data: {}", TinkUtils.printKeyset(keysetHandle));
     }
 }
