@@ -67,4 +67,13 @@ public class TinkUtils {
         log.info("MAC is valid: {}", valid);
         printKeyset("keyset data", keysetHandle);
     }
+
+    public static void printSignatureData(KeysetHandle privateKeysetHandle, KeysetHandle publicKeysetHandle, String initialText, byte[] signature, boolean valid) {
+        log.info("initial text: {}", initialText);
+        log.info("signature: {}", BaseEncoding.base16().encode(signature));
+        log.info("signature is valid: {}", valid);
+        printKeyset("private key set data", privateKeysetHandle);
+        printKeyset("public key set data", publicKeysetHandle);
+
+    }
 }
