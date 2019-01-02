@@ -75,15 +75,15 @@ public class EcdsaDemo {
         return privateKeysetHandle.getPublicKeysetHandle();
     }
 
-    private byte[] sign(KeysetHandle publicKeysetHandle) throws GeneralSecurityException {
-        PublicKeySign signer = PublicKeySignFactory.getPrimitive(publicKeysetHandle);
+    private byte[] sign(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
+        PublicKeySign signer = PublicKeySignFactory.getPrimitive(privateKeysetHandle);
 
         return signer.sign(INITIAL_TEXT.getBytes());
     }
 
-    private boolean verify(KeysetHandle privateKeysetHandle, byte[] signature) {
+    private boolean verify(KeysetHandle publicKeysetHandle, byte[] signature) {
         try {
-            PublicKeyVerify verifier = PublicKeyVerifyFactory.getPrimitive(privateKeysetHandle);
+            PublicKeyVerify verifier = PublicKeyVerifyFactory.getPrimitive(publicKeysetHandle);
             verifier.verify(signature, INITIAL_TEXT.getBytes());
             return true;
         } catch (GeneralSecurityException ex) {
@@ -92,5 +92,4 @@ public class EcdsaDemo {
 
         return false;
     }
-
 }
