@@ -43,7 +43,7 @@ public class HybridDemoWithKeyRotation {
     private static final String ASSOCIATED_DATA = "Some additional data";
 
     /**
-     * Init Hybrid in the Tink library.
+     * Init HybridConfig in the Tink library.
      */
     private HybridDemoWithKeyRotation() {
         try {

@@ -42,7 +42,7 @@ public class AeadWithSavedKeyDemo {
     private static final String KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/aead-keyset.json";
 
     /**
-     * Init AEAD in the Tink library.
+     * Init AeadConfig in the Tink library.
      */
     private AeadWithSavedKeyDemo() {
         try {

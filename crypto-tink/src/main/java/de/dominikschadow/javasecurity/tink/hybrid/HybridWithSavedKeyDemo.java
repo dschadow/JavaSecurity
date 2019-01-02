@@ -44,7 +44,7 @@ public class HybridWithSavedKeyDemo {
     private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-keyset-public.json";
 
     /**
-     * Init Hybrid in the Tink library.
+     * Init HybridConfig in the Tink library.
      */
     private HybridWithSavedKeyDemo() {
         try {

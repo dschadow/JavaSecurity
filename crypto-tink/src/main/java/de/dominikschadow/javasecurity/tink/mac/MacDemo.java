@@ -39,7 +39,7 @@ public class MacDemo {
     private static final String INITIAL_TEXT = "Some dummy text to work with";
 
     /**
-     * Init MAC in the Tink library.
+     * Init MacConfig in the Tink library.
      */
     private MacDemo() {
         try {

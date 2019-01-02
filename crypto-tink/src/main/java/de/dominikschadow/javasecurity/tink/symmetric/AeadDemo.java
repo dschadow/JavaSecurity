@@ -40,7 +40,7 @@ public class AeadDemo {
     private static final String ASSOCIATED_DATA = "Some additional data";
 
     /**
-     * Init AEAD in the Tink library.
+     * Init AeadConfig in the Tink library.
      */
     private AeadDemo() {
         try {
