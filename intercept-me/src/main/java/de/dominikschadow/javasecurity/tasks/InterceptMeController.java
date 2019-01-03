@@ -25,14 +25,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
 
 /**
- * Controller processing the main page and all forms. Returns <i>SUCCESS</i> or <i>FAILURE</i>
- * depending on the given input.
+ * Controller processing the main page and all forms. Returns <i>SUCCESS</i> or <i>FAILURE</i> depending on the given
+ * input.
  *
  * @author Dominik Schadow
  */
 @Controller
 public class InterceptMeController {
-    @GetMapping
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("firstTask", new FirstTask());
         return "index";
