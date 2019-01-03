@@ -30,14 +30,14 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class GreetingController {
-    @GetMapping
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("greeting", new Greeting());
 
         return "index";
     }
 
-    @PostMapping("greeting")
+    @PostMapping("/greeting")
     public String greeting(Model model, @ModelAttribute Greeting greeting) {
         model.addAttribute("result", greeting);
 
