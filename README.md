@@ -82,28 +82,24 @@ the Content Security Policy (CSP). After launching, open the web application in 
 browser at **http://localhost:8080/xss**.
 
 # Command Line Applications in Detail
-All projects contain **main** methods to start the demo.
+The following projects demonstrate crypto usage in Java with different libraries. Each project contains one or more **main** methods to start the demo.
 
 ## crypto-hash
-Crypto demo project using Java to hash passwords with different hashing algorithms. All classes contain **main** methods 
-to execute the samples. 
+Crypto demo project using Java to hash passwords with different hashing algorithms.
 
 ## crypto-java
-Crypto demo project using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as 
-well as to sign and verify data (DSA). All classes contain **main** methods to execute the samples. 
+Crypto demo project using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA).
 
 ## crypto-keyczar
 Crypto demo project using [Keyczar](http://www.keyczar.org) to encrypt and decrypt data with asymmetric (RSA) and 
-symmetric (AES) algorithms as well as to sign and verify data (DSA). All classes contain **main** methods to execute the 
-samples. 
+symmetric (AES) algorithms as well as to sign and verify data (DSA). 
 
 ## crypto-shiro
 Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) 
-algorithms as well as hash data (passwords). All classes contain **main** methods to execute the samples. 
+algorithms as well as hash data (passwords). 
 
 ## crypto-tink
-Crypto demo project using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and 
-symmetric algorithms as well as to sign and verify data. All classes contain **main** methods to execute the samples. 
+Crypto demo project using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and symmetric algorithms as well as to sign and verify data.
 
 ## Meta
 [![Build Status](https://travis-ci.org/dschadow/JavaSecurity.svg)](https://travis-ci.org/dschadow/JavaSecurity)
