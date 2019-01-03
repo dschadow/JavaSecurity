@@ -27,11 +27,7 @@
 
     <div class="row" id="logout" th:if="${#httpServletRequest.remoteUser}">
         <div class="col-12">
-            <form th:action="@{/logout}" method="post">
-                <button type="submit" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-off"></span> Log out
-                </button>
-            </form>
+            <a th:href="@{/logout}">Logout</a>
         </div>
     </div>
 </div>
