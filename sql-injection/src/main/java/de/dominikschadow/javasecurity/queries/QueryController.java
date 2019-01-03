@@ -40,7 +40,7 @@ public class QueryController {
         this.preparedStatementQuery = preparedStatementQuery;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("plain", new Customer());
         model.addAttribute("escaped", new Customer());
