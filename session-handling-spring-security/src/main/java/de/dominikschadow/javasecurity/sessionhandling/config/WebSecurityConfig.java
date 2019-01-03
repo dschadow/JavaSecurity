@@ -26,6 +26,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -51,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is
-     * 4 to 31. The amount of work increases exponentially.
+     * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is 4 to 31. The
+     * amount of work increases exponentially.
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -77,8 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
             .and()
             .logout()
-                .logoutSuccessUrl("/")
-                .permitAll();
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/");
         // @formatter:on
     }
 }
