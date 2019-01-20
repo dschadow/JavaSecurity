@@ -21,11 +21,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -40,5 +42,33 @@ public class InterceptMeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(content().string(containsString("This exercise consists")));
+    }
+
+    @Test
+    public void testTaskOneWithFailure() throws Exception {
+        mockMvc.perform(post("/first")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("name", "test"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("result"))
+                .andExpect(content().string(containsString("FAILURE")));
+    }
+
+    @Test
+    public void testTaskOneWithSuccess() throws Exception {
+        mockMvc.perform(post("/first")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("name", "inject"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("result"))
+                .andExpect(content().string(containsString("SUCCESS")));
+    }
+
+    @Test
+    public void testTaskTwoWithFailure() throws Exception {
+        mockMvc.perform(post("/second"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("result"))
+                .andExpect(content().string(containsString("FAILURE")));
     }
 }
