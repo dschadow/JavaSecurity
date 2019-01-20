@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.tasks;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
 
@@ -39,7 +38,7 @@ public class InterceptMeController {
     }
 
     @PostMapping("first")
-    public String firstTask(@ModelAttribute FirstTask firstTask, Model model) {
+    public String firstTask(FirstTask firstTask, Model model) {
         String result = "FAILURE";
 
         if (StringUtils.equals(firstTask.getName(), "inject")) {
