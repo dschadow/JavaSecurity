@@ -34,6 +34,7 @@ public class InterceptMeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("firstTask", new FirstTask());
+        
         return "index";
     }
 
