@@ -36,7 +36,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // @formatter:off
         auth.
             inMemoryAuthentication()
@@ -52,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is
-     * 4 to 31. The amount of work increases exponentially.
+     * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is 4 to 31. The
+     * amount of work increases exponentially.
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
