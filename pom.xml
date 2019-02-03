@@ -140,8 +140,16 @@
                 </plugin>
                 <plugin>
                     <groupId>com.spotify</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>1.2.0</version>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.4.10</version>
+                    <configuration>
+                        <skip>true</skip>
+                        <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                        <tag>${project.version}</tag>
+                        <buildArgs>
+                            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        </buildArgs>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
