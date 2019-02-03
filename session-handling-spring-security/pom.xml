@@ -16,10 +16,6 @@
         class. After launching, open the web application in your browser at http://localhost:8080.
     </description>
 
-    <properties>
-        <start-class>de.dominikschadow.javasecurity.Application</start-class>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,18 +55,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-info</goal>
-                        </goals>
-                        <configuration>
-                            <additionalProperties>
-                                <versions.spring-boot>${project.parent.parent.version}</versions.spring-boot>
-                            </additionalProperties>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
