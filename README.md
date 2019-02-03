@@ -1,8 +1,7 @@
 Java Security
 ============
 This repository contains several Java web applications and command line applications covering different security topics. 
-Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering most of the applications
-in this repository.
+Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering most applications in this repository.
 
 # Web Applications in Detail
 Some web applications contain exercises, some are only there to inspect. Instructions are provided in detail on the 
