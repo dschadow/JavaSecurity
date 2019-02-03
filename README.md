@@ -12,8 +12,8 @@ as some applications might not work correctly in other browsers. [Java 8](http:/
 
 Some web applications are based on [Spring Boot](http://projects.spring.io/spring-boot) and can be started via the 
 **main** method in the **Application** class or via **mvn spring-boot:run** in the project directory. Projects 
-containing a Dockerfile can be launched via `docker container run -p 8080:8080 dschadow/[PROJECT]` after the 
-image has been created using `mvn clean package docker:build`. The other web applications either contain an embedded 
+containing a Dockerfile can be launched via `docker run -p 8080:8080 dschadow/[PROJECT]:[VERSION]` after the 
+image has been created using `mvn clean package dockerfile:build`. The other web applications either contain an embedded 
 **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which 
 can be started via **mvn jetty:run-war**.
 
