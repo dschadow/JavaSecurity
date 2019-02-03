@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -19,9 +19,10 @@ package de.dominikschadow.javasecurity.csrf.home;
 
 import de.dominikschadow.javasecurity.csrf.orders.Order;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * Index controller for all home page related operations.
@@ -30,11 +31,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(value = "/")
+@SessionAttributes("order")
 public class IndexController {
-    @GetMapping
-    public String index(Model model) {
-        model.addAttribute("order", new Order());
+    @ModelAttribute("order")
+    public Order order() {
+        return new Order();
+    }
 
+    @GetMapping
+    public String index(@ModelAttribute("order") Order order) {
         return "index";
     }
 }

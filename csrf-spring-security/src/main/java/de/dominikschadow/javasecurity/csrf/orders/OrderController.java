@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -18,7 +18,6 @@
 package de.dominikschadow.javasecurity.csrf.orders;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +28,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/order")
 public class OrderController {
-    @PostMapping("order")
-    public String order(Model model, @ModelAttribute Order order) {
-        model.addAttribute("order", order);
-
+    @PostMapping()
+    public String order(@ModelAttribute("order") Order order) {
         return "result";
     }
 }

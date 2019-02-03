@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -22,8 +22,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * Simple Spring Security configuration. Deactivates authentication and automatically protects from CSRF attacks
- * with an anti CSRF token.
+ * Simple Spring Security configuration. Deactivates authentication and automatically protects from CSRF attacks with an
+ * anti CSRF token.
  *
  * @author Dominik Schadow
  */
