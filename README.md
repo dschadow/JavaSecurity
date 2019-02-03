@@ -1,10 +1,10 @@
 Java Security
 ============
 This repository contains several Java web applications and command line applications covering different security topics. 
-Have a look at the [slides](https://blog.dominikschadow.de/events) from various events covering most applications in this repository.
+Have a look at my [slides](https://blog.dominikschadow.de/events) and [publications](https://blog.dominikschadow.de/publications) covering most applications in this repository.
 
 # Web Applications in Detail
-Some web applications contain exercises, some are only there to inspect. Instructions are provided in detail on the 
+Some web applications contain exercises, some are only there to inspect and learn. Instructions are provided in detail on the 
 start page of each web application. Using [Mozilla Firefox](https://www.mozilla.org) as browser is strongly recommended,
 as some security issues might not be displayed correctly in other browsers. [Java 8](http://www.oracle.com/technetwork/java) and [Maven 3](http://maven.apache.org/) must be installed in order for these projects to compile.
 
