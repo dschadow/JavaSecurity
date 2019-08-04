@@ -2,7 +2,7 @@
 *.log
 *.lck
 .Idea*
-*/target**
+target**
 .settings*
 .metadata*
 .classpath
