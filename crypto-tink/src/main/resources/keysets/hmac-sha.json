@@ -1,0 +1,13 @@
+{
+    "primaryKeyId": 465633422,
+    "key": [{
+        "keyData": {
+            "typeUrl": "type.googleapis.com/google.crypto.tink.HmacKey",
+            "keyMaterialType": "SYMMETRIC",
+            "value": "EgQIAxAQGiBqV52a9z22vyYxj8w4emtxDHNGUDYke04Kq2pDsK2x4Q=="
+        },
+        "outputPrefixType": "TINK",
+        "keyId": 465633422,
+        "status": "ENABLED"
+    }]
+}

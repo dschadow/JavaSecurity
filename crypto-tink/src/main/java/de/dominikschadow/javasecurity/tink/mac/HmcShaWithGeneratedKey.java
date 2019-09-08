@@ -30,18 +30,18 @@ import java.security.GeneralSecurityException;
 
 /**
  * Shows crypto usage with Google Tink for the Hash-based Message Authentication Code (HMAC) primitive. The used key is
- * generated during runtime and not saved
+ * generated during runtime and not saved. Selected algorithm is SHA 256 with 128 bit.
  *
  * @author Dominik Schadow
  */
-public class MacDemo {
-    private static final Logger log = LoggerFactory.getLogger(MacDemo.class);
+public class HmcShaWithGeneratedKey {
+    private static final Logger log = LoggerFactory.getLogger(HmcShaWithGeneratedKey.class);
     private static final String INITIAL_TEXT = "Some dummy text to work with";
 
     /**
      * Init MacConfig in the Tink library.
      */
-    private MacDemo() {
+    private HmcShaWithGeneratedKey() {
         try {
             MacConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -50,7 +50,7 @@ public class MacDemo {
     }
 
     public static void main(String[] args) {
-        MacDemo demo = new MacDemo();
+        HmcShaWithGeneratedKey demo = new HmcShaWithGeneratedKey();
 
         try {
             KeysetHandle keysetHandle = demo.generateKey();
