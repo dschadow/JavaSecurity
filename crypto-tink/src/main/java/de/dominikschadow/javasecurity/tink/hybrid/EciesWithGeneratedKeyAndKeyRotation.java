@@ -20,6 +20,7 @@ package de.dominikschadow.javasecurity.tink.hybrid;
 import com.google.crypto.tink.HybridDecrypt;
 import com.google.crypto.tink.HybridEncrypt;
 import com.google.crypto.tink.KeysetHandle;
+import com.google.crypto.tink.KeysetManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
 import com.google.crypto.tink.hybrid.HybridDecryptFactory;
 import com.google.crypto.tink.hybrid.HybridEncryptFactory;
@@ -31,20 +32,20 @@ import org.slf4j.LoggerFactory;
 import java.security.GeneralSecurityException;
 
 /**
- * Shows crypto usage with Google Tink for the HybridEncrypt primitive. The used key is generated during runtime and not
- * saved.
+ * Shows crypto usage with Google Tink for the HybridEncrypt primitive. The used key is generated and rotated during
+ * runtime and not saved. Selected algorithm is ECIES with AEAD and HKDF.
  *
  * @author Dominik Schadow
  */
-public class HybridDemo {
-    private static final Logger log = LoggerFactory.getLogger(HybridDemo.class);
+public class EciesWithGeneratedKeyAndKeyRotation {
+    private static final Logger log = LoggerFactory.getLogger(EciesWithGeneratedKeyAndKeyRotation.class);
     private static final String INITIAL_TEXT = "Some dummy text to work with";
     private static final String ASSOCIATED_DATA = "Some additional data";
 
     /**
      * Init HybridConfig in the Tink library.
      */
-    private HybridDemo() {
+    private EciesWithGeneratedKeyAndKeyRotation() {
         try {
             HybridConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -53,19 +54,37 @@ public class HybridDemo {
     }
 
     public static void main(String[] args) {
-        HybridDemo demo = new HybridDemo();
+        EciesWithGeneratedKeyAndKeyRotation demo = new EciesWithGeneratedKeyAndKeyRotation();
 
         try {
             KeysetHandle privateKeysetHandle = demo.generatePrivateKey();
-            KeysetHandle publicKeysetHandle = demo.generatePublicKey(privateKeysetHandle);
+            TinkUtils.printKeyset("original keyset data", privateKeysetHandle);
+            KeysetHandle rotatedPrivateKeysetHandle = demo.rotateKey(privateKeysetHandle);
+            rotatedPrivateKeysetHandle = demo.disableOriginalKey(rotatedPrivateKeysetHandle);
+            TinkUtils.printKeyset("rotated keyset data", rotatedPrivateKeysetHandle);
+            KeysetHandle publicKeysetHandle = demo.generatePublicKey(rotatedPrivateKeysetHandle);
 
             byte[] cipherText = demo.encrypt(publicKeysetHandle);
-            byte[] plainText = demo.decrypt(privateKeysetHandle, cipherText);
+            byte[] plainText = demo.decrypt(rotatedPrivateKeysetHandle, cipherText);
 
-            TinkUtils.printHybridEncryptionData(privateKeysetHandle, publicKeysetHandle, INITIAL_TEXT, cipherText, plainText);
+            TinkUtils.printHybridEncryptionData(rotatedPrivateKeysetHandle, publicKeysetHandle, INITIAL_TEXT, cipherText, plainText);
         } catch (GeneralSecurityException ex) {
             log.error("Failure during Tink usage", ex);
         }
+    }
+
+    /**
+     * Generate a new key and add it to the keyset.
+     */
+    private KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
+        return KeysetManager.withKeysetHandle(keysetHandle).rotate(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM).getKeysetHandle();
+    }
+
+    /**
+     * Optional step to disable the original key.
+     */
+    private KeysetHandle disableOriginalKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
+        return KeysetManager.withKeysetHandle(keysetHandle).disable(keysetHandle.getKeysetInfo().getKeyInfo(0).getKeyId()).getKeysetHandle();
     }
 
     private KeysetHandle generatePrivateKey() throws GeneralSecurityException {

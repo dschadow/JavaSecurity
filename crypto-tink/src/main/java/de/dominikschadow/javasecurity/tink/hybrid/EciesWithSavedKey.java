@@ -32,21 +32,21 @@ import java.security.GeneralSecurityException;
 
 /**
  * Shows crypto usage with Google Tink for the HybridEncrypt primitive.  The used key is stored and loaded from the
- * project.
+ * project. Selected algorithm is ECIES with AEAD and HKDF.
  *
  * @author Dominik Schadow
  */
-public class HybridWithSavedKeyDemo {
-    private static final Logger log = LoggerFactory.getLogger(HybridWithSavedKeyDemo.class);
+public class EciesWithSavedKey {
+    private static final Logger log = LoggerFactory.getLogger(EciesWithSavedKey.class);
     private static final String INITIAL_TEXT = "Some dummy text to work with";
     private static final String ASSOCIATED_DATA = "Some additional data";
-    private static final String PRIVATE_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-keyset-private.json";
-    private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-keyset-public.json";
+    private static final String PRIVATE_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-private.json";
+    private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-public.json";
 
     /**
      * Init HybridConfig in the Tink library.
      */
-    private HybridWithSavedKeyDemo() {
+    private EciesWithSavedKey() {
         try {
             HybridConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -55,7 +55,7 @@ public class HybridWithSavedKeyDemo {
     }
 
     public static void main(String[] args) {
-        HybridWithSavedKeyDemo demo = new HybridWithSavedKeyDemo();
+        EciesWithSavedKey demo = new EciesWithSavedKey();
 
         try {
             demo.generateAndStorePrivateKey();
