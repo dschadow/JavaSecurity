@@ -74,10 +74,10 @@ public class EciesWithGeneratedKeyAndKeyRotation {
     }
 
     /**
-     * Generate a new key and add it to the keyset.
+     * Generate a new key with different ECIES properties and add it to the keyset.
      */
     private KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        return KeysetManager.withKeysetHandle(keysetHandle).rotate(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM).getKeysetHandle();
+        return KeysetManager.withKeysetHandle(keysetHandle).rotate(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_CTR_HMAC_SHA256).getKeysetHandle();
     }
 
     /**
