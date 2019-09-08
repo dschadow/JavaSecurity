@@ -32,18 +32,18 @@ import java.security.GeneralSecurityException;
 
 /**
  * Shows crypto usage with Google Tink for the PublicKeySign primitive. The used key is generated during runtime and not
- * saved.
+ * saved. Selected algorithm is ECDSA P384.
  *
  * @author Dominik Schadow
  */
-public class EcdsaDemo {
-    private static final Logger log = LoggerFactory.getLogger(EcdsaDemo.class);
+public class EcdsaWithGeneratedKey {
+    private static final Logger log = LoggerFactory.getLogger(EcdsaWithGeneratedKey.class);
     private static final String INITIAL_TEXT = "Some dummy text to work with";
 
     /**
      * Init SignatureConfig in the Tink library.
      */
-    private EcdsaDemo() {
+    private EcdsaWithGeneratedKey() {
         try {
             SignatureConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -52,7 +52,7 @@ public class EcdsaDemo {
     }
 
     public static void main(String[] args) {
-        EcdsaDemo demo = new EcdsaDemo();
+        EcdsaWithGeneratedKey demo = new EcdsaWithGeneratedKey();
 
         try {
             KeysetHandle privateKeysetHandle = demo.generatePrivateKey();
@@ -68,7 +68,7 @@ public class EcdsaDemo {
     }
 
     private KeysetHandle generatePrivateKey() throws GeneralSecurityException {
-        return KeysetHandle.generateNew(SignatureKeyTemplates.ECDSA_P256);
+        return KeysetHandle.generateNew(SignatureKeyTemplates.ECDSA_P384);
     }
 
     private KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {

@@ -1,0 +1,13 @@
+{
+    "primaryKeyId": 1264091576,
+    "key": [{
+        "keyData": {
+            "typeUrl": "type.googleapis.com/google.crypto.tink.EcdsaPublicKey",
+            "keyMaterialType": "ASYMMETRIC_PUBLIC",
+            "value": "EgYIAxACGAIaIQDwbwaJco6idcUboXkBUyTqR+SvSvr8bNCBgDnPXl/7/CIhALmhoEGH+zJ9zYmb+2pWbUJFdM14KimXLmcZwjcSoGkh"
+        },
+        "outputPrefixType": "TINK",
+        "keyId": 1264091576,
+        "status": "ENABLED"
+    }]
+}
