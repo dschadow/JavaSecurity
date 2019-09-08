@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 /**
- * Shows crypto usage with Google Tink for the HybridEncrypt primitive.  The used key is stored and loaded from the
+ * Shows crypto usage with Google Tink for the HybridEncrypt primitive. The used key is stored and loaded from the
  * project. Selected algorithm is ECIES with AEAD and HKDF.
  *
  * @author Dominik Schadow
