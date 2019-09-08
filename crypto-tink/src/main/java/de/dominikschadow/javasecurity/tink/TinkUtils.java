@@ -26,10 +26,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
- * Google Tink utils for demo projects.
+ * Google Tink utils for this demo project.
  *
  * @author Dominik Schadow
  */
@@ -40,6 +40,7 @@ public class TinkUtils {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(outputStream));
+
             log.info("{}: {}", type, new String(outputStream.toByteArray()));
         } catch (IOException ex) {
             log.error("Failed to write keyset", ex);
@@ -49,14 +50,16 @@ public class TinkUtils {
     public static void printSymmetricEncryptionData(KeysetHandle keysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
-        log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
+        log.info("plain text: {}", new String(plainText, StandardCharsets.UTF_8));
+
         printKeyset("keyset data", keysetHandle);
     }
 
     public static void printHybridEncryptionData(KeysetHandle privateKeysetHandle, KeysetHandle publicKeysetHandle, String initialText, byte[] cipherText, byte[] plainText) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(cipherText));
-        log.info("plain text: {}", new String(plainText, Charset.forName("UTF-8")));
+        log.info("plain text: {}", new String(plainText, StandardCharsets.UTF_8));
+
         printKeyset("private key set data", privateKeysetHandle);
         printKeyset("public key set data", publicKeysetHandle);
     }
@@ -65,6 +68,7 @@ public class TinkUtils {
         log.info("initial text: {}", initialText);
         log.info("MAC: {}", BaseEncoding.base16().encode(tag));
         log.info("MAC is valid: {}", valid);
+
         printKeyset("keyset data", keysetHandle);
     }
 
@@ -72,8 +76,8 @@ public class TinkUtils {
         log.info("initial text: {}", initialText);
         log.info("signature: {}", BaseEncoding.base16().encode(signature));
         log.info("signature is valid: {}", valid);
+
         printKeyset("private key set data", privateKeysetHandle);
         printKeyset("public key set data", publicKeysetHandle);
-
     }
 }
