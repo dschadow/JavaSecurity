@@ -77,11 +77,10 @@ public class HmcShaWithSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      */
     private void generateAndStoreKey() throws IOException, GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(MacKeyTemplates.HMAC_SHA256_128BITTAG);
-
         File keysetFile = new File(KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(MacKeyTemplates.HMAC_SHA256_128BITTAG);
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }

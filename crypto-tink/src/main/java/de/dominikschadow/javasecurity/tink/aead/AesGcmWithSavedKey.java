@@ -78,11 +78,10 @@ public class AesGcmWithSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      */
     private void generateAndStoreKey() throws IOException, GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(AeadKeyTemplates.AES128_GCM);
-
         File keysetFile = new File(KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(AeadKeyTemplates.AES128_GCM);
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }

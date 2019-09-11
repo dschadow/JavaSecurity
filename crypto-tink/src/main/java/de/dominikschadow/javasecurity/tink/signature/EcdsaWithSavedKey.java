@@ -81,11 +81,10 @@ public class EcdsaWithSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      */
     private void generateAndStorePrivateKey() throws IOException, GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(SignatureKeyTemplates.ECDSA_P256);
-
         File keysetFile = new File(PRIVATE_KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(SignatureKeyTemplates.ECDSA_P256);
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }
@@ -101,11 +100,10 @@ public class EcdsaWithSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      */
     private void generateAndStorePublicKey(KeysetHandle privateKeysetHandle) throws IOException, GeneralSecurityException {
-        KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
-
         File keysetFile = new File(PUBLIC_KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
+            KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }

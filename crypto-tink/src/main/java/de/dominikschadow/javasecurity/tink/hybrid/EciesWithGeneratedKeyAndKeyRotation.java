@@ -40,7 +40,7 @@ import java.security.GeneralSecurityException;
 public class EciesWithGeneratedKeyAndKeyRotation {
     private static final Logger log = LoggerFactory.getLogger(EciesWithGeneratedKeyAndKeyRotation.class);
     private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String ASSOCIATED_DATA = "Some additional data";
+    private static final String CONTEXT_INFO = "Some additional data";
 
     /**
      * Init HybridConfig in the Tink library.
@@ -98,12 +98,12 @@ public class EciesWithGeneratedKeyAndKeyRotation {
     private byte[] encrypt(KeysetHandle publicKeysetHandle) throws GeneralSecurityException {
         HybridEncrypt hybridEncrypt = HybridEncryptFactory.getPrimitive(publicKeysetHandle);
 
-        return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), ASSOCIATED_DATA.getBytes());
+        return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), CONTEXT_INFO.getBytes());
     }
 
     private byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText) throws GeneralSecurityException {
         HybridDecrypt hybridDecrypt = HybridDecryptFactory.getPrimitive(privateKeysetHandle);
 
-        return hybridDecrypt.decrypt(cipherText, ASSOCIATED_DATA.getBytes());
+        return hybridDecrypt.decrypt(cipherText, CONTEXT_INFO.getBytes());
     }
 }

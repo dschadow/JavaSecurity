@@ -39,7 +39,7 @@ import java.security.GeneralSecurityException;
 public class EciesWithSavedKey {
     private static final Logger log = LoggerFactory.getLogger(EciesWithSavedKey.class);
     private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String ASSOCIATED_DATA = "Some additional data";
+    private static final String CONTEXT_INFO = "Some additional data";
     private static final String PRIVATE_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-private.json";
     private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-public.json";
 
@@ -82,11 +82,10 @@ public class EciesWithSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      */
     private void generateAndStorePrivateKey() throws IOException, GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM);
-
         File keysetFile = new File(PRIVATE_KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM);
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }
@@ -102,11 +101,10 @@ public class EciesWithSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      */
     private void generateAndStorePublicKey(KeysetHandle privateKeysetHandle) throws IOException, GeneralSecurityException {
-        KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
-
         File keysetFile = new File(PUBLIC_KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
+            KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }
@@ -118,12 +116,12 @@ public class EciesWithSavedKey {
     private byte[] encrypt(KeysetHandle publicKeysetHandle) throws GeneralSecurityException {
         HybridEncrypt hybridEncrypt = HybridEncryptFactory.getPrimitive(publicKeysetHandle);
 
-        return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), ASSOCIATED_DATA.getBytes());
+        return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), CONTEXT_INFO.getBytes());
     }
 
     private byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText) throws GeneralSecurityException {
         HybridDecrypt hybridDecrypt = HybridDecryptFactory.getPrimitive(privateKeysetHandle);
 
-        return hybridDecrypt.decrypt(cipherText, ASSOCIATED_DATA.getBytes());
+        return hybridDecrypt.decrypt(cipherText, CONTEXT_INFO.getBytes());
     }
 }
