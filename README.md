@@ -99,7 +99,7 @@ Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and
 algorithms as well as hash data (passwords). 
 
 ## crypto-tink
-Crypto demo project using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and hybrid encryption, MAC and digital signatures. Depending on the demo, keys are either generated on the fly or stored/loaded from the keysets directory.
+Crypto demo project using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and hybrid encryption, MAC and digital signatures. Depending on the demo, keys are either generated on the fly or stored/loaded from the keysets directory. The **AWS KMS** samples (classes with AwsKms in their names) require a configured AWS KMS with an enabled master key.
 
 ## Meta
 [![Build Status](https://travis-ci.org/dschadow/JavaSecurity.svg)](https://travis-ci.org/dschadow/JavaSecurity)
