@@ -1,0 +1,13 @@
+{
+    "primaryKeyId": 1212085540,
+    "key": [{
+        "keyData": {
+            "typeUrl": "type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey",
+            "keyMaterialType": "ASYMMETRIC_PUBLIC",
+            "value": "EkQKBAgCEAMSOhI4CjB0eXBlLmdvb2dsZWFwaXMuY29tL2dvb2dsZS5jcnlwdG8udGluay5BZXNHY21LZXkSAhAQGAEYARogI5gwYQx4Q8swDr0kSxo372O39H3EP/7vuKKrfamZ/SQiIF8+U77utJVeH1t00yxyQeRS2RKao8w5n2IZjj1BQ1xW"
+        },
+        "outputPrefixType": "TINK",
+        "keyId": 1212085540,
+        "status": "ENABLED"
+    }]
+}
