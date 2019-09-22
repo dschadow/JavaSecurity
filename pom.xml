@@ -94,7 +94,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>28.0-jre</version>
+                <version>28.1-jre</version>
             </dependency>
             <dependency>
                 <groupId>com.google.crypto.tink</groupId>
@@ -170,7 +170,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.12.1</version>
+                <version>3.1.12.2</version>
                 <configuration>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
