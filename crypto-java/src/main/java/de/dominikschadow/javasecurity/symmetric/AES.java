@@ -29,7 +29,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.CertificateException;
@@ -74,8 +73,7 @@ public class AES {
             printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
                 KeyStoreException | CertificateException | UnrecoverableKeyException |
-                InvalidAlgorithmParameterException |
-                InvalidKeyException | IOException ex) {
+                InvalidAlgorithmParameterException | InvalidKeyException | IOException ex) {
             log.error(ex.getMessage(), ex);
         }
     }
@@ -100,15 +98,13 @@ public class AES {
     }
 
     private byte[] encrypt(SecretKeySpec secretKeySpec, String initialText) throws
-            UnsupportedEncodingException, BadPaddingException,
-            IllegalBlockSizeException, InvalidKeyException {
+            BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         return cipher.doFinal(initialText.getBytes(StandardCharsets.UTF_8));
     }
 
     private byte[] decrypt(SecretKeySpec secretKeySpec, byte[] ciphertext) throws
-            BadPaddingException, IllegalBlockSizeException,
-            InvalidAlgorithmParameterException, InvalidKeyException {
+            BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(cipher.getIV()));
         return cipher.doFinal(ciphertext);
     }

@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.CertificateException;
@@ -99,7 +98,7 @@ public class DSA {
     }
 
     private static byte[] sign(PrivateKey privateKey, String initialText) throws NoSuchAlgorithmException,
-            InvalidKeyException, SignatureException, UnsupportedEncodingException {
+            InvalidKeyException, SignatureException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initSign(privateKey);
         dsa.update(initialText.getBytes(StandardCharsets.UTF_8));
@@ -107,7 +106,7 @@ public class DSA {
     }
 
     private static boolean verify(PublicKey publicKey, byte[] signature, String initialText) throws
-            NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
+            NoSuchAlgorithmException, InvalidKeyException, SignatureException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initVerify(publicKey);
         dsa.update(initialText.getBytes(StandardCharsets.UTF_8));
