@@ -30,13 +30,13 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.CertificateException;
 
 /**
- * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts
- * sample text with it.
+ * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts sample
+ * text with it.
  * <p/>
  * Note that the {@code INITIALIZATION_VECTOR} is not stored. One possibility to store it is to prepend it to the
  * encrypted message with a delimiter (all in Base64 encoding): {@code Base64(IV) + DELIMITER + Base64(ENCRYPTED *
@@ -103,7 +103,7 @@ public class AES {
             UnsupportedEncodingException, BadPaddingException,
             IllegalBlockSizeException, InvalidKeyException {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-        return cipher.doFinal(initialText.getBytes("UTF-8"));
+        return cipher.doFinal(initialText.getBytes(StandardCharsets.UTF_8));
     }
 
     private byte[] decrypt(SecretKeySpec secretKeySpec, byte[] ciphertext) throws
@@ -116,6 +116,6 @@ public class AES {
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
-        log.info("plain text: {}", new String(plaintext, Charset.forName("UTF-8")));
+        log.info("plain text: {}", new String(plaintext, StandardCharsets.UTF_8));
     }
 }

@@ -24,12 +24,13 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.CertificateException;
 
 /**
- * Digital signature sample with plain Java. Loads the DSA key from the sample keystore, signs and verifies sample
- * text with it.
+ * Digital signature sample with plain Java. Loads the DSA key from the sample keystore, signs and verifies sample text
+ * with it.
  * <p/>
  * Uses Google Guava to hex the encrypted message as readable format.
  *
@@ -101,7 +102,7 @@ public class DSA {
             InvalidKeyException, SignatureException, UnsupportedEncodingException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initSign(privateKey);
-        dsa.update(initialText.getBytes("UTF-8"));
+        dsa.update(initialText.getBytes(StandardCharsets.UTF_8));
         return dsa.sign();
     }
 
@@ -109,7 +110,7 @@ public class DSA {
             NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
         Signature dsa = Signature.getInstance(ALGORITHM);
         dsa.initVerify(publicKey);
-        dsa.update(initialText.getBytes("UTF-8"));
+        dsa.update(initialText.getBytes(StandardCharsets.UTF_8));
         return dsa.verify(signature);
     }
 

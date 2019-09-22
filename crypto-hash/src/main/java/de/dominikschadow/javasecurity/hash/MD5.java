@@ -22,12 +22,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * MD5 hashing sample with plain Java. No salt and no iterations are used to calculate the hash
- * value. This sample (and the MD5 algorithm) is totally insecure.
+ * MD5 hashing sample with plain Java. No salt and no iterations are used to calculate the hash value. This sample (and
+ * the MD5 algorithm) is totally insecure.
  * <p/>
  * Uses Google Guava to hex encode the hash in a readable format.
  *
@@ -60,7 +61,7 @@ public class MD5 {
     private static byte[] calculateHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
-        md.update(password.getBytes("UTF-8"));
+        md.update(password.getBytes(StandardCharsets.UTF_8));
         return md.digest();
     }
 

@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -77,7 +78,7 @@ public class SHA512 {
             UnsupportedEncodingException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
-        md.update(Bytes.concat(password.getBytes("UTF-8"), salt));
+        md.update(Bytes.concat(password.getBytes(StandardCharsets.UTF_8), salt));
         byte[] hash = md.digest();
 
         for (int i = 0; i < ITERATIONS; i++) {

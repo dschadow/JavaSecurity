@@ -28,7 +28,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.CertificateException;
 
@@ -108,7 +108,7 @@ public class RSA {
             InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        return cipher.doFinal(initialText.getBytes("UTF-8"));
+        return cipher.doFinal(initialText.getBytes(StandardCharsets.UTF_8));
     }
 
     private static byte[] decrypt(PrivateKey privateKey, byte[] ciphertext) throws NoSuchPaddingException,
@@ -122,6 +122,6 @@ public class RSA {
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
         log.info("initial text: {}", initialText);
         log.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
-        log.info("plain text: {}", new String(plaintext, Charset.forName("UTF-8")));
+        log.info("plain text: {}", new String(plaintext, StandardCharsets.UTF_8));
     }
 }
