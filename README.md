@@ -24,8 +24,7 @@ application. Shows how to safely load user data from a database without using po
 launching, open the web application in your browser at **http://localhost:8080**.
 
 ## csp-spring-security
-Spring Boot based web application using a Content Security Policy (CSP) header. After launching, open the web application 
-in your browser at **http://localhost:8080**.
+Spring Boot based web application using a Content Security Policy (CSP) header. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ## csrf-spring-security
 Cross-Site Request Forgery (CSRF) demo project based on Spring Boot preventing CSRF in a web application by utilizing 
