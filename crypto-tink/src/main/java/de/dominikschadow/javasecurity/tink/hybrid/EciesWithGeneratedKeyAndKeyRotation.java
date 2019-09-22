@@ -60,8 +60,9 @@ public class EciesWithGeneratedKeyAndKeyRotation {
             KeysetHandle privateKeysetHandle = demo.generatePrivateKey();
             TinkUtils.printKeyset("original keyset data", privateKeysetHandle);
             KeysetHandle rotatedPrivateKeysetHandle = demo.rotateKey(privateKeysetHandle);
-            rotatedPrivateKeysetHandle = demo.disableOriginalKey(rotatedPrivateKeysetHandle);
             TinkUtils.printKeyset("rotated keyset data", rotatedPrivateKeysetHandle);
+            rotatedPrivateKeysetHandle = demo.disableOriginalKey(rotatedPrivateKeysetHandle);
+            TinkUtils.printKeyset("disabled rotated keyset data", rotatedPrivateKeysetHandle);
             KeysetHandle publicKeysetHandle = demo.generatePublicKey(rotatedPrivateKeysetHandle);
 
             byte[] cipherText = demo.encrypt(publicKeysetHandle);
