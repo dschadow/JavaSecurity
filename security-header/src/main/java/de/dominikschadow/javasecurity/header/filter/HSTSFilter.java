@@ -26,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the complete domain by forcing HTTPS usage. The url pattern does not have any
- * influence on this header.
+ * This servlet filter protects the complete domain by forcing HTTPS usage. The url pattern does not have any influence
+ * on this header.
  *
  * @author Dominik Schadow
  */
@@ -47,7 +47,7 @@ public class HSTSFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override

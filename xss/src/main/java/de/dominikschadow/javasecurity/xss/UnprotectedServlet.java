@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.xss;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +37,7 @@ public class UnprotectedServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(UnprotectedServlet.class);
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("unprotectedName");
 
         log.info("Received {} as name", name);

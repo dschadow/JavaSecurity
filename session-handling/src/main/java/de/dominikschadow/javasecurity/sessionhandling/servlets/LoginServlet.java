@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.sessionhandling.servlets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,7 @@ public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String currentSessionId = request.getSession().getId();
 
         log.info("Original session ID {}", currentSessionId);

@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.xss;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +28,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet which sets the {@code Content-Security-Policy} response header and stops any JavaScript code entered in
- * the textfield. Any entered script-tag will not be rendered any more in the result page. The {@code report-uri}
- * parameter takes care of reporting any CSP violations via the CSPReportingServlet.
+ * Servlet which sets the {@code Content-Security-Policy} response header and stops any JavaScript code entered in the
+ * textfield. Any entered script-tag will not be rendered any more in the result page. The {@code report-uri} parameter
+ * takes care of reporting any CSP violations via the CSPReportingServlet.
  *
  * @author Dominik Schadow
  */
@@ -40,7 +39,7 @@ public class CSPServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(CSPServlet.class);
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("cspName");
 
         log.info("Received {} as name", name);

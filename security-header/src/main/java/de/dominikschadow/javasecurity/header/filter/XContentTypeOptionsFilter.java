@@ -27,9 +27,9 @@ import java.io.IOException;
 
 /**
  * This servlet filter protects the {@code x-content-type-options/protected.txt} against content sniffing attacks by
- * adding the {@code X-Content-Type-Options} header and the content type to the response. The {@code urlPatterns}
- * should be far more wildcard in a real web application than in this demo project,
- * and the content type would be provided individually, e.g. by a servlet.
+ * adding the {@code X-Content-Type-Options} header and the content type to the response. The {@code urlPatterns} should
+ * be far more wildcard in a real web application than in this demo project, and the content type would be provided
+ * individually, e.g. by a servlet.
  *
  * @author Dominik Schadow
  */
@@ -51,7 +51,7 @@ public class XContentTypeOptionsFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override

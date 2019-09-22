@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.header.servlets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class FakeServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(FakeServlet.class);
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         log.info("Processing fake request...");
 
         response.setContentType("text/html; charset=UTF-8");

@@ -26,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This servlet filter protects the {@code cache-control/protected.jsp} page against being cached by the user agent.
- * The {@code urlPatterns} should be far more wildcard in a real web application than in this demo project.
+ * This servlet filter protects the {@code cache-control/protected.jsp} page against being cached by the user agent. The
+ * {@code urlPatterns} should be far more wildcard in a real web application than in this demo project.
  *
  * @author Dominik Schadow
  */
@@ -48,7 +48,7 @@ public class CacheControlFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
