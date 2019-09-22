@@ -32,7 +32,7 @@ import java.util.Map;
  */
 @Component
 public class PlainSqlQuery {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public PlainSqlQuery(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

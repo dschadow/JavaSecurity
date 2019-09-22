@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Servlet using a Prepared Statement to query the in-memory-database.
- * User input is not modified and used directly in the SQL query.
+ * Servlet using a Prepared Statement to query the in-memory-database. User input is not modified and used directly in
+ * the SQL query.
  *
  * @author Dominik Schadow
  */
 @Component
 public class PreparedStatementQuery {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public PreparedStatementQuery(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

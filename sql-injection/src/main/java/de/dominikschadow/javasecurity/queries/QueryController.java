@@ -30,9 +30,9 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class QueryController {
-    private PlainSqlQuery plainSqlQuery;
-    private EscapedQuery escapedQuery;
-    private PreparedStatementQuery preparedStatementQuery;
+    private final PlainSqlQuery plainSqlQuery;
+    private final EscapedQuery escapedQuery;
+    private final PreparedStatementQuery preparedStatementQuery;
 
     public QueryController(PlainSqlQuery plainSqlQuery, EscapedQuery escapedQuery, PreparedStatementQuery preparedStatementQuery) {
         this.plainSqlQuery = plainSqlQuery;

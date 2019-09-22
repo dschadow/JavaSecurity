@@ -26,14 +26,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Servlet using a normal Statement to query the in-memory-database.
- * User input is escaped with ESAPI and used in the SQL query afterwards.
+ * Servlet using a normal Statement to query the in-memory-database. User input is escaped with ESAPI and used in the
+ * SQL query afterwards.
  *
  * @author Dominik Schadow
  */
 @Component
 public class EscapedQuery {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public EscapedQuery(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

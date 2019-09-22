@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class GreetingController {
-    private GreetingService greetingService;
+    private final GreetingService greetingService;
 
     public GreetingController(GreetingService greetingService) {
         this.greetingService = greetingService;
