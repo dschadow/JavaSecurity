@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -43,17 +43,10 @@ public class CSPReporting extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8))) {
-            StringBuilder responseBuilder = new StringBuilder();
-
-            String inputStr;
-            while ((inputStr = reader.readLine()) != null) {
-                responseBuilder.append(inputStr);
-            }
-
             Gson gs = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-            JsonParser parser = new JsonParser();
-            JsonElement je = parser.parse(responseBuilder.toString());
-            log.info("\n{}", gs.toJson(je));
+            JsonElement element = JsonParser.parseReader(reader);
+
+            log.info("\n{}", gs.toJson(element));
         } catch (IOException | JsonSyntaxException ex) {
             log.error(ex.getMessage(), ex);
         }
