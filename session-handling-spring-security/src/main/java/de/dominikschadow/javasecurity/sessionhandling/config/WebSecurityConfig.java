@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -38,8 +37,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
     private DataSource dataSource;
+
+    public WebSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
