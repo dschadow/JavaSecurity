@@ -31,6 +31,8 @@ import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
+import static de.dominikschadow.javasecurity.tink.TinkUtils.AWS_MASTER_KEY_URI;
+
 /**
  * Shows crypto usage with Google Tink for the HybridEncrypt primitive. The used key is stored and loaded from AWS KMS.
  * Requires a master key available in AWS KMS and correctly configured credentials to access AWS KMS: AWS_ACCESS_KEY_ID
@@ -39,8 +41,9 @@ import java.security.GeneralSecurityException;
  * Selected algorithm is ECIES with AEAD and HKDF.
  *
  * @author Dominik Schadow
- * @see https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html
- * @see https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+ * @see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html">Creating Keys</a>
+ * @see <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default">Using
+ * the Default Credential Provider Chain</a>
  */
 public class EciesWithAwsKmsSavedKey {
     private static final Logger log = LoggerFactory.getLogger(EciesWithAwsKmsSavedKey.class);
@@ -48,7 +51,6 @@ public class EciesWithAwsKmsSavedKey {
     private static final String CONTEXT_INFO = "Some additional data";
     private static final String PRIVATE_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-kms-private.json";
     private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-kms-public.json";
-    private static final String MASTER_KEY_URI = "aws-kms://arn:aws:kms:eu-central-1:776241929911:key/8e914b2a-251c-4746-a314-caa58ab072e1";
 
     /**
      * Init AeadConfig in the Tink library.
@@ -93,13 +95,13 @@ public class EciesWithAwsKmsSavedKey {
 
         if (!keysetFile.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM);
-            keysetHandle.write(JsonKeysetWriter.withFile(keysetFile), new AwsKmsClient().withDefaultCredentials().getAead(MASTER_KEY_URI));
+            keysetHandle.write(JsonKeysetWriter.withFile(keysetFile), new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
         }
     }
 
     private KeysetHandle loadPrivateKey() throws IOException, GeneralSecurityException {
         return KeysetHandle.read(JsonKeysetReader.withFile(new File(PRIVATE_KEYSET_FILENAME)),
-                new AwsKmsClient().withDefaultCredentials().getAead(MASTER_KEY_URI));
+                new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
     }
 
     /**
