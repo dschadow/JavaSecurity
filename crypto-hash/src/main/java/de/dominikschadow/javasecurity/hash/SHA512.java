@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -22,7 +22,6 @@ import com.google.common.primitives.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -61,7 +60,7 @@ public class SHA512 {
             boolean correct = verifyPassword(hash, password, salt);
 
             log.info("Entered password is correct: {}", correct);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException ex) {
             log.error(ex.getMessage(), ex);
         }
     }
@@ -74,8 +73,7 @@ public class SHA512 {
         return salt;
     }
 
-    private static byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException,
-            UnsupportedEncodingException {
+    private static byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update(Bytes.concat(password.getBytes(StandardCharsets.UTF_8), salt));
@@ -90,7 +88,7 @@ public class SHA512 {
     }
 
     private static boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws
-            NoSuchAlgorithmException, UnsupportedEncodingException {
+            NoSuchAlgorithmException {
         byte[] comparisonHash = calculateHash(password, salt);
 
         log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));

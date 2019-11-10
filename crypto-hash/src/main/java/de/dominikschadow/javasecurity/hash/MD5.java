@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2019 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -21,7 +21,6 @@ import com.google.common.io.BaseEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -52,21 +51,20 @@ public class MD5 {
             boolean correct = verifyPassword(hash, password);
 
             log.info("Entered password is correct: {}", correct);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException ex) {
             log.error(ex.getMessage(), ex);
         }
     }
 
 
-    private static byte[] calculateHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    private static byte[] calculateHash(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update(password.getBytes(StandardCharsets.UTF_8));
         return md.digest();
     }
 
-    private static boolean verifyPassword(byte[] originalHash, String password) throws
-            NoSuchAlgorithmException, UnsupportedEncodingException {
+    private static boolean verifyPassword(byte[] originalHash, String password) throws NoSuchAlgorithmException {
         byte[] comparisonHash = calculateHash(password);
 
         log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
