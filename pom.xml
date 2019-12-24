@@ -217,7 +217,6 @@
                 <version>5.2.4</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
-                    <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
                 </configuration>
                 <reportSets>
                     <reportSet>
