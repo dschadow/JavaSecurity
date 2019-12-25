@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <title>Security Logging</title>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row" id="welcome">
+        <div class="col-12">
+            <h1>Security Logging</h1>
+            <p>This demo application demonstrates the usage of the OWASP Security Logging library.</p>
+        </div>
+    </div>
+
+    <div class="row" id="login">
+        <div class="col-12">
+            <h2>Login</h2>
+            <p> Use any data to log in and have a look at the console for security relevant logging messages
+                afterwards.</p>
+
+            <form action="#" th:action="@{/login}" th:object="${login}" method="post">
+                <fieldset>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" th:field="*{username}"/>
+                    <label for="username">Password</label>
+                    <input type="password" id="password" th:field="*{password}"/>
+                    <input type="submit" value="Submit"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
