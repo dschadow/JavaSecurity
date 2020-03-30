@@ -22,6 +22,10 @@
             <artifactId>tink</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.google.crypto.tink</groupId>
+            <artifactId>tink-awskms</artifactId>
+        </dependency>
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
         </dependency>

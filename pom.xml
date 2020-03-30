@@ -45,6 +45,7 @@
     <properties>
         <slf4j.version>1.7.30</slf4j.version>
         <owasp.encoder.version>1.2.2</owasp.encoder.version>
+        <crypto.tink.version>1.3.0</crypto.tink.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -104,7 +105,12 @@
             <dependency>
                 <groupId>com.google.crypto.tink</groupId>
                 <artifactId>tink</artifactId>
-                <version>1.3.0</version>
+                <version>${crypto.tink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.crypto.tink</groupId>
+                <artifactId>tink-awskms</artifactId>
+                <version>${crypto.tink.version}</version>
             </dependency>
             <!-- required for Google Tink -->
             <dependency>
