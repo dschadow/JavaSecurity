@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2020 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -36,7 +36,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "CSPServlet", urlPatterns = {"/csp"})
 public class CSPServlet extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(CSPServlet.class);
+	private static final long serialVersionUID = 5117768874974567141L;
+	private static final Logger log = LoggerFactory.getLogger(CSPServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {

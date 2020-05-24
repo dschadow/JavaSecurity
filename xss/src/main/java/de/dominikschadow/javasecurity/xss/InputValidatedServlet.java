@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2020 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -34,7 +34,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "InputValidatedServlet", urlPatterns = {"/validated"})
 public class InputValidatedServlet extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(InputValidatedServlet.class);
+	private static final long serialVersionUID = -3167797061670620847L;
+	private static final Logger log = LoggerFactory.getLogger(InputValidatedServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {

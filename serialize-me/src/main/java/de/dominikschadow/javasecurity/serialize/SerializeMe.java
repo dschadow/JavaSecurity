@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2020 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -20,7 +20,8 @@ package de.dominikschadow.javasecurity.serialize;
 import java.io.Serializable;
 
 public class SerializeMe implements Serializable {
-    private String firstname;
+	private static final long serialVersionUID = 4811291877894678577L;
+	private String firstname;
     private String lastname;
 
     public String getFirstname() {

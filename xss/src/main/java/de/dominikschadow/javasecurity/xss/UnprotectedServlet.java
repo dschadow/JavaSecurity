@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2020 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -34,7 +34,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "UnprotectedServlet", urlPatterns = {"/unprotected"})
 public class UnprotectedServlet extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(UnprotectedServlet.class);
+	private static final long serialVersionUID = -7015937301709375951L;
+	private static final Logger log = LoggerFactory.getLogger(UnprotectedServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
