@@ -37,7 +37,7 @@ import java.security.spec.InvalidKeySpecException;
  */
 public class PBKDF2 {
     private static final Logger log = LoggerFactory.getLogger(PBKDF2.class);
-    private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
+    private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
     private static final int ITERATIONS = 10000;
     // salt size at least 32 byte
     private static final int SALT_SIZE = 32;
