@@ -21,11 +21,13 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class Deserializer {
-    public static void main(String[] args) throws Exception {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(("serialize-me.bin")));
+    public static void main(String[] args) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(("serialize-me.bin")))) {
+            SerializeMe me = (SerializeMe) ois.readObject();
 
-        SerializeMe me = (SerializeMe) ois.readObject();
-
-        System.out.println("I am " + me.getFirstname() + " " + me.getLastname());
+            System.out.println("I am " + me.getFirstname() + " " + me.getLastname());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

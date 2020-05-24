@@ -21,13 +21,16 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class Serializer {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SerializeMe serializeMe = new SerializeMe();
         serializeMe.setFirstname("Arthur");
         serializeMe.setLastname("Dent");
 
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("serialize-me.bin"));
-        oos.writeObject(serializeMe);
-        oos.flush();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("serialize-me.bin"))) {
+            oos.writeObject(serializeMe);
+            oos.flush();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
