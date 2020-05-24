@@ -30,7 +30,7 @@ class CustomerRowMapper {
     static List<Customer> mapRows(List<Map<String, Object>> rows) {
         List<Customer> customers = new ArrayList<>();
 
-        for (Map row : rows) {
+        for (Map<String, Object> row : rows) {
             Customer customer = new Customer();
             customer.setId((Integer) row.get("id"));
             customer.setName((String) row.get("name"));
