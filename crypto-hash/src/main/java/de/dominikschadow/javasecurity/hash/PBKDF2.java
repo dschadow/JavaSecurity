@@ -82,8 +82,10 @@ public class PBKDF2 {
 
     private static byte[] calculateHash(SecretKeyFactory skf, char[] password, byte[] salt) throws InvalidKeySpecException {
         PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, HASH_SIZE);
+        byte[] hash = skf.generateSecret(spec).getEncoded();
+        spec.clearPassword();
 
-        return skf.generateSecret(spec).getEncoded();
+        return hash;
     }
 
     private static boolean verifyPassword(SecretKeyFactory skf, byte[] originalHash, char[] password, byte[] salt) throws
