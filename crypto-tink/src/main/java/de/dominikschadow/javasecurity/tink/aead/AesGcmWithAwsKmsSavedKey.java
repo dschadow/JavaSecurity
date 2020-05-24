@@ -22,7 +22,6 @@ import com.google.crypto.tink.JsonKeysetReader;
 import com.google.crypto.tink.JsonKeysetWriter;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
-import com.google.crypto.tink.aead.AeadFactory;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
 import com.google.crypto.tink.integration.awskms.AwsKmsClient;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
@@ -104,13 +103,13 @@ public class AesGcmWithAwsKmsSavedKey {
     }
 
     private byte[] encrypt(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        Aead aead = AeadFactory.getPrimitive(keysetHandle);
+        Aead aead = keysetHandle.getPrimitive(Aead.class);
 
         return aead.encrypt(INITIAL_TEXT.getBytes(), ASSOCIATED_DATA.getBytes());
     }
 
     private byte[] decrypt(KeysetHandle keysetHandle, byte[] cipherText) throws GeneralSecurityException {
-        Aead aead = AeadFactory.getPrimitive(keysetHandle);
+        Aead aead = keysetHandle.getPrimitive(Aead.class);
 
         return aead.decrypt(cipherText, ASSOCIATED_DATA.getBytes());
     }

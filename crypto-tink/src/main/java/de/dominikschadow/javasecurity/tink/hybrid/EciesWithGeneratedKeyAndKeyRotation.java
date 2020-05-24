@@ -22,8 +22,6 @@ import com.google.crypto.tink.HybridEncrypt;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.KeysetManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
-import com.google.crypto.tink.hybrid.HybridDecryptFactory;
-import com.google.crypto.tink.hybrid.HybridEncryptFactory;
 import com.google.crypto.tink.hybrid.HybridKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
@@ -97,13 +95,13 @@ public class EciesWithGeneratedKeyAndKeyRotation {
     }
 
     private byte[] encrypt(KeysetHandle publicKeysetHandle) throws GeneralSecurityException {
-        HybridEncrypt hybridEncrypt = HybridEncryptFactory.getPrimitive(publicKeysetHandle);
+        HybridEncrypt hybridEncrypt = publicKeysetHandle.getPrimitive(HybridEncrypt.class);
 
         return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), CONTEXT_INFO.getBytes());
     }
 
     private byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText) throws GeneralSecurityException {
-        HybridDecrypt hybridDecrypt = HybridDecryptFactory.getPrimitive(privateKeysetHandle);
+        HybridDecrypt hybridDecrypt = privateKeysetHandle.getPrimitive(HybridDecrypt.class);
 
         return hybridDecrypt.decrypt(cipherText, CONTEXT_INFO.getBytes());
     }

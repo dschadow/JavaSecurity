@@ -20,8 +20,6 @@ package de.dominikschadow.javasecurity.tink.signature;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.PublicKeySign;
 import com.google.crypto.tink.PublicKeyVerify;
-import com.google.crypto.tink.signature.PublicKeySignFactory;
-import com.google.crypto.tink.signature.PublicKeyVerifyFactory;
 import com.google.crypto.tink.signature.SignatureConfig;
 import com.google.crypto.tink.signature.SignatureKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
@@ -76,14 +74,14 @@ public class EcdsaWithGeneratedKey {
     }
 
     private byte[] sign(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
-        PublicKeySign signer = PublicKeySignFactory.getPrimitive(privateKeysetHandle);
+        PublicKeySign signer = privateKeysetHandle.getPrimitive(PublicKeySign.class);
 
         return signer.sign(INITIAL_TEXT.getBytes());
     }
 
     private boolean verify(KeysetHandle publicKeysetHandle, byte[] signature) {
         try {
-            PublicKeyVerify verifier = PublicKeyVerifyFactory.getPrimitive(publicKeysetHandle);
+            PublicKeyVerify verifier = publicKeysetHandle.getPrimitive(PublicKeyVerify.class);
             verifier.verify(signature, INITIAL_TEXT.getBytes());
             return true;
         } catch (GeneralSecurityException ex) {

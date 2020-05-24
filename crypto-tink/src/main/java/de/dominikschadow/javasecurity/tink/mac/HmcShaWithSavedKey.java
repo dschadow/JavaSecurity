@@ -19,7 +19,6 @@ package de.dominikschadow.javasecurity.tink.mac;
 
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.mac.MacConfig;
-import com.google.crypto.tink.mac.MacFactory;
 import com.google.crypto.tink.mac.MacKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
@@ -90,14 +89,14 @@ public class HmcShaWithSavedKey {
     }
 
     private byte[] computeMac(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        Mac mac = MacFactory.getPrimitive(keysetHandle);
+        Mac mac = keysetHandle.getPrimitive(Mac.class);
 
         return mac.computeMac(INITIAL_TEXT.getBytes());
     }
 
     private boolean verifyMac(KeysetHandle keysetHandle, byte[] tag) {
         try {
-            Mac mac = MacFactory.getPrimitive(keysetHandle);
+            Mac mac = keysetHandle.getPrimitive(Mac.class);
             mac.verifyMac(tag, INITIAL_TEXT.getBytes());
             return true;
         } catch (GeneralSecurityException ex) {

@@ -19,7 +19,6 @@ package de.dominikschadow.javasecurity.tink.aead;
 
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.aead.AeadConfig;
-import com.google.crypto.tink.aead.AeadFactory;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
@@ -91,13 +90,13 @@ public class AesGcmWithSavedKey {
     }
 
     private byte[] encrypt(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        Aead aead = AeadFactory.getPrimitive(keysetHandle);
+        Aead aead = keysetHandle.getPrimitive(Aead.class);
 
         return aead.encrypt(INITIAL_TEXT.getBytes(), ASSOCIATED_DATA.getBytes());
     }
 
     private byte[] decrypt(KeysetHandle keysetHandle, byte[] cipherText) throws GeneralSecurityException {
-        Aead aead = AeadFactory.getPrimitive(keysetHandle);
+        Aead aead = keysetHandle.getPrimitive(Aead.class);
 
         return aead.decrypt(cipherText, ASSOCIATED_DATA.getBytes());
     }
