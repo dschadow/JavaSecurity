@@ -1,4 +1,6 @@
 spring:
+  main:
+    web-application-type: servlet
   datasource:
     username: sa
     password: sa
