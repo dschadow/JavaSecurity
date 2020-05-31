@@ -56,7 +56,6 @@ public class MD5 {
         }
     }
 
-
     private static byte[] calculateHash(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
