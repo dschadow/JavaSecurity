@@ -116,12 +116,6 @@
                 <artifactId>tink-awskms</artifactId>
                 <version>${crypto.tink.version}</version>
             </dependency>
-            <!-- required for Google Tink -->
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.2</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.owasp.esapi</groupId>
