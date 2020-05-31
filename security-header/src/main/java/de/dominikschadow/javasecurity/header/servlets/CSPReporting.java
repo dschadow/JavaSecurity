@@ -42,7 +42,7 @@ public class CSPReporting extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8))) {
+        try (InputStreamReader isr = new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8); BufferedReader reader = new BufferedReader(isr)) {
             Gson gs = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
             JsonElement element = JsonParser.parseReader(reader);
 

@@ -26,7 +26,7 @@ public class Serializer {
         serializeMe.setFirstname("Arthur");
         serializeMe.setLastname("Dent");
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("serialize-me.bin"))) {
+        try (FileOutputStream fos = new FileOutputStream("serialize-me.bin"); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(serializeMe);
             oos.flush();
         } catch (Exception ex) {
