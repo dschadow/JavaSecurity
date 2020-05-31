@@ -38,8 +38,7 @@ public class TinkUtils {
     public static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:eu-central-1:776241929911:key/cce9ce6d-526c-44ca-9189-45c54b90f070";
 
     public static void printKeyset(String type, KeysetHandle keysetHandle) {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(outputStream));
 
             log.info("{}: {}", type, new String(outputStream.toByteArray()));
