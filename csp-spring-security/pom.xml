@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.dominikschadow.javasecurity</groupId>
         <artifactId>javasecurity</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>csp-spring-security</artifactId>
@@ -48,11 +48,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

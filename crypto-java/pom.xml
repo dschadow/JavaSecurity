@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.dominikschadow.javasecurity</groupId>
         <artifactId>javasecurity</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>crypto-java</artifactId>
@@ -34,4 +34,16 @@
             <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

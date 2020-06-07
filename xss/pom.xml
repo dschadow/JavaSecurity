@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.dominikschadow.javasecurity</groupId>
         <artifactId>javasecurity</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>xss</artifactId>
@@ -53,6 +53,13 @@
                 <!-- only for demonstration to access session id -->
                 <configuration>
                     <contextFile>${project.basedir}/src/main/resources/context.xml</contextFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

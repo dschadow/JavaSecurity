@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>javasecurity</artifactId>
     <groupId>de.dominikschadow.javasecurity</groupId>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
     <packaging>pom</packaging>
     <name>Java Security</name>
     <url>https://github.com/dschadow/JavaSecurity</url>
@@ -58,7 +58,7 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
+                <version>4.0.1</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -166,6 +166,19 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>2.3.0</version>
+                    <configuration>
+                        <to>
+                            <image>${docker.image.prefix}/${project.artifactId}</image>
+                        </to>
+                        <container>
+                            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                        </container>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
@@ -174,19 +187,6 @@
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>9.4.29.v20200521</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>dockerfile-maven-plugin</artifactId>
-                    <version>1.4.13</version>
-                    <configuration>
-                        <skip>true</skip>
-                        <repository>${docker.image.prefix}/${project.artifactId}</repository>
-                        <tag>${project.version}</tag>
-                        <buildArgs>
-                            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                        </buildArgs>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

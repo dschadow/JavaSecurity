@@ -12,24 +12,19 @@ Have a look at my [slides](https://blog.dominikschadow.de/events) and [publicati
 Some web applications contain exercises, some are only there to inspect and learn. Instructions are provided in detail on the start page of each web application.
 
 Some web applications are based on [Spring Boot](http://projects.spring.io/spring-boot) and can be started via the 
-**main** method in the **Application** class or via **mvn spring-boot:run** in the project directory. Projects 
-containing a Dockerfile can be launched via `docker run -p 8080:8080 dschadow/[PROJECT]:[VERSION]` after the 
-image has been created using `mvn clean package dockerfile:build`. The other web applications either contain an embedded 
-**Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war** or an embedded **Jetty Maven plugin** which 
-can be started via **mvn jetty:run-war**.
+**main** method in the **Application** class or via **mvn spring-boot:run** in the project directory. Most projects 
+can be launched via `docker run -p 8080:8080 dschadow/[PROJECT]:[VERSION]` after the image has been created using `mvn clean verify jib:dockerBuild`. The other web applications either contain an embedded 
+**Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**, or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
 
 ## access-control-spring-security
 Access control demo project utilizing [Spring Security](http://projects.spring.io/spring-security) in a Spring Boot 
-application. Shows how to safely load user data from a database without using potentially faked frontend values. After 
-launching, open the web application in your browser at **http://localhost:8080**.
+application. Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ## csp-spring-security
 Spring Boot based web application using a Content Security Policy (CSP) header. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ## csrf-spring-security
-Cross-Site Request Forgery (CSRF) demo project based on Spring Boot preventing CSRF in a web application by utilizing 
-[Spring Security](http://projects.spring.io/spring-security). After launching, open the web application in your browser 
-at **http://localhost:8080**. 
+Cross-Site Request Forgery (CSRF) demo project based on Spring Boot preventing CSRF in a web application by utilizing [Spring Security](http://projects.spring.io/spring-security). After launching, open the web application in your browser at **http://localhost:8080**. 
 
 ## csrf
 Cross-Site Request Forgery (CSRF) demo project preventing CSRF in a JavaServer Pages (JSP) web application by utilizing  
