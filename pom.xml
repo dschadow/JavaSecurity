@@ -104,7 +104,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>30.0-jre</version>
+                <version>30.1-jre</version>
             </dependency>
             <dependency>
                 <groupId>com.google.crypto.tink</groupId>
@@ -223,7 +223,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>6.0.3</version>
+                <version>6.0.4</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
                     <!-- analyzers not required in these projects -->
