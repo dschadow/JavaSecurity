@@ -79,7 +79,7 @@
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
-                <version>1.7.0</version>
+                <version>1.7.1</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -136,7 +136,7 @@
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
-                <version>4.5.3</version>
+                <version>4.6.0</version>
             </dependency>
             <!-- Java 11 support -->
             <dependency>
@@ -186,7 +186,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.35.v20201120</version>
+                    <version>9.4.36.v20210114</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -223,7 +223,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>6.0.5</version>
+                <version>6.1.0</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
                     <!-- analyzers not required in these projects -->
