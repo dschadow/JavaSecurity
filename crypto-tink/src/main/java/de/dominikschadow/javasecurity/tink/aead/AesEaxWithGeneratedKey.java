@@ -21,7 +21,6 @@ import com.google.crypto.tink.Aead;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
 import com.google.crypto.tink.aead.AesEaxKeyManager;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,13 +34,11 @@ import java.security.GeneralSecurityException;
  */
 public class AesEaxWithGeneratedKey {
     private static final Logger log = LoggerFactory.getLogger(AesEaxWithGeneratedKey.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String ASSOCIATED_DATA = "Some additional data";
 
     /**
      * Init AeadConfig in the Tink library.
      */
-    private AesEaxWithGeneratedKey() {
+    public AesEaxWithGeneratedKey() {
         try {
             AeadConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -49,34 +46,19 @@ public class AesEaxWithGeneratedKey {
         }
     }
 
-    public static void main(String[] args) {
-        AesEaxWithGeneratedKey demo = new AesEaxWithGeneratedKey();
-
-        try {
-            KeysetHandle keysetHandle = demo.generateKey();
-
-            byte[] cipherText = demo.encrypt(keysetHandle);
-            byte[] plainText = demo.decrypt(keysetHandle, cipherText);
-
-            TinkUtils.printSymmetricEncryptionData(keysetHandle, INITIAL_TEXT, cipherText, plainText);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        }
-    }
-
-    private KeysetHandle generateKey() throws GeneralSecurityException {
+    public KeysetHandle generateKey() throws GeneralSecurityException {
         return KeysetHandle.generateNew(AesEaxKeyManager.aes256EaxTemplate());
     }
 
-    private byte[] encrypt(KeysetHandle keysetHandle) throws GeneralSecurityException {
+    public byte[] encrypt(KeysetHandle keysetHandle, byte[] initialText, byte[] associatedData) throws GeneralSecurityException {
         Aead aead = keysetHandle.getPrimitive(Aead.class);
 
-        return aead.encrypt(INITIAL_TEXT.getBytes(), ASSOCIATED_DATA.getBytes());
+        return aead.encrypt(initialText, associatedData);
     }
 
-    private byte[] decrypt(KeysetHandle keysetHandle, byte[] cipherText) throws GeneralSecurityException {
+    public byte[] decrypt(KeysetHandle keysetHandle, byte[] cipherText, byte[] associatedData) throws GeneralSecurityException {
         Aead aead = keysetHandle.getPrimitive(Aead.class);
 
-        return aead.decrypt(cipherText, ASSOCIATED_DATA.getBytes());
+        return aead.decrypt(cipherText, associatedData);
     }
 }
