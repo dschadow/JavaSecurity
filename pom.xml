@@ -185,6 +185,15 @@
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.1.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <image>
+                            <name>${docker.image.prefix}/${project.artifactId}</name>
+                        </image>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
