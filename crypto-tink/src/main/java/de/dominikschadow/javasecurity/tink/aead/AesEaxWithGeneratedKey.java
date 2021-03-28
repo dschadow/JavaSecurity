@@ -20,7 +20,7 @@ package de.dominikschadow.javasecurity.tink.aead;
 import com.google.crypto.tink.Aead;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
-import com.google.crypto.tink.aead.AeadKeyTemplates;
+import com.google.crypto.tink.aead.AesEaxKeyManager;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +65,7 @@ public class AesEaxWithGeneratedKey {
     }
 
     private KeysetHandle generateKey() throws GeneralSecurityException {
-        return KeysetHandle.generateNew(AeadKeyTemplates.AES256_EAX);
+        return KeysetHandle.generateNew(AesEaxKeyManager.aes256EaxTemplate());
     }
 
     private byte[] encrypt(KeysetHandle keysetHandle) throws GeneralSecurityException {

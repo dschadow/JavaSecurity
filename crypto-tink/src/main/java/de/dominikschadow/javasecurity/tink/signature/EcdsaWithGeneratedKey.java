@@ -20,8 +20,8 @@ package de.dominikschadow.javasecurity.tink.signature;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.PublicKeySign;
 import com.google.crypto.tink.PublicKeyVerify;
+import com.google.crypto.tink.signature.EcdsaSignKeyManager;
 import com.google.crypto.tink.signature.SignatureConfig;
-import com.google.crypto.tink.signature.SignatureKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +66,7 @@ public class EcdsaWithGeneratedKey {
     }
 
     private KeysetHandle generatePrivateKey() throws GeneralSecurityException {
-        return KeysetHandle.generateNew(SignatureKeyTemplates.ECDSA_P384);
+        return KeysetHandle.generateNew(EcdsaSignKeyManager.ecdsaP256Template());
     }
 
     private KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {

@@ -22,7 +22,7 @@ import com.google.crypto.tink.JsonKeysetReader;
 import com.google.crypto.tink.JsonKeysetWriter;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
-import com.google.crypto.tink.aead.AeadKeyTemplates;
+import com.google.crypto.tink.aead.AesGcmKeyManager;
 import com.google.crypto.tink.integration.awskms.AwsKmsClient;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
@@ -92,7 +92,7 @@ public class AesGcmWithAwsKmsSavedKey {
         File keysetFile = new File(KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(AeadKeyTemplates.AES128_GCM);
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(AesGcmKeyManager.aes128GcmTemplate());
             keysetHandle.write(JsonKeysetWriter.withFile(keysetFile), new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
         }
     }

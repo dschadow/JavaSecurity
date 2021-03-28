@@ -18,8 +18,8 @@
 package de.dominikschadow.javasecurity.tink.signature;
 
 import com.google.crypto.tink.*;
+import com.google.crypto.tink.signature.EcdsaSignKeyManager;
 import com.google.crypto.tink.signature.SignatureConfig;
-import com.google.crypto.tink.signature.SignatureKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +82,7 @@ public class EcdsaWithSavedKey {
         File keysetFile = new File(PRIVATE_KEYSET_FILENAME);
 
         if (!keysetFile.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(SignatureKeyTemplates.ECDSA_P256);
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(EcdsaSignKeyManager.ecdsaP256Template());
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
         }
     }

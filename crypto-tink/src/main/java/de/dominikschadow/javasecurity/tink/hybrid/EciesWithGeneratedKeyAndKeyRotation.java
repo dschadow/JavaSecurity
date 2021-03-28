@@ -21,8 +21,8 @@ import com.google.crypto.tink.HybridDecrypt;
 import com.google.crypto.tink.HybridEncrypt;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.KeysetManager;
+import com.google.crypto.tink.hybrid.EciesAeadHkdfPrivateKeyManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
-import com.google.crypto.tink.hybrid.HybridKeyTemplates;
 import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,18 +55,18 @@ public class EciesWithGeneratedKeyAndKeyRotation {
         EciesWithGeneratedKeyAndKeyRotation demo = new EciesWithGeneratedKeyAndKeyRotation();
 
         try {
-            KeysetHandle privateKeysetHandle = demo.generatePrivateKey();
-            TinkUtils.printKeyset("original keyset data", privateKeysetHandle);
-            KeysetHandle rotatedPrivateKeysetHandle = demo.rotateKey(privateKeysetHandle);
-            TinkUtils.printKeyset("rotated keyset data", rotatedPrivateKeysetHandle);
-            rotatedPrivateKeysetHandle = demo.disableOriginalKey(rotatedPrivateKeysetHandle);
-            TinkUtils.printKeyset("disabled rotated keyset data", rotatedPrivateKeysetHandle);
-            KeysetHandle publicKeysetHandle = demo.generatePublicKey(rotatedPrivateKeysetHandle);
+            KeysetHandle originalKey = demo.generatePrivateKey();
+            TinkUtils.printKeyset("original keyset data", originalKey);
+            KeysetHandle rotatedKey = demo.rotateKey(originalKey);
+            TinkUtils.printKeyset("rotated keyset data", rotatedKey);
+            rotatedKey = demo.disableOriginalKey(rotatedKey);
+            TinkUtils.printKeyset("disabled rotated keyset data", rotatedKey);
+            KeysetHandle publicKeysetHandle = demo.generatePublicKey(rotatedKey);
 
             byte[] cipherText = demo.encrypt(publicKeysetHandle);
-            byte[] plainText = demo.decrypt(rotatedPrivateKeysetHandle, cipherText);
+            byte[] plainText = demo.decrypt(rotatedKey, cipherText);
 
-            TinkUtils.printHybridEncryptionData(rotatedPrivateKeysetHandle, publicKeysetHandle, INITIAL_TEXT, cipherText, plainText);
+            TinkUtils.printHybridEncryptionData(rotatedKey, publicKeysetHandle, INITIAL_TEXT, cipherText, plainText);
         } catch (GeneralSecurityException ex) {
             log.error("Failure during Tink usage", ex);
         }
@@ -76,7 +76,7 @@ public class EciesWithGeneratedKeyAndKeyRotation {
      * Generate a new key with different ECIES properties and add it to the keyset.
      */
     private KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        return KeysetManager.withKeysetHandle(keysetHandle).rotate(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_CTR_HMAC_SHA256).getKeysetHandle();
+        return KeysetManager.withKeysetHandle(keysetHandle).add(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128CtrHmacSha256Template()).getKeysetHandle();
     }
 
     /**
@@ -87,7 +87,7 @@ public class EciesWithGeneratedKeyAndKeyRotation {
     }
 
     private KeysetHandle generatePrivateKey() throws GeneralSecurityException {
-        return KeysetHandle.generateNew(HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM);
+        return KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
     }
 
     private KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
