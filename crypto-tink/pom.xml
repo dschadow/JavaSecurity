@@ -5,7 +5,7 @@
     <parent>
         <artifactId>javasecurity</artifactId>
         <groupId>de.dominikschadow.javasecurity</groupId>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>crypto-tink</artifactId>
