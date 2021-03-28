@@ -61,7 +61,7 @@ public class ContactService {
         return jdbcTemplate.query("SELECT * FROM contacts", (rs, rowNum) -> createContact(rs));
     }
 
-    private static Contact createContact(ResultSet rs) throws SQLException {
+    private Contact createContact(ResultSet rs) throws SQLException {
         Contact contact = new Contact();
         contact.setId(rs.getLong("id"));
         contact.setUsername(rs.getString("username"));
