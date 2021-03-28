@@ -44,7 +44,7 @@ public class ContactService {
     @PostAuthorize("returnObject.username == principal.username")
     Contact getContact(int contactId) {
         return jdbcTemplate.queryForObject("SELECT * FROM contacts WHERE id = ?",
-                new Object[]{contactId}, (rs, rowNum) -> createContact(rs));
+                (rs, rowNum) -> createContact(rs), new Object[]{contactId});
     }
 
     /**
