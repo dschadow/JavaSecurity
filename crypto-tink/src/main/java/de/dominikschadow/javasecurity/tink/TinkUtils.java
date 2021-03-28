@@ -41,7 +41,7 @@ public class TinkUtils {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(outputStream));
 
-            log.info("{}: {}", type, new String(outputStream.toByteArray()));
+            log.info("{}: {}", type, outputStream.toString());
         } catch (IOException ex) {
             log.error("Failed to write keyset", ex);
         }
