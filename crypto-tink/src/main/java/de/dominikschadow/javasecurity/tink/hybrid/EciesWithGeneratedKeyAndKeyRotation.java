@@ -23,7 +23,6 @@ import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.KeysetManager;
 import com.google.crypto.tink.hybrid.EciesAeadHkdfPrivateKeyManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,13 +36,11 @@ import java.security.GeneralSecurityException;
  */
 public class EciesWithGeneratedKeyAndKeyRotation {
     private static final Logger log = LoggerFactory.getLogger(EciesWithGeneratedKeyAndKeyRotation.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String CONTEXT_INFO = "Some additional data";
 
     /**
      * Init HybridConfig in the Tink library.
      */
-    private EciesWithGeneratedKeyAndKeyRotation() {
+    public EciesWithGeneratedKeyAndKeyRotation() {
         try {
             HybridConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -51,58 +48,35 @@ public class EciesWithGeneratedKeyAndKeyRotation {
         }
     }
 
-    public static void main(String[] args) {
-        EciesWithGeneratedKeyAndKeyRotation demo = new EciesWithGeneratedKeyAndKeyRotation();
-
-        try {
-            KeysetHandle originalKey = demo.generatePrivateKey();
-            TinkUtils.printKeyset("original keyset data", originalKey);
-            KeysetHandle rotatedKey = demo.rotateKey(originalKey);
-            TinkUtils.printKeyset("rotated keyset data", rotatedKey);
-            rotatedKey = demo.disableOriginalKey(rotatedKey);
-            TinkUtils.printKeyset("disabled rotated keyset data", rotatedKey);
-            KeysetHandle publicKeysetHandle = demo.generatePublicKey(rotatedKey);
-
-            byte[] cipherText = demo.encrypt(publicKeysetHandle);
-            byte[] plainText = demo.decrypt(rotatedKey, cipherText);
-
-            TinkUtils.printHybridEncryptionData(rotatedKey, publicKeysetHandle, INITIAL_TEXT, cipherText, plainText);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        }
-    }
-
     /**
-     * Generate a new key with different ECIES properties and add it to the keyset.
+     * Generate a new key with different ECIES properties and add it to the keyset. Sets the new key as primary key and
+     * disables the original primary key.
      */
-    private KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        return KeysetManager.withKeysetHandle(keysetHandle).add(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128CtrHmacSha256Template()).getKeysetHandle();
+    public KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
+        KeysetHandle handle = KeysetManager.withKeysetHandle(keysetHandle).add(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128CtrHmacSha256Template()).getKeysetHandle();
+
+        handle = KeysetManager.withKeysetHandle(handle).setPrimary(handle.getKeysetInfo().getKeyInfo(1).getKeyId()).getKeysetHandle();
+
+        return KeysetManager.withKeysetHandle(handle).disable(handle.getKeysetInfo().getKeyInfo(0).getKeyId()).getKeysetHandle();
     }
 
-    /**
-     * Optional step to disable the original key.
-     */
-    private KeysetHandle disableOriginalKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        return KeysetManager.withKeysetHandle(keysetHandle).disable(keysetHandle.getKeysetInfo().getKeyInfo(0).getKeyId()).getKeysetHandle();
-    }
-
-    private KeysetHandle generatePrivateKey() throws GeneralSecurityException {
+    public KeysetHandle generatePrivateKey() throws GeneralSecurityException {
         return KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
     }
 
-    private KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
+    public KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
         return privateKeysetHandle.getPublicKeysetHandle();
     }
 
-    private byte[] encrypt(KeysetHandle publicKeysetHandle) throws GeneralSecurityException {
+    public byte[] encrypt(KeysetHandle publicKeysetHandle, byte[] initialText, byte[] contextInfo) throws GeneralSecurityException {
         HybridEncrypt hybridEncrypt = publicKeysetHandle.getPrimitive(HybridEncrypt.class);
 
-        return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), CONTEXT_INFO.getBytes());
+        return hybridEncrypt.encrypt(initialText, contextInfo);
     }
 
-    private byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText) throws GeneralSecurityException {
+    public byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText, byte[] contextInfo) throws GeneralSecurityException {
         HybridDecrypt hybridDecrypt = privateKeysetHandle.getPrimitive(HybridDecrypt.class);
 
-        return hybridDecrypt.decrypt(cipherText, CONTEXT_INFO.getBytes());
+        return hybridDecrypt.decrypt(cipherText, contextInfo);
     }
 }
