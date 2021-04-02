@@ -34,17 +34,17 @@ class AesGcmWithSavedKeyTest {
     private static final String KEYSET_FILENAME = "keysets/aead-aes-gcm.json";
 
     private final AesGcmWithSavedKey aesEax = new AesGcmWithSavedKey();
-    private KeysetHandle keysetHandle;
+    private KeysetHandle secretKey;
 
     @BeforeEach
     protected void setup() throws Exception {
-        keysetHandle = aesEax.loadKey(new File(getClass().getClassLoader().getResource(KEYSET_FILENAME).getFile()));
+        secretKey = aesEax.loadKey(new File(getClass().getClassLoader().getResource(KEYSET_FILENAME).getFile()));
     }
 
     @Test
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {
-        byte[] cipherText = aesEax.encrypt(keysetHandle, INITIAL_TEXT, ASSOCIATED_DATA);
-        byte[] plainText = aesEax.decrypt(keysetHandle, cipherText, ASSOCIATED_DATA);
+        byte[] cipherText = aesEax.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
+        byte[] plainText = aesEax.decrypt(secretKey, cipherText, ASSOCIATED_DATA);
 
         Assertions.assertAll(
                 () -> assertNotEquals(new String(INITIAL_TEXT, StandardCharsets.UTF_8), new String(cipherText, StandardCharsets.UTF_8)),

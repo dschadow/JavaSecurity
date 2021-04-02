@@ -34,11 +34,11 @@ class EciesWithGeneratedKeyTest {
 
     @Test
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {
-        KeysetHandle privateKeysetHandle = ecies.generatePrivateKey();
-        KeysetHandle publicKeysetHandle = ecies.generatePublicKey(privateKeysetHandle);
+        KeysetHandle privateKey = ecies.generatePrivateKey();
+        KeysetHandle publicKey = ecies.generatePublicKey(privateKey);
 
-        byte[] cipherText = ecies.encrypt(publicKeysetHandle, INITIAL_TEXT, CONTEXT_INFO);
-        byte[] plainText = ecies.decrypt(privateKeysetHandle, cipherText, CONTEXT_INFO);
+        byte[] cipherText = ecies.encrypt(publicKey, INITIAL_TEXT, CONTEXT_INFO);
+        byte[] plainText = ecies.decrypt(privateKey, cipherText, CONTEXT_INFO);
 
         Assertions.assertAll(
                 () -> assertNotEquals(new String(INITIAL_TEXT, StandardCharsets.UTF_8), new String(cipherText, StandardCharsets.UTF_8)),
@@ -48,12 +48,12 @@ class EciesWithGeneratedKeyTest {
 
     @Test
     void decryptionWithInvalidAssociatedDataFails() throws Exception {
-        KeysetHandle privateKeysetHandle = ecies.generatePrivateKey();
-        KeysetHandle publicKeysetHandle = ecies.generatePublicKey(privateKeysetHandle);
+        KeysetHandle privateKey = ecies.generatePrivateKey();
+        KeysetHandle publicKey = ecies.generatePublicKey(privateKey);
 
-        byte[] cipherText = ecies.encrypt(publicKeysetHandle, INITIAL_TEXT, CONTEXT_INFO);
+        byte[] cipherText = ecies.encrypt(publicKey, INITIAL_TEXT, CONTEXT_INFO);
 
-        Exception exception = assertThrows(GeneralSecurityException.class, () -> ecies.decrypt(privateKeysetHandle, cipherText, "abc".getBytes(StandardCharsets.UTF_8)));
+        Exception exception = assertThrows(GeneralSecurityException.class, () -> ecies.decrypt(privateKey, cipherText, "abc".getBytes(StandardCharsets.UTF_8)));
 
         assertTrue(exception.getMessage().contains("decryption failed"));
     }
