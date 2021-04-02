@@ -17,6 +17,8 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B verify test --file pom.xml
     - name: Measure test coverage
       uses: codecov/codecov-action@v1
+      with:
+        flags: unittests
