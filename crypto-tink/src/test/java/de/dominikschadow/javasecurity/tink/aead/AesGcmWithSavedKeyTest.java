@@ -31,14 +31,16 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class AesGcmWithSavedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
     private static final byte[] ASSOCIATED_DATA = "Some additional data".getBytes(StandardCharsets.UTF_8);
-    private static final String KEYSET_FILENAME = "keysets/aead-aes-gcm.json";
+    private static final String KEYSET_FILENAME = "src/test/resources/keysets/aead-aes-gcm.json";
+    private final File keysetFile = new File(KEYSET_FILENAME);
 
     private final AesGcmWithSavedKey aesEax = new AesGcmWithSavedKey();
     private KeysetHandle secretKey;
 
     @BeforeEach
     protected void setup() throws Exception {
-        secretKey = aesEax.loadKey(new File(getClass().getClassLoader().getResource(KEYSET_FILENAME).getFile()));
+        aesEax.generateAndStoreKey(keysetFile);
+        secretKey = aesEax.loadKey(keysetFile);
     }
 
     @Test
