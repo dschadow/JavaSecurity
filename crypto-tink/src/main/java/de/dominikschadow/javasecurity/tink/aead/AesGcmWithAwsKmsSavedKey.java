@@ -31,8 +31,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-import static de.dominikschadow.javasecurity.tink.TinkUtils.AWS_MASTER_KEY_URI;
-
 /**
  * Shows crypto usage with Google Tink for the Authenticated Encryption with Associated Data (AEAD) primitive. The used
  * key is stored and loaded from AWS KMS. Requires a master key available in AWS KMS and correctly configured
@@ -65,16 +63,16 @@ public class AesGcmWithAwsKmsSavedKey {
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
      */
-    public void generateAndStoreKey(File keyset) throws IOException, GeneralSecurityException {
+    public void generateAndStoreKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(AesGcmKeyManager.aes128GcmTemplate());
-            keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
+            keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
         }
     }
 
-    public KeysetHandle loadKey(File keyset) throws IOException, GeneralSecurityException {
+    public KeysetHandle loadKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
         return KeysetHandle.read(JsonKeysetReader.withFile(keyset),
-                new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
+                new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
     }
 
     public byte[] encrypt(KeysetHandle keysetHandle, byte[] initialText, byte[] associatedData) throws GeneralSecurityException {

@@ -28,8 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-import static de.dominikschadow.javasecurity.tink.TinkUtils.AWS_MASTER_KEY_URI;
-
 /**
  * Shows crypto usage with Google Tink for the HybridEncrypt primitive. The used key is stored and loaded from AWS KMS.
  * Requires a master key available in AWS KMS and correctly configured credentials to access AWS KMS: AWS_ACCESS_KEY_ID
@@ -63,16 +61,16 @@ public class EciesWithAwsKmsSavedKey {
      * @throws GeneralSecurityException Failure during keyset generation
      * @param keyset
      */
-    public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
+    public void generateAndStorePrivateKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
-            keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
+            keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
         }
     }
 
-    public KeysetHandle loadPrivateKey(File keyset) throws IOException, GeneralSecurityException {
+    public KeysetHandle loadPrivateKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
         return KeysetHandle.read(JsonKeysetReader.withFile(keyset),
-                new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
+                new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
     }
 
     /**
