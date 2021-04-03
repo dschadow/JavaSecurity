@@ -21,7 +21,6 @@ import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.Mac;
 import com.google.crypto.tink.mac.HmacKeyManager;
 import com.google.crypto.tink.mac.MacConfig;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,14 +32,13 @@ import java.security.GeneralSecurityException;
  *
  * @author Dominik Schadow
  */
-public class HmcShaWithGeneratedKey {
-    private static final Logger log = LoggerFactory.getLogger(HmcShaWithGeneratedKey.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
+public class HmacShaWithGeneratedKey {
+    private static final Logger log = LoggerFactory.getLogger(HmacShaWithGeneratedKey.class);
 
     /**
      * Init MacConfig in the Tink library.
      */
-    private HmcShaWithGeneratedKey() {
+    public HmacShaWithGeneratedKey() {
         try {
             MacConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -48,31 +46,16 @@ public class HmcShaWithGeneratedKey {
         }
     }
 
-    public static void main(String[] args) {
-        HmcShaWithGeneratedKey demo = new HmcShaWithGeneratedKey();
-
-        try {
-            KeysetHandle keysetHandle = demo.generateKey();
-
-            byte[] tag = demo.computeMac(keysetHandle);
-            boolean valid = demo.verifyMac(keysetHandle, tag);
-
-            TinkUtils.printMacData(keysetHandle, INITIAL_TEXT, tag, valid);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        }
-    }
-
-    private byte[] computeMac(KeysetHandle keysetHandle) throws GeneralSecurityException {
+    public byte[] computeMac(KeysetHandle keysetHandle, byte[] initialText) throws GeneralSecurityException {
         Mac mac = keysetHandle.getPrimitive(Mac.class);
 
-        return mac.computeMac(INITIAL_TEXT.getBytes());
+        return mac.computeMac(initialText);
     }
 
-    private boolean verifyMac(KeysetHandle keysetHandle, byte[] tag) {
+    public boolean verifyMac(KeysetHandle keysetHandle, byte[] tag, byte[] initialText) {
         try {
             Mac mac = keysetHandle.getPrimitive(Mac.class);
-            mac.verifyMac(tag, INITIAL_TEXT.getBytes());
+            mac.verifyMac(tag, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
             log.error("MAC is invalid", ex);
@@ -81,7 +64,7 @@ public class HmcShaWithGeneratedKey {
         return false;
     }
 
-    private KeysetHandle generateKey() throws GeneralSecurityException {
+    public KeysetHandle generateKey() throws GeneralSecurityException {
         return KeysetHandle.generateNew(HmacKeyManager.hmacSha256HalfDigestTemplate());
     }
 }

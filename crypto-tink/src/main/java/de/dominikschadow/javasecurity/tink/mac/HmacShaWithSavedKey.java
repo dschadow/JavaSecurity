@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.tink.mac;
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.mac.HmacKeyManager;
 import com.google.crypto.tink.mac.MacConfig;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,38 +33,17 @@ import java.security.GeneralSecurityException;
  *
  * @author Dominik Schadow
  */
-public class HmcShaWithSavedKey {
-    private static final Logger log = LoggerFactory.getLogger(HmcShaWithSavedKey.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hmac-sha.json";
+public class HmacShaWithSavedKey {
+    private static final Logger log = LoggerFactory.getLogger(HmacShaWithSavedKey.class);
 
     /**
      * Init MacConfig in the Tink library.
      */
-    private HmcShaWithSavedKey() {
+    public HmacShaWithSavedKey() {
         try {
             MacConfig.register();
         } catch (GeneralSecurityException ex) {
             log.error("Failed to initialize Tink", ex);
-        }
-    }
-
-    public static void main(String[] args) {
-        HmcShaWithSavedKey demo = new HmcShaWithSavedKey();
-
-        try {
-            demo.generateAndStoreKey();
-
-            KeysetHandle keysetHandle = demo.loadKey();
-
-            byte[] tag = demo.computeMac(keysetHandle);
-            boolean valid = demo.verifyMac(keysetHandle, tag);
-
-            TinkUtils.printMacData(keysetHandle, INITIAL_TEXT, tag, valid);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        } catch (IOException ex) {
-            log.error("Failure during storing key", ex);
         }
     }
 
@@ -75,29 +53,27 @@ public class HmcShaWithSavedKey {
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
      */
-    private void generateAndStoreKey() throws IOException, GeneralSecurityException {
-        File keysetFile = new File(KEYSET_FILENAME);
-
-        if (!keysetFile.exists()) {
+    public void generateAndStoreKey(File keyset) throws IOException, GeneralSecurityException {
+        if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(HmacKeyManager.hmacSha256HalfDigestTemplate());
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }
 
-    private KeysetHandle loadKey() throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(new File(KEYSET_FILENAME)));
+    public KeysetHandle loadKey(File keyset) throws IOException, GeneralSecurityException {
+        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
     }
 
-    private byte[] computeMac(KeysetHandle keysetHandle) throws GeneralSecurityException {
+    public byte[] computeMac(KeysetHandle keysetHandle, byte[] initialText) throws GeneralSecurityException {
         Mac mac = keysetHandle.getPrimitive(Mac.class);
 
-        return mac.computeMac(INITIAL_TEXT.getBytes());
+        return mac.computeMac(initialText);
     }
 
-    private boolean verifyMac(KeysetHandle keysetHandle, byte[] tag) {
+    public boolean verifyMac(KeysetHandle keysetHandle, byte[] tag, byte[] initialText) {
         try {
             Mac mac = keysetHandle.getPrimitive(Mac.class);
-            mac.verifyMac(tag, INITIAL_TEXT.getBytes());
+            mac.verifyMac(tag, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
             log.error("MAC is invalid", ex);
