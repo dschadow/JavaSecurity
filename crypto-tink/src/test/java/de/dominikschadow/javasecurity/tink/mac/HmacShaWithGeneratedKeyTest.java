@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HmacShaWithGeneratedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
+
     private final HmacShaWithGeneratedKey hmac = new HmacShaWithGeneratedKey();
 
     @Test

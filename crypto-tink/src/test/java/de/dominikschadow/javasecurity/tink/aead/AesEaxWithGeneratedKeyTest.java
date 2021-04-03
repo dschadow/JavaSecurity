@@ -30,14 +30,14 @@ class AesEaxWithGeneratedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
     private static final byte[] ASSOCIATED_DATA = "Some additional data".getBytes(StandardCharsets.UTF_8);
 
-    private final AesEaxWithGeneratedKey aesEax = new AesEaxWithGeneratedKey();
+    private final AesEaxWithGeneratedKey aes = new AesEaxWithGeneratedKey();
 
     @Test
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {
-        KeysetHandle secretKey = aesEax.generateKey();
+        KeysetHandle secretKey = aes.generateKey();
 
-        byte[] cipherText = aesEax.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
-        byte[] plainText = aesEax.decrypt(secretKey, cipherText, ASSOCIATED_DATA);
+        byte[] cipherText = aes.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
+        byte[] plainText = aes.decrypt(secretKey, cipherText, ASSOCIATED_DATA);
 
         Assertions.assertAll(
                 () -> assertNotEquals(new String(INITIAL_TEXT, StandardCharsets.UTF_8), new String(cipherText, StandardCharsets.UTF_8)),
@@ -47,11 +47,11 @@ class AesEaxWithGeneratedKeyTest {
 
     @Test
     void decryptionWithInvalidAssociatedDataFails() throws Exception {
-        KeysetHandle secretKey = aesEax.generateKey();
+        KeysetHandle secretKey = aes.generateKey();
 
-        byte[] cipherText = aesEax.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
+        byte[] cipherText = aes.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
 
-        Exception exception = assertThrows(GeneralSecurityException.class, () -> aesEax.decrypt(secretKey, cipherText, "manipulation".getBytes(StandardCharsets.UTF_8)));
+        Exception exception = assertThrows(GeneralSecurityException.class, () -> aes.decrypt(secretKey, cipherText, "manipulation".getBytes(StandardCharsets.UTF_8)));
 
         assertTrue(exception.getMessage().contains("decryption failed"));
     }

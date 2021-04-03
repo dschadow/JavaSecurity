@@ -33,20 +33,20 @@ class AesGcmWithSavedKeyTest {
     private static final byte[] ASSOCIATED_DATA = "Some additional data".getBytes(StandardCharsets.UTF_8);
     private static final String KEYSET_FILENAME = "src/test/resources/keysets/aead-aes-gcm.json";
     private final File keysetFile = new File(KEYSET_FILENAME);
-
-    private final AesGcmWithSavedKey aesEax = new AesGcmWithSavedKey();
     private KeysetHandle secretKey;
+
+    private final AesGcmWithSavedKey aes = new AesGcmWithSavedKey();
 
     @BeforeEach
     protected void setup() throws Exception {
-        aesEax.generateAndStoreKey(keysetFile);
-        secretKey = aesEax.loadKey(keysetFile);
+        aes.generateAndStoreKey(keysetFile);
+        secretKey = aes.loadKey(keysetFile);
     }
 
     @Test
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {
-        byte[] cipherText = aesEax.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
-        byte[] plainText = aesEax.decrypt(secretKey, cipherText, ASSOCIATED_DATA);
+        byte[] cipherText = aes.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
+        byte[] plainText = aes.decrypt(secretKey, cipherText, ASSOCIATED_DATA);
 
         Assertions.assertAll(
                 () -> assertNotEquals(new String(INITIAL_TEXT, StandardCharsets.UTF_8), new String(cipherText, StandardCharsets.UTF_8)),
