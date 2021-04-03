@@ -20,7 +20,6 @@ package de.dominikschadow.javasecurity.tink.signature;
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.signature.EcdsaSignKeyManager;
 import com.google.crypto.tink.signature.SignatureConfig;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,39 +35,15 @@ import java.security.GeneralSecurityException;
  */
 public class EcdsaWithSavedKey {
     private static final Logger log = LoggerFactory.getLogger(EcdsaWithSavedKey.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String PRIVATE_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/signature-ecdsa-private.json";
-    private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/signature-ecdsa-public.json";
 
     /**
      * Init SignatureConfig in the Tink library.
      */
-    private EcdsaWithSavedKey() {
+    public EcdsaWithSavedKey() {
         try {
             SignatureConfig.register();
         } catch (GeneralSecurityException ex) {
             log.error("Failed to initialize Tink", ex);
-        }
-    }
-
-    public static void main(String[] args) {
-        EcdsaWithSavedKey demo = new EcdsaWithSavedKey();
-
-        try {
-            demo.generateAndStorePrivateKey();
-            KeysetHandle privateKeysetHandle = demo.loadPrivateKey();
-
-            demo.generateAndStorePublicKey(privateKeysetHandle);
-            KeysetHandle publicKeysetHandle = demo.loadPublicKey();
-
-            byte[] signature = demo.sign(privateKeysetHandle);
-            boolean valid = demo.verify(publicKeysetHandle, signature);
-
-            TinkUtils.printSignatureData(privateKeysetHandle, publicKeysetHandle, INITIAL_TEXT, signature, valid);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        } catch (IOException ex) {
-            log.error("Failure during storing key", ex);
         }
     }
 
@@ -78,17 +53,15 @@ public class EcdsaWithSavedKey {
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
      */
-    private void generateAndStorePrivateKey() throws IOException, GeneralSecurityException {
-        File keysetFile = new File(PRIVATE_KEYSET_FILENAME);
-
-        if (!keysetFile.exists()) {
+    public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
+        if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(EcdsaSignKeyManager.ecdsaP256Template());
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }
 
-    private KeysetHandle loadPrivateKey() throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(new File(PRIVATE_KEYSET_FILENAME)));
+    public KeysetHandle loadPrivateKey(File keyset) throws IOException, GeneralSecurityException {
+        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
     }
 
     /**
@@ -97,29 +70,27 @@ public class EcdsaWithSavedKey {
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
      */
-    private void generateAndStorePublicKey(KeysetHandle privateKeysetHandle) throws IOException, GeneralSecurityException {
-        File keysetFile = new File(PUBLIC_KEYSET_FILENAME);
-
-        if (!keysetFile.exists()) {
+    public void generateAndStorePublicKey(KeysetHandle privateKeysetHandle, File keyset) throws IOException, GeneralSecurityException {
+        if (!keyset.exists()) {
             KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }
 
-    private KeysetHandle loadPublicKey() throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(new File(PUBLIC_KEYSET_FILENAME)));
+    public KeysetHandle loadPublicKey(File keyset) throws IOException, GeneralSecurityException {
+        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
     }
 
-    private byte[] sign(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
+    public byte[] sign(KeysetHandle privateKeysetHandle, byte[] initialText) throws GeneralSecurityException {
         PublicKeySign signer = privateKeysetHandle.getPrimitive(PublicKeySign.class);
 
-        return signer.sign(INITIAL_TEXT.getBytes());
+        return signer.sign(initialText);
     }
 
-    private boolean verify(KeysetHandle publicKeysetHandle, byte[] signature) {
+    public boolean verify(KeysetHandle publicKeysetHandle, byte[] signature, byte[] initialText) {
         try {
             PublicKeyVerify verifier = publicKeysetHandle.getPrimitive(PublicKeyVerify.class);
-            verifier.verify(signature, INITIAL_TEXT.getBytes());
+            verifier.verify(signature, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
             log.error("Signature is invalid", ex);
