@@ -22,7 +22,6 @@ import com.google.crypto.tink.PublicKeySign;
 import com.google.crypto.tink.PublicKeyVerify;
 import com.google.crypto.tink.signature.EcdsaSignKeyManager;
 import com.google.crypto.tink.signature.SignatureConfig;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,12 +35,11 @@ import java.security.GeneralSecurityException;
  */
 public class EcdsaWithGeneratedKey {
     private static final Logger log = LoggerFactory.getLogger(EcdsaWithGeneratedKey.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
 
     /**
      * Init SignatureConfig in the Tink library.
      */
-    private EcdsaWithGeneratedKey() {
+    public EcdsaWithGeneratedKey() {
         try {
             SignatureConfig.register();
         } catch (GeneralSecurityException ex) {
@@ -49,40 +47,24 @@ public class EcdsaWithGeneratedKey {
         }
     }
 
-    public static void main(String[] args) {
-        EcdsaWithGeneratedKey demo = new EcdsaWithGeneratedKey();
-
-        try {
-            KeysetHandle privateKeysetHandle = demo.generatePrivateKey();
-            KeysetHandle publicKeysetHandle = demo.generatePublicKey(privateKeysetHandle);
-
-            byte[] signature = demo.sign(privateKeysetHandle);
-            boolean valid = demo.verify(publicKeysetHandle, signature);
-
-            TinkUtils.printSignatureData(privateKeysetHandle, publicKeysetHandle, INITIAL_TEXT, signature, valid);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        }
-    }
-
-    private KeysetHandle generatePrivateKey() throws GeneralSecurityException {
+    public KeysetHandle generatePrivateKey() throws GeneralSecurityException {
         return KeysetHandle.generateNew(EcdsaSignKeyManager.ecdsaP256Template());
     }
 
-    private KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
+    public KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
         return privateKeysetHandle.getPublicKeysetHandle();
     }
 
-    private byte[] sign(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {
+    public byte[] sign(KeysetHandle privateKeysetHandle, byte[] initialText) throws GeneralSecurityException {
         PublicKeySign signer = privateKeysetHandle.getPrimitive(PublicKeySign.class);
 
-        return signer.sign(INITIAL_TEXT.getBytes());
+        return signer.sign(initialText);
     }
 
-    private boolean verify(KeysetHandle publicKeysetHandle, byte[] signature) {
+    public boolean verify(KeysetHandle publicKeysetHandle, byte[] signature, byte[] initialText) {
         try {
             PublicKeyVerify verifier = publicKeysetHandle.getPrimitive(PublicKeyVerify.class);
-            verifier.verify(signature, INITIAL_TEXT.getBytes());
+            verifier.verify(signature, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
             log.error("Signature is invalid", ex);
