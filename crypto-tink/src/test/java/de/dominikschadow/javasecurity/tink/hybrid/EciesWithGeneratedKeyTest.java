@@ -53,7 +53,7 @@ class EciesWithGeneratedKeyTest {
 
         byte[] cipherText = ecies.encrypt(publicKey, INITIAL_TEXT, CONTEXT_INFO);
 
-        Exception exception = assertThrows(GeneralSecurityException.class, () -> ecies.decrypt(privateKey, cipherText, "abc".getBytes(StandardCharsets.UTF_8)));
+        Exception exception = assertThrows(GeneralSecurityException.class, () -> ecies.decrypt(privateKey, cipherText, "manipulation".getBytes(StandardCharsets.UTF_8)));
 
         assertTrue(exception.getMessage().contains("decryption failed"));
     }

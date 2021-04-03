@@ -51,7 +51,7 @@ class AesEaxWithGeneratedKeyTest {
 
         byte[] cipherText = aesEax.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
 
-        Exception exception = assertThrows(GeneralSecurityException.class, () -> aesEax.decrypt(secretKey, cipherText, "abc".getBytes(StandardCharsets.UTF_8)));
+        Exception exception = assertThrows(GeneralSecurityException.class, () -> aesEax.decrypt(secretKey, cipherText, "manipulation".getBytes(StandardCharsets.UTF_8)));
 
         assertTrue(exception.getMessage().contains("decryption failed"));
     }
