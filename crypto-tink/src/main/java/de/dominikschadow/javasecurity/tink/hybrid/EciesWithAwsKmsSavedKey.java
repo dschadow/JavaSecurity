@@ -21,7 +21,6 @@ import com.google.crypto.tink.*;
 import com.google.crypto.tink.hybrid.EciesAeadHkdfPrivateKeyManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
 import com.google.crypto.tink.integration.awskms.AwsKmsClient;
-import de.dominikschadow.javasecurity.tink.TinkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,40 +44,15 @@ import static de.dominikschadow.javasecurity.tink.TinkUtils.AWS_MASTER_KEY_URI;
  */
 public class EciesWithAwsKmsSavedKey {
     private static final Logger log = LoggerFactory.getLogger(EciesWithAwsKmsSavedKey.class);
-    private static final String INITIAL_TEXT = "Some dummy text to work with";
-    private static final String CONTEXT_INFO = "Some additional data";
-    private static final String PRIVATE_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-kms-private.json";
-    private static final String PUBLIC_KEYSET_FILENAME = "crypto-tink/src/main/resources/keysets/hybrid-ecies-kms-public.json";
 
     /**
      * Init AeadConfig in the Tink library.
      */
-    private EciesWithAwsKmsSavedKey() {
+    public EciesWithAwsKmsSavedKey() {
         try {
             HybridConfig.register();
         } catch (GeneralSecurityException ex) {
             log.error("Failed to initialize Tink", ex);
-        }
-    }
-
-    public static void main(String[] args) {
-        EciesWithAwsKmsSavedKey demo = new EciesWithAwsKmsSavedKey();
-
-        try {
-            demo.generateAndStorePrivateKey();
-            KeysetHandle privateKeysetHandle = demo.loadPrivateKey();
-
-            demo.generateAndStorePublicKey(privateKeysetHandle);
-            KeysetHandle publicKeysetHandle = demo.loadPublicKey();
-
-            byte[] cipherText = demo.encrypt(publicKeysetHandle);
-            byte[] plainText = demo.decrypt(privateKeysetHandle, cipherText);
-
-            TinkUtils.printHybridEncryptionData(privateKeysetHandle, publicKeysetHandle, INITIAL_TEXT, cipherText, plainText);
-        } catch (GeneralSecurityException ex) {
-            log.error("Failure during Tink usage", ex);
-        } catch (IOException ex) {
-            log.error("Failure during storing key", ex);
         }
     }
 
@@ -87,18 +61,17 @@ public class EciesWithAwsKmsSavedKey {
      *
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
+     * @param keyset
      */
-    private void generateAndStorePrivateKey() throws IOException, GeneralSecurityException {
-        File keysetFile = new File(PRIVATE_KEYSET_FILENAME);
-
-        if (!keysetFile.exists()) {
+    public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
+        if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
-            keysetHandle.write(JsonKeysetWriter.withFile(keysetFile), new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
+            keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
         }
     }
 
-    private KeysetHandle loadPrivateKey() throws IOException, GeneralSecurityException {
-        return KeysetHandle.read(JsonKeysetReader.withFile(new File(PRIVATE_KEYSET_FILENAME)),
+    public KeysetHandle loadPrivateKey(File keyset) throws IOException, GeneralSecurityException {
+        return KeysetHandle.read(JsonKeysetReader.withFile(keyset),
                 new AwsKmsClient().withDefaultCredentials().getAead(AWS_MASTER_KEY_URI));
     }
 
@@ -108,28 +81,26 @@ public class EciesWithAwsKmsSavedKey {
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
      */
-    private void generateAndStorePublicKey(KeysetHandle privateKeysetHandle) throws IOException, GeneralSecurityException {
-        File keysetFile = new File(PUBLIC_KEYSET_FILENAME);
-
-        if (!keysetFile.exists()) {
+    public void generateAndStorePublicKey(KeysetHandle privateKeysetHandle, File keyset) throws IOException, GeneralSecurityException {
+        if (!keyset.exists()) {
             KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keysetFile));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }
 
-    private KeysetHandle loadPublicKey() throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(new File(PUBLIC_KEYSET_FILENAME)));
+    public KeysetHandle loadPublicKey(File keyset) throws IOException, GeneralSecurityException {
+        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
     }
 
-    private byte[] encrypt(KeysetHandle publicKeysetHandle) throws GeneralSecurityException {
+    public byte[] encrypt(KeysetHandle publicKeysetHandle, byte[] initialText, byte[] contextInfo) throws GeneralSecurityException {
         HybridEncrypt hybridEncrypt = publicKeysetHandle.getPrimitive(HybridEncrypt.class);
 
-        return hybridEncrypt.encrypt(INITIAL_TEXT.getBytes(), CONTEXT_INFO.getBytes());
+        return hybridEncrypt.encrypt(initialText, contextInfo);
     }
 
-    private byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText) throws GeneralSecurityException {
+    public byte[] decrypt(KeysetHandle privateKeysetHandle, byte[] cipherText, byte[] contextInfo) throws GeneralSecurityException {
         HybridDecrypt hybridDecrypt = privateKeysetHandle.getPrimitive(HybridDecrypt.class);
 
-        return hybridDecrypt.decrypt(cipherText, CONTEXT_INFO.getBytes());
+        return hybridDecrypt.decrypt(cipherText, contextInfo);
     }
 }
