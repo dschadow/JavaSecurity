@@ -12,7 +12,8 @@
     <packaging>jar</packaging>
     <name>Intercept Me</name>
 
-    <description>Intercept Me sample project. Start via the main method in the Application class. After launching, open the web application in your browser at http://localhost:8080.
+    <description>Intercept Me sample project. Start via the main method in the Application class. After launching, open
+        the web application in your browser at http://localhost:8080.
     </description>
 
     <dependencies>
@@ -51,6 +52,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
