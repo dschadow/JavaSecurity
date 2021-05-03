@@ -17,13 +17,14 @@
  */
 package de.dominikschadow.javasecurity.serialize;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class Deserializer {
     public static void main(String[] args) {
-        try (FileInputStream fis = new FileInputStream("serialize-me.bin"); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            SerializeMe me = (SerializeMe) ois.readObject();
+        try (ObjectInputStream is = new ObjectInputStream(new BufferedInputStream(new FileInputStream("serialize-me.bin")))) {
+            SerializeMe me = (SerializeMe) is.readObject();
 
             System.out.println("I am " + me.getFirstname() + " " + me.getLastname());
         } catch (Exception ex) {
