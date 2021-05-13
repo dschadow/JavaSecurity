@@ -61,6 +61,7 @@
                 <version>4.0.1</version>
                 <scope>provided</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.owasp.encoder</groupId>
                 <artifactId>encoder</artifactId>
@@ -76,6 +77,18 @@
                 <artifactId>security-logging-logback</artifactId>
                 <version>1.1.6</version>
             </dependency>
+            <dependency>
+                <groupId>org.owasp.esapi</groupId>
+                <artifactId>esapi</artifactId>
+                <version>2.2.3.1</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>antisamy</artifactId>
+                        <groupId>org.owasp.antisamy</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
@@ -96,6 +109,7 @@
                 <artifactId>log4j-slf4j-impl</artifactId>
                 <version>${log4j.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -113,21 +127,11 @@
             </dependency>
 
             <dependency>
-                <groupId>org.owasp.esapi</groupId>
-                <artifactId>esapi</artifactId>
-                <version>2.2.3.0</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>antisamy</artifactId>
-                        <groupId>org.owasp.antisamy</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
                 <groupId>org.zalando.stups</groupId>
                 <artifactId>crypto-keyczar</artifactId>
                 <version>0.9.0</version>
             </dependency>
+
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
