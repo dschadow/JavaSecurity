@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+//@Disabled("These test require AWS KMS configuration")
 class AesGcmWithAwsKmsSavedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
     private static final byte[] ASSOCIATED_DATA = "Some additional data".getBytes(StandardCharsets.UTF_8);
@@ -27,7 +28,6 @@ class AesGcmWithAwsKmsSavedKeyTest {
     }
 
     @Test
-    //@Disabled("This test requires AWS KMS configuration")
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {
         byte[] cipherText = aes.encrypt(secretKey, INITIAL_TEXT, ASSOCIATED_DATA);
         byte[] plainText = aes.decrypt(secretKey, cipherText, ASSOCIATED_DATA);

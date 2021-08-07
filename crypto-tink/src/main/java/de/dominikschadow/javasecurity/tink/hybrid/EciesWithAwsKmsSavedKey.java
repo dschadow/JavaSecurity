@@ -26,13 +26,19 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Optional;
 
 /**
- * Shows crypto usage with Google Tink for the HybridEncrypt primitive. The used key is stored and loaded from AWS KMS.
- * Requires a master key available in AWS KMS and correctly configured credentials to access AWS KMS: AWS_ACCESS_KEY_ID
- * and AWS_SECRET_KEY must be set as environment variables.
  * <p>
- * Selected algorithm is ECIES with AEAD and HKDF.
+ * Shows crypto usage with Google Tink for the HybridEncrypt (AEAD) primitive. The used key is stored and loaded from #
+ * AWS KMS. Selected algorithm is AES-GCM with 128 bit. Requires a master key available in AWS KMS and correctly
+ * configured credentials to access AWS KMS: AWS_ACCESS_KEY_ID and AWS_SECRET_KEY must be set as environment variables.
+ * </p>
+ * <p>
+ * Using your own AWS Master Key requires to delete the stored keyset in src/test/resources/keysets/hybrid-ecies-kms-private.json
+ * and rc/test/resources/keysets/hybrid-ecies-kms-public.json because these keys were created with the used sample AWS
+ * KMS master key and will not work with any other master key.
+ * </p>
  *
  * @author Dominik Schadow
  * @see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html">Creating Keys</a>
@@ -41,6 +47,7 @@ import java.security.GeneralSecurityException;
  */
 public class EciesWithAwsKmsSavedKey {
     private static final Logger log = LoggerFactory.getLogger(EciesWithAwsKmsSavedKey.class);
+    private static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:eu-central-1:776241929911:key/1cf7d7fe-6974-40e3-bb0d-22b8c75d4eb8";
 
     /**
      * Init AeadConfig in the Tink library.
@@ -48,6 +55,7 @@ public class EciesWithAwsKmsSavedKey {
     public EciesWithAwsKmsSavedKey() {
         try {
             HybridConfig.register();
+            AwsKmsClient.register(Optional.of(AWS_MASTER_KEY_URI), Optional.empty());
         } catch (GeneralSecurityException ex) {
             log.error("Failed to initialize Tink", ex);
         }
@@ -58,18 +66,19 @@ public class EciesWithAwsKmsSavedKey {
      *
      * @throws IOException              Failure during saving
      * @throws GeneralSecurityException Failure during keyset generation
-     * @param keyset
      */
-    public void generateAndStorePrivateKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
+    public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
+            AwsKmsClient awsKmsClient = (AwsKmsClient) KmsClients.get(AWS_MASTER_KEY_URI);
             KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
-            keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
+            keysetHandle.write(JsonKeysetWriter.withFile(keyset), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
         }
     }
 
-    public KeysetHandle loadPrivateKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
-        return KeysetHandle.read(JsonKeysetReader.withFile(keyset),
-                new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
+    public KeysetHandle loadPrivateKey(File keyset) throws IOException, GeneralSecurityException {
+        AwsKmsClient awsKmsClient = (AwsKmsClient) KmsClients.get(AWS_MASTER_KEY_URI);
+
+        return KeysetHandle.read(JsonKeysetReader.withFile(keyset), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
     }
 
     /**

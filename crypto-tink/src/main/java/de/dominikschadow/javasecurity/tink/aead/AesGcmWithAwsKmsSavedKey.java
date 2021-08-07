@@ -37,7 +37,7 @@ import java.util.Optional;
  * </p>
  * <p>
  * Using your own AWS Master Key requires to delete the stored keyset in src/test/resources/keysets/aead-aes-gcm-kms.json
- * because this file is encrypted with the used sample AWS KMS master key.
+ * because this key was created with the used sample AWS KMS master key and will not work with any other master key.
  * </p>
  *
  * @author Dominik Schadow
