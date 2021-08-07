@@ -13,9 +13,7 @@
     <name>Crypto Shiro</name>
 
     <description>Java crypto sample project using Apache Shiro to hash and encrypt data. Each relevant class provides
-        its own main method to get started. This project requires the 'Java Cryptography Extension (JCE) Unlimited
-        Strength Jurisdiction Policy Files 8' being installed
-        http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+        its own main method to get started.
     </description>
 
     <dependencies>
