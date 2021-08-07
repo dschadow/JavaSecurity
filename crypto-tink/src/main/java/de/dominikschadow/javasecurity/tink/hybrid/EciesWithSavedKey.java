@@ -18,7 +18,6 @@
 package de.dominikschadow.javasecurity.tink.hybrid;
 
 import com.google.crypto.tink.*;
-import com.google.crypto.tink.hybrid.EciesAeadHkdfPrivateKeyManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +54,7 @@ public class EciesWithSavedKey {
      */
     public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }

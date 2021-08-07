@@ -19,7 +19,6 @@ package de.dominikschadow.javasecurity.tink.aead;
 
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.aead.AeadConfig;
-import com.google.crypto.tink.aead.AesGcmKeyManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +54,7 @@ public class AesGcmWithSavedKey {
      */
     public void generateAndStoreKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(AesGcmKeyManager.aes128GcmTemplate());
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES128_GCM"));
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }

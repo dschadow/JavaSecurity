@@ -18,7 +18,6 @@
 package de.dominikschadow.javasecurity.tink.hybrid;
 
 import com.google.crypto.tink.*;
-import com.google.crypto.tink.hybrid.EciesAeadHkdfPrivateKeyManager;
 import com.google.crypto.tink.hybrid.HybridConfig;
 import com.google.crypto.tink.integration.awskms.AwsKmsClient;
 import org.slf4j.Logger;
@@ -63,7 +62,7 @@ public class EciesWithAwsKmsSavedKey {
      */
     public void generateAndStorePrivateKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
             keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
         }
     }

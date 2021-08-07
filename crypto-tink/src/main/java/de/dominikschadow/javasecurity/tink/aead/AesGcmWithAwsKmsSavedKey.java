@@ -17,12 +17,8 @@
  */
 package de.dominikschadow.javasecurity.tink.aead;
 
-import com.google.crypto.tink.Aead;
-import com.google.crypto.tink.JsonKeysetReader;
-import com.google.crypto.tink.JsonKeysetWriter;
-import com.google.crypto.tink.KeysetHandle;
+import com.google.crypto.tink.*;
 import com.google.crypto.tink.aead.AeadConfig;
-import com.google.crypto.tink.aead.AesGcmKeyManager;
 import com.google.crypto.tink.integration.awskms.AwsKmsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +61,7 @@ public class AesGcmWithAwsKmsSavedKey {
      */
     public void generateAndStoreKey(File keyset, String awsMasterKeyUri) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(AesGcmKeyManager.aes128GcmTemplate());
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES128_GCM"));
             keysetHandle.write(JsonKeysetWriter.withFile(keyset), new AwsKmsClient().withDefaultCredentials().getAead(awsMasterKeyUri));
         }
     }

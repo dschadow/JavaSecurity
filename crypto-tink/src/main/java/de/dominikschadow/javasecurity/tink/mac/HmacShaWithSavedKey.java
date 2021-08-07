@@ -18,7 +18,6 @@
 package de.dominikschadow.javasecurity.tink.mac;
 
 import com.google.crypto.tink.*;
-import com.google.crypto.tink.mac.HmacKeyManager;
 import com.google.crypto.tink.mac.MacConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +54,7 @@ public class HmacShaWithSavedKey {
      */
     public void generateAndStoreKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
-            KeysetHandle keysetHandle = KeysetHandle.generateNew(HmacKeyManager.hmacSha256HalfDigestTemplate());
+            KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("HMAC_SHA256_128BITTAG"));
             CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
         }
     }

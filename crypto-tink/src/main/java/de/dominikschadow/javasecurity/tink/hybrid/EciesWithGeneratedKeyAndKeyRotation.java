@@ -17,11 +17,7 @@
  */
 package de.dominikschadow.javasecurity.tink.hybrid;
 
-import com.google.crypto.tink.HybridDecrypt;
-import com.google.crypto.tink.HybridEncrypt;
-import com.google.crypto.tink.KeysetHandle;
-import com.google.crypto.tink.KeysetManager;
-import com.google.crypto.tink.hybrid.EciesAeadHkdfPrivateKeyManager;
+import com.google.crypto.tink.*;
 import com.google.crypto.tink.hybrid.HybridConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +49,7 @@ public class EciesWithGeneratedKeyAndKeyRotation {
      * disables the original primary key.
      */
     public KeysetHandle rotateKey(KeysetHandle keysetHandle) throws GeneralSecurityException {
-        KeysetHandle handle = KeysetManager.withKeysetHandle(keysetHandle).add(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128CtrHmacSha256Template()).getKeysetHandle();
+        KeysetHandle handle = KeysetManager.withKeysetHandle(keysetHandle).add(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_CTR_HMAC_SHA256")).getKeysetHandle();
 
         handle = KeysetManager.withKeysetHandle(handle).setPrimary(handle.getKeysetInfo().getKeyInfo(1).getKeyId()).getKeysetHandle();
 
@@ -61,7 +57,7 @@ public class EciesWithGeneratedKeyAndKeyRotation {
     }
 
     public KeysetHandle generatePrivateKey() throws GeneralSecurityException {
-        return KeysetHandle.generateNew(EciesAeadHkdfPrivateKeyManager.eciesP256HkdfHmacSha256Aes128GcmTemplate());
+        return KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
     }
 
     public KeysetHandle generatePublicKey(KeysetHandle privateKeysetHandle) throws GeneralSecurityException {

@@ -17,9 +17,9 @@
  */
 package de.dominikschadow.javasecurity.tink.mac;
 
+import com.google.crypto.tink.KeyTemplates;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.Mac;
-import com.google.crypto.tink.mac.HmacKeyManager;
 import com.google.crypto.tink.mac.MacConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +65,6 @@ public class HmacShaWithGeneratedKey {
     }
 
     public KeysetHandle generateKey() throws GeneralSecurityException {
-        return KeysetHandle.generateNew(HmacKeyManager.hmacSha256HalfDigestTemplate());
+        return KeysetHandle.generateNew(KeyTemplates.get("HMAC_SHA256_128BITTAG"));
     }
 }
