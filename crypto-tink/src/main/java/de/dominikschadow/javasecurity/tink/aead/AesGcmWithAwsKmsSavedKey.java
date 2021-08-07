@@ -31,7 +31,7 @@ import java.util.Optional;
 /**
  * <p>
  * Shows crypto usage with Google Tink for the Authenticated Encryption with Associated Data (AEAD) primitive. The used
- * key is stored and loaded from AWS KMS.S elected algorithm is AES-GCM with 128 bit. Requires a master key available in
+ * key is stored and loaded from AWS KMS. Selected algorithm is AES-GCM with 128 bit. Requires a master key available in
  * AWS KMS and correctly configured credentials to access AWS KMS: AWS_ACCESS_KEY_ID and AWS_SECRET_KEY must be set as
  * environment variables.
  * </p>
