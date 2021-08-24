@@ -52,10 +52,11 @@ public class HmacShaWithGeneratedKey {
         return mac.computeMac(initialText);
     }
 
-    public boolean verifyMac(KeysetHandle keysetHandle, byte[] tag, byte[] initialText) {
+    public boolean verifyMac(KeysetHandle keysetHandle, byte[] initialMac, byte[] initialText) {
         try {
             Mac mac = keysetHandle.getPrimitive(Mac.class);
-            mac.verifyMac(tag, initialText);
+            mac.verifyMac(initialMac, initialText);
+
             return true;
         } catch (GeneralSecurityException ex) {
             log.error("MAC is invalid", ex);
