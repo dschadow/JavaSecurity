@@ -17,11 +17,11 @@ class HmacShaWithGeneratedKeyTest {
     void unchangedInputValidatesSuccessful() throws Exception {
         KeysetHandle keysetHandle = hmac.generateKey();
 
-        byte[] tag = hmac.computeMac(keysetHandle, INITIAL_TEXT);
-        boolean validation = hmac.verifyMac(keysetHandle, tag, INITIAL_TEXT);
+        byte[] initialMac = hmac.computeMac(keysetHandle, INITIAL_TEXT);
+        boolean validation = hmac.verifyMac(keysetHandle, initialMac, INITIAL_TEXT);
 
         Assertions.assertAll(
-                () -> assertNotNull(tag),
+                () -> assertNotNull(initialMac),
                 () -> assertTrue(validation)
         );
     }
@@ -30,11 +30,11 @@ class HmacShaWithGeneratedKeyTest {
     void changedInputValidationFails() throws Exception {
         KeysetHandle keysetHandle = hmac.generateKey();
 
-        byte[] tag = hmac.computeMac(keysetHandle, INITIAL_TEXT);
-        boolean validation = hmac.verifyMac(keysetHandle, tag, "manipulation".getBytes(StandardCharsets.UTF_8));
+        byte[] initialMac = hmac.computeMac(keysetHandle, INITIAL_TEXT);
+        boolean validation = hmac.verifyMac(keysetHandle, initialMac, "manipulation".getBytes(StandardCharsets.UTF_8));
 
         Assertions.assertAll(
-                () -> assertNotNull(tag),
+                () -> assertNotNull(initialMac),
                 () -> assertFalse(validation)
         );
     }
