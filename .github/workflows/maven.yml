@@ -27,12 +27,3 @@ jobs:
           path: '.'
           format: 'HTML'
           others: ''
-      - name: Upload Dependency Check results
-        uses: actions/upload-artifact@master
-        with:
-          name: Depcheck report
-          path: ${{github.workspace}}/reports
-      - name: Measure test coverage
-        uses: codecov/codecov-action@v1
-        with:
-          flags: unittests
