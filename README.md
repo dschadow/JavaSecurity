@@ -3,8 +3,8 @@ Java Security
 This repository contains several Java web applications and command line applications covering different security topics. Have a look at my [slides](https://blog.dominikschadow.de/events) and [publications](https://blog.dominikschadow.de/publications) covering most applications in this repository.
 
 # Requirements
-- [Java 11](https://adoptopenjdk.net)
-- [Maven 3](http://maven.apache.org/)
+- [Java 17](https://dev.java)
+- [Maven 3](http://maven.apache.org)
 - [Mozilla Firefox](https://www.mozilla.org) (recommended, some demos might not be fully working in other browsers)
 - [Docker](https://www.docker.com) (required for running the sample applications as Docker containers) 
 
