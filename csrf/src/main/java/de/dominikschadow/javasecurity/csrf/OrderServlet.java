@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
 /**
  * CSRF secured order servlet for POST requests. Processes the order and returns the result.
@@ -35,6 +36,7 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "OrderServlet", urlPatterns = {"/OrderServlet"})
 public class OrderServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 168055850789919449L;
     private static final Logger log = LoggerFactory.getLogger(OrderServlet.class);
 

@@ -17,10 +17,12 @@
  */
 package de.dominikschadow.javasecurity.serialize;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class SerializeMe implements Serializable {
-	private static final long serialVersionUID = 4811291877894678577L;
+	@Serial
+    private static final long serialVersionUID = 4811291877894678577L;
 	private String firstname;
     private String lastname;
 

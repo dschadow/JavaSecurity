@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
 /**
  * Servlet receives unvalidated user input and returns it without further processing to the browser.
@@ -34,7 +35,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "UnprotectedServlet", urlPatterns = {"/unprotected"})
 public class UnprotectedServlet extends HttpServlet {
-	private static final long serialVersionUID = -7015937301709375951L;
+	@Serial
+    private static final long serialVersionUID = -7015937301709375951L;
 	private static final Logger log = LoggerFactory.getLogger(UnprotectedServlet.class);
 
     @Override

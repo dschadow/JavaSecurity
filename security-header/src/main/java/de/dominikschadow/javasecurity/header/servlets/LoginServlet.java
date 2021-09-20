@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
 /**
  * Simple login servlet which returns a success message.
@@ -35,6 +36,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/x-frame-options/LoginServlet", "/cache-control/LoginServlet",
         "/csp2/LoginServlet"})
 public class LoginServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = -660893987741671511L;
     private static final Logger log = LoggerFactory.getLogger(LoginServlet.class);
 

@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
 /**
  * Servlet expecting validated input from the frontend.
@@ -34,7 +35,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "InputValidatedServlet", urlPatterns = {"/validated"})
 public class InputValidatedServlet extends HttpServlet {
-	private static final long serialVersionUID = -3167797061670620847L;
+	@Serial
+    private static final long serialVersionUID = -3167797061670620847L;
 	private static final Logger log = LoggerFactory.getLogger(InputValidatedServlet.class);
 
     @Override

@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
 /**
  * Fake login servlet which returns a success message.
@@ -34,6 +35,7 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "FakeServlet", urlPatterns = {"/x-frame-options/FakeServlet", "/csp2/FakeServlet"})
 public class FakeServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = -6474742244481023685L;
     private static final Logger log = LoggerFactory.getLogger(FakeServlet.class);
 

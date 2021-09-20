@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
 /**
  * Servlet to return output escaping user input to prevent Cross-Site Scripting (XSS).
@@ -35,7 +36,8 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "OutputEscapedServlet", urlPatterns = {"/escaped"})
 public class OutputEscapedServlet extends HttpServlet {
-	private static final long serialVersionUID = 2290746121319783879L;
+	@Serial
+    private static final long serialVersionUID = 2290746121319783879L;
 	private static final Logger log = LoggerFactory.getLogger(OutputEscapedServlet.class);
 
     @Override
