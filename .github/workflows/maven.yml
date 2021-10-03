@@ -1,5 +1,3 @@
-name: Build
-
 on:
   push:
   pull_request:
@@ -8,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: JavaSecurity Build
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,19 +18,3 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: Configure Java for Dependency Check
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        id: Depcheck
-        with:
-          project: 'JavaSecurity'
-          path: '.'
-          format: 'HTML'
-      - name: Upload Dependency Check Results
-        uses: actions/upload-artifact@master
-        with:
-          name: Depcheck report
-          path: ${{github.workspace}}/reports
