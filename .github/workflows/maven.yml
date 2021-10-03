@@ -19,3 +19,15 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+      - name: Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: 'JavaSecurity'
+          path: '.'
+          format: 'HTML'
+      - name: Upload Dependency Check results
+        uses: actions/upload-artifact@master
+        with:
+          name: Depcheck report
+          path: ${{github.workspace}}/reports
