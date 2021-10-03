@@ -18,4 +18,4 @@ jobs:
           java-version: '17'
           cache: 'maven'
       - name: Build with Maven
-        run: mvn verify
+        run: mvn -B package --file pom.xml
