@@ -22,14 +22,5 @@ package de.dominikschadow.javasecurity.csrf.orders;
  *
  * @author Dominik Schadow
  */
-public class Order {
-    private String item;
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
+public record Order (String item) {
 }

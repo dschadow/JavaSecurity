@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class IndexController {
     @ModelAttribute("order")
     public Order order() {
-        return new Order();
+        return new Order("");
     }
 
     @GetMapping
