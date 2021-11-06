@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class GreetingController {
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("greeting", new Greeting());
+        model.addAttribute("greeting", new Greeting(""));
 
         return "index";
     }
