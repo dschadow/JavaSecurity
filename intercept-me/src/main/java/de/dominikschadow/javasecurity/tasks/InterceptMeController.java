@@ -33,7 +33,7 @@ import org.thymeleaf.util.StringUtils;
 public class InterceptMeController {
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("firstTask", new FirstTask());
+        model.addAttribute("firstTask", new FirstTask(""));
         
         return "index";
     }
@@ -42,7 +42,7 @@ public class InterceptMeController {
     public String firstTask(FirstTask firstTask, Model model) {
         String result = "FAILURE";
 
-        if (StringUtils.equals(firstTask.getName(), "inject")) {
+        if (StringUtils.equals(firstTask.name(), "inject")) {
             result = "SUCCESS";
         }
 

@@ -22,14 +22,4 @@ package de.dominikschadow.javasecurity.tasks;
  *
  * @author Dominik Schadow
  */
-public class FirstTask {
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-}
+public record FirstTask (String name) {}
