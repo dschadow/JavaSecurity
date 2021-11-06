@@ -36,15 +36,15 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("login", new Login());
+        model.addAttribute("login", new Login("", ""));
 
         return "index";
     }
 
     @PostMapping("login")
     public String firstTask(Login login, Model model) {
-        String username = login.getUsername();
-        String password = login.getPassword();
+        String username = login.username();
+        String password = login.password();
 
         log.info(SecurityMarkers.CONFIDENTIAL, "User {} with password {} logged in", username, password);
         log.info(SecurityMarkers.EVENT_FAILURE, "User {} with password {} logged in", username, password);
