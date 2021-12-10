@@ -43,7 +43,7 @@
     </parent>
 
     <properties>
-        <log4j.version>2.14.1</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <owasp.encoder.version>1.2.3</owasp.encoder.version>
         <crypto.tink.version>1.6.1</crypto.tink.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
