@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.csrf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,14 +35,14 @@ import java.io.Serial;
 public class OrderServlet extends HttpServlet {
     @Serial
     private static final long serialVersionUID = 168055850789919449L;
-    private static final Logger log = LoggerFactory.getLogger(OrderServlet.class);
+    private static final System.Logger LOG = System.getLogger(OrderServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        log.info("Processing order servlet...");
+        LOG.log(System.Logger.Level.INFO, "Processing order servlet...");
 
         if (!CSRFTokenHandler.isValid(request)) {
-            log.info("Order servlet: CSRF token is invalid");
+            LOG.log(System.Logger.Level.INFO, "Order servlet: CSRF token is invalid");
             response.setStatus(401);
 
             try (PrintWriter out = response.getWriter()) {
@@ -62,13 +59,13 @@ public class OrderServlet extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             } catch (IOException ex) {
-                log.error(ex.getMessage(), ex);
+                LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
             }
 
             return;
         }
 
-        log.info("Order servlet: CSRF token is valid");
+        LOG.log(System.Logger.Level.INFO, "Order servlet: CSRF token is valid");
 
         String product = request.getParameter("product");
         int quantity;
@@ -79,7 +76,7 @@ public class OrderServlet extends HttpServlet {
             quantity = 0;
         }
 
-        log.info("Ordered {} items of product {}", quantity, product);
+        LOG.log(System.Logger.Level.INFO, "Ordered {0} items of product {1}", quantity, product);
 
         response.setContentType("text/html");
 
@@ -97,7 +94,7 @@ public class OrderServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 }
