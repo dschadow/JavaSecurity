@@ -18,8 +18,6 @@
 package de.dominikschadow.javasecurity.hash;
 
 import com.google.common.io.BaseEncoding;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -36,7 +34,7 @@ import java.security.spec.InvalidKeySpecException;
  * @author Dominik Schadow
  */
 public class PBKDF2 {
-    private static final Logger log = LoggerFactory.getLogger(PBKDF2.class);
+    private static final System.Logger LOG = System.getLogger(PBKDF2.class.getName());
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
     private static final int ITERATIONS = 10000;
     // salt size at least 32 byte
@@ -60,15 +58,15 @@ public class PBKDF2 {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] salt = generateSalt();
 
-            log.info("Hashing password {} with hash algorithm {}, hash size {}, # of iterations {} and salt {}",
+            LOG.log(System.Logger.Level.INFO, "Hashing password {0} with hash algorithm {1}, hash size {2}, # of iterations {3} and salt {4}",
                     String.valueOf(password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base16().encode(salt));
 
             byte[] hash = calculateHash(skf, password, salt);
             boolean correct = verifyPassword(skf, hash, password, salt);
 
-            log.info("Entered password is correct: {}", correct);
+            LOG.log(System.Logger.Level.INFO, "Entered password is correct: {0}", correct);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -92,8 +90,8 @@ public class PBKDF2 {
             InvalidKeySpecException {
         byte[] comparisonHash = calculateHash(skf, password, salt);
 
-        log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
-        log.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
+        LOG.log(System.Logger.Level.INFO, "hash 1: {0}", BaseEncoding.base16().encode(originalHash));
+        LOG.log(System.Logger.Level.INFO, "hash 2: {0}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

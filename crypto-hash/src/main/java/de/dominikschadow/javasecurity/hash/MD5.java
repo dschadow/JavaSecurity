@@ -18,8 +18,6 @@
 package de.dominikschadow.javasecurity.hash;
 
 import com.google.common.io.BaseEncoding;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -34,7 +32,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Dominik Schadow
  */
 public class MD5 {
-    private static final Logger log = LoggerFactory.getLogger(MD5.class);
+    private static final System.Logger LOG = System.getLogger(MD5.class.getName());
     private static final String ALGORITHM = "MD5";
 
     /**
@@ -50,9 +48,9 @@ public class MD5 {
             byte[] hash = calculateHash(password);
             boolean correct = verifyPassword(hash, password);
 
-            log.info("Entered password is correct: {}", correct);
+            LOG.log(System.Logger.Level.INFO, "Entered password is correct: {0}", correct);
         } catch (NoSuchAlgorithmException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -66,8 +64,8 @@ public class MD5 {
     private static boolean verifyPassword(byte[] originalHash, String password) throws NoSuchAlgorithmException {
         byte[] comparisonHash = calculateHash(password);
 
-        log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
-        log.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
+        LOG.log(System.Logger.Level.INFO, "hash 1: {0}", BaseEncoding.base16().encode(originalHash));
+        LOG.log(System.Logger.Level.INFO, "hash 2: {0}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }

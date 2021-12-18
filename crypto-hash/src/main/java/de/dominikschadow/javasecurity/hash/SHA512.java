@@ -19,8 +19,6 @@ package de.dominikschadow.javasecurity.hash;
 
 import com.google.common.io.BaseEncoding;
 import com.google.common.primitives.Bytes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -36,7 +34,7 @@ import java.security.SecureRandom;
  * @author Dominik Schadow
  */
 public class SHA512 {
-    private static final Logger log = LoggerFactory.getLogger(SHA512.class);
+    private static final System.Logger LOG = System.getLogger(SHA512.class.getName());
     private static final String ALGORITHM = "SHA-512";
     private static final int ITERATIONS = 1000000;
     private static final int SALT_SIZE = 64;
@@ -53,15 +51,15 @@ public class SHA512 {
         try {
             byte[] salt = generateSalt();
 
-            log.info("Password {}. hash algorithm {}, iterations {}, salt {}", password, ALGORITHM, ITERATIONS,
+            LOG.log(System.Logger.Level.INFO,"Password {0}. hash algorithm {1}, iterations {2}, salt {3}", password, ALGORITHM, ITERATIONS,
                     BaseEncoding.base16().encode(salt));
 
             byte[] hash = calculateHash(password, salt);
             boolean correct = verifyPassword(hash, password, salt);
 
-            log.info("Entered password is correct: {}", correct);
+            LOG.log(System.Logger.Level.INFO,"Entered password is correct: {0}", correct);
         } catch (NoSuchAlgorithmException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -91,8 +89,8 @@ public class SHA512 {
             NoSuchAlgorithmException {
         byte[] comparisonHash = calculateHash(password, salt);
 
-        log.info("hash 1: {}", BaseEncoding.base16().encode(originalHash));
-        log.info("hash 2: {}", BaseEncoding.base16().encode(comparisonHash));
+        LOG.log(System.Logger.Level.INFO,"hash 1: {0}", BaseEncoding.base16().encode(originalHash));
+        LOG.log(System.Logger.Level.INFO,"hash 2: {0}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }
