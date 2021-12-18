@@ -18,8 +18,6 @@
 package de.dominikschadow.javasecurity.asymmetric;
 
 import com.google.common.io.BaseEncoding;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +34,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class DSA {
-    private static final Logger log = LoggerFactory.getLogger(DSA.class);
+    private static final System.Logger LOG = System.getLogger(DSA.class.getName());
     private static final String ALGORITHM = "SHA1withDSA";
     private static final String KEYSTORE_PATH = "/samples.ks";
 
@@ -67,7 +65,7 @@ public class DSA {
             printReadableMessages(initialText, signature, valid);
         } catch (NoSuchAlgorithmException | SignatureException | KeyStoreException | CertificateException |
                 UnrecoverableKeyException | InvalidKeyException | IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -114,8 +112,8 @@ public class DSA {
     }
 
     private static void printReadableMessages(String initialText, byte[] signature, boolean valid) {
-        log.info("initial text: {}", initialText);
-        log.info("signature: {}", BaseEncoding.base16().encode(signature));
-        log.info("signature valid: {}", valid);
+        LOG.log(System.Logger.Level.INFO, "initial text: {0}", initialText);
+        LOG.log(System.Logger.Level.INFO, "signature: {0}", BaseEncoding.base16().encode(signature));
+        LOG.log(System.Logger.Level.INFO, "signature valid: {0}", valid);
     }
 }

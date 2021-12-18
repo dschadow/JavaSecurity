@@ -18,8 +18,6 @@
 package de.dominikschadow.javasecurity.symmetric;
 
 import com.google.common.io.BaseEncoding;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -46,7 +44,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AES {
-    private static final Logger log = LoggerFactory.getLogger(AES.class);
+    private static final System.Logger LOG = System.getLogger(AES.class.getName());
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String KEYSTORE_PATH = "/samples.ks";
     private Cipher cipher;
@@ -74,7 +72,7 @@ public class AES {
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
                 KeyStoreException | CertificateException | UnrecoverableKeyException |
                 InvalidAlgorithmParameterException | InvalidKeyException | IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -110,8 +108,8 @@ public class AES {
     }
 
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        log.info("initial text: {}", initialText);
-        log.info("cipher text: {}", BaseEncoding.base16().encode(ciphertext));
-        log.info("plain text: {}", new String(plaintext, StandardCharsets.UTF_8));
+        LOG.log(System.Logger.Level.INFO, "initial text: {0}", initialText);
+        LOG.log(System.Logger.Level.INFO, "cipher text: {0}", BaseEncoding.base16().encode(ciphertext));
+        LOG.log(System.Logger.Level.INFO, "plain text: {0}", new String(plaintext, StandardCharsets.UTF_8));
     }
 }
