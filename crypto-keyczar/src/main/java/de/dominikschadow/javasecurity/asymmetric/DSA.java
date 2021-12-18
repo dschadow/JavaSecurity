@@ -20,8 +20,6 @@ package de.dominikschadow.javasecurity.asymmetric;
 import org.keyczar.Signer;
 import org.keyczar.Verifier;
 import org.keyczar.exceptions.KeyczarException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Digital signature sample with Keyczar. Loads the DSA key from the sample key set, signs and verifies sample text with it.
@@ -29,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * @author Dominik Schadow
  */
 public class DSA {
-    private static final Logger log = LoggerFactory.getLogger(DSA.class);
+    private static final System.Logger LOG = System.getLogger(DSA.class.getName());
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/sign";
 
     /**
@@ -46,7 +44,7 @@ public class DSA {
 
             printReadableMessages(initialText, signature, valid);
         } catch (KeyczarException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -61,8 +59,8 @@ public class DSA {
     }
 
     private static void printReadableMessages(String initialText, String signature, boolean valid) {
-        log.info("initialText: {}", initialText);
-        log.info("signature: {}", signature);
-        log.info("signature valid: {}", valid);
+        LOG.log(System.Logger.Level.INFO, "initialText: {0}", initialText);
+        LOG.log(System.Logger.Level.INFO, "signature: {0}", signature);
+        LOG.log(System.Logger.Level.INFO, "signature valid: {0}", valid);
     }
 }

@@ -19,8 +19,6 @@ package de.dominikschadow.javasecurity.symmetric;
 
 import org.keyczar.Crypter;
 import org.keyczar.exceptions.KeyczarException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Symmetric encryption sample with Keyczar. Loads the AES key from the sample key set, encrypts and decrypts sample
@@ -29,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * @author Dominik Schadow
  */
 public class AES {
-    private static final Logger log = LoggerFactory.getLogger(AES.class);
+    private static final System.Logger LOG = System.getLogger(AES.class.getName());
     private static final String KEYSET_PATH = "crypto-keyczar/src/main/resources/key-sets/encrypt/symmetric";
 
     /**
@@ -46,7 +44,7 @@ public class AES {
 
             printReadableMessages(initialText, ciphertext, plaintext);
         } catch (KeyczarException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -68,8 +66,8 @@ public class AES {
     }
 
     private static void printReadableMessages(String initialText, String ciphertext, String plaintext) {
-        log.info("initialText: {}", initialText);
-        log.info("cipherText: {}", ciphertext);
-        log.info("plaintext: {}", plaintext);
+        LOG.log(System.Logger.Level.INFO, "initialText: {0}", initialText);
+        LOG.log(System.Logger.Level.INFO, "cipherText: {0}", ciphertext);
+        LOG.log(System.Logger.Level.INFO, "plaintext: {0}", plaintext);
     }
 }
