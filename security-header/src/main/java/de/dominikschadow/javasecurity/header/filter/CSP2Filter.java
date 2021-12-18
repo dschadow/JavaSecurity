@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.header.filter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
@@ -34,13 +31,9 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "CSP2Filter", urlPatterns = {"/csp2/protectedForm.jsp", "/all/all.jsp"})
 public class CSP2Filter implements Filter {
-    private static final Logger log = LoggerFactory.getLogger(CSP2Filter.class);
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        log.info("Content-Security-Policy Level 2 header added to response");
-
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none'; reflected-xss block");
 

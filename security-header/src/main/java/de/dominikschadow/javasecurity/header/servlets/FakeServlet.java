@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.header.servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,11 +34,11 @@ import java.io.Serial;
 public class FakeServlet extends HttpServlet {
     @Serial
     private static final long serialVersionUID = -6474742244481023685L;
-    private static final Logger log = LoggerFactory.getLogger(FakeServlet.class);
+    private static final System.Logger LOG = System.getLogger(FakeServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        log.info("Processing fake request...");
+        LOG.log(System.Logger.Level.INFO, "Processing fake request...");
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -57,7 +54,7 @@ public class FakeServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 }

@@ -13,28 +13,14 @@
     <name>Security Header</name>
 
     <description>Security Response Header sample project. Sets different security related response headers via filter
-        classes
-        to each response. After launching, open the web application in your browser at
-        http://localhost:8080/security-header or
-        https://localhost:8443/security-header
+        classes to each response. After launching, open the web application in your browser at
+        http://localhost:8080/security-header or https://localhost:8443/security-header
     </description>
 
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

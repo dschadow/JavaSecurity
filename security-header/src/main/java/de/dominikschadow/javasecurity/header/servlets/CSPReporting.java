@@ -18,8 +18,6 @@
 package de.dominikschadow.javasecurity.header.servlets;
 
 import com.google.gson.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +38,7 @@ import java.nio.charset.StandardCharsets;
 public class CSPReporting extends HttpServlet {
     @Serial
     private static final long serialVersionUID = 5150026442855960085L;
-    private static final Logger log = LoggerFactory.getLogger(CSPReporting.class);
+    private static final System.Logger LOG = System.getLogger(CSPReporting.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
@@ -48,9 +46,9 @@ public class CSPReporting extends HttpServlet {
             Gson gs = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
             JsonElement element = JsonParser.parseReader(reader);
 
-            log.info("\n{}", gs.toJson(element));
+            LOG.log(System.Logger.Level.INFO, "\n{}", gs.toJson(element));
         } catch (IOException | JsonSyntaxException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 }

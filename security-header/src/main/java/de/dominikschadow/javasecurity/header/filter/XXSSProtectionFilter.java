@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.header.filter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
@@ -34,13 +31,9 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "XXSSProtectionFilter", urlPatterns = {"/x-xss-protection/protected.jsp", "/all/all.jsp"})
 public class XXSSProtectionFilter implements Filter {
-    private static final Logger log = LoggerFactory.getLogger(XXSSProtectionFilter.class);
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        log.info("X-XSS-Protection header added to response");
-
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setHeader("X-XSS-Protection", "1; mode=block");
 

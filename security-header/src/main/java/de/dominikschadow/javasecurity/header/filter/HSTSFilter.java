@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.header.filter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
@@ -33,13 +30,9 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "HSTSFilter", urlPatterns = {"/*"})
 public class HSTSFilter implements Filter {
-    private static final Logger log = LoggerFactory.getLogger(HSTSFilter.class);
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        log.info("Strict-Transport-Security header added to response");
-
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.addHeader("Strict-Transport-Security", "max-age=31556926; includeSubDomains");
 
