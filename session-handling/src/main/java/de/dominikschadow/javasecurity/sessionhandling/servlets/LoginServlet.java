@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +27,7 @@ import java.io.Serial;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(LoginServlet.class);
+    private static final System.Logger LOG = System.getLogger(LoginServlet.class.getName());
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -38,12 +35,12 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String currentSessionId = request.getSession().getId();
 
-        log.info("Original session ID {}", currentSessionId);
+        LOG.log(System.Logger.Level.INFO, "Original session ID {0}", currentSessionId);
 
         // changes the session id in the session, returns the new one
         String newSessionId = request.changeSessionId();
 
-        log.info("New session ID {}", newSessionId);
+        LOG.log(System.Logger.Level.INFO, "New session ID {0}", newSessionId);
 
         response.setContentType("text/html");
 
@@ -60,7 +57,7 @@ public class LoginServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 }
