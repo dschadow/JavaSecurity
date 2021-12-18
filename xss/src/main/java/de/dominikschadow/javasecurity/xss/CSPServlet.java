@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.xss;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,13 +36,13 @@ import java.io.Serial;
 public class CSPServlet extends HttpServlet {
 	@Serial
     private static final long serialVersionUID = 5117768874974567141L;
-	private static final Logger log = LoggerFactory.getLogger(CSPServlet.class);
+    private static final System.Logger LOG = System.getLogger(CSPServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("cspName");
 
-        log.info("Received {} as name", name);
+        LOG.log(System.Logger.Level.INFO, "Received {0} as name", name);
 
         response.setContentType("text/html");
         response.setHeader("Content-Security-Policy", "default-src 'self'");
@@ -61,7 +58,7 @@ public class CSPServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 }

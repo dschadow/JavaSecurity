@@ -17,9 +17,6 @@
  */
 package de.dominikschadow.javasecurity.xss;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,13 +34,13 @@ import java.io.Serial;
 public class UnprotectedServlet extends HttpServlet {
 	@Serial
     private static final long serialVersionUID = -7015937301709375951L;
-	private static final Logger log = LoggerFactory.getLogger(UnprotectedServlet.class);
+    private static final System.Logger LOG = System.getLogger(UnprotectedServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("unprotectedName");
 
-        log.info("Received {} as name", name);
+        LOG.log(System.Logger.Level.INFO, "Received {0} as name", name);
 
         response.setContentType("text/html");
 
@@ -58,7 +55,7 @@ public class UnprotectedServlet extends HttpServlet {
             out.println("<p><a href=\"index.jsp\">Home</a></p>");
             out.println("</body></html>");
         } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 }
