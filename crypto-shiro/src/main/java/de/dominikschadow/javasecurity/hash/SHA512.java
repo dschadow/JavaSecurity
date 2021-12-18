@@ -22,8 +22,6 @@ import org.apache.shiro.crypto.hash.DefaultHashService;
 import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.HashRequest;
 import org.apache.shiro.util.ByteSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
@@ -34,7 +32,7 @@ import java.util.Arrays;
  * @author Dominik Schadow
  */
 public class SHA512 {
-    private static final Logger log = LoggerFactory.getLogger(SHA512.class);
+    private static final System.Logger LOG = System.getLogger(SHA512.class.getName());
     /**
      * Nothing up my sleeve number as private salt, not good for production.
      */
@@ -53,7 +51,7 @@ public class SHA512 {
         Hash hash = calculateHash(password);
         boolean correct = verifyPassword(hash.getBytes(), hash.getSalt(), password);
 
-        log.info("Entered password is correct: {}", correct);
+        LOG.log(System.Logger.Level.INFO, "Entered password is correct: {0}", correct);
     }
 
     private static Hash calculateHash(String password) {
@@ -68,7 +66,7 @@ public class SHA512 {
 
         Hash hash = hashService.computeHash(builder.build());
 
-        log.info("Hash algorithm {}, iterations {}, public salt {}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
+        LOG.log(System.Logger.Level.INFO, "Hash algorithm {0}, iterations {1}, public salt {2}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
 
         return hash;
     }
@@ -85,9 +83,9 @@ public class SHA512 {
 
         Hash comparisonHash = hashService.computeHash(builder.build());
 
-        log.info("password: {}", password);
-        log.info("1 hash: {}", Hex.encodeToString(originalHash));
-        log.info("2 hash: {}", comparisonHash.toHex());
+        LOG.log(System.Logger.Level.INFO, "password: {0}", password);
+        LOG.log(System.Logger.Level.INFO, "1 hash: {0}", Hex.encodeToString(originalHash));
+        LOG.log(System.Logger.Level.INFO, "2 hash: {0}", comparisonHash.toHex());
 
         return Arrays.equals(originalHash, comparisonHash.getBytes());
     }

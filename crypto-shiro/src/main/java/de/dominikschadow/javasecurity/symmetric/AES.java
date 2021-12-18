@@ -21,8 +21,6 @@ import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
 import org.apache.shiro.util.ByteSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +33,7 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AES {
-    private static final Logger log = LoggerFactory.getLogger(AES.class);
+    private static final System.Logger LOG = System.getLogger(AES.class.getName());
     private static final String KEYSTORE_PATH = "/samples.ks";
 
     /**
@@ -58,7 +56,7 @@ public class AES {
 
             printReadableMessages(initialText, ciphertext, plaintext);
         } catch (NoSuchAlgorithmException | KeyStoreException | CertificateException | UnrecoverableKeyException | IOException ex) {
-            log.error(ex.getMessage(), ex);
+            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -101,8 +99,8 @@ public class AES {
     }
 
     private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        log.info("initialText: {}", initialText);
-        log.info("cipherText as HEX: {}", Hex.encodeToString(ciphertext));
-        log.info("plaintext: {}", CodecSupport.toString(plaintext));
+        LOG.log(System.Logger.Level.INFO, "initialText: {0}", initialText);
+        LOG.log(System.Logger.Level.INFO, "cipherText as HEX: {0}", Hex.encodeToString(ciphertext));
+        LOG.log(System.Logger.Level.INFO, "plaintext: {0}", CodecSupport.toString(plaintext));
     }
 }
