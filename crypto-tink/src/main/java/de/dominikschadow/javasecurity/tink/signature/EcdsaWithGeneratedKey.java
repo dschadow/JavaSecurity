@@ -22,8 +22,6 @@ import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.PublicKeySign;
 import com.google.crypto.tink.PublicKeyVerify;
 import com.google.crypto.tink.signature.SignatureConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.GeneralSecurityException;
 
@@ -34,7 +32,7 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class EcdsaWithGeneratedKey {
-    private static final Logger log = LoggerFactory.getLogger(EcdsaWithGeneratedKey.class);
+    private static final System.Logger LOG = System.getLogger(EcdsaWithGeneratedKey.class.getName());
 
     /**
      * Init SignatureConfig in the Tink library.
@@ -43,7 +41,7 @@ public class EcdsaWithGeneratedKey {
         try {
             SignatureConfig.register();
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to initialize Tink", ex);
+            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
         }
     }
 
@@ -67,7 +65,7 @@ public class EcdsaWithGeneratedKey {
             verifier.verify(signature, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
-            log.error("Signature is invalid", ex);
+            LOG.log(System.Logger.Level.ERROR, "Signature is invalid", ex);
         }
 
         return false;

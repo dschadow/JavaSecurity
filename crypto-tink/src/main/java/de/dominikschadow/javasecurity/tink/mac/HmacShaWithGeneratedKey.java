@@ -21,8 +21,6 @@ import com.google.crypto.tink.KeyTemplates;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.Mac;
 import com.google.crypto.tink.mac.MacConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.GeneralSecurityException;
 
@@ -33,7 +31,7 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class HmacShaWithGeneratedKey {
-    private static final Logger log = LoggerFactory.getLogger(HmacShaWithGeneratedKey.class);
+    private static final System.Logger LOG = System.getLogger(HmacShaWithGeneratedKey.class.getName());
 
     /**
      * Init MacConfig in the Tink library.
@@ -42,7 +40,7 @@ public class HmacShaWithGeneratedKey {
         try {
             MacConfig.register();
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to initialize Tink", ex);
+            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
         }
     }
 
@@ -59,7 +57,7 @@ public class HmacShaWithGeneratedKey {
 
             return true;
         } catch (GeneralSecurityException ex) {
-            log.error("MAC is invalid", ex);
+            LOG.log(System.Logger.Level.ERROR, "MAC is invalid", ex);
         }
 
         return false;

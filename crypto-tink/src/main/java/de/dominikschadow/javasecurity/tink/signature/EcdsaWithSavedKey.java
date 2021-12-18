@@ -19,8 +19,6 @@ package de.dominikschadow.javasecurity.tink.signature;
 
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.signature.SignatureConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +31,7 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class EcdsaWithSavedKey {
-    private static final Logger log = LoggerFactory.getLogger(EcdsaWithSavedKey.class);
+    private static final System.Logger LOG = System.getLogger(EcdsaWithSavedKey.class.getName());
 
     /**
      * Init SignatureConfig in the Tink library.
@@ -42,7 +40,7 @@ public class EcdsaWithSavedKey {
         try {
             SignatureConfig.register();
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to initialize Tink", ex);
+            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
         }
     }
 
@@ -92,7 +90,7 @@ public class EcdsaWithSavedKey {
             verifier.verify(signature, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
-            log.error("Signature is invalid", ex);
+            LOG.log(System.Logger.Level.ERROR, "Signature is invalid", ex);
         }
 
         return false;

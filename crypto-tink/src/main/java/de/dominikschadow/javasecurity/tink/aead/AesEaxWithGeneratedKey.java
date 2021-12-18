@@ -21,8 +21,6 @@ import com.google.crypto.tink.Aead;
 import com.google.crypto.tink.KeyTemplates;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.GeneralSecurityException;
 
@@ -33,7 +31,7 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class AesEaxWithGeneratedKey {
-    private static final Logger log = LoggerFactory.getLogger(AesEaxWithGeneratedKey.class);
+    private static final System.Logger LOG = System.getLogger(AesEaxWithGeneratedKey.class.getName());
 
     /**
      * Init AeadConfig in the Tink library.
@@ -42,7 +40,7 @@ public class AesEaxWithGeneratedKey {
         try {
             AeadConfig.register();
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to initialize Tink", ex);
+            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
         }
     }
 

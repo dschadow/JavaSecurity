@@ -19,8 +19,6 @@ package de.dominikschadow.javasecurity.tink.hybrid;
 
 import com.google.crypto.tink.*;
 import com.google.crypto.tink.hybrid.HybridConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.GeneralSecurityException;
 
@@ -31,7 +29,7 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class EciesWithGeneratedKeyAndKeyRotation {
-    private static final Logger log = LoggerFactory.getLogger(EciesWithGeneratedKeyAndKeyRotation.class);
+    private static final System.Logger LOG = System.getLogger(EciesWithGeneratedKeyAndKeyRotation.class.getName());
 
     /**
      * Init HybridConfig in the Tink library.
@@ -40,7 +38,7 @@ public class EciesWithGeneratedKeyAndKeyRotation {
         try {
             HybridConfig.register();
         } catch (GeneralSecurityException ex) {
-            log.error("Failed to initialize Tink", ex);
+            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
         }
     }
 
