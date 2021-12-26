@@ -61,12 +61,12 @@ public class AES {
     }
 
     private static KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        InputStream keystoreStream = AES.class.getResourceAsStream(KEYSTORE_PATH);
+        try (InputStream keystoreStream = AES.class.getResourceAsStream(KEYSTORE_PATH)) {
+            KeyStore ks = KeyStore.getInstance("JCEKS");
+            ks.load(keystoreStream, keystorePassword);
 
-        KeyStore ks = KeyStore.getInstance("JCEKS");
-        ks.load(keystoreStream, keystorePassword);
-
-        return ks;
+            return ks;
+        }
     }
 
     private static Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
