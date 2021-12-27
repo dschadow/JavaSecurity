@@ -36,23 +36,22 @@ public class CustomerController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("plain", new Customer());
+        model.addAttribute("simple", new Customer());
         model.addAttribute("escaped", new Customer());
         model.addAttribute("prepared", new Customer());
-        model.addAttribute("hql", new Customer());
 
         return "index";
     }
 
     /**
-     * Handles requests for a plain SQL query.
+     * Handles requests for a simple SQL query.
      *
      * @param customer The Customer data
      * @param model    The model
      * @return The result page
      */
-    @PostMapping("plain")
-    public String plainQuery(@ModelAttribute Customer customer, Model model) {
+    @PostMapping("simple")
+    public String simpleQuery(@ModelAttribute Customer customer, Model model) {
         model.addAttribute("customers", customerService.simpleQuery(customer.getName()));
 
         return "result";
@@ -80,7 +79,7 @@ public class CustomerController {
      * @return The result page
      */
     @PostMapping("prepared")
-    public String preparedQuery(@ModelAttribute Customer customer, Model model) {
+    public String preparedStatementQuery(@ModelAttribute Customer customer, Model model) {
         model.addAttribute("customers", customerService.preparedStatementQuery(customer.getName()));
 
         return "result";

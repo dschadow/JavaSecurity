@@ -29,10 +29,10 @@
             <p>Your first task is to attack the database that is queried with simple JDBC statements. Can you
                 successfully attack the database and return more than one result or completely drop it?</p>
 
-            <form action="#" th:action="@{/plain}" th:object="${plain}" method="post">
+            <form action="#" th:action="@{/simple}" th:object="${simple}" method="post">
                 <fieldset>
-                    <label for="plain">Customer</label>
-                    <input type="text" id="plain" th:field="*{name}"/>
+                    <label for="simple">Customer</label>
+                    <input type="text" id="simple" th:field="*{name}"/>
                     <input type="submit" value="Submit"/>
                 </fieldset>
             </form>
