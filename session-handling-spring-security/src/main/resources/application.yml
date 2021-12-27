@@ -5,6 +5,7 @@ spring:
     username: sa
     password: sa
     name: session-handling
+    generate-unique-name: false
   h2:
     console:
       enabled: true
