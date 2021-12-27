@@ -39,7 +39,7 @@ public class PlainSqlQuery {
     }
 
     List<Customer> query(String name) {
-        String query = "SELECT * FROM customer WHERE name = '" + name + "' ORDER BY id";
+        String query = "SELECT * FROM customers WHERE name = '" + name + "' ORDER BY id";
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
 

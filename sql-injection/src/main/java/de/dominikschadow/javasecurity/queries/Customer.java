@@ -17,29 +17,24 @@
  */
 package de.dominikschadow.javasecurity.queries;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer {
     @Id
-    @Column(name = "id")
-    private int id;
-    @Column(name = "name")
+    private Integer id;
     private String name;
-    @Column(name = "status")
     private String status;
-    @Column(name = "order_limit")
     private int orderLimit;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

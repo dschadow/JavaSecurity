@@ -42,7 +42,7 @@ public class EscapedQuery {
     List<Customer> query(String name) {
         String safeName = ESAPI.encoder().encodeForSQL(new OracleCodec(), name);
 
-        String query = "SELECT * FROM customer WHERE name = '" + safeName + "' ORDER BY id";
+        String query = "SELECT * FROM customers WHERE name = '" + safeName + "' ORDER BY id";
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
 
