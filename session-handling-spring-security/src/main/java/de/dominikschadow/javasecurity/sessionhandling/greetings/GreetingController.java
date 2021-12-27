@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.greetings;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Dominik Schadow
  */
 @Controller
+@RequiredArgsConstructor
 public class GreetingController {
     private final GreetingService greetingService;
-
-    public GreetingController(GreetingService greetingService) {
-        this.greetingService = greetingService;
-    }
 
     @GetMapping("user/user")
     public String greetUser(Model model) {

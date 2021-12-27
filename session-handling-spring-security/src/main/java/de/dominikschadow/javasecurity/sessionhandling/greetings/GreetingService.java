@@ -18,16 +18,22 @@
 package de.dominikschadow.javasecurity.sessionhandling.greetings;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
 
 /**
- * GreetingService interface with role based access.
+ * GreetingService implementation to return some hardcoded greetings.
  *
  * @author Dominik Schadow
  */
-public interface GreetingService {
+@Service
+public class GreetingService {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    String greetUser();
+    public String greetUser() {
+        return "Spring Security says hello to the user!";
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
-    String greetAdmin();
+    public String greetAdmin() {
+        return "Spring Security says hello to the admin!";
+    }
 }
