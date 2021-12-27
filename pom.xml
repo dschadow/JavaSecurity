@@ -168,7 +168,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <image>
-                            <name>${docker.image.prefix}/${project.artifactId}</name>
+                            <name>${docker.image.prefix}/${project.artifactId}:${project.version}</name>
                         </image>
                     </configuration>
                 </plugin>
