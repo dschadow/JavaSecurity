@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: sa
+    password: sa
+    name: sql-injection
+    generate-unique-name: false
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
