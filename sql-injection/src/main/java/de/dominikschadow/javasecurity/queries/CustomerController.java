@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.queries;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,16 +30,9 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author Dominik Schadow
  */
 @Controller
-public class QueryController {
-    private final PlainSqlQuery plainSqlQuery;
-    private final EscapedQuery escapedQuery;
-    private final PreparedStatementQuery preparedStatementQuery;
-
-    public QueryController(PlainSqlQuery plainSqlQuery, EscapedQuery escapedQuery, PreparedStatementQuery preparedStatementQuery) {
-        this.plainSqlQuery = plainSqlQuery;
-        this.escapedQuery = escapedQuery;
-        this.preparedStatementQuery = preparedStatementQuery;
-    }
+@RequiredArgsConstructor
+public class CustomerController {
+    private final CustomerService customerService;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -59,7 +53,7 @@ public class QueryController {
      */
     @PostMapping("plain")
     public String plainQuery(@ModelAttribute Customer customer, Model model) {
-        model.addAttribute("customers", plainSqlQuery.query(customer.getName()));
+        model.addAttribute("customers", customerService.simpleQuery(customer.getName()));
 
         return "result";
     }
@@ -73,7 +67,7 @@ public class QueryController {
      */
     @PostMapping("escaped")
     public String escapedQuery(@ModelAttribute Customer customer, Model model) {
-        model.addAttribute("customers", escapedQuery.query(customer.getName()));
+        model.addAttribute("customers", customerService.escapedQuery(customer.getName()));
 
         return "result";
     }
@@ -87,7 +81,7 @@ public class QueryController {
      */
     @PostMapping("prepared")
     public String preparedQuery(@ModelAttribute Customer customer, Model model) {
-        model.addAttribute("customers", preparedStatementQuery.query(customer.getName()));
+        model.addAttribute("customers", customerService.preparedStatementQuery(customer.getName()));
 
         return "result";
     }

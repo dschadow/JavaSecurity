@@ -17,50 +17,23 @@
  */
 package de.dominikschadow.javasecurity.queries;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "customers")
+@Getter
+@Setter
 public class Customer {
     @Id
     private Integer id;
     private String name;
     private String status;
     private int orderLimit;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getOrderLimit() {
-        return orderLimit;
-    }
-
-    public void setOrderLimit(int orderLimit) {
-        this.orderLimit = orderLimit;
-    }
 
     @Override
     public String toString() {
