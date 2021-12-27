@@ -25,7 +25,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <defaultGoal>jetty:run-war</defaultGoal>
         <plugins>
             <plugin>

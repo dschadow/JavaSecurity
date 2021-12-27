@@ -58,7 +58,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>

@@ -28,7 +28,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <defaultGoal>tomcat7:run-war</defaultGoal>
         <plugins>
             <plugin>
