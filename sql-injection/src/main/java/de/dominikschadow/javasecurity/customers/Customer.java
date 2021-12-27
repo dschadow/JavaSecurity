@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.queries;
+package de.dominikschadow.javasecurity.customers;
 
 import lombok.Getter;
 import lombok.Setter;
