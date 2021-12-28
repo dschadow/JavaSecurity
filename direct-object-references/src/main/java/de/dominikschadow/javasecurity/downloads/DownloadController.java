@@ -15,8 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.home;
+package de.dominikschadow.javasecurity.downloads;
 
+import lombok.RequiredArgsConstructor;
 import org.owasp.esapi.errors.AccessControlException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,23 +35,20 @@ import java.net.MalformedURLException;
 import java.net.URLConnection;
 
 /**
- * Index controller for all home page related operations.
+ * Download controller for all download related operations.
  *
  * @author Dominik Schadow
  */
 @Controller
 @RequestMapping
-public class IndexController {
-    private static final Logger log = LoggerFactory.getLogger(IndexController.class);
-    private final ResourceService resourceService;
-
-    public IndexController(ResourceService resourceService) {
-        this.resourceService = resourceService;
-    }
+@RequiredArgsConstructor
+public class DownloadController {
+    private static final Logger log = LoggerFactory.getLogger(DownloadController.class);
+    private final DownloadService downloadService;
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("indirectReferences", resourceService.getAllIndirectReferences());
+        model.addAttribute("indirectReferences", downloadService.getAllIndirectReferences());
 
         return "index";
     }
@@ -59,9 +57,9 @@ public class IndexController {
     @ResponseBody
     public ResponseEntity<Resource> download(@RequestParam("name") String name) {
         try {
-            String originalName = resourceService.getFileByIndirectReference(name).getName();
+            String originalName = downloadService.getFileByIndirectReference(name).getName();
             String contentType = URLConnection.guessContentTypeFromName(originalName);
-            Resource resource = resourceService.loadAsResource(originalName);
+            Resource resource = downloadService.loadAsResource(originalName);
             return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(resource);
         } catch (MalformedURLException | AccessControlException ex) {
             log.error(ex.getMessage(), ex);

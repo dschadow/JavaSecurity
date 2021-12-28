@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.home;
+package de.dominikschadow.javasecurity.downloads;
 
 import org.owasp.esapi.errors.AccessControlException;
 import org.owasp.esapi.reference.RandomAccessReferenceMap;
@@ -32,13 +32,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class ResourceService {
-    private static final Logger log = LoggerFactory.getLogger(ResourceService.class);
+public class DownloadService {
+    private static final Logger log = LoggerFactory.getLogger(DownloadService.class);
     private final Set<Object> resources = new HashSet<>();
     private final RandomAccessReferenceMap referenceMap = new RandomAccessReferenceMap(resources);
     private final String rootLocation;
 
-    public ResourceService() {
+    public DownloadService() {
         this.rootLocation = "http://localhost:8080/files/";
     }
 
