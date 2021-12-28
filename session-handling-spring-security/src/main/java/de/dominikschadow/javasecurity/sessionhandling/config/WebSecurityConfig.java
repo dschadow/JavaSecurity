@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -36,12 +37,9 @@ import javax.sql.DataSource;
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final DataSource dataSource;
-
-    public WebSecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
