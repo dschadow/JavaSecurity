@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.contacts;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -34,13 +35,10 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/contacts")
+@RequiredArgsConstructor
 public class ContactController {
     private static final Logger log = LoggerFactory.getLogger(ContactController.class);
     private final ContactService contactService;
-
-    public ContactController(ContactService contactService) {
-        this.contactService = contactService;
-    }
 
     @GetMapping
     public String list(Model model) {

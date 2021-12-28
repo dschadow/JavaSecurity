@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.contacts;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PostFilter;
@@ -33,12 +34,9 @@ import java.util.List;
  * @author Dominik Schadow
  */
 @Service
+@RequiredArgsConstructor
 public class ContactService {
     private final JdbcTemplate jdbcTemplate;
-
-    public ContactService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @PreAuthorize("hasRole('USER')")
     @PostAuthorize("returnObject.username == principal.username")
