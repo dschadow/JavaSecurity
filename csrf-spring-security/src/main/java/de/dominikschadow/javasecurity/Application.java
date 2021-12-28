@@ -19,7 +19,6 @@ package de.dominikschadow.javasecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 /**
  * Starter class for the Spring Boot application.
@@ -27,7 +26,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
  * @author Dominik Schadow
  */
 @SpringBootApplication
-@EnableWebSecurity
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
