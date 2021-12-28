@@ -15,15 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.config;
+package de.dominikschadow.javasecurity;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -35,29 +34,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
         // @formatter:off
         auth.
             inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder())
+                .passwordEncoder(passwordEncoder)
                 .withUser("userA")
-                    .password("$2a$10$DPvGhj5Y4vjVhSKx8nT1i.1LeALEk7.njHrql1g2k3kGm3l82bu8O")
+                    .password(passwordEncoder.encode("userA"))
                     .authorities("ROLE_USER")
                 .and()
                 .withUser("userB")
-                    .password("$2a$10$XM1VDywhhoIqZfwC5f.3I.NW5.ahj5Yoo4au5jv4IStKmVK3LFxme")
+                    .password(passwordEncoder.encode("userB"))
                     .authorities("ROLE_USER");
         // @formatter:on
-    }
-
-    /**
-     * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is 4 to 31. The
-     * amount of work increases exponentially.
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
     }
 
     @Override
