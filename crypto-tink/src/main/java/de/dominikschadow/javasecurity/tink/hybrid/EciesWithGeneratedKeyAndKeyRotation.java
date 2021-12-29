@@ -29,17 +29,11 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class EciesWithGeneratedKeyAndKeyRotation {
-    private static final System.Logger LOG = System.getLogger(EciesWithGeneratedKeyAndKeyRotation.class.getName());
-
     /**
      * Init HybridConfig in the Tink library.
      */
-    public EciesWithGeneratedKeyAndKeyRotation() {
-        try {
-            HybridConfig.register();
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public EciesWithGeneratedKeyAndKeyRotation() throws GeneralSecurityException {
+        HybridConfig.register();
     }
 
     /**

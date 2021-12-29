@@ -35,10 +35,12 @@ class AesGcmWithSavedKeyTest {
     private final File keysetFile = new File(KEYSET_FILENAME);
     private KeysetHandle secretKey;
 
-    private final AesGcmWithSavedKey aes = new AesGcmWithSavedKey();
+    private AesGcmWithSavedKey aes;
 
     @BeforeEach
     protected void setup() throws Exception {
+        aes = new AesGcmWithSavedKey();
+
         aes.generateAndStoreKey(keysetFile);
         secretKey = aes.loadKey(keysetFile);
     }

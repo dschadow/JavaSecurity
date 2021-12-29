@@ -15,10 +15,12 @@ class HmacShaWithSavedKeyTest {
     private static final String KEYSET_FILENAME = "src/test/resources/keysets/hmac-sha.json";
     private final File keysetFile = new File(KEYSET_FILENAME);
 
-    private final HmacShaWithSavedKey hmac = new HmacShaWithSavedKey();
+    private HmacShaWithSavedKey hmac;
 
     @BeforeEach
     protected void setup() throws Exception {
+        hmac = new HmacShaWithSavedKey();
+
         hmac.generateAndStoreKey(keysetFile);
     }
 

@@ -31,17 +31,11 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class AesGcmWithSavedKey {
-    private static final System.Logger LOG = System.getLogger(AesGcmWithSavedKey.class.getName());
-
     /**
      * Init AeadConfig in the Tink library.
      */
-    public AesGcmWithSavedKey() {
-        try {
-            AeadConfig.register();
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public AesGcmWithSavedKey() throws GeneralSecurityException {
+        AeadConfig.register();
     }
 
     /**

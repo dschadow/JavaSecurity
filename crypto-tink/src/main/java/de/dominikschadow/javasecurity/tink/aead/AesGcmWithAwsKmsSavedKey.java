@@ -44,19 +44,14 @@ import java.util.Optional;
  * the Default Credential Provider Chain</a>
  */
 public class AesGcmWithAwsKmsSavedKey {
-    private static final System.Logger LOG = System.getLogger(AesGcmWithAwsKmsSavedKey.class.getName());
     private static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:eu-central-1:776241929911:key/1cf7d7fe-6974-40e3-bb0d-22b8c75d4eb8";
 
     /**
      * Init AeadConfig in the Tink library.
      */
-    public AesGcmWithAwsKmsSavedKey() {
-        try {
-            AeadConfig.register();
-            AwsKmsClient.register(Optional.of(AWS_MASTER_KEY_URI), Optional.empty());
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public AesGcmWithAwsKmsSavedKey() throws GeneralSecurityException {
+        AeadConfig.register();
+        AwsKmsClient.register(Optional.of(AWS_MASTER_KEY_URI), Optional.empty());
     }
 
     /**

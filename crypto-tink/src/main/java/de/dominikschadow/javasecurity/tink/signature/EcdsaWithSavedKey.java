@@ -31,17 +31,11 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class EcdsaWithSavedKey {
-    private static final System.Logger LOG = System.getLogger(EcdsaWithSavedKey.class.getName());
-
     /**
      * Init SignatureConfig in the Tink library.
      */
-    public EcdsaWithSavedKey() {
-        try {
-            SignatureConfig.register();
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public EcdsaWithSavedKey() throws GeneralSecurityException {
+        SignatureConfig.register();
     }
 
     /**
@@ -90,9 +84,8 @@ public class EcdsaWithSavedKey {
             verifier.verify(signature, initialText);
             return true;
         } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Signature is invalid", ex);
+            // Signature is invalid
+            return false;
         }
-
-        return false;
     }
 }

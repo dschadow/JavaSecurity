@@ -19,6 +19,8 @@ package de.dominikschadow.javasecurity.tink.aead;
 
 import com.google.crypto.tink.KeysetHandle;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -30,7 +32,12 @@ class AesEaxWithGeneratedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
     private static final byte[] ASSOCIATED_DATA = "Some additional data".getBytes(StandardCharsets.UTF_8);
 
-    private final AesEaxWithGeneratedKey aes = new AesEaxWithGeneratedKey();
+    private AesEaxWithGeneratedKey aes;
+
+    @BeforeEach
+    protected void setup() throws Exception {
+        aes = new AesEaxWithGeneratedKey();
+    }
 
     @Test
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {

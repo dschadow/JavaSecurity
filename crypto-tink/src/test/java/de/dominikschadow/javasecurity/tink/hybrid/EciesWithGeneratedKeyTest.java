@@ -19,6 +19,7 @@ package de.dominikschadow.javasecurity.tink.hybrid;
 
 import com.google.crypto.tink.KeysetHandle;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -30,7 +31,12 @@ class EciesWithGeneratedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
     private static final byte[] CONTEXT_INFO = "Some additional data".getBytes(StandardCharsets.UTF_8);
 
-    private final EciesWithGeneratedKey ecies = new EciesWithGeneratedKey();
+    private EciesWithGeneratedKey ecies;
+
+    @BeforeEach
+    protected void setup() throws Exception {
+        ecies = new EciesWithGeneratedKey();
+    }
 
     @Test
     void encryptionAndDecryptionWithValidInputsIsSuccessful() throws Exception {

@@ -20,10 +20,12 @@ class AesGcmWithAwsKmsSavedKeyTest {
     private final File keysetFile = new File(KEYSET_FILENAME);
     private KeysetHandle secretKey;
 
-    private final AesGcmWithAwsKmsSavedKey aes = new AesGcmWithAwsKmsSavedKey();
+    private AesGcmWithAwsKmsSavedKey aes;
 
     @BeforeEach
     protected void setup() throws Exception {
+        aes = new AesGcmWithAwsKmsSavedKey();
+
         aes.generateAndStoreKey(keysetFile);
         secretKey = aes.loadKey(keysetFile);
     }

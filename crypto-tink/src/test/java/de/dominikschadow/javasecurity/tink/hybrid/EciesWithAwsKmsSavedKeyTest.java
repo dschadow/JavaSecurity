@@ -23,10 +23,12 @@ class EciesWithAwsKmsSavedKeyTest {
     private KeysetHandle publicKey;
     private KeysetHandle privateKey;
 
-    private final EciesWithAwsKmsSavedKey ecies = new EciesWithAwsKmsSavedKey();
+    private EciesWithAwsKmsSavedKey ecies;
 
     @BeforeEach
     protected void setup() throws Exception {
+        ecies = new EciesWithAwsKmsSavedKey();
+
         ecies.generateAndStorePrivateKey(privateKeysetFile);
         privateKey = ecies.loadPrivateKey(privateKeysetFile);
 

@@ -38,10 +38,12 @@ class EciesWithSavedKeyTest {
     private KeysetHandle publicKey;
     private KeysetHandle privateKey;
 
-    private final EciesWithSavedKey ecies = new EciesWithSavedKey();
+    private EciesWithSavedKey ecies;
 
     @BeforeEach
     protected void setup() throws Exception {
+        ecies = new EciesWithSavedKey();
+
         ecies.generateAndStorePrivateKey(privateKeysetFile);
         privateKey = ecies.loadPrivateKey(privateKeysetFile);
 

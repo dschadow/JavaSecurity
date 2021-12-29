@@ -20,10 +20,12 @@ class EcdsaWithSavedKeyTest {
     private KeysetHandle publicKey;
     private KeysetHandle privateKey;
 
-    private final EcdsaWithSavedKey ecdsa = new EcdsaWithSavedKey();
+    private EcdsaWithSavedKey ecdsa;
 
     @BeforeEach
     protected void setup() throws Exception {
+        ecdsa = new EcdsaWithSavedKey();
+
         ecdsa.generateAndStorePrivateKey(privateKeysetFile);
         privateKey = ecdsa.loadPrivateKey(privateKeysetFile);
 

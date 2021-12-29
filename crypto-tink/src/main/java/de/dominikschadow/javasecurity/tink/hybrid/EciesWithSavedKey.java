@@ -31,17 +31,11 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class EciesWithSavedKey {
-    private static final System.Logger LOG = System.getLogger(EciesWithSavedKey.class.getName());
-
     /**
      * Init HybridConfig in the Tink library.
      */
-    public EciesWithSavedKey() {
-        try {
-            HybridConfig.register();
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public EciesWithSavedKey() throws GeneralSecurityException {
+        HybridConfig.register();
     }
 
     /**

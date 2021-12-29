@@ -31,17 +31,11 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class AesEaxWithGeneratedKey {
-    private static final System.Logger LOG = System.getLogger(AesEaxWithGeneratedKey.class.getName());
-
     /**
      * Init AeadConfig in the Tink library.
      */
-    public AesEaxWithGeneratedKey() {
-        try {
-            AeadConfig.register();
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public AesEaxWithGeneratedKey() throws GeneralSecurityException {
+        AeadConfig.register();
     }
 
     public KeysetHandle generateKey() throws GeneralSecurityException {

@@ -31,17 +31,11 @@ import java.security.GeneralSecurityException;
  * @author Dominik Schadow
  */
 public class HmacShaWithSavedKey {
-    private static final System.Logger LOG = System.getLogger(HmacShaWithSavedKey.class.getName());
-
     /**
      * Init MacConfig in the Tink library.
      */
-    public HmacShaWithSavedKey() {
-        try {
-            MacConfig.register();
-        } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "Failed to initialize Tink", ex);
-        }
+    public HmacShaWithSavedKey() throws GeneralSecurityException {
+        MacConfig.register();
     }
 
     /**
@@ -74,9 +68,8 @@ public class HmacShaWithSavedKey {
 
             return true;
         } catch (GeneralSecurityException ex) {
-            LOG.log(System.Logger.Level.ERROR, "MAC is invalid", ex);
+            // MAC is invalid
+            return false;
         }
-
-        return false;
     }
 }

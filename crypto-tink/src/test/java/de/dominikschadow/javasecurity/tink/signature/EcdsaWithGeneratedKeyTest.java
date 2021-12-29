@@ -2,16 +2,23 @@ package de.dominikschadow.javasecurity.tink.signature;
 
 import com.google.crypto.tink.KeysetHandle;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EcdsaWithGeneratedKeyTest {
     private static final byte[] INITIAL_TEXT = "Some dummy text to work with".getBytes(StandardCharsets.UTF_8);
 
-    private final EcdsaWithGeneratedKey ecdsa = new EcdsaWithGeneratedKey();
+    private  EcdsaWithGeneratedKey ecdsa ;
+
+    @BeforeEach
+    protected void setup() throws Exception {
+        ecdsa = new EcdsaWithGeneratedKey();
+    }
 
     @Test
     void unchangedInputValidatesSuccessful() throws Exception {
