@@ -50,22 +50,22 @@ Spring Boot based web application to experiment with normal (vulnerable) stateme
 Cross-Site Scripting (XSS) demo project preventing XSS in a JavaServer Pages (JSP) web application by utilizing input validation, output escaping with [OWASP Java Encoder](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project) and the Content Security Policy (CSP). After launching, open the web application in your browser at **http://localhost:8080/xss**.
 
 # Command Line Applications in Detail
-The following projects demonstrate crypto usage in Java with different libraries. Each project contains one or more **main** methods to start the demo.
+The following projects demonstrate crypto usage in Java with different libraries. Each project contains one or more JUnit **test** classes to test various functionalities of the demo project.
 
 ## crypto-hash
-Crypto demo project using Java to hash passwords with different hashing algorithms.
+Crypto demo using Java to hash passwords with different hashing algorithms.
 
 ## crypto-java
-Crypto demo project using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA).
+Crypto demo using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA).
 
 ## crypto-keyczar
-Crypto demo project using [Keyczar](http://www.keyczar.org) to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA). 
+Crypto demo using [Keyczar](http://www.keyczar.org) to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA). 
 
 ## crypto-shiro
-Crypto demo project using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) algorithms as well as hash data (passwords). 
+Crypto demo using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) algorithms as well as hash data (passwords). 
 
 ## crypto-tink
-Crypto demo project using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and hybrid encryption, MAC and digital signatures. Depending on the demo, keys are either generated on the fly or stored/loaded from the keysets directory. The **AWS KMS** samples (classes with AwsKms in their names) require a configured AWS KMS with an enabled master key.
+Crypto demo using [Google Tink](https://github.com/google/tink) to encrypt and decrypt data with asymmetric and hybrid encryption, MAC and digital signatures. Depending on the demo, keys are either generated on the fly or stored/loaded from the keysets directory. The **AWS KMS** samples (classes with AwsKms in their names) require a configured AWS KMS with an enabled master key.
 
 ## Meta
 ![Build](https://github.com/dschadow/JavaSecurity/workflows/Build/badge.svg) [![Coverage](.github/badges/jacoco.svg)](https://github.com/dschadow/JavaSecurity/actions/workflows/maven.yml) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
