@@ -24,3 +24,22 @@ jobs:
         uses: cicirello/jacoco-badge-generator@v2
         with:
           on-missing-report: quiet
+          jacoco-csv-file: >
+            access-control-spring-security/target/site/jacoco/jacoco.csv
+            crypto-hash/target/site/jacoco/jacoco.csv
+            crypto-java/target/site/jacoco/jacoco.csv
+            crypto-keyczar/target/site/jacoco/jacoco.csv
+            crypto-shiro/target/site/jacoco/jacoco.csv
+            crypto-tink/target/site/jacoco/jacoco.csv
+            csp-spring-security/target/site/jacoco/jacoco.csv
+            csrf/target/site/jacoco/jacoco.csv
+            csrf-spring-security/target/site/jacoco/jacoco.csv
+            direct-object-references/target/site/jacoco/jacoco.csv
+            intercept-me/target/site/jacoco/jacoco.csv
+            security-header/target/site/jacoco/jacoco.csv
+            security-logging/target/site/jacoco/jacoco.csv
+            serialize-me/target/site/jacoco/jacoco.csv
+            session-handling/target/site/jacoco/jacoco.csv
+            session-handling-spring-security/target/site/jacoco/jacoco.csv
+            sql-injection/target/site/jacoco/jacoco.csv
+            xss/target/site/jacoco/jacoco.csv
