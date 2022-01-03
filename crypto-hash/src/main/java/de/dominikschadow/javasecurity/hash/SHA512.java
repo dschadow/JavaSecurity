@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import com.google.common.io.BaseEncoding;
 import com.google.common.primitives.Bytes;
 
 import java.nio.charset.StandardCharsets;
@@ -34,36 +33,11 @@ import java.security.SecureRandom;
  * @author Dominik Schadow
  */
 public class SHA512 {
-    private static final System.Logger LOG = System.getLogger(SHA512.class.getName());
     private static final String ALGORITHM = "SHA-512";
     private static final int ITERATIONS = 1000000;
     private static final int SALT_SIZE = 64;
 
-    /**
-     * Private constructor.
-     */
-    private SHA512() {
-    }
-
-    public static void main(String[] args) {
-        String password = "TotallySecurePassword12345";
-
-        try {
-            byte[] salt = generateSalt();
-
-            LOG.log(System.Logger.Level.INFO,"Password {0}. hash algorithm {1}, iterations {2}, salt {3}", password, ALGORITHM, ITERATIONS,
-                    BaseEncoding.base16().encode(salt));
-
-            byte[] hash = calculateHash(password, salt);
-            boolean correct = verifyPassword(hash, password, salt);
-
-            LOG.log(System.Logger.Level.INFO,"Entered password is correct: {0}", correct);
-        } catch (NoSuchAlgorithmException ex) {
-            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
-        }
-    }
-
-    private static byte[] generateSalt() {
+    public byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
@@ -71,7 +45,7 @@ public class SHA512 {
         return salt;
     }
 
-    private static byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException {
+    public byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update(Bytes.concat(password.getBytes(StandardCharsets.UTF_8), salt));
@@ -85,12 +59,9 @@ public class SHA512 {
         return hash;
     }
 
-    private static boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws
+    public boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws
             NoSuchAlgorithmException {
         byte[] comparisonHash = calculateHash(password, salt);
-
-        LOG.log(System.Logger.Level.INFO,"hash 1: {0}", BaseEncoding.base16().encode(originalHash));
-        LOG.log(System.Logger.Level.INFO,"hash 2: {0}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }
@@ -102,7 +73,7 @@ public class SHA512 {
      * @param comparisonHash The comparison password hash
      * @return True if both match, false otherwise
      */
-    private static boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
+    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
         int diff = originalHash.length ^ comparisonHash.length;
         for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
             diff |= originalHash[i] ^ comparisonHash[i];

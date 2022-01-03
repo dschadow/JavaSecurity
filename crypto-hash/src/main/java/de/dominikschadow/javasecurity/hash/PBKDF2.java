@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,8 +17,6 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import com.google.common.io.BaseEncoding;
-
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
@@ -34,43 +32,17 @@ import java.security.spec.InvalidKeySpecException;
  * @author Dominik Schadow
  */
 public class PBKDF2 {
-    private static final System.Logger LOG = System.getLogger(PBKDF2.class.getName());
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
     private static final int ITERATIONS = 10000;
     // salt size at least 32 byte
     private static final int SALT_SIZE = 32;
     private static final int HASH_SIZE = 512;
 
-    /**
-     * Private constructor.
-     */
-    private PBKDF2() {
+    public SecretKeyFactory createSecretKeyFactory() throws NoSuchAlgorithmException {
+        return SecretKeyFactory.getInstance(ALGORITHM);
     }
 
-    public static void main(String[] args) {
-        hash();
-    }
-
-    private static void hash() {
-        char[] password = "TotallySecurePassword12345".toCharArray();
-
-        try {
-            SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
-            byte[] salt = generateSalt();
-
-            LOG.log(System.Logger.Level.INFO, "Hashing password {0} with hash algorithm {1}, hash size {2}, # of iterations {3} and salt {4}",
-                    String.valueOf(password), ALGORITHM, HASH_SIZE, ITERATIONS, BaseEncoding.base16().encode(salt));
-
-            byte[] hash = calculateHash(skf, password, salt);
-            boolean correct = verifyPassword(skf, hash, password, salt);
-
-            LOG.log(System.Logger.Level.INFO, "Entered password is correct: {0}", correct);
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
-        }
-    }
-
-    private static byte[] generateSalt() {
+    public byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
@@ -78,7 +50,7 @@ public class PBKDF2 {
         return salt;
     }
 
-    private static byte[] calculateHash(SecretKeyFactory skf, char[] password, byte[] salt) throws InvalidKeySpecException {
+    public byte[] calculateHash(SecretKeyFactory skf, char[] password, byte[] salt) throws InvalidKeySpecException {
         PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, HASH_SIZE);
         byte[] hash = skf.generateSecret(spec).getEncoded();
         spec.clearPassword();
@@ -86,12 +58,9 @@ public class PBKDF2 {
         return hash;
     }
 
-    private static boolean verifyPassword(SecretKeyFactory skf, byte[] originalHash, char[] password, byte[] salt) throws
+    public boolean verifyPassword(SecretKeyFactory skf, byte[] originalHash, char[] password, byte[] salt) throws
             InvalidKeySpecException {
         byte[] comparisonHash = calculateHash(skf, password, salt);
-
-        LOG.log(System.Logger.Level.INFO, "hash 1: {0}", BaseEncoding.base16().encode(originalHash));
-        LOG.log(System.Logger.Level.INFO, "hash 2: {0}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }
@@ -103,7 +72,7 @@ public class PBKDF2 {
      * @param comparisonHash The comparison password hash
      * @return True if both match, false otherwise
      */
-    private static boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
+    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
         int diff = originalHash.length ^ comparisonHash.length;
         for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
             diff |= originalHash[i] ^ comparisonHash[i];

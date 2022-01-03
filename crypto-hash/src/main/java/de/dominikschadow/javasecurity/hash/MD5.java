@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,8 +17,6 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import com.google.common.io.BaseEncoding;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -32,40 +30,17 @@ import java.security.NoSuchAlgorithmException;
  * @author Dominik Schadow
  */
 public class MD5 {
-    private static final System.Logger LOG = System.getLogger(MD5.class.getName());
     private static final String ALGORITHM = "MD5";
 
-    /**
-     * Private constructor.
-     */
-    private MD5() {
-    }
-
-    public static void main(String[] args) {
-        String password = "TotallySecurePassword12345";
-
-        try {
-            byte[] hash = calculateHash(password);
-            boolean correct = verifyPassword(hash, password);
-
-            LOG.log(System.Logger.Level.INFO, "Entered password is correct: {0}", correct);
-        } catch (NoSuchAlgorithmException ex) {
-            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
-        }
-    }
-
-    private static byte[] calculateHash(String password) throws NoSuchAlgorithmException {
+    public byte[] calculateHash(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
         md.update(password.getBytes(StandardCharsets.UTF_8));
         return md.digest();
     }
 
-    private static boolean verifyPassword(byte[] originalHash, String password) throws NoSuchAlgorithmException {
+    public boolean verifyPassword(byte[] originalHash, String password) throws NoSuchAlgorithmException {
         byte[] comparisonHash = calculateHash(password);
-
-        LOG.log(System.Logger.Level.INFO, "hash 1: {0}", BaseEncoding.base16().encode(originalHash));
-        LOG.log(System.Logger.Level.INFO, "hash 2: {0}", BaseEncoding.base16().encode(comparisonHash));
 
         return comparePasswords(originalHash, comparisonHash);
     }
@@ -77,7 +52,7 @@ public class MD5 {
      * @param comparisonHash The comparison password hash
      * @return True if both match, false otherwise
      */
-    private static boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
+    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
         int diff = originalHash.length ^ comparisonHash.length;
         for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
             diff |= originalHash[i] ^ comparisonHash[i];
