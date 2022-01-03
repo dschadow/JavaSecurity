@@ -51,7 +51,7 @@ public class AES {
     }
 
     public byte[] encrypt(String initialText) throws
-            BadPaddingException, IllegalBlockSizeException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
+            BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 
         return cipher.doFinal(initialText.getBytes(StandardCharsets.UTF_8));
