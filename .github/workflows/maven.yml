@@ -23,7 +23,7 @@ jobs:
       - name: Generate JaCoCo Badge
         uses: cicirello/jacoco-badge-generator@v2
         with:
-          on-missing-report: quiet
+          on-missing-report: badges
           jacoco-csv-file: >
             access-control-spring-security/target/site/jacoco/jacoco.csv
             crypto-hash/target/site/jacoco/jacoco.csv
