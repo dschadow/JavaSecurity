@@ -22,3 +22,5 @@ jobs:
         run: mvn -B package --file pom.xml
       - name: Generate JaCoCo Badge
         uses: cicirello/jacoco-badge-generator@v2
+        with:
+          on-missing-report: quiet
