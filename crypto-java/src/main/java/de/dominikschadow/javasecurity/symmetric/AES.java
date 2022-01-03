@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,19 +17,16 @@
  */
 package de.dominikschadow.javasecurity.symmetric;
 
-import com.google.common.io.BaseEncoding;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.security.*;
-import java.security.cert.CertificateException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Symmetric encryption sample with plain Java. Loads the AES key from the sample keystore, encrypts and decrypts sample
@@ -44,72 +41,25 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AES {
-    private static final System.Logger LOG = System.getLogger(AES.class.getName());
-    private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
-    private static final String KEYSTORE_PATH = "/samples.ks";
-    private Cipher cipher;
+    private final SecretKeySpec secretKeySpec;
+    private final Cipher cipher;
 
-    public static void main(String[] args) {
-        AES aes = new AES();
-        aes.encrypt();
+    public AES(SecretKeySpec secretKeySpec, String algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException {
+        cipher = Cipher.getInstance(algorithm);
+
+        this.secretKeySpec = secretKeySpec;
     }
 
-    private void encrypt() {
-        final String initialText = "AES encryption sample text";
-        final char[] keystorePassword = "samples".toCharArray();
-        final String keyAlias = "symmetric-sample";
-        final char[] keyPassword = "symmetric-sample".toCharArray();
-
-        try {
-            cipher = Cipher.getInstance(ALGORITHM);
-            KeyStore ks = loadKeystore(keystorePassword);
-            Key key = loadKey(ks, keyAlias, keyPassword);
-            SecretKeySpec secretKeySpec = new SecretKeySpec(key.getEncoded(), "AES");
-            byte[] ciphertext = encrypt(secretKeySpec, initialText);
-            byte[] plaintext = decrypt(secretKeySpec, ciphertext);
-
-            printReadableMessages(initialText, ciphertext, plaintext);
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException |
-                KeyStoreException | CertificateException | UnrecoverableKeyException |
-                InvalidAlgorithmParameterException | InvalidKeyException | IOException ex) {
-            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
-        }
-    }
-
-    private KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException,
-            CertificateException, NoSuchAlgorithmException, IOException {
-        try (InputStream keystoreStream = getClass().getResourceAsStream(KEYSTORE_PATH)) {
-            KeyStore ks = KeyStore.getInstance("JCEKS");
-            ks.load(keystoreStream, keystorePassword);
-
-            return ks;
-        }
-    }
-
-    private static Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException,
-            UnrecoverableKeyException, NoSuchAlgorithmException {
-        if (!ks.containsAlias(keyAlias)) {
-            throw new UnrecoverableKeyException("Secret key " + keyAlias + " not found in keystore");
-        }
-
-        return ks.getKey(keyAlias, keyPassword);
-    }
-
-    private byte[] encrypt(SecretKeySpec secretKeySpec, String initialText) throws
-            BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
+    public byte[] encrypt(String initialText) throws
+            BadPaddingException, IllegalBlockSizeException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+
         return cipher.doFinal(initialText.getBytes(StandardCharsets.UTF_8));
     }
 
-    private byte[] decrypt(SecretKeySpec secretKeySpec, byte[] ciphertext) throws
+    public byte[] decrypt(byte[] ciphertext) throws
             BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(cipher.getIV()));
         return cipher.doFinal(ciphertext);
-    }
-
-    private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        LOG.log(System.Logger.Level.INFO, "initial text: {0}", initialText);
-        LOG.log(System.Logger.Level.INFO, "cipher text: {0}", BaseEncoding.base16().encode(ciphertext));
-        LOG.log(System.Logger.Level.INFO, "plain text: {0}", new String(plaintext, StandardCharsets.UTF_8));
     }
 }
