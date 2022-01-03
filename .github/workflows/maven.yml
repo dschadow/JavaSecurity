@@ -20,6 +20,8 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+      - name: Generate Codecov Report
+        uses: codecov/codecov-action@v2
       - name: Generate Coverage Badge
         uses: cicirello/jacoco-badge-generator@v2
         with:
