@@ -12,8 +12,8 @@
     <packaging>jar</packaging>
     <name>Crypto Java</name>
 
-    <description>Java crypto sample project using Java capabilities to encrypt and decrypt data. Each relevant class
-        provides its own main method to get started.
+    <description>Java crypto sample project using Java capabilities to encrypt and decrypt data. Each class has its own
+        tests to demonstrate various aspects.
     </description>
 
     <dependencies>

@@ -12,8 +12,8 @@
     <packaging>jar</packaging>
     <name>Crypto Hash</name>
 
-    <description>Java hashing sample project using Java capabilities to hash passwords. Each relevant class provides
-        its own main method to get started.
+    <description>Java hashing sample project using Java capabilities to hash passwords. Each class has its own tests to
+        demonstrate various aspects.
     </description>
 
     <dependencies>
