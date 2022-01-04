@@ -3,8 +3,10 @@ package de.dominikschadow.javasecurity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.security.*;
+import java.security.cert.CertificateException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -110,6 +112,18 @@ class KeystoreTest {
     }
 
     @Test
-    void createSecretKeySpec() {
+    void givenValidKeyAndAlgorithmWhenCreatingSecretKeySpecThenReturnSecretKeySpec() throws Exception {
+        final String keyAlias = "symmetric-sample";
+        final char[] keyPassword = "symmetric-sample".toCharArray();
+
+        KeyStore ks = Keystore.loadKeystore(keystorePassword);
+        Key key = Keystore.loadKey(ks, keyAlias, keyPassword);
+
+        SecretKeySpec secretKeySpec = Keystore.createSecretKeySpec(key.getEncoded(), "AES");
+
+        Assertions.assertAll(
+                () -> assertNotNull(secretKeySpec),
+                () -> assertEquals("AES", secretKeySpec.getAlgorithm())
+        );
     }
 }
