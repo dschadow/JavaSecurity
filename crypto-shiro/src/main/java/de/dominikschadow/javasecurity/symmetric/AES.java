@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,15 +17,10 @@
  */
 package de.dominikschadow.javasecurity.symmetric;
 
-import org.apache.shiro.codec.CodecSupport;
-import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
 import org.apache.shiro.util.ByteSource;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.*;
-import java.security.cert.CertificateException;
+import java.security.Key;
 
 /**
  * Symmetric encryption sample with Apache Shiro. Loads the AES key from the sample keystore, encrypts and decrypts sample text with it.
@@ -33,50 +28,6 @@ import java.security.cert.CertificateException;
  * @author Dominik Schadow
  */
 public class AES {
-    private static final System.Logger LOG = System.getLogger(AES.class.getName());
-    private static final String KEYSTORE_PATH = "/samples.ks";
-
-    /**
-     * Private constructor.
-     */
-    private AES() {
-    }
-
-    public static void main(String[] args) {
-        final String initialText = "AES encryption sample text";
-        final char[] keystorePassword = "samples".toCharArray();
-        final String keyAlias = "symmetric-sample";
-        final char[] keyPassword = "symmetric-sample".toCharArray();
-
-        try {
-            KeyStore ks = loadKeystore(keystorePassword);
-            Key key = loadKey(ks, keyAlias, keyPassword);
-            byte[] ciphertext = encrypt(key, CodecSupport.toBytes(initialText));
-            byte[] plaintext = decrypt(key, ciphertext);
-
-            printReadableMessages(initialText, ciphertext, plaintext);
-        } catch (NoSuchAlgorithmException | KeyStoreException | CertificateException | UnrecoverableKeyException | IOException ex) {
-            LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
-        }
-    }
-
-    private static KeyStore loadKeystore(char[] keystorePassword) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        try (InputStream keystoreStream = AES.class.getResourceAsStream(KEYSTORE_PATH)) {
-            KeyStore ks = KeyStore.getInstance("JCEKS");
-            ks.load(keystoreStream, keystorePassword);
-
-            return ks;
-        }
-    }
-
-    private static Key loadKey(KeyStore ks, String keyAlias, char[] keyPassword) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException {
-        if (!ks.containsAlias(keyAlias)) {
-            throw new UnrecoverableKeyException("Secret key " + keyAlias + " not found in keystore");
-        }
-
-        return ks.getKey(keyAlias, keyPassword);
-    }
-
     /**
      * Encrypts the given text using all Shiro defaults: 128 bit size, CBC mode, PKCS5 padding scheme.
      *
@@ -84,23 +35,17 @@ public class AES {
      * @param initialText The text to encrypt
      * @return The encrypted text
      */
-    private static byte[] encrypt(Key key, byte[] initialText) {
+    public byte[] encrypt(Key key, byte[] initialText) {
         AesCipherService cipherService = new AesCipherService();
         ByteSource cipherText = cipherService.encrypt(initialText, key.getEncoded());
 
         return cipherText.getBytes();
     }
 
-    private static byte[] decrypt(Key key, byte[] ciphertext) {
+    public byte[] decrypt(Key key, byte[] ciphertext) {
         AesCipherService cipherService = new AesCipherService();
         ByteSource plainText = cipherService.decrypt(ciphertext, key.getEncoded());
 
         return plainText.getBytes();
-    }
-
-    private static void printReadableMessages(String initialText, byte[] ciphertext, byte[] plaintext) {
-        LOG.log(System.Logger.Level.INFO, "initialText: {0}", initialText);
-        LOG.log(System.Logger.Level.INFO, "cipherText as HEX: {0}", Hex.encodeToString(ciphertext));
-        LOG.log(System.Logger.Level.INFO, "plaintext: {0}", CodecSupport.toString(plaintext));
     }
 }

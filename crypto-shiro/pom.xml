@@ -12,14 +12,20 @@
     <packaging>jar</packaging>
     <name>Crypto Shiro</name>
 
-    <description>Java crypto sample project using Apache Shiro to hash and encrypt data. Each relevant class provides
-        its own main method to get started.
+    <description>Java crypto sample project using Apache Shiro to hash and encrypt data. Each class has its own
+        tests to demonstrate various aspects.
     </description>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

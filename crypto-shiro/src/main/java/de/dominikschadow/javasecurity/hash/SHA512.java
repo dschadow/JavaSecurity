@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,7 +17,6 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.hash.DefaultHashService;
 import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.HashRequest;
@@ -32,29 +31,13 @@ import java.util.Arrays;
  * @author Dominik Schadow
  */
 public class SHA512 {
-    private static final System.Logger LOG = System.getLogger(SHA512.class.getName());
     /**
      * Nothing up my sleeve number as private salt, not good for production.
      */
     private static final byte[] PRIVATE_SALT_BYTES = {3, 1, 4, 1, 5, 9, 2, 6, 5};
     private static final int ITERATIONS = 1000000;
 
-    /**
-     * Private constructor.
-     */
-    private SHA512() {
-    }
-
-    public static void main(String[] args) {
-        String password = "SHA-512 hash sample text";
-
-        Hash hash = calculateHash(password);
-        boolean correct = verifyPassword(hash.getBytes(), hash.getSalt(), password);
-
-        LOG.log(System.Logger.Level.INFO, "Entered password is correct: {0}", correct);
-    }
-
-    private static Hash calculateHash(String password) {
+    public Hash calculateHash(String password) {
         ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
         hashService.setPrivateSalt(privateSalt);
@@ -64,14 +47,10 @@ public class SHA512 {
         HashRequest.Builder builder = new HashRequest.Builder();
         builder.setSource(ByteSource.Util.bytes(password));
 
-        Hash hash = hashService.computeHash(builder.build());
-
-        LOG.log(System.Logger.Level.INFO, "Hash algorithm {0}, iterations {1}, public salt {2}", hash.getAlgorithmName(), hash.getIterations(), hash.getSalt());
-
-        return hash;
+        return hashService.computeHash(builder.build());
     }
 
-    private static boolean verifyPassword(byte[] originalHash, ByteSource publicSalt, String password) {
+    public boolean verifyPassword(byte[] originalHash, ByteSource publicSalt, String password) {
         ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
         hashService.setPrivateSalt(privateSalt);
@@ -82,10 +61,6 @@ public class SHA512 {
         builder.setSalt(publicSalt);
 
         Hash comparisonHash = hashService.computeHash(builder.build());
-
-        LOG.log(System.Logger.Level.INFO, "password: {0}", password);
-        LOG.log(System.Logger.Level.INFO, "1 hash: {0}", Hex.encodeToString(originalHash));
-        LOG.log(System.Logger.Level.INFO, "2 hash: {0}", comparisonHash.toHex());
 
         return Arrays.equals(originalHash, comparisonHash.getBytes());
     }
