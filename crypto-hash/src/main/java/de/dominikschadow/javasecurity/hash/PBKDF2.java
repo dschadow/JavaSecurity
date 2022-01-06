@@ -26,8 +26,6 @@ import java.security.spec.InvalidKeySpecException;
 /**
  * PBKDF2 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash
  * value.
- * <p/>
- * Uses Google Guava to hex encode the hash in a readable format.
  *
  * @author Dominik Schadow
  */

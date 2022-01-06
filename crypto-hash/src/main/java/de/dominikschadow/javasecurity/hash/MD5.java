@@ -24,8 +24,6 @@ import java.security.NoSuchAlgorithmException;
 /**
  * MD5 hashing sample with plain Java. No salt and no iterations are used to calculate the hash value. This sample (and
  * the MD5 algorithm) is totally insecure.
- * <p/>
- * Uses Google Guava to hex encode the hash in a readable format.
  *
  * @author Dominik Schadow
  */

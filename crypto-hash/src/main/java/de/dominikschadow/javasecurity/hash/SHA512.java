@@ -27,8 +27,6 @@ import java.security.SecureRandom;
 /**
  * SHA512 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash
  * value.
- * <p/>
- * Uses Google Guava to hex the hash in a readable format.
  *
  * @author Dominik Schadow
  */
