@@ -17,8 +17,6 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import com.google.common.primitives.Bytes;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -46,7 +44,8 @@ public class SHA512 {
     public byte[] calculateHash(String password, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.reset();
-        md.update(Bytes.concat(password.getBytes(StandardCharsets.UTF_8), salt));
+        md.update(concatPasswordAndSalt(password.getBytes(StandardCharsets.UTF_8), salt));
+
         byte[] hash = md.digest();
 
         for (int i = 0; i < ITERATIONS; i++) {
@@ -55,6 +54,14 @@ public class SHA512 {
         }
 
         return hash;
+    }
+
+    private byte[] concatPasswordAndSalt(byte[] password, byte[] salt) {
+        byte[] passwordAndSalt = new byte[password.length + salt.length];
+        System.arraycopy(password, 0, passwordAndSalt, 0, password.length);
+        System.arraycopy(salt, 0, passwordAndSalt, password.length, salt.length);
+
+        return passwordAndSalt;
     }
 
     public boolean verifyPassword(byte[] originalHash, String password, byte[] salt) throws

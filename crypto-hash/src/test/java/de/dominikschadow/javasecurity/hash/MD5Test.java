@@ -17,7 +17,7 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import com.google.common.io.BaseEncoding;
+import com.google.common.hash.HashCode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ class MD5Test {
         boolean hashMatches = md5.verifyPassword(originalHash, password);
 
         Assertions.assertAll(
-                () -> assertEquals("6EE66E42A8E60D5FB816030B188C4C79", BaseEncoding.base16().encode(originalHash)),
+                () -> assertEquals("6ee66e42a8e60d5fb816030b188c4c79", HashCode.fromBytes(originalHash).toString()),
                 () -> assertTrue(hashMatches)
         );
     }
@@ -47,7 +47,7 @@ class MD5Test {
         boolean hashMatches = md5.verifyPassword(originalHash, "fakePassword12345");
 
         Assertions.assertAll(
-                () -> assertEquals("6EE66E42A8E60D5FB816030B188C4C79", BaseEncoding.base16().encode(originalHash)),
+                () -> assertEquals("6ee66e42a8e60d5fb816030b188c4c79", HashCode.fromBytes(originalHash).toString()),
                 () -> assertFalse(hashMatches)
         );
     }
