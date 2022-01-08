@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.security.*;
-import java.security.cert.CertificateException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
