@@ -12,7 +12,7 @@
 <p>Each response header can be called in an unprotected and in a protected version. Every header is added by a
     filter. There are no special pages for HSTS since this header is only active or inactive for the whole domain.
     Content Security Policy and especially Content Security Policy Level 2 and Level 3 may not work in your browser at
-    all, other headers may vary (a little bit) depending on the selected browser.</p>
+    all, other headers may vary (a little) depending on the selected browser.</p>
 
 <h2>X-Content-Type-Options</h2>
 
