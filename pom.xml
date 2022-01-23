@@ -117,12 +117,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.zalando.stups</groupId>
-                <artifactId>crypto-keyczar</artifactId>
-                <version>0.9.0</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>5.1.3</version>
@@ -263,7 +257,6 @@
         <module>access-control-spring-security</module>
         <module>crypto-hash</module>
         <module>crypto-java</module>
-        <module>crypto-keyczar</module>
         <module>crypto-shiro</module>
         <module>crypto-tink</module>
         <module>csp-spring-security</module>
