@@ -31,8 +31,7 @@ import java.security.SecureRandom;
  * Calculates a random token for each user and stores it in the session. Compares the token of incoming requests with
  * the one stored in the session.
  * <p/>
- * This implementation is based on the OWASP Enterprise Security API (ESAPI), available at
- * <a href="https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API">...</a>
+ * This implementation is based on the <a href="https://owasp.org/www-project-enterprise-security-api/">OWASP Enterprise Security API (ESAPI)</a>.
  *
  * @author Dominik Schadow
  */
