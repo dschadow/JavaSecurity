@@ -32,7 +32,7 @@ import java.security.SecureRandom;
  * the one stored in the session.
  * <p/>
  * This implementation is based on the OWASP Enterprise Security API (ESAPI), available at
- * https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API
+ * <a href="https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API">...</a>
  *
  * @author Dominik Schadow
  */
