@@ -15,31 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.home;
+package de.dominikschadow.javasecurity.orders;
 
-import de.dominikschadow.javasecurity.csrf.orders.Order;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
- * Index controller for all home page related operations.
+ * Order controller for all order related operations.
  *
  * @author Dominik Schadow
  */
 @Controller
-@RequestMapping(value = "/")
-@SessionAttributes("order")
-public class IndexController {
-    @ModelAttribute("order")
-    public Order order() {
-        return new Order("");
-    }
-
-    @GetMapping
-    public String index(@ModelAttribute("order") Order order) {
-        return "index";
+@RequestMapping(value = "/order")
+public class OrderController {
+    @PostMapping()
+    public String order(@ModelAttribute("order") Order order) {
+        return "result";
     }
 }

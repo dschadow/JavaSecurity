@@ -15,23 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.orders;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+package de.dominikschadow.javasecurity.orders;
 
 /**
- * Order controller for all order related operations.
+ * Order entity.
  *
  * @author Dominik Schadow
  */
-@Controller
-@RequestMapping(value = "/order")
-public class OrderController {
-    @PostMapping()
-    public String order(@ModelAttribute("order") Order order) {
-        return "result";
-    }
+public record Order (String item) {
 }

@@ -15,27 +15,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.home;
+package de.dominikschadow.javasecurity.orders;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(IndexController.class)
-public class IndexControllerTest {
+@WebMvcTest(OrderController.class)
+public class OrderControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testHomePage() throws Exception {
-        mockMvc.perform(get("/"))
+    public void testWithCsrfToken() throws Exception {
+        mockMvc.perform(post("/order").with(csrf())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("name", "My Item"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"))
-                .andExpect(content().string(containsString("This simple web application shows")));
+                .andExpect(view().name("result"))
+                .andExpect(content().string(containsString("You have ordered the following item:")));
+    }
+
+    @Test
+    public void testWithoutCsrfToken() throws Exception {
+        mockMvc.perform(post("/order")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("name", "My Item"))
+                .andExpect(status().isForbidden());
     }
 }
