@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.downloads;
 
+import jakarta.annotation.PostConstruct;
 import org.owasp.esapi.errors.AccessControlException;
 import org.owasp.esapi.reference.RandomAccessReferenceMap;
 import org.slf4j.Logger;
@@ -25,7 +26,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.HashSet;
