@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <base href="/"/>
@@ -13,7 +13,10 @@
         <div class="col-12">
             <h1>Session Handling - Spring Security</h1>
 
-            <p>Your current session is <strong th:text="${#httpServletRequest.session.id}"></strong>.</p>
+            <p sec:authorize="!isAuthenticated()">Your current session is <strong th:text="${sessionId}"></strong>
+                and you are not logged in.</p>
+            <p sec:authorize="isAuthenticated()">Your current session is <strong th:text="${sessionId}"></strong>
+                and you are logged in as <strong sec:authentication="principal.username"></strong>.</p>
         </div>
     </div>
 
@@ -26,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row" id="logout" th:if="${#httpServletRequest.remoteUser}">
+    <div class="row" id="logout" sec:authorize="isAuthenticated()">
         <div class="col-12">
             <a th:href="@{/logout}">Logout</a>
         </div>

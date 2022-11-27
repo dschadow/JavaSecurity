@@ -17,6 +17,7 @@
  */
 package de.dominikschadow.javasecurity.sessionhandling.greetings;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,15 +33,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class GreetingController {
     private final GreetingService greetingService;
 
+    @GetMapping("/")
+    public String index(Model model, HttpSession session) {
+        model.addAttribute("sessionId", session.getId());
+
+        return "index";
+    }
+
     @GetMapping("user/user")
-    public String greetUser(Model model) {
+    public String greetUser(Model model, HttpSession session) {
+        model.addAttribute("sessionId", session.getId());
         model.addAttribute("greeting", greetingService.greetUser());
 
         return "user/user";
     }
 
     @GetMapping("admin/admin")
-    public String greetAdmin(Model model) {
+    public String greetAdmin(Model model, HttpSession session) {
+        model.addAttribute("sessionId", session.getId());
         model.addAttribute("greeting", greetingService.greetAdmin());
 
         return "admin/admin";
