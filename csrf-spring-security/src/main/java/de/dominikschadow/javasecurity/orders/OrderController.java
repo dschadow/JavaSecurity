@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.orders;
+package de.dominikschadow.javasecurity.orders;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

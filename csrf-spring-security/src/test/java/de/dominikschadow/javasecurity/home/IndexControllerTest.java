@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,39 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.orders;
+package de.dominikschadow.javasecurity.home;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(OrderController.class)
-public class OrderControllerTest {
+@WebMvcTest(IndexController.class)
+public class IndexControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testWithCsrfToken() throws Exception {
-        mockMvc.perform(post("/order").with(csrf())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("name", "My Item"))
+    @WithMockUser
+    public void testHomePage() throws Exception {
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("result"))
-                .andExpect(content().string(containsString("You have ordered the following item:")));
-    }
-
-    @Test
-    public void testWithoutCsrfToken() throws Exception {
-        mockMvc.perform(post("/order")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("name", "My Item"))
-                .andExpect(status().isForbidden());
+                .andExpect(view().name("index"))
+                .andExpect(content().string(containsString("This simple web application shows")));
     }
 }

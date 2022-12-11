@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -19,11 +19,7 @@ package de.dominikschadow.javasecurity.sessionhandling;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -32,23 +28,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Dominik Schadow
  */
 @SpringBootApplication
-@Configuration
+@EnableWebSecurity
 public class Application implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-    }
-
-    /**
-     * BCryptPasswordEncoder takes a work factor as first argument. The default is 10, the valid range is 4 to 31. The
-     * amount of work increases exponentially.
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
     }
 }

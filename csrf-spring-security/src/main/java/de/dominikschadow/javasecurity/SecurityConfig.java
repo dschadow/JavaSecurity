@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -15,11 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.dominikschadow.javasecurity.csrf.config;
+package de.dominikschadow.javasecurity;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * Simple Spring Security configuration. Deactivates authentication and automatically protects from CSRF attacks with an
@@ -27,10 +28,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  *
  * @author Dominik Schadow
  */
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable();
+@Configuration
+public class SecurityConfig {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http
+            .httpBasic()
+                .disable();
+        // @formatter:on
+
+        return http.build();
     }
 }

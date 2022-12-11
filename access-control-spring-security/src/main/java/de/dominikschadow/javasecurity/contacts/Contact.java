@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -17,11 +17,10 @@
  */
 package de.dominikschadow.javasecurity.contacts;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "contacts")
