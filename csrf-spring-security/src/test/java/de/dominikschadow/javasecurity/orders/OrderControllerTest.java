@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
@@ -34,6 +35,7 @@ public class OrderControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser
     public void testWithCsrfToken() throws Exception {
         mockMvc.perform(post("/order").with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -44,6 +46,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @WithMockUser
     public void testWithoutCsrfToken() throws Exception {
         mockMvc.perform(post("/order")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
