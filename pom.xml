@@ -217,7 +217,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>7.4.4</version>
+                <version>8.0.0</version>
                 <configuration>
                     <skipProvidedScope>true</skipProvidedScope>
                     <!-- analyzers not required in these projects -->
