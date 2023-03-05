@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -22,6 +22,8 @@ import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+
+import static de.dominikschadow.javasecurity.hash.PasswordComparator.comparePasswords;
 
 /**
  * PBKDF2 hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash
@@ -61,21 +63,5 @@ public class PBKDF2 {
         byte[] comparisonHash = calculateHash(skf, password, salt);
 
         return comparePasswords(originalHash, comparisonHash);
-    }
-
-    /**
-     * Compares the two byte arrays in length-constant time using XOR.
-     *
-     * @param originalHash   The original password hash
-     * @param comparisonHash The comparison password hash
-     * @return True if both match, false otherwise
-     */
-    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
-        int diff = originalHash.length ^ comparisonHash.length;
-        for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
-            diff |= originalHash[i] ^ comparisonHash[i];
-        }
-
-        return diff == 0;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -21,6 +21,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static de.dominikschadow.javasecurity.hash.PasswordComparator.comparePasswords;
+
 /**
  * MD5 hashing sample with plain Java. No salt and no iterations are used to calculate the hash value. This sample (and
  * the MD5 algorithm) is totally insecure.
@@ -41,21 +43,5 @@ public class MD5 {
         byte[] comparisonHash = calculateHash(password);
 
         return comparePasswords(originalHash, comparisonHash);
-    }
-
-    /**
-     * Compares the two byte arrays in length-constant time using XOR.
-     *
-     * @param originalHash   The original password hash
-     * @param comparisonHash The comparison password hash
-     * @return True if both match, false otherwise
-     */
-    private boolean comparePasswords(byte[] originalHash, byte[] comparisonHash) {
-        int diff = originalHash.length ^ comparisonHash.length;
-        for (int i = 0; i < originalHash.length && i < comparisonHash.length; i++) {
-            diff |= originalHash[i] ^ comparisonHash[i];
-        }
-
-        return diff == 0;
     }
 }
