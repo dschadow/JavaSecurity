@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -22,6 +22,8 @@ import com.google.crypto.tink.aead.AeadConfig;
 import com.google.crypto.tink.integration.awskms.AwsKmsClient;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Optional;
@@ -64,14 +66,14 @@ public class AesGcmWithAwsKmsSavedKey {
         if (!keyset.exists()) {
             AwsKmsClient awsKmsClient = (AwsKmsClient) KmsClients.get(AWS_MASTER_KEY_URI);
             KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES128_GCM"));
-            keysetHandle.write(JsonKeysetWriter.withFile(keyset), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
+            keysetHandle.write(JsonKeysetWriter.withOutputStream(new FileOutputStream((keyset))), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
         }
     }
 
     public KeysetHandle loadKey(File keyset) throws IOException, GeneralSecurityException {
         AwsKmsClient awsKmsClient = (AwsKmsClient) KmsClients.get(AWS_MASTER_KEY_URI);
 
-        return KeysetHandle.read(JsonKeysetReader.withFile(keyset), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
+        return KeysetHandle.read(JsonKeysetReader.withInputStream(new FileInputStream(keyset)), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
     }
 
     public byte[] encrypt(KeysetHandle keysetHandle, byte[] initialText, byte[] associatedData) throws GeneralSecurityException {

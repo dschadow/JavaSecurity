@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -21,6 +21,8 @@ import com.google.crypto.tink.*;
 import com.google.crypto.tink.aead.AeadConfig;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -47,12 +49,12 @@ public class AesGcmWithSavedKey {
     public void generateAndStoreKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES128_GCM"));
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(new FileOutputStream(keyset)));
         }
     }
 
     public KeysetHandle loadKey(File keyset) throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
+        return CleartextKeysetHandle.read(JsonKeysetReader.withInputStream(new FileInputStream(keyset)));
     }
 
     public byte[] encrypt(KeysetHandle keysetHandle, byte[] initialText, byte[] associatedData) throws GeneralSecurityException {

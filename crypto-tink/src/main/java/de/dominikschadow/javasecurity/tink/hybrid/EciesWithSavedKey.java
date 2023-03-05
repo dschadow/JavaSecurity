@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -21,6 +21,8 @@ import com.google.crypto.tink.*;
 import com.google.crypto.tink.hybrid.HybridConfig;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -47,12 +49,12 @@ public class EciesWithSavedKey {
     public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
             KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(new FileOutputStream((keyset))));
         }
     }
 
     public KeysetHandle loadPrivateKey(File keyset) throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
+        return CleartextKeysetHandle.read(JsonKeysetReader.withInputStream(new FileInputStream(keyset)));
     }
 
     /**
@@ -64,12 +66,12 @@ public class EciesWithSavedKey {
     public void generateAndStorePublicKey(KeysetHandle privateKeysetHandle, File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
             KeysetHandle keysetHandle = privateKeysetHandle.getPublicKeysetHandle();
-            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withFile(keyset));
+            CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(new FileOutputStream((keyset))));
         }
     }
 
     public KeysetHandle loadPublicKey(File keyset) throws IOException, GeneralSecurityException {
-        return CleartextKeysetHandle.read(JsonKeysetReader.withFile(keyset));
+        return CleartextKeysetHandle.read(JsonKeysetReader.withInputStream(new FileInputStream(keyset)));
     }
 
     public byte[] encrypt(KeysetHandle publicKeysetHandle, byte[] initialText, byte[] contextInfo) throws GeneralSecurityException {
