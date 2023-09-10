@@ -26,7 +26,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Optional;
 
 /**
  * <p>
@@ -36,7 +35,7 @@ import java.util.Optional;
  * </p>
  * <p>
  * Using your own AWS Master Key requires to delete the stored keyset in src/test/resources/keysets/hybrid-ecies-kms-private.json
- * and rc/test/resources/keysets/hybrid-ecies-kms-public.json because these keys were created with the used sample AWS
+ * and src/test/resources/keysets/hybrid-ecies-kms-public.json because these keys were created with the used sample AWS
  * KMS master key and will not work with any other master key.
  * </p>
  *
@@ -46,14 +45,14 @@ import java.util.Optional;
  * the Default Credential Provider Chain</a>
  */
 public class EciesWithAwsKmsSavedKey {
-    private static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:eu-central-1:776241929911:key/1cf7d7fe-6974-40e3-bb0d-22b8c75d4eb8";
+    private static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:us-east-1:776241929911:key/7aeb00c6-d416-4130-bed1-a8ee6064d7d9";
+    private final AwsKmsClient awsKmsClient = new AwsKmsClient();
 
     /**
-     * Init AeadConfig in the Tink library.
+     * Init HybridConfig in the Tink library.
      */
     public EciesWithAwsKmsSavedKey() throws GeneralSecurityException {
         HybridConfig.register();
-        AwsKmsClient.register(Optional.of(AWS_MASTER_KEY_URI), Optional.empty());
     }
 
     /**
@@ -64,15 +63,12 @@ public class EciesWithAwsKmsSavedKey {
      */
     public void generateAndStorePrivateKey(File keyset) throws IOException, GeneralSecurityException {
         if (!keyset.exists()) {
-            AwsKmsClient awsKmsClient = (AwsKmsClient) KmsClients.get(AWS_MASTER_KEY_URI);
             KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
             keysetHandle.write(JsonKeysetWriter.withOutputStream(new FileOutputStream((keyset))), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
         }
     }
 
     public KeysetHandle loadPrivateKey(File keyset) throws IOException, GeneralSecurityException {
-        AwsKmsClient awsKmsClient = (AwsKmsClient) KmsClients.get(AWS_MASTER_KEY_URI);
-
         return KeysetHandle.read(JsonKeysetReader.withInputStream(new FileInputStream(keyset)), awsKmsClient.getAead(AWS_MASTER_KEY_URI));
     }
 

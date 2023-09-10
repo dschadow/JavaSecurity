@@ -44,7 +44,7 @@
 
     <properties>
         <owasp.encoder.version>1.2.3</owasp.encoder.version>
-        <crypto.tink.version>1.8.0</crypto.tink.version>
+        <crypto.tink.version>1.9.0</crypto.tink.version>
         <docker.image.prefix>dschadow</docker.image.prefix>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -108,6 +108,11 @@
                 <groupId>com.google.crypto.tink</groupId>
                 <artifactId>tink-awskms</artifactId>
                 <version>${crypto.tink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.1</version>
             </dependency>
 
             <dependency>
