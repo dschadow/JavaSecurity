@@ -43,9 +43,11 @@ public class LoginServlet extends HttpServlet {
         LOG.log(System.Logger.Level.INFO, "New session ID {0}", newSessionId);
 
         response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head>");
+            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
             out.println("<title>Session Handling</title>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/styles.css\" />");
             out.println("</head>");
