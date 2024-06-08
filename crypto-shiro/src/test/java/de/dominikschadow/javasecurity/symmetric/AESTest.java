@@ -18,7 +18,7 @@
 package de.dominikschadow.javasecurity.symmetric;
 
 import de.dominikschadow.javasecurity.Keystore;
-import org.apache.shiro.codec.CodecSupport;
+import org.apache.shiro.lang.codec.CodecSupport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

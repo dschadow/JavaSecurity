@@ -36,7 +36,7 @@ class SHA512Test {
         Assertions.assertAll(
                 () -> assertNotNull(hash.getSalt()),
                 () -> assertNotNull(hash.getBytes()),
-                () -> assertEquals(1000000, hash.getIterations()),
+                () -> assertEquals(50000, hash.getIterations()),
                 () -> assertEquals("SHA-512", hash.getAlgorithmName()),
                 () -> assertTrue(hashMatches)
         );
@@ -52,7 +52,7 @@ class SHA512Test {
         Assertions.assertAll(
                 () -> assertNotNull(hash.getSalt()),
                 () -> assertNotNull(hash.getBytes()),
-                () -> assertEquals(1000000, hash.getIterations()),
+                () -> assertEquals(50000, hash.getIterations()),
                 () -> assertEquals("SHA-512", hash.getAlgorithmName()),
                 () -> assertFalse(hashMatches)
         );

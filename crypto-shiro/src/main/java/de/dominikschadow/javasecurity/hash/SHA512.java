@@ -20,7 +20,7 @@ package de.dominikschadow.javasecurity.hash;
 import org.apache.shiro.crypto.hash.DefaultHashService;
 import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.HashRequest;
-import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.lang.util.ByteSource;
 
 import java.util.Arrays;
 
@@ -35,30 +35,26 @@ public class SHA512 {
      * Nothing up my sleeve number as private salt, not good for production.
      */
     private static final byte[] PRIVATE_SALT_BYTES = {3, 1, 4, 1, 5, 9, 2, 6, 5};
-    private static final int ITERATIONS = 1000000;
 
     public Hash calculateHash(String password) {
         ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
-        hashService.setPrivateSalt(privateSalt);
-        hashService.setGeneratePublicSalt(true);
-        hashService.setHashIterations(ITERATIONS);
 
         HashRequest.Builder builder = new HashRequest.Builder();
         builder.setSource(ByteSource.Util.bytes(password));
+        builder.setSalt(privateSalt);
+        builder.setAlgorithmName("SHA-512");
 
         return hashService.computeHash(builder.build());
     }
 
     public boolean verifyPassword(byte[] originalHash, ByteSource publicSalt, String password) {
-        ByteSource privateSalt = ByteSource.Util.bytes(PRIVATE_SALT_BYTES);
         DefaultHashService hashService = new DefaultHashService();
-        hashService.setPrivateSalt(privateSalt);
-        hashService.setHashIterations(ITERATIONS);
 
         HashRequest.Builder builder = new HashRequest.Builder();
         builder.setSource(ByteSource.Util.bytes(password));
         builder.setSalt(publicSalt);
+        builder.setAlgorithmName("SHA-512");
 
         Hash comparisonHash = hashService.computeHash(builder.build());
 

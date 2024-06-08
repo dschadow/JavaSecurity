@@ -17,8 +17,9 @@
  */
 package de.dominikschadow.javasecurity.symmetric;
 
-import org.apache.shiro.crypto.AesCipherService;
-import org.apache.shiro.util.ByteSource;
+
+import org.apache.shiro.crypto.cipher.AesCipherService;
+import org.apache.shiro.lang.util.ByteSource;
 
 import java.security.Key;
 
@@ -44,8 +45,6 @@ public class AES {
 
     public byte[] decrypt(Key key, byte[] ciphertext) {
         AesCipherService cipherService = new AesCipherService();
-        ByteSource plainText = cipherService.decrypt(ciphertext, key.getEncoded());
-
-        return plainText.getBytes();
+        return cipherService.decrypt(ciphertext, key.getEncoded()).getClonedBytes();
     }
 }
