@@ -18,10 +18,9 @@
 package de.dominikschadow.javasecurity.downloads;
 
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.owasp.esapi.errors.AccessControlException;
 import org.owasp.esapi.reference.RandomAccessReferenceMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -32,8 +31,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class DownloadService {
-    private static final Logger log = LoggerFactory.getLogger(DownloadService.class);
     private final Set<Object> resources = new HashSet<>();
     private final RandomAccessReferenceMap referenceMap = new RandomAccessReferenceMap(resources);
     private final String rootLocation;
