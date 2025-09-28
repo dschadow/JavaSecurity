@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2025 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * Contact controller for all contact related operations.
+ * Contact controller for all contact-related operations.
  *
  * @author Dominik Schadow
  */

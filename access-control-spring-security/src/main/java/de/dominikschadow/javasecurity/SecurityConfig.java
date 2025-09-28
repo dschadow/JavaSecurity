@@ -23,13 +23,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -71,27 +71,20 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // @formatter:off
-        http
-            .authorizeHttpRequests()
-                .requestMatchers("/*", "/h2-console/**").permitAll()
-                .requestMatchers("/contacts/**").hasRole("USER")
-                .and()
-            .csrf()
-                .ignoringRequestMatchers("/h2-console/*")
-                .and()
-            .headers()
-                .frameOptions().sameOrigin()
-                .and()
-            .formLogin()
-                .defaultSuccessUrl("/contacts")
-                .and()
-            .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/");
-        // @formatter:on
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/", "/error").permitAll();
+                    auth.requestMatchers("/h2-console/**").permitAll();
+                    auth.requestMatchers("/css/*").permitAll();
+                    auth.requestMatchers("/favicon.ico", "favicon.svg").permitAll();
 
-        return http.build();
+                    auth.requestMatchers("/contacts/**").hasRole("USER");
+
+                    auth.anyRequest().authenticated();
+                })
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/*"))
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
+                .formLogin(formLogin -> formLogin.defaultSuccessUrl("/contacts"))
+                .logout(formLogout -> formLogout.logoutSuccessUrl("/")).build();
     }
 }
