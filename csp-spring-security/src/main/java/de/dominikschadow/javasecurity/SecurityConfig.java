@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2025 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -33,8 +33,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http
-            .headers()
-                .contentSecurityPolicy("default-src 'self'");
+            .headers(headers -> headers
+                    .contentSecurityPolicy(csp -> csp
+                            .policyDirectives("default-src 'self'"))
+            );
         // @formatter:on
 
         return http.build();
