@@ -40,9 +40,9 @@ class CustomerServiceTest {
         List<Customer> customers = customerService.preparedStatementQuery("Arthur Dent");
 
         assertEquals(1, customers.size());
-        assertEquals("Arthur Dent", customers.get(0).getName());
-        assertEquals("A", customers.get(0).getStatus());
-        assertEquals(10000, customers.get(0).getOrderLimit());
+        assertEquals("Arthur Dent", customers.getFirst().getName());
+        assertEquals("A", customers.getFirst().getStatus());
+        assertEquals(10000, customers.getFirst().getOrderLimit());
     }
 
     @Test
@@ -65,9 +65,9 @@ class CustomerServiceTest {
             List<Customer> customers = customerService.escapedQuery("Ford Prefect");
 
             assertEquals(1, customers.size());
-            assertEquals("Ford Prefect", customers.get(0).getName());
-            assertEquals("B", customers.get(0).getStatus());
-            assertEquals(5000, customers.get(0).getOrderLimit());
+            assertEquals("Ford Prefect", customers.getFirst().getName());
+            assertEquals("B", customers.getFirst().getStatus());
+            assertEquals(5000, customers.getFirst().getOrderLimit());
         } catch (Exception e) {
             // ESAPI configuration may not be available in test context
             assertTrue(e.getMessage().contains("ESAPI") || e.getCause() != null);
@@ -103,9 +103,9 @@ class CustomerServiceTest {
         List<Customer> customers = customerService.simpleQuery("Marvin");
 
         assertEquals(1, customers.size());
-        assertEquals("Marvin", customers.get(0).getName());
-        assertEquals("A", customers.get(0).getStatus());
-        assertEquals(100000, customers.get(0).getOrderLimit());
+        assertEquals("Marvin", customers.getFirst().getName());
+        assertEquals("A", customers.getFirst().getStatus());
+        assertEquals(100000, customers.getFirst().getOrderLimit());
     }
 
     @Test
@@ -129,7 +129,7 @@ class CustomerServiceTest {
         List<Customer> customers = customerService.preparedStatementQuery("Zaphod Beeblebrox");
 
         assertEquals(1, customers.size());
-        Customer customer = customers.get(0);
+        Customer customer = customers.getFirst();
         assertEquals(4, customer.getId());
         assertEquals("Zaphod Beeblebrox", customer.getName());
         assertEquals("D", customer.getStatus());
@@ -142,7 +142,7 @@ class CustomerServiceTest {
             List<Customer> customers = customerService.escapedQuery("Slartibartfast");
 
             assertEquals(1, customers.size());
-            Customer customer = customers.get(0);
+            Customer customer = customers.getFirst();
             assertEquals(6, customer.getId());
             assertEquals("Slartibartfast", customer.getName());
             assertEquals("D", customer.getStatus());
@@ -158,7 +158,7 @@ class CustomerServiceTest {
         List<Customer> customers = customerService.simpleQuery("Tricia Trillian McMillan");
 
         assertEquals(1, customers.size());
-        Customer customer = customers.get(0);
+        Customer customer = customers.getFirst();
         assertEquals(3, customer.getId());
         assertEquals("Tricia Trillian McMillan", customer.getName());
         assertEquals("C", customer.getStatus());
