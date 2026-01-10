@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2026 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -19,7 +19,6 @@ package de.dominikschadow.javasecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
