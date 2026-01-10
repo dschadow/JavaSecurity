@@ -46,12 +46,15 @@ import java.security.GeneralSecurityException;
  */
 public class EciesWithAwsKmsSavedKey {
     private static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:us-east-1:776241929911:key/7aeb00c6-d416-4130-bed1-a8ee6064d7d9";
-    private final AwsKmsClient awsKmsClient = new AwsKmsClient();
+    private final AwsKmsClient awsKmsClient;
 
     /**
-     * Init HybridConfig in the Tink library.
+     * Init HybridConfig in the Tink library with provided AwsKmsClient.
+     *
+     * @param awsKmsClient the AWS KMS client to use
      */
-    public EciesWithAwsKmsSavedKey() throws GeneralSecurityException {
+    public EciesWithAwsKmsSavedKey(AwsKmsClient awsKmsClient) throws GeneralSecurityException {
+        this.awsKmsClient = awsKmsClient;
         HybridConfig.register();
     }
 

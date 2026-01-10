@@ -46,12 +46,15 @@ import java.security.GeneralSecurityException;
  */
 public class AesGcmWithAwsKmsSavedKey {
     private static final String AWS_MASTER_KEY_URI = "aws-kms://arn:aws:kms:us-east-1:776241929911:key/7aeb00c6-d416-4130-bed1-a8ee6064d7d9";
-    private final AwsKmsClient awsKmsClient = new AwsKmsClient();
+    private final AwsKmsClient awsKmsClient;
 
     /**
-     * Init AeadConfig in the Tink library.
+     * Init AeadConfig in the Tink library with provided AwsKmsClient.
+     *
+     * @param awsKmsClient the AWS KMS client to use
      */
-    public AesGcmWithAwsKmsSavedKey() throws GeneralSecurityException {
+    public AesGcmWithAwsKmsSavedKey(AwsKmsClient awsKmsClient) throws GeneralSecurityException {
+        this.awsKmsClient = awsKmsClient;
         AeadConfig.register();
     }
 
