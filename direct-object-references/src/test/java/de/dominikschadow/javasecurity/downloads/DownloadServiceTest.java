@@ -72,9 +72,7 @@ class DownloadServiceTest {
     void getFileByIndirectReference_withInvalidReference_throwsException() {
         String invalidReference = "invalid-reference-that-does-not-exist";
 
-        assertThrows(Exception.class, () -> {
-            downloadService.getFileByIndirectReference(invalidReference);
-        });
+        assertThrows(Exception.class, () -> downloadService.getFileByIndirectReference(invalidReference));
     }
 
     @Test
