@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2026 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -22,7 +22,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class Deserializer {
-    public static void main(String[] args) {
+    static void main() {
         try (ObjectInputStream is = new ObjectInputStream(new BufferedInputStream(new FileInputStream("serialize-me.bin")))) {
             SerializeMe me = (SerializeMe) is.readObject();
 

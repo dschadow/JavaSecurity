@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Dominik Schadow, dominikschadow@gmail.com
+ * Copyright (C) 2026 Dominik Schadow, dominikschadow@gmail.com
  *
  * This file is part of the Java Security project.
  *
@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class Serializer {
-    public static void main(String[] args) {
+    static void main() {
         SerializeMe serializeMe = new SerializeMe();
         serializeMe.setFirstname("Arthur");
         serializeMe.setLastname("Dent");
