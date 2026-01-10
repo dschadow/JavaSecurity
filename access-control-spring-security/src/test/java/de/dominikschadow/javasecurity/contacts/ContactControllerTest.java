@@ -39,10 +39,10 @@ class ContactControllerTest {
     @MockitoBean
     private ContactService contactService;
 
-    private Contact sampleContact(long id, String username, String firstname, String lastname) {
+    private Contact sampleContact(long id, String firstname, String lastname) {
         Contact c = new Contact();
         c.setId(id);
-        c.setUsername(username);
+        c.setUsername("userA");
         c.setFirstname(firstname);
         c.setLastname(lastname);
         c.setComment("test");
@@ -53,8 +53,8 @@ class ContactControllerTest {
     @WithMockUser(username = "userA")
     void listContacts_asUser_ok() throws Exception {
         List<Contact> contacts = List.of(
-                sampleContact(1L, "userA", "Alice", "Anderson"),
-                sampleContact(2L, "userA", "Alan", "Archer")
+                sampleContact(1L, "Alice", "Anderson"),
+                sampleContact(2L, "Alan", "Archer")
         );
         Mockito.when(contactService.getContacts()).thenReturn(contacts);
 
@@ -74,7 +74,7 @@ class ContactControllerTest {
     @Test
     @WithMockUser(username = "userA")
     void contactDetails_asUser_ok() throws Exception {
-        Contact contact = sampleContact(42L, "userA", "Bob", "Baker");
+        Contact contact = sampleContact(42L, "Bob", "Baker");
         Mockito.when(contactService.getContact(42)).thenReturn(contact);
 
         mockMvc.perform(get("/contacts/42"))
