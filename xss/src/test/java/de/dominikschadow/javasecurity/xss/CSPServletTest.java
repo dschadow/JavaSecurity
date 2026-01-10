@@ -47,7 +47,7 @@ class CSPServletTest {
     private PrintWriter printWriter;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         servlet = new CSPServlet();
         stringWriter = new StringWriter();

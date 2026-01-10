@@ -47,7 +47,7 @@ class OutputEscapedServletTest {
     private PrintWriter printWriter;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         servlet = new OutputEscapedServlet();
         stringWriter = new StringWriter();

@@ -47,7 +47,7 @@ class UnprotectedServletTest {
     private PrintWriter printWriter;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         servlet = new UnprotectedServlet();
         stringWriter = new StringWriter();
