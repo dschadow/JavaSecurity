@@ -73,7 +73,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/", "/error").permitAll();
                     auth.requestMatchers("/h2-console/**").permitAll();
