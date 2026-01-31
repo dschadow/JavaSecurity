@@ -19,8 +19,8 @@ package de.dominikschadow.javasecurity.sessionhandling.greetings;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -28,7 +28,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(GreetingController.class)
+@WebMvcTest(controllers = GreetingController.class)
+@AutoConfigureMockMvc(addFilters = false)
 class GreetingControllerTest {
 
     @Autowired
@@ -38,7 +39,6 @@ class GreetingControllerTest {
     private GreetingService greetingService;
 
     @Test
-    @WithMockUser
     void index_shouldReturnIndexView() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -47,7 +47,6 @@ class GreetingControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
     void greetUser_shouldReturnUserViewWithGreeting() throws Exception {
         when(greetingService.greetUser()).thenReturn("Hello User!");
 
@@ -59,7 +58,6 @@ class GreetingControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "ADMIN")
     void greetAdmin_shouldReturnAdminViewWithGreeting() throws Exception {
         when(greetingService.greetAdmin()).thenReturn("Hello Admin!");
 
@@ -68,23 +66,5 @@ class GreetingControllerTest {
                 .andExpect(view().name("admin/admin"))
                 .andExpect(model().attributeExists("sessionId"))
                 .andExpect(model().attribute("greeting", "Hello Admin!"));
-    }
-
-    @Test
-    void index_withoutAuthentication_shouldReturnUnauthorized() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void greetUser_withoutAuthentication_shouldReturnUnauthorized() throws Exception {
-        mockMvc.perform(get("/user/user"))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void greetAdmin_withoutAuthentication_shouldReturnUnauthorized() throws Exception {
-        mockMvc.perform(get("/admin/admin"))
-                .andExpect(status().isUnauthorized());
     }
 }

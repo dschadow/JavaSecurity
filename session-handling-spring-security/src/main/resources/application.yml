@@ -6,6 +6,9 @@ spring:
     password: sa
     name: session-handling
     generate-unique-name: false
+  sql:
+    init:
+      mode: never
   h2:
     console:
       enabled: true

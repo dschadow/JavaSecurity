@@ -78,7 +78,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/", "/error").permitAll();
                     auth.requestMatchers("/h2-console/**").permitAll();
                     auth.requestMatchers("/css/**").permitAll();
-                    auth.requestMatchers("/favicon.ico", "favicon.svg").permitAll();
+                    auth.requestMatchers("/favicon.ico", "/favicon.svg").permitAll();
 
                     auth.requestMatchers("/contacts/**").hasRole("USER");
 

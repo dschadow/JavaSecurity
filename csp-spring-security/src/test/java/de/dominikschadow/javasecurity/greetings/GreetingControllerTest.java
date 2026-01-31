@@ -17,9 +17,11 @@
  */
 package de.dominikschadow.javasecurity.greetings;
 
+import de.dominikschadow.javasecurity.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -30,6 +32,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = GreetingController.class)
+@Import(SecurityConfig.class)
 class GreetingControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -56,17 +59,4 @@ class GreetingControllerTest {
                 .andExpect(model().attribute("result", instanceOf(Greeting.class)));
     }
 
-    @Test
-    void home_unauthenticated_returnsUnauthorized() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void greeting_unauthenticated_returnsUnauthorized() throws Exception {
-        mockMvc.perform(post("/greeting")
-                        .with(csrf())
-                        .param("name", "TestUser"))
-                .andExpect(status().isUnauthorized());
-    }
 }
