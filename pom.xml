@@ -237,7 +237,7 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>12.2.1</version>
                 <configuration>
-                    <nvdApiKey>${env.nvdApiKey}</nvdApiKey>
+                    <nvdApiKey>${env.NVD_KEY}</nvdApiKey>
                     <skipProvidedScope>true</skipProvidedScope>
                     <!-- analyzers not required in these projects -->
                     <artifactoryAnalyzerEnabled>false</artifactoryAnalyzerEnabled>
