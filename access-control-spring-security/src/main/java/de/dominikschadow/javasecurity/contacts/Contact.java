@@ -17,18 +17,13 @@
  */
 package de.dominikschadow.javasecurity.contacts;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name = "contacts")
 @Getter
 @Setter
 public class Contact {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Size(min = 5, max = 50)
     private String firstname;

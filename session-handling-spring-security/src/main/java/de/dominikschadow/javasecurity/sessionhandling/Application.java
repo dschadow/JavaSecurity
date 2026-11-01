@@ -19,8 +19,6 @@ package de.dominikschadow.javasecurity.sessionhandling;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Starter class for the Spring Boot application.
@@ -28,8 +26,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Dominik Schadow
  */
 @SpringBootApplication
-@EnableWebSecurity
-public class Application implements WebMvcConfigurer {
+public class Application {
     static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

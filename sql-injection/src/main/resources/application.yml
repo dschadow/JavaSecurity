@@ -7,6 +7,3 @@ spring:
   h2:
     console:
       enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: none
