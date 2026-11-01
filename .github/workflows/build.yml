@@ -13,6 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: JavaSecurity Build
+    permissions:
+      contents: read
+      # required for the tokenless Codecov upload via OpenID Connect
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -24,7 +28,9 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: Generate Codecov Report
-        uses: codecov/codecov-action@v5
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          use_oidc: true
+          files: ./access-control-spring-security/target/site/jacoco/jacoco.xml,./crypto-hash/target/site/jacoco/jacoco.xml,./crypto-java/target/site/jacoco/jacoco.xml,./crypto-shiro/target/site/jacoco/jacoco.xml,./crypto-tink/target/site/jacoco/jacoco.xml,./csp-spring-security/target/site/jacoco/jacoco.xml,./csrf/target/site/jacoco/jacoco.xml,./csrf-spring-security/target/site/jacoco/jacoco.xml,./direct-object-references/target/site/jacoco/jacoco.xml,./intercept-me/target/site/jacoco/jacoco.xml,./security-header/target/site/jacoco/jacoco.xml,./security-logging/target/site/jacoco/jacoco.xml,./serialize-me/target/site/jacoco/jacoco.xml,./session-handling/target/site/jacoco/jacoco.xml,./session-handling-spring-security/target/site/jacoco/jacoco.xml,./sql-injection/target/site/jacoco/jacoco.xml,./xss/target/site/jacoco/jacoco.xml
+          fail_ci_if_error: true
