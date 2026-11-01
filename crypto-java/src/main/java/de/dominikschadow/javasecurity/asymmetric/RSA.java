@@ -30,8 +30,6 @@ import java.security.PublicKey;
 /**
  * Asymmetric encryption sample with plain Java. Loads the RSA key from the sample keystore, encrypts and decrypts
  * sample text with it.
- * <p/>
- * Uses Google Guava to hex the encrypted message as readable format.
  *
  * @author Dominik Schadow
  */

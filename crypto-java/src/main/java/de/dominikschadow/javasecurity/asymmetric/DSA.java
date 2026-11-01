@@ -23,8 +23,6 @@ import java.security.*;
 /**
  * Digital signature sample with plain Java. Loads the DSA key from the sample keystore, signs and verifies sample text
  * with it.
- * <p/>
- * Uses Google Guava to hex the encrypted message as readable format.
  *
  * @author Dominik Schadow
  */

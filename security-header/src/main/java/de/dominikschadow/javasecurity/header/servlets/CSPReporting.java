@@ -46,7 +46,7 @@ public class CSPReporting extends HttpServlet {
             Gson gs = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
             JsonElement element = JsonParser.parseReader(reader);
 
-            LOG.log(System.Logger.Level.INFO, "\n{}", gs.toJson(element));
+            LOG.log(System.Logger.Level.INFO, "\n{0}", gs.toJson(element));
         } catch (IOException | JsonSyntaxException ex) {
             LOG.log(System.Logger.Level.ERROR, ex.getMessage(), ex);
         }
