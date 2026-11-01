@@ -56,7 +56,7 @@ The following projects demonstrate crypto usage in Java with different libraries
 Crypto demo using Java to hash passwords with different hashing algorithms.
 
 ## crypto-java
-Crypto demo using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA).
+Crypto demo using plain Java to encrypt and decrypt data with asymmetric (RSA) and symmetric (AES) algorithms as well as to sign and verify data (DSA). Includes post-quantum samples for key encapsulation (ML-KEM) and digital signatures (ML-DSA) as well as key derivation with HKDF using the Key Derivation Function API.
 
 ## crypto-shiro
 Crypto demo using [Apache Shiro](http://shiro.apache.org) to encrypt and decrypt data with symmetric (AES) algorithms as well as hash data (passwords). 
