@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tomcat 11 configuration for the security-header demo, used by the Maven Cargo plugin.
+  Provides an HTTP connector (8080) and an HTTPS connector (8443) using the keystore from the certificates directory.
+  Port 8205 is the default Cargo port used to shut down the container.
+-->
+<Server port="8205" shutdown="SHUTDOWN">
+    <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
+    <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
+    <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
+
+    <Service name="Catalina">
+        <Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443"/>
+
+        <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" SSLEnabled="true">
+            <SSLHostConfig>
+                <Certificate certificateKeystoreFile="conf/keystore.jks" certificateKeystorePassword="secureheaders"
+                             certificateKeystoreType="JKS" certificateKeyAlias="tomcat" type="RSA"/>
+            </SSLHostConfig>
+        </Connector>
+
+        <Engine name="Catalina" defaultHost="localhost">
+            <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true"/>
+        </Engine>
+    </Service>
+</Server>

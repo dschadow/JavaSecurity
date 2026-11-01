@@ -11,7 +11,7 @@ This repository contains several Java web applications and command line applicat
 # Web Applications in Detail
 Some web applications contain exercises, some are only there to inspect and learn. Instructions are provided in detail on the start page of each web application.
 
-Some web applications are based on [Spring Boot](https://spring.io/projects/spring-boot) and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** in the project directory. Spring Boot projects can be launched via `docker run -p 8080:8080 dschadow/[PROJECT]:[VERSION]` after the image has been created using `mvn spring-boot:build-image`. The other web applications either contain an embedded **Tomcat7 Maven plugin** which can be started via **mvn tomcat7:run-war**, or an embedded **Jetty Maven plugin** which can be started via **mvn jetty:run-war**.
+Some web applications are based on [Spring Boot](https://spring.io/projects/spring-boot) and can be started via the **main** method in the **Application** class or via **mvn spring-boot:run** in the project directory. Spring Boot projects can be launched via `docker run -p 8080:8080 dschadow/[PROJECT]:[VERSION]` after the image has been created using `mvn spring-boot:build-image`. The other web applications are plain Jakarta Servlet applications which run on [Apache Tomcat 11](https://tomcat.apache.org) via the [Cargo Maven plugin](https://codehaus-cargo.github.io/cargo/Maven+3+Plugin.html) and can be started via **mvn package cargo:run** in the project directory.
 
 ## access-control-spring-security
 Access control demo project using [Spring Security](https://spring.io/projects/spring-security) in a Spring Boot application. Shows how to safely load user data from a database without using potentially faked frontend values. After launching, open the web application in your browser at **http://localhost:8080**.
@@ -41,7 +41,7 @@ Spring Boot based web application utilizing the [OWASP Security Logging Project]
 Session handling demo project based on Spring Boot utilizing [Spring Security](https://spring.io/projects/spring-security). Shows how to restrict access to resources (URLs), how to apply method level security and how to store and verify hashed passwords. Uses Spring Security for all security-related functionality. After launching, open the web application in your browser at **http://localhost:8080**.
 
 ## session-handling
-Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. Requires a web server with Servlet 3.1 support. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
+Session handling demo project using plain Java. Uses plain Java to create and update the session id after logging in. After launching, open the web application in your browser at **http://localhost:8080/session-handling**.
 
 ## sql-injection
 Spring Boot based web application to experiment with normal (vulnerable) statements, statements with escaped input, and prepared statements. After launching, open the web application in your browser at **http://localhost:8080**.

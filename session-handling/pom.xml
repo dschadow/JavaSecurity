@@ -12,15 +12,15 @@
     <packaging>war</packaging>
     <name>Session Handling</name>
 
-    <description>Session Handling sample project. Requires a server like Apache Tomcat 8 (with Servlet 3.1 support)
-        or the Maven Jetty plugin. After launching, open the web application in your browser at
+    <description>Session Handling sample project. Requires a server like Apache Tomcat 11 or the Maven Cargo plugin. After launching, open the web application in your browser at
         http://localhost:8080/session-handling
     </description>
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -35,16 +35,11 @@
     </dependencies>
 
     <build>
-        <defaultGoal>jetty:run-war</defaultGoal>
+        <defaultGoal>package cargo:run</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <configuration>
-                    <webApp>
-                        <contextPath>/session-handling</contextPath>
-                    </webApp>
-                </configuration>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

@@ -19,8 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -39,15 +40,25 @@
     </dependencies>
 
     <build>
-        <defaultGoal>tomcat7:run-war</defaultGoal>
+        <defaultGoal>package cargo:run</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
                 <configuration>
-                    <httpsPort>8443</httpsPort>
-                    <keystoreFile>${basedir}/certificates/keystore.jks</keystoreFile>
-                    <keystorePass>secureheaders</keystorePass>
+                    <configuration>
+                        <!-- custom server.xml with HTTP (8080) and HTTPS (8443) connectors -->
+                        <configfiles>
+                            <configfile>
+                                <file>${project.basedir}/src/main/tomcat/server.xml</file>
+                                <todir>conf</todir>
+                            </configfile>
+                            <configfile>
+                                <file>${project.basedir}/certificates/keystore.jks</file>
+                                <todir>conf</todir>
+                            </configfile>
+                        </configfiles>
+                    </configuration>
                 </configuration>
             </plugin>
         </plugins>
