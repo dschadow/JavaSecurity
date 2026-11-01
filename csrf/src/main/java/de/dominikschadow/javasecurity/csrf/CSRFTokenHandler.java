@@ -17,15 +17,13 @@
  */
 package de.dominikschadow.javasecurity.csrf;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Strings;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
+import java.util.Objects;
 
 /**
  * Calculates a random token for each user and stores it in the session. Compares the token of incoming requests with
@@ -59,7 +57,7 @@ public final class CSRFTokenHandler {
 
         String token = (String) session.getAttribute(CSRF_TOKEN);
 
-        if (Strings.isNullOrEmpty(token)) {
+        if (token == null || token.isEmpty()) {
             token = getToken();
             session.setAttribute(CSRF_TOKEN, token);
         }
@@ -73,7 +71,7 @@ public final class CSRFTokenHandler {
         }
 
         try {
-            return Objects.equal(getToken(request.getSession(false)), request.getParameter(CSRF_TOKEN));
+            return Objects.equals(getToken(request.getSession(false)), request.getParameter(CSRF_TOKEN));
         } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
             return false;
         }

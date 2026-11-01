@@ -17,9 +17,10 @@
  */
 package de.dominikschadow.javasecurity.hash;
 
-import com.google.common.hash.HashCode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.HexFormat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +35,7 @@ class MD5Test {
         boolean hashMatches = md5.verifyPassword(originalHash, password);
 
         Assertions.assertAll(
-                () -> assertEquals("6ee66e42a8e60d5fb816030b188c4c79", HashCode.fromBytes(originalHash).toString()),
+                () -> assertEquals("6ee66e42a8e60d5fb816030b188c4c79", HexFormat.of().formatHex(originalHash)),
                 () -> assertTrue(hashMatches)
         );
     }
@@ -47,7 +48,7 @@ class MD5Test {
         boolean hashMatches = md5.verifyPassword(originalHash, "fakePassword12345");
 
         Assertions.assertAll(
-                () -> assertEquals("6ee66e42a8e60d5fb816030b188c4c79", HashCode.fromBytes(originalHash).toString()),
+                () -> assertEquals("6ee66e42a8e60d5fb816030b188c4c79", HexFormat.of().formatHex(originalHash)),
                 () -> assertFalse(hashMatches)
         );
     }
