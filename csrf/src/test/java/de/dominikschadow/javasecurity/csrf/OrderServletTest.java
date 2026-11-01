@@ -28,6 +28,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -138,5 +139,28 @@ class OrderServletTest {
         when(request.getSession(false)).thenReturn(null);
 
         assertThrows(ServletException.class, () -> orderServlet.doPost(request, response));
+    }
+
+    @Test
+    void doPost_withInvalidTokenAndFailingWriter_setsUnauthorizedStatus() throws Exception {
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(CSRFTokenHandler.CSRF_TOKEN)).thenReturn("validToken123");
+        when(request.getParameter(CSRFTokenHandler.CSRF_TOKEN)).thenReturn("invalidToken");
+        when(response.getWriter()).thenThrow(new IOException("Writer not available"));
+
+        assertDoesNotThrow(() -> orderServlet.doPost(request, response));
+        verify(response).setStatus(401);
+    }
+
+    @Test
+    void doPost_withValidTokenAndFailingWriter_doesNotThrowException() throws Exception {
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(CSRFTokenHandler.CSRF_TOKEN)).thenReturn("validToken123");
+        when(request.getParameter(CSRFTokenHandler.CSRF_TOKEN)).thenReturn("validToken123");
+        when(request.getParameter("quantity")).thenReturn("1");
+        when(response.getWriter()).thenThrow(new IOException("Writer not available"));
+
+        assertDoesNotThrow(() -> orderServlet.doPost(request, response));
+        verify(response, never()).setStatus(401);
     }
 }

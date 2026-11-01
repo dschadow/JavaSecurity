@@ -21,6 +21,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class DeserializerTest {
     private static final String TEST_FILE = "test-deserialize-me.bin";
+    private static final String MAIN_FILE = "serialize-me.bin";
 
     @AfterEach
     void tearDown() {
@@ -112,5 +114,42 @@ class DeserializerTest {
             assertEquals("Zaphod", deserializedSecond.getFirstname());
             assertEquals("Beeblebrox", deserializedSecond.getLastname());
         }
+    }
+
+    @AfterEach
+    void deleteMainFile() {
+        new File(MAIN_FILE).delete();
+    }
+
+    @Test
+    void main_printsNameOfDeserializedObject() throws Exception {
+        SerializeMe original = new SerializeMe();
+        original.setFirstname("Arthur");
+        original.setLastname("Dent");
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(MAIN_FILE))) {
+            oos.writeObject(original);
+        }
+
+        assertEquals("I am Arthur Dent", captureSystemOut(Deserializer::main).trim());
+    }
+
+    @Test
+    void main_withoutFile_printsNothing() {
+        new File(MAIN_FILE).delete();
+
+        assertEquals("", captureSystemOut(Deserializer::main));
+    }
+
+    private String captureSystemOut(Runnable runnable) {
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
+        try {
+            runnable.run();
+        } finally {
+            System.setOut(originalOut);
+        }
+        return out.toString(StandardCharsets.UTF_8);
     }
 }

@@ -35,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SerializerTest {
     private static final String TEST_FILE = "test-serialize-me.bin";
+    private static final String MAIN_FILE = "serialize-me.bin";
 
     @AfterEach
     void tearDown() {
@@ -94,6 +95,25 @@ class SerializerTest {
             SerializeMe deserialized = (SerializeMe) ois.readObject();
             assertNull(deserialized.getFirstname());
             assertNull(deserialized.getLastname());
+        }
+    }
+
+    @AfterEach
+    void deleteMainFile() {
+        new File(MAIN_FILE).delete();
+    }
+
+    @Test
+    void main_writesSerializedObjectToFile() throws Exception {
+        Serializer.main();
+
+        File file = new File(MAIN_FILE);
+        assertTrue(file.exists(), "Serialized file should be created by main method");
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            SerializeMe deserialized = (SerializeMe) ois.readObject();
+            assertEquals("Arthur", deserialized.getFirstname());
+            assertEquals("Dent", deserialized.getLastname());
         }
     }
 }

@@ -26,6 +26,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -239,5 +240,12 @@ class OutputEscapedServletTest {
         assertFalse(output.contains("onclick='alert(1)'"));
         // The escaped version should contain encoded characters
         assertTrue(output.contains("&#39;") || output.contains("&apos;"));
+    }
+
+    @Test
+    void doPost_withFailingWriter_doesNotThrowException() throws Exception {
+        when(response.getWriter()).thenThrow(new IOException("Writer not available"));
+
+        assertDoesNotThrow(() -> servlet.doPost(request, response));
     }
 }

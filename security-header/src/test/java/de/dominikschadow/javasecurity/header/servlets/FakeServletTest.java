@@ -26,9 +26,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Tests for the FakeServlet class.
@@ -93,5 +95,12 @@ class FakeServletTest {
 
         String htmlOutput = stringWriter.toString();
         assertTrue(htmlOutput.contains("../resources/css/styles.css"));
+    }
+
+    @Test
+    void doPost_withFailingWriter_doesNotThrowException() throws Exception {
+        when(response.getWriter()).thenThrow(new IOException("Writer not available"));
+
+        assertDoesNotThrow(() -> fakeServlet.doPost(request, response));
     }
 }

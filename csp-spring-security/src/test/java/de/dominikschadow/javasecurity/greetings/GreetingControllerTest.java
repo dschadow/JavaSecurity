@@ -59,4 +59,11 @@ class GreetingControllerTest {
                 .andExpect(model().attribute("result", instanceOf(Greeting.class)));
     }
 
+    @Test
+    @WithMockUser
+    void home_setsContentSecurityPolicyHeader() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Security-Policy", "default-src 'self'"));
+    }
 }
