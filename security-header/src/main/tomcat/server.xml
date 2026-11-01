@@ -14,8 +14,8 @@
 
         <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" SSLEnabled="true">
             <SSLHostConfig>
-                <Certificate certificateKeystoreFile="conf/keystore.jks" certificateKeystorePassword="secureheaders"
-                             certificateKeystoreType="JKS" certificateKeyAlias="tomcat" type="RSA"/>
+                <Certificate certificateKeystoreFile="conf/keystore.p12" certificateKeystorePassword="secureheaders"
+                             certificateKeystoreType="PKCS12" certificateKeyAlias="tomcat" type="RSA"/>
             </SSLHostConfig>
         </Connector>
 

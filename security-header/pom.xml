@@ -54,7 +54,7 @@
                                 <todir>conf</todir>
                             </configfile>
                             <configfile>
-                                <file>${project.basedir}/certificates/keystore.jks</file>
+                                <file>${project.basedir}/certificates/keystore.p12</file>
                                 <todir>conf</todir>
                             </configfile>
                         </configfiles>
