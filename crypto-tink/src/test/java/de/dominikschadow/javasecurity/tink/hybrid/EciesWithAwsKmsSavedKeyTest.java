@@ -259,4 +259,23 @@ class EciesWithAwsKmsSavedKeyTest {
             ecies.decrypt(testPublicKeysetHandle, cipherText, CONTEXT_INFO)
         );
     }
+
+    @Test
+    void generateAndStorePublicKeyWritesPublicKeysetNotPrivateKeyset() throws Exception {
+        File keysetFile = new File(tempDir, "public-keyset-verification.json");
+        assertFalse(keysetFile.exists());
+
+        ecies.generateAndStorePublicKey(testPrivateKeysetHandle, keysetFile);
+
+        KeysetHandle loadedKeyset = ecies.loadPublicKey(keysetFile);
+
+        // The stored keyset must be a public keyset: it can encrypt but NOT decrypt.
+        // If the private keyset were written instead, decryption would succeed.
+        byte[] cipherText = ecies.encrypt(loadedKeyset, INITIAL_TEXT, CONTEXT_INFO);
+
+        assertThrows(GeneralSecurityException.class, () ->
+            ecies.decrypt(loadedKeyset, cipherText, CONTEXT_INFO),
+            "Loaded keyset must be public-only: decryption must fail"
+        );
+    }
 }
